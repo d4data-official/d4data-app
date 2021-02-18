@@ -72,10 +72,10 @@ const useStyles = makeStyles({
     },
 });
 
-function handleClick(setOpen: any, row: any, setProfile: any) {
-    setProfile(row)
+function handleClick(setOpen: any, profile: any, setProfile: any) {
+    setProfile(profile)
     setOpen(true);
-    return row;
+    return profile;
 }
 
 export default function App() {

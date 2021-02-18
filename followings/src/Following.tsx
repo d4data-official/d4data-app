@@ -6,8 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Container from "@material-ui/core/Container";
-import {Avatar, FormControlLabel, Grid} from "@material-ui/core";
+import {Avatar, Grid} from "@material-ui/core";
 
 export default function Following(props: any): JSX.Element {
     let states = props.state;
@@ -15,20 +14,6 @@ export default function Following(props: any): JSX.Element {
     const [open, setOpen] = states;
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
-            root: {
-                display: 'flex',
-                '& > *': {
-                    margin: theme.spacing(1),
-                },
-            },
-            small: {
-                width: theme.spacing(3),
-                height: theme.spacing(3),
-            },
-            large: {
-                width: theme.spacing(16),
-                height: theme.spacing(16),
-            },
             avatar: {
                 boxShadow: theme.shadows[3],
                 width: theme.spacing(16),
@@ -37,10 +22,6 @@ export default function Following(props: any): JSX.Element {
         }),
     );
     const classes = useStyles();
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleClose = () => {
         setOpen(false);
