@@ -48,8 +48,5 @@
       "pre-push": "yarn lint:fix",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "_moduleAliases": {
-    "helpers": "main/helpers"
   }
 }
