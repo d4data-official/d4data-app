@@ -1,0 +1,12 @@
+appId: com.d4data.app
+productName: D4Data App
+copyright: Copyright © 2021 D4DATA
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

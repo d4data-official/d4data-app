@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "license": "MIT",
+  "name": "d4data",
+  "description": "D4Data app",
+  "version": "0.1.0",
+  "author": "D4Data Team",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "electron-serve": "^1.1.0",
+    "electron-store": "^7.0.2"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@types/node": "^14.6.4",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "electron": "^11.3.0",
+    "electron-builder": "^22.9.1",
+    "next": "^10.0.7",
+    "nextron": "^6.0.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typescript": "^4.2.2"
+  }
+}
