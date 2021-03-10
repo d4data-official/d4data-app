@@ -1,6 +1,7 @@
+// import 'module-alias/register';
 import { app } from 'electron';
 import serve from 'electron-serve';
-import { createWindow } from './helpers';
+import createWindow from 'helpers/create-window';
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
