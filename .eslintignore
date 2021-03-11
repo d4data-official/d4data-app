@@ -3,3 +3,4 @@ next.config.js
 nextron.config.js
 app
 dist
+commitlint.config.js
