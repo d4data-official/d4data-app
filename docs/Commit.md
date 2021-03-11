@@ -8,7 +8,7 @@ This format leads to **easier to read commit history**.
 Each commit message consists of a **header**, a **body**, and a **footer**.
 
 
-```
+```html
 <header>
 <BLANK LINE>
 <body>
@@ -29,7 +29,7 @@ Any line of the commit message cannot be longer than 100 characters.
 ## <a name="commit-header"></a>Commit Message Header
 
 ```
-<type>(<(main|renderer)/scope>|<scope>): <short summary>
+<type>(<scope>): <short summary>
   │       │             │
   │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
   │       │
@@ -44,7 +44,7 @@ Any line of the commit message cannot be longer than 100 characters.
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
 
 
-##### Type
+### Type
 
 Must be one of the following:
 
@@ -60,3 +60,17 @@ Must be one of the following:
 
 ### Scope
 The scope should be the name of the feature/node_module affected (as perceived by the person reading the changelog generated from commit messages).
+
+It must be as folow:
+  - `$scope` if the commited payload affect both renderer AND main or none of them
+  - `(main|renderer)/$scope` if the commited payload affect only one of main or renderer
+
+## <a name="commit-body"></a>Commit Message Body
+
+> TODO: add a commit body description
+
+## <a name="commit-footer"></a>Commit Message Footer
+
+> TODO: add a commit body description
+
+[commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
