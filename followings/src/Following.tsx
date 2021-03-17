@@ -30,7 +30,10 @@ export default function Following(props: any): JSX.Element {
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth={true} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Contact</DialogTitle>
-            <DialogContent>
+            <DialogContent 
+	    	style={ 
+			{ overflow: 'hidden' }
+		}>
                 <Grid container spacing={4}>
                     <Grid item xs={5}/>
                     <Grid item>

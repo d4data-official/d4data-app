@@ -90,7 +90,7 @@ export default function App() {
                     Contact list
                 </Typography>
             </Box>
-            <Following state={[open, setOpen]} profile={profile}/>
+            <Following state={[open, setOpen]} profile={jessy}/>
             <Box my={2}>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} size="small" aria-label="a dense table">
