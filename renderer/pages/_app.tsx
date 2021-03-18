@@ -3,10 +3,13 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { AnyAction, Store } from 'redux';
 import theme from 'lib/theme';
+import { registerStore } from 'lib/redux';
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+export default function App({ Component, pageProps }: AppProps) {
+  const [store, setStore] = React.useState<Store<any, AnyAction>>();
 
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
@@ -14,6 +17,12 @@ export default function App(props: AppProps) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
+  React.useEffect(() => {
+    registerStore('communication-channel', (storeInstance) => {
+      setStore(storeInstance);
+    });
+  }, [setStore]);
 
   return (
     <>
@@ -24,7 +33,11 @@ export default function App(props: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        {store && (
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+        )}
       </ThemeProvider>
     </>
   );
