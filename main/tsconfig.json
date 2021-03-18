@@ -2,7 +2,8 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "paths": {
-            "helpers/*": ["main/helpers/*"]
+            "helpers/*": ["main/helpers/*"],
+            "ipcmain": ["main/utils/ipc/index.ts"]
         }
     },
     "include": [

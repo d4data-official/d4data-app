@@ -78,5 +78,9 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
 
   win.on('close', saveState);
 
+  Object.assign(global, {
+    [name]: win,
+  });
+
   return win;
 };

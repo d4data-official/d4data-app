@@ -1,4 +1,3 @@
-// import 'module-alias/register';
 import { app } from 'electron';
 import serve from 'electron-serve';
 import createWindow from 'helpers/create-window';
@@ -10,10 +9,8 @@ if (isProd) {
 } else {
   app.setPath('userData', `${app.getPath('userData')} (development)`);
 }
-
 (async () => {
   await app.whenReady();
-
   const mainWindow = createWindow('main', {
     width: 1000,
     height: 600,
