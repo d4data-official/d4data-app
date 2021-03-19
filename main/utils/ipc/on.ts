@@ -3,8 +3,11 @@ import { IpcMainEvent } from 'electron/main';
 
 type IpcMessageCallback<T extends any[]> = (e: IpcMainEvent, ...args: T) => void;
 
-function read<T extends any[]>(channel: string, callback: IpcMessageCallback<T>) {
+/**
+ * Register a callback which will be called on each message received on the specified channel
+ */
+function on<T extends any[]>(channel: string, callback: IpcMessageCallback<T>) {
   ipcMain.on(channel, callback);
 }
 
-export default read;
+export default on;
