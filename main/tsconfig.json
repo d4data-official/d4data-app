@@ -6,8 +6,5 @@
         "main/helpers/*"
       ]
     }
-  },
-  "include": [
-    "**/*"
-  ]
+  }
 }

@@ -12,8 +12,5 @@
         "renderer/components/pages/*"
       ]
     }
-  },
-  "include": [
-    "**/*"
-  ]
+  }
 }
