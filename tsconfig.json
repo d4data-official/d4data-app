@@ -22,5 +22,10 @@
   "include": [
     "main/**/*",
     "renderer/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "app"
   ]
 }
