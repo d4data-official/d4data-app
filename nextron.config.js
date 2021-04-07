@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   // specify an alternate main src directory, defaults to 'main'
@@ -7,15 +7,17 @@ module.exports = {
   rendererSrcDir: 'renderer',
 
   // main process' webpack config
-  webpack: (defaultConfig) => ({
-    ...defaultConfig,
-    resolve: {
-      ...defaultConfig.resolve,
-      alias: {
-        ...defaultConfig.resolve.alias,
-        helpers: path.resolve(__dirname, 'main/helpers'),
+  webpack: (defaultConfig) => (
+    {
+      ...defaultConfig,
+      resolve: {
+        ...defaultConfig.resolve,
+        alias: {
+          ...defaultConfig.resolve.alias,
+          helpers: path.resolve(__dirname, 'main/helpers'),
+        },
       },
-    },
-  })
+    }
+  )
   ,
-};
+}

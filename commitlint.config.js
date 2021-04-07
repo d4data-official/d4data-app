@@ -9,7 +9,7 @@ const types = [
   'revert',
   'style',
   'test',
-];
+]
 
 module.exports = {
   rules: {
@@ -28,4 +28,4 @@ module.exports = {
     'type-empty': [1, 'never'],
     'type-enum': [1, 'always', types],
   },
-};
+}
