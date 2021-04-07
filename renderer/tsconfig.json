@@ -1,11 +1,16 @@
 {
   "extends": "../tsconfig.json",
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "compilerOptions": {
+    "paths": {
+      "components/*": [
+        "renderer/components/*"
+      ],
+      "lib/*": [
+        "renderer/lib/*"
+      ],
+      "pages-components/*": [
+        "renderer/components/pages/*"
+      ]
+    }
+  }
 }

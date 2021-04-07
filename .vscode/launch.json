@@ -19,7 +19,7 @@
     },
     {
       "name": "Nextron: Renderer",
-      "type": "chrome",
+      "type": "pwa-chrome",
       "request": "attach",
       "port": 5858,
       "timeout": 10000,
