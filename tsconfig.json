@@ -19,10 +19,13 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
+  "include": [
+    "main/**/*",
+    "renderer/**/*"
+  ],
   "exclude": [
     "node_modules",
-    "renderer/next.config.js",
-    "app",
-    "dist"
+    "dist",
+    "app"
   ]
 }

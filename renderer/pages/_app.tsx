@@ -12,11 +12,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const [store, setStore] = React.useState<Store<any, AnyAction>>();
 
   React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement.removeChild(jssStyles)
     }
-  }, []);
+  }, [])
 
   React.useEffect(() => {
     registerStore('communication-channel', (storeInstance) => {
@@ -27,8 +27,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
         <title>D4Data App</title>
       </Head>
       <ThemeProvider theme={theme}>
@@ -40,5 +40,5 @@ export default function App({ Component, pageProps }: AppProps) {
         )}
       </ThemeProvider>
     </>
-  );
+  )
 }

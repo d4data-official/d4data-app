@@ -1,5 +1,5 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import { createMuiTheme } from '@material-ui/core/styles'
+import red from '@material-ui/core/colors/red'
 
 export default createMuiTheme({
   overrides: {
@@ -42,4 +42,4 @@ export default createMuiTheme({
       default: '#fff',
     },
   },
-});
+})
