@@ -1,32 +1,32 @@
 import React from 'react'
-// import Head from 'next/head'
+import Head from 'next/head'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     textAlign: 'center',
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(4),
   },
 }))
 
-const Home = () => {
+const Dashboard = () => {
   const classes = useStyles({})
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <>
-      {/* <Head>
+      <Head>
         <title>D4Data App</title>
-      </Head> */}
+      </Head>
       <div className={classes.root}>
-        We still have got a damn lot of work to do
+        We still have got a damn lot of work to do in the dashboard
       </div>
-      <button type="button" onClick={() => { router.push('/dashboard') }}>Go to dashboard</button>
-      {/* <div className={classes.root}> */}
-      {/* </div> */}
+      <div className={classes.root}>
+        <button type="button" onClick={() => { router.push('/home') }}>Get back home</button>
+      </div>
     </>
   )
 }
 
-export default Home
+export default Dashboard

@@ -10,6 +10,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'jsx-a11y/anchor-has-content': 'off',
     'react/require-default-props': 'off',
+    'template-curly-spacing': 'off',
     'import/no-extraneous-dependencies': [2, { devDependencies: true }],
   },
 }
