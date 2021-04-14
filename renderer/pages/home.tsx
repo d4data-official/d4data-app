@@ -4,12 +4,11 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { withRouter } from 'next/router';
 import Dropzone from 'pages-components/home/components/Dropzone'
-// import withReducer, { send } from '../../lib/ipc';
-// import { Extraction, History } from '../../pages-components/home';
 
 function MainPage() {
   const handleExtract = React.useCallback((path: string) => {
-    console.log(path)
+    const rien = path;
+    return rien;
   }, [])
 
   return (
