@@ -21,7 +21,8 @@
   },
   "include": [
     "main/**/*",
-    "renderer/**/*"
+    "renderer/**/*",
+    "shared/**/*"
   ],
   "exclude": [
     "node_modules",
