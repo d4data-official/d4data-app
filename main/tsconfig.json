@@ -4,7 +4,8 @@
     "paths": {
       "helpers/*": [
         "main/helpers/*"
-      ]
+      ],
+      "@shared/*": ["shared/*"]
     }
   }
 }

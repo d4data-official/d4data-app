@@ -2,15 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "components/*": [
-        "renderer/components/*"
-      ],
-      "lib/*": [
-        "renderer/lib/*"
-      ],
-      "pages-components/*": [
-        "renderer/components/pages/*"
-      ]
+      "components/*": ["renderer/components/*"],
+      "lib/*": ["renderer/lib/*"],
+      "pages-components/*": ["renderer/components/pages/*"],
+      "@shared/*": ["shared/*"]
     }
   }
 }
