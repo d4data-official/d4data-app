@@ -12,7 +12,7 @@ export default function App(props: AppProps) {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles)
+      jssStyles.parentElement?.removeChild(jssStyles)
     }
   }, [])
 

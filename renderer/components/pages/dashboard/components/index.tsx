@@ -6,73 +6,94 @@ interface ComponentProps {
 }
 
 export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
-  ['APIs',
+  [
+    'APIs',
     DefaultDisplay,
   ],
-  ['AuthorizedDevices',
+  [
+    'AuthorizedDevices',
     DefaultDisplay,
   ],
-  ['BrowserDatas',
+  [
+    'BrowserDatas',
     DefaultDisplay,
   ],
-  ['Chats',
+  [
+    'Chats',
     DefaultDisplay,
   ],
-  ['ChatMessages',
+  [
+    'ChatMessages',
     DefaultDisplay,
   ],
-  ['Comments',
+  [
+    'Comments',
     DefaultDisplay,
   ],
-  ['Communities',
+  [
+    'Communities',
     DefaultDisplay,
   ],
-  ['Connections',
+  [
+    'Connections',
     DefaultDisplay,
   ],
-  ['Contacts',
+  [
+    'Contacts',
     DefaultDisplay,
   ],
-  ['Followings',
+  [
+    'Followings',
     DefaultDisplay,
   ],
-  ['Mails',
+  [
+    'Mails',
     DefaultDisplay,
   ],
-  ['Medias',
+  [
+    'Medias',
     DefaultDisplay,
   ],
-  ['Messages',
+  [
+    'Messages',
     DefaultDisplay,
   ],
-  ['Notifications',
+  [
+    'Notifications',
     DefaultDisplay,
   ],
-  ['Posts',
+  [
+    'Posts',
     DefaultDisplay,
   ],
-  ['Profiles',
+  [
+    'Profiles',
     DefaultDisplay,
   ],
-  ['Reacteds',
+  [
+    'Reacteds',
     DefaultDisplay,
   ],
-  ['Settings',
+  [
+    'Settings',
     DefaultDisplay,
   ],
-  ['Tasks',
+  [
+    'Tasks',
     DefaultDisplay,
   ],
-  ['Transactions',
+  [
+    'Transactions',
     DefaultDisplay,
   ],
-  ['Whereabouts',
+  [
+    'Whereabouts',
     DefaultDisplay,
   ],
 ]
 
 export const fetchComponent = (componentName: string) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  const [, Component] = ComponentList.find(([component]) => componentName === component)
+  const [, Component] = ComponentList.find(([component]) => componentName === component) ?? []
   return Component
 }

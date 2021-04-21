@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import React from 'react'
 
 export interface WithDataFetchProps {
@@ -13,14 +13,11 @@ const loadData = (componentName: string, cb: Function) => {
 }
 
 export default function WithDataFetch({ component }: WithDataFetchProps) {
-  const router = useRouter();
+  const router = useRouter()
   const [data, setData] = React.useState<any>(undefined)
   const Component = component
 
   React.useEffect(() => {
-    loadData((router.query.componentName as string).split('/').pop().toString(), (newData: any) => {
-      setData(newData)
-    })
     router.events.on('routeChangeComplete', (componentName) => {
       loadData(componentName.split('/').pop().toString(), (newData: any) => {
         setData(newData)
@@ -29,6 +26,6 @@ export default function WithDataFetch({ component }: WithDataFetchProps) {
   }, [])
 
   return (
-    <Component data={data} />
+    <Component data={data}/>
   )
 }

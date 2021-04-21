@@ -1,4 +1,6 @@
-import { BrowserWindow, BrowserWindowConstructorOptions, screen } from 'electron'
+import {
+  BrowserWindow, BrowserWindowConstructorOptions, Rectangle, screen,
+} from 'electron'
 import Store from 'electron-store'
 
 export default (windowName: string, options: BrowserWindowConstructorOptions): BrowserWindow => {
@@ -10,9 +12,9 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     height: options.height,
   }
   let state = {}
-  let win
+  let win: BrowserWindow
 
-  const restore = () => store.get(key, defaultSize)
+  const restore = () => store.get(key, defaultSize) as BrowserWindowConstructorOptions
 
   const getCurrentPosition = () => {
     const position = win.getPosition()
@@ -25,23 +27,23 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     }
   }
 
-  const windowWithinBounds = (windowState, bounds) => (
-    windowState.x >= bounds.x
-    && windowState.y >= bounds.y
-    && windowState.x + windowState.width <= bounds.x + bounds.width
-    && windowState.y + windowState.height <= bounds.y + bounds.height
+  const windowWithinBounds = (windowState: BrowserWindowConstructorOptions, bounds: Rectangle) => (
+    windowState.x! >= bounds.x
+    && windowState.y! >= bounds.y
+    && windowState.x! + windowState.width! <= bounds.x + bounds.width
+    && windowState.y! + windowState.height! <= bounds.y + bounds.height
   )
 
   const resetToDefaults = () => {
     const { bounds } = screen.getPrimaryDisplay()
     return {
       ...defaultSize,
-      x: (bounds.width - defaultSize.width) / 2,
-      y: (bounds.height - defaultSize.height) / 2,
+      x: (bounds.width - (defaultSize.width || 0)) / 2,
+      y: (bounds.height - (defaultSize.height || 0)) / 2,
     }
   }
 
-  const ensureVisibleOnSomeDisplay = (windowState) => {
+  const ensureVisibleOnSomeDisplay = (windowState: BrowserWindowConstructorOptions) => {
     const visible = screen.getAllDisplays().some(
       (display) => windowWithinBounds(windowState, display.bounds),
     )

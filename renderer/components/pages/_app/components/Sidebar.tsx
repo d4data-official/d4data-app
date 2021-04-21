@@ -21,7 +21,7 @@ export default function Sidebar(
   const classes = useStyles()
   const router = useRouter()
   const handleComponentClick = React.useCallback((componentName: string) => () => {
-    router.push(`/dashboard/${Case.camel(componentName)}`)
+    router.push(`/dashboard/${ Case.camel(componentName) }`)
   }, [])
   return (
     <Drawer
