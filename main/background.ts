@@ -1,7 +1,10 @@
 import { app } from 'electron'
 import serve from 'electron-serve'
-import createWindow from 'helpers/create-window'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
+import LibManager from '@shared/d4data-archive-lib/main/LibManager'
+import createWindow from './helpers/create-window'
+
+const libManager = new LibManager()
 
 const isProd: boolean = process.env.NODE_ENV === 'production'
 
