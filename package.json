@@ -23,6 +23,7 @@
     "d4data-archive-lib": "https://github.com/d4data-official/d4data-archive-lib",
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.3",
+    "fuse.js": "^6.4.6",
     "material-ui-dropzone": "^3.5.0",
     "react-json-view": "^1.21.3"
   },
