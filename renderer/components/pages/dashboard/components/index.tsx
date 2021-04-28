@@ -15,7 +15,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
     DefaultDisplay,
   ],
   [
-    'BrowserDatas',
+    'BrowserData',
     DefaultDisplay,
   ],
   [
@@ -67,11 +67,11 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
     DefaultDisplay,
   ],
   [
-    'Profiles',
+    'Profile',
     DefaultDisplay,
   ],
   [
-    'Reacteds',
+    'Reacted',
     DefaultDisplay,
   ],
   [
