@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
+import Profile from '../../../Profile'
 
 interface ComponentProps {
   data: any
@@ -68,7 +69,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Profile',
-    DefaultDisplay,
+    Profile,
   ],
   [
     'Reacted',
