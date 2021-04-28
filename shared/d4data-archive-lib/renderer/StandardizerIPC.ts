@@ -93,8 +93,8 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.callMethod('getFriends')
   }
 
-  getMail(options?: GetterOptions): GetterReturn<Array<Mail>> {
-    return this.callMethod('getMail')
+  getMails(options?: GetterOptions): GetterReturn<Array<Mail>> {
+    return this.callMethod('getMails')
   }
 
   getMedias(options?: GetterOptions): GetterReturn<Array<Media>> {
