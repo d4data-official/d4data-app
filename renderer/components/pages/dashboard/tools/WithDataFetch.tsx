@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import { capitalize } from '@material-ui/core'
 import type { GetterData } from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
 import ArchiveManager from '../../../../modules/ArchiveManager'
@@ -10,7 +9,6 @@ export interface WithDataFetchProps {
 }
 
 export default function WithDataFetch({ component, componentName }: WithDataFetchProps) {
-  const router = useRouter()
   const [data, setData] = React.useState<any>(undefined)
   const Component = component
 
@@ -34,9 +32,9 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
     // @ts-ignore
     standardizer[getterName]()
-      .then((data: GetterData<any>) => {
+      .then((getterData: GetterData<any>) => {
         console.info(`${ capitalize(componentName) } getter data retrieved`)
-        setData(data)
+        setData(getterData)
       })
   }, [componentName])
 
@@ -53,6 +51,6 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
   }
 
   return (
-    <Component data={data}/>
+    <Component data={ data }/>
   )
 }
