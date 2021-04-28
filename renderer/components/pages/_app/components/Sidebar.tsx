@@ -1,13 +1,12 @@
-import React from 'react'
-
-import useStyles from 'pages-components/_app/styles/sidebar.styles'
-import {
-  Drawer, IconButton, Divider, List, ListItem, ListItemText,
-} from '@material-ui/core'
-import { ChevronLeft } from '@material-ui/icons'
-import Case from 'case'
-import { ComponentList } from 'components/pages/dashboard/components'
 import { useRouter } from 'next/router'
+import React from 'react'
+import Case from 'case'
+import {
+  Button, Divider, Drawer, IconButton, List, ListItem, ListItemText,
+} from '@material-ui/core'
+import { ChevronLeft, Home } from '@material-ui/icons'
+import useStyles from 'pages-components/_app/styles/sidebar.styles'
+import { ComponentList } from 'components/pages/dashboard/components'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -34,23 +33,31 @@ export default function Sidebar(
       }}
     >
       <div className={drawerHeaderClass}>
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<Home/>}
+          onClick={() => router.push('/home')}
+        >
+          Go to home
+        </Button>
         <IconButton onClick={handleDrawerChange}>
-          <ChevronLeft />
+          <ChevronLeft/>
         </IconButton>
       </div>
-      <Divider />
+      <Divider/>
       <List>
-        {ComponentList.map(([component]) => (
+        { ComponentList.map(([component]) => (
           <ListItem
             key={component}
             className={classes.component}
             button
             onClick={handleComponentClick(component)}
           >
-            <ListItemText primary={Case.capital(component)} />
+            <ListItemText primary={Case.capital(component)}/>
           </ListItem>
-        ))}
+        )) }
       </List>
-    </Drawer >
+    </Drawer>
   )
 }
