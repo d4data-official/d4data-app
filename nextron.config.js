@@ -15,6 +15,7 @@ module.exports = {
         alias: {
           ...defaultConfig.resolve.alias,
           helpers: path.resolve(__dirname, 'main/helpers'),
+          '@shared': path.resolve(__dirname, 'shared'),
         },
       },
     }

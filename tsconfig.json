@@ -17,11 +17,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    }
   },
   "include": [
     "main/**/*",
-    "renderer/**/*"
+    "renderer/**/*",
+    "shared/**/*"
   ],
   "exclude": [
     "node_modules",
