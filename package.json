@@ -25,6 +25,7 @@
     "electron-store": "^7.0.3",
     "fuse.js": "^6.4.6",
     "material-ui-dropzone": "^3.5.0",
+    "mui-datatables": "^3.7.7",
     "react-json-view": "^1.21.3",
     "uuid": "^8.3.2"
   },
@@ -32,6 +33,7 @@
     "@commitlint/cli": "^12.0.1",
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/loadable__component": "^5.13.3",
+    "@types/mui-datatables": "^3.7.3",
     "@types/node": "^14.6.4",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
