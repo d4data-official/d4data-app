@@ -46,7 +46,7 @@ export default function BrowserData() {
       case 2:
         return <BrowserExtensions data={ data.data.extensions }/>
       case 3:
-        return <BrowserSettings/>
+        return <BrowserSettings data={ data.data.preferences }/>
       case 4:
         return <BrowserThemes/>
       default:
