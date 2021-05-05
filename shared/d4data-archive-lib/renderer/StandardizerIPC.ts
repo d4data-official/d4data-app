@@ -21,7 +21,7 @@ import {
   Post,
   Reacted,
   Setting,
-  Task,
+  TaskList,
   Transaction,
   Whereabout,
 } from 'd4data-archive-lib/dist/src/types/schemas'
@@ -125,7 +125,7 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.callMethod('getSettings')
   }
 
-  getTasks(options?: GetterOptions): GetterReturn<Array<Task>> {
+  getTasks(options?: GetterOptions): GetterReturn<Array<TaskList>> {
     return this.callMethod('getTasks')
   }
 
