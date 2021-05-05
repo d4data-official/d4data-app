@@ -1,8 +1,10 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core'
+import grey from '@material-ui/core/colors/grey'
 
 export default makeStyles((theme) => ({
   root: {
-    // display: 'flex',
+    height: '100%',
+    background: grey[50],
   },
   drawerHeader: {
     display: 'flex',
@@ -52,7 +54,9 @@ export default makeStyles((theme) => ({
     display: 'hidden',
   },
   main: {
-    flexGrow: 1,
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
