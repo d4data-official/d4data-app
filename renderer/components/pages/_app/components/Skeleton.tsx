@@ -3,7 +3,7 @@ import React from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
 // import Sidebar from './Sidebar';
 import {
-  AppBar, CssBaseline, IconButton, Toolbar, Typography,
+  AppBar, Box, CssBaseline, IconButton, Toolbar, Typography,
 } from '@material-ui/core'
 import clsx from 'clsx'
 import { Menu } from '@material-ui/icons'
@@ -23,53 +23,54 @@ export default function Skeleton({ children }: SkeletonProps) {
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
-    setDrawerOpen(typeof open === 'boolean' ? open : !drawerOpen);
+    setDrawerOpen(typeof open === 'boolean' ? open : !drawerOpen)
   }, [drawerOpen])
   React.useEffect(() => {
     router.events.on('routeChangeComplete', (route) => {
       handleDrawerChange(/dashboard/.test(route))
-    });
+    })
   }, [])
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <div className={ classes.root }>
+      <CssBaseline/>
       <AppBar
         position="fixed"
-        className={clsx(classes.appbar, {
+        className={ clsx(classes.appbar, {
           [classes.appBarShift]: drawerOpen,
-        })}
+        }) }
       >
-        <Toolbar >
+        <Toolbar>
           <div>
-            <Show condition={/dashboard/.test(router.pathname)}>
+            <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={handleDrawerChange}
+                onClick={ handleDrawerChange }
                 edge="start"
-                className={clsx(classes.menuButton, drawerOpen && classes.hide)}
+                className={ clsx(classes.menuButton, drawerOpen && classes.hide) }
               >
-                <Menu />
+                <Menu/>
               </IconButton>
             </Show>
           </div>
           <Typography variant="h6" noWrap>
-            {Case.capital(componentName as string) ?? 'D4Data'}
+            { Case.capital(componentName as string) ?? 'D4Data' }
           </Typography>
-          <div />
+          <div/>
         </Toolbar>
       </AppBar>
       <Sidebar
-        drawerOpen={drawerOpen}
-        drawerHeaderClass={classes.drawerHeader}
-        handleDrawerChange={handleDrawerChange}
+        drawerOpen={ drawerOpen }
+        drawerHeaderClass={ classes.drawerHeader }
+        handleDrawerChange={ handleDrawerChange }
       />
-      <main className={clsx(classes.main, {
-        [classes.mainShift]: drawerOpen,
-      })}
+      <main
+        className={ clsx(classes.main, {
+          [classes.mainShift]: drawerOpen,
+        }) }
       >
-        <div className={classes.drawerHeader} />
-        {children}
+        <div className={ classes.drawerHeader }/>
+        <Box flexGrow={ 1 } display="flex">{ children }</Box>
       </main>
     </div>
   )
