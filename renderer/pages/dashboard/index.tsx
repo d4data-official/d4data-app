@@ -19,11 +19,18 @@ const Dashboard = () => {
       <Head>
         <title>D4Data App</title>
       </Head>
-      <div className={classes.root}>
+      <div className={ classes.root }>
         We still have got a damn lot of work to do in the dashboard
       </div>
-      <div className={classes.root}>
-        <button type="button" onClick={() => { router.push('/home') }}>Get back home</button>
+      <div className={ classes.root }>
+        <button
+          type="button"
+          onClick={ () => {
+            router.push('/home')
+          } }
+        >
+          Get back home
+        </button>
       </div>
     </>
   )

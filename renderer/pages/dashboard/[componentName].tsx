@@ -10,6 +10,6 @@ export default function DashboardComponent() {
   const Component = componentName ? fetchComponent(Case.pascal(componentName)) : undefined
 
   return (
-    <WithDataFetch component={Component} componentName={componentName}/>
+    <WithDataFetch component={ Component } componentName={ componentName! }/>
   )
 }

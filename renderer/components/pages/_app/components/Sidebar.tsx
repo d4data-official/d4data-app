@@ -25,23 +25,23 @@ export default function Sidebar(
   return (
     <Drawer
       variant="persistent"
-      open={drawerOpen}
-      onClose={handleDrawerChange}
-      className={classes.drawer}
-      classes={{
+      open={ drawerOpen }
+      onClose={ handleDrawerChange }
+      className={ classes.drawer }
+      classes={ {
         paper: classes.drawerPaper,
-      }}
+      } }
     >
-      <div className={drawerHeaderClass}>
+      <div className={ drawerHeaderClass }>
         <Button
           variant="outlined"
           color="primary"
-          startIcon={<Home/>}
-          onClick={() => router.push('/home')}
+          startIcon={ <Home/> }
+          onClick={ () => router.push('/home') }
         >
           Go to home
         </Button>
-        <IconButton onClick={handleDrawerChange}>
+        <IconButton onClick={ handleDrawerChange }>
           <ChevronLeft/>
         </IconButton>
       </div>
@@ -49,12 +49,12 @@ export default function Sidebar(
       <List>
         { ComponentList.map(([component]) => (
           <ListItem
-            key={component}
-            className={classes.component}
+            key={ component }
+            className={ classes.component }
             button
-            onClick={handleComponentClick(component)}
+            onClick={ handleComponentClick(component) }
           >
-            <ListItemText primary={Case.capital(component)}/>
+            <ListItemText primary={ Case.capital(component) }/>
           </ListItem>
         )) }
       </List>

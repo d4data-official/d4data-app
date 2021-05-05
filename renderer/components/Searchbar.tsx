@@ -61,17 +61,17 @@ export default function Searchbar({
   }, [search])
 
   return (
-    <Paper component="form" className={classes.root}>
-      <SearchIcon className={classes.icon}/>
+    <Paper component="form" className={ classes.root }>
+      <SearchIcon className={ classes.icon }/>
       <InputBase
-        className={classes.input}
-        placeholder={placeholder ?? 'Search'}
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
+        className={ classes.input }
+        placeholder={ placeholder ?? 'Search' }
+        value={ search }
+        onChange={ (event) => setSearch(event.target.value) }
       />
       { search.length > 0
       && (
-        <IconButton size="small" className={classes.clearButton} onClick={() => setSearch('')}>
+        <IconButton size="small" className={ classes.clearButton } onClick={ () => setSearch('') }>
           <ClearIcon/>
         </IconButton>
       ) }
