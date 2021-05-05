@@ -32,7 +32,7 @@ export interface TableColumn extends MUIDataTableColumn {
   alignHeader?: 'left' | 'center' | 'right'
 }
 
-export default function createTableColumns(columns: Array<TableColumn>): Array<MUIDataTableColumn> {
+export default function useTableColumns(columns: Array<TableColumn>): Array<MUIDataTableColumn> {
   const classes = useStyles()
 
   const setCellHeaderProps = (column: TableColumn): SetCellHeaderProps => (columnMeta) => {

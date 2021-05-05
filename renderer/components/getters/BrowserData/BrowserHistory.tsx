@@ -3,7 +3,7 @@ import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
 import { Box, Button, Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import openInBrowser from '../../../modules/openInBrowser'
-import createTableColumns, { TableColumn } from '../../../modules/createTableColumns'
+import useTableColumns, { TableColumn } from '../../../modules/hooks/useTableColumns'
 
 export interface Props {
   data: Array<History>
@@ -82,7 +82,7 @@ export default function BrowserHistory({ data }: Props) {
         <MUIDataTable
           title=""
           data={ data }
-          columns={ createTableColumns(columns) }
+          columns={ useTableColumns(columns) }
           options={ options }
         />
       </Box>
