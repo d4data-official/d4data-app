@@ -9,6 +9,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/anchor-has-content': 'off',
+    'react/jsx-curly-spacing': ['error', { 'when': 'always' }],
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'no-underscore-dangle': 'off',
