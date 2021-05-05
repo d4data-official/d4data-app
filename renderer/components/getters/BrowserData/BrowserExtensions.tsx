@@ -1,15 +1,5 @@
 import { Extension } from 'd4data-archive-lib/dist/src/types/schemas/BrowserData'
-import {
-  Box,
-  Button,
-  Checkbox,
-  CheckboxProps,
-  FormControlLabel,
-  Paper,
-  styled,
-  Tooltip,
-  Typography,
-} from '@material-ui/core'
+import { Box, Button, Checkbox, CheckboxProps, FormControlLabel, Paper, styled, Typography } from '@material-ui/core'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { green } from '@material-ui/core/colors'
 import openInBrowser from '../../../modules/openInBrowser'
@@ -68,7 +58,7 @@ export default function BrowserExtensions({ data }: Props) {
           }) => (
             <Paper className={ classes.extensionCard }>
               <div>
-                  <Typography variant="h5" className={ classes.name } noWrap>{ name }</Typography>
+                <Typography variant="h5" className={ classes.name } noWrap>{ name }</Typography>
                 { version && (
                   <div>
                     <span>v</span>
