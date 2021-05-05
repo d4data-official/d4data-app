@@ -2,9 +2,7 @@ import React from 'react'
 // import Show from 'components/Show'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
 // import Sidebar from './Sidebar';
-import {
-  AppBar, Box, CssBaseline, IconButton, Toolbar, Typography,
-} from '@material-ui/core'
+import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Menu } from '@material-ui/icons'
 import Show from 'components/Show'
@@ -70,7 +68,7 @@ export default function Skeleton({ children }: SkeletonProps) {
         }) }
       >
         <div className={ classes.drawerHeader }/>
-        <Box flexGrow={ 1 } display="flex">{ children }</Box>
+        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{ children }</Box>
       </main>
     </div>
   )

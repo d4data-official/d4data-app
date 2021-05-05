@@ -57,7 +57,6 @@ export default makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
