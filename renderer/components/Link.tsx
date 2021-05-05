@@ -11,8 +11,8 @@ const NextComposed = React.forwardRef(
     const { as, href, ...other } = props
 
     return (
-      <NextLink href={href} as={as}>
-        <a ref={ref} {...other} />
+      <NextLink href={ href } as={ as }>
+        <a ref={ ref } { ...other } />
       </NextLink>
     )
   },
@@ -43,14 +43,14 @@ function Link(props: LinkProps) {
   })
 
   if (naked) {
-    return <NextComposed className={className} ref={innerRef} href={href} {...other} />
+    return <NextComposed className={ className } ref={ innerRef } href={ href } { ...other } />
   }
 
   return (
-    <MuiLink component={NextComposed} className={className} ref={innerRef} href={href} {...other} />
+    <MuiLink component={ NextComposed } className={ className } ref={ innerRef } href={ href } { ...other } />
   )
 }
 
 export default React.forwardRef<HTMLAnchorElement, LinkProps>(
-  (props, ref) => <Link {...props} innerRef={ref}/>,
+  (props, ref) => <Link { ...props } innerRef={ ref }/>,
 )

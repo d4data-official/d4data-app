@@ -17,5 +17,13 @@ module.exports = {
     'class-methods-use-this': 'off',
     'template-curly-spacing': ['error', 'always'],
     'import/no-extraneous-dependencies': [2, { devDependencies: true }],
+    'no-console': 'off',
+    'no-restricted-syntax': [
+      'warn',
+      {
+        'selector': 'CallExpression[callee.object.name=\'console\'][callee.property.name!=/^(info|warn|error)$/]',
+        'message': 'Unexpected console log. If you want to print message/warning/error during run time use console.[info|warn|error].',
+      },
+    ],
   },
 }
