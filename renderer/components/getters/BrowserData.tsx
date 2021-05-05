@@ -17,6 +17,8 @@ const data = browserData as NonNullable<GetterData<BrowserDataType>>
 const useStyles = makeStyles((theme) => ({
   paper: {
     flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
   },
   title: {
     fontWeight: 100,
