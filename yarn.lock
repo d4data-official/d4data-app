@@ -8401,7 +8401,6 @@ typescript-is@^0.18.2:
   integrity sha512-TXgcmHLbuYaKtwyGy/v+oFWi9sIlEUSMcHSuRbIH7OtUuaMP6/bOPwOMDuEVRtGQ62Yx1XMdxFGbax81nXDKjg==
   dependencies:
     nested-error-stacks "^2"
-    reflect-metadata ">=0.1.12"
     tsutils "^3.17.1"
   optionalDependencies:
     reflect-metadata ">=0.1.12"

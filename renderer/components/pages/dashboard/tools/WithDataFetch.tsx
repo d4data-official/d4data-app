@@ -1,6 +1,6 @@
 import React from 'react'
 import { capitalize } from '@material-ui/core'
-import type { GetterData } from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface WithDataFetchProps {
