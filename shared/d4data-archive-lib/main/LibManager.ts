@@ -1,4 +1,4 @@
-import { Archive, ArchiveFactory, Services, Standardizer, StandardizerFactory } from 'd4data-archive-lib'
+import { Archive, ArchiveFactory, Services, Standardizer, StandardizerFactory } from '@d4data/archive-lib'
 import Manager, { Storage } from './Manager'
 
 export default class LibManager {
