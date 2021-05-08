@@ -4,7 +4,7 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { NextRouter, withRouter } from 'next/router'
 import Dropzone from 'pages-components/home/components/Dropzone'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
+import type Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
 import ArchiveManager from '../modules/ArchiveManager'
 

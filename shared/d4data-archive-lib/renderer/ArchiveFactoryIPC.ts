@@ -1,5 +1,5 @@
-import type { Archive, ArchiveFactory } from 'd4data-archive-lib'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
+import type { Archive, ArchiveFactory } from '@d4data/archive-lib'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveIPC from './ArchiveIPC'
 import StandardizerIPC from './StandardizerIPC'
 import ClientInstance from './ClientInstance'
