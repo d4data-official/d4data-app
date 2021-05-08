@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 20,
   },
   pos: {
     marginBottom: 12,
@@ -44,13 +44,13 @@ export default function DisplayNotes({ data }: getterData) {
         notes.map((note) => (
           < Card className={classes.root} >
             <CardContent>
-              <Typography className={classes.title} color="textPrimary" gutterBottom>
+              <Typography variant="h5" className={classes.title} gutterBottom>
                 {note.title}
               </Typography>
-              <Typography variant="h5" component="h2">
+              <Typography variant="body2" component="h2">
                 {note.creationDate}
               </Typography>
-              <Typography variant="body2" component="p">
+              <Typography variant="body1" component="p">
                 {note.content}
               </Typography>
             </CardContent>
