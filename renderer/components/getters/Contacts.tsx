@@ -78,8 +78,8 @@ function handleClick(setOpen: any, profile: any, setProfile: any) {
 export default function Contacts({ data }: { data: any }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false)
-  const [profile, setProfile] = React.useState({});
-
+  const [clickedProfile, setProfile] = React.useState({});
+  console.log(data)
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
@@ -87,39 +87,35 @@ export default function Contacts({ data }: { data: any }) {
           {`${ data.data.length } contacts found`}
         </Typography>
       </Box>
-      <Following state={ [open, setOpen] } profile={ jessy }/>
+      <Following state={ [open, setOpen] } profile={ clickedProfile }/>
       <Box my={ 2 }>
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <StyledTableRow>
                 <StyledTableCell>Picture</StyledTableCell>
-                <StyledTableCell>First name</StyledTableCell>
-                <StyledTableCell>Last name</StyledTableCell>
+                <StyledTableCell>Name</StyledTableCell>
                 <StyledTableCell>Username</StyledTableCell>
                 <StyledTableCell>E-mail</StyledTableCell>
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {profiles.map((row) => (
+              {profiles.map((row:any) => (
                 <StyledTableRow key={ row.nickname }>
                   <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
                     <Avatar alt={ row.firstName } src={ row.profilePicture }>
-                      {row.firstName.charAt(0)}
-                      {row.lastName.charAt(0)}
+                      {row?.firstName?.charAt(0)}
+                      {row?.lastName?.charAt(0)}
                     </Avatar>
                   </TableCell>
                   <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row.firstName}
+                    {row?.firstName || row?.displayName?.toString('latin1').toString('utf8') || `${ row?.firstName } ${ row?.lastName }`}
                   </TableCell>
                   <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row.lastName}
+                    {row?.username}
                   </TableCell>
                   <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row.username}
-                  </TableCell>
-                  <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row.email}
+                    {row?.email}
                   </TableCell>
                 </StyledTableRow>
               ))}

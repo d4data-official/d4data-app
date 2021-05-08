@@ -38,8 +38,8 @@ export default function Following(props: any): JSX.Element {
           <Grid item xs={ 5 }/>
           <Grid item>
             <Avatar alt={ profile.firstName } src={ profile.profilePicture } className={ classes.avatar }>
-              {profile.firstName.charAt(0)}
-              {profile.lastName.charAt(0)}
+              {profile?.firstName?.charAt(0)}
+              {profile?.lastName?.charAt(0)}
             </Avatar>
           </Grid>
         </Grid>
@@ -51,7 +51,7 @@ export default function Following(props: any): JSX.Element {
             <TextField
               id="outlined-read-only-input"
               label="Gender"
-              defaultValue={ profile.gender }
+              defaultValue={ profile?.gender }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -76,7 +76,10 @@ export default function Following(props: any): JSX.Element {
             <TextField
               id="outlined-read-only-input"
               label="Last name"
-              defaultValue={ profile.lastName }
+              defaultValue={ profile?.lastName || profile?.displayName?.includes(' ')
+                ? profile?.displayName?.split(' ')
+                  .slice(1, profile?.displayName?.length)
+                  .toString().replaceAll(',', ' ') : '' }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -92,7 +95,7 @@ export default function Following(props: any): JSX.Element {
               label="Birthday"
               type="date"
               fullWidth
-              defaultValue={ profile.birthday }
+              defaultValue={ profile?.birthday }
               InputLabelProps={ {
                 shrink: true,
               } }
@@ -107,7 +110,7 @@ export default function Following(props: any): JSX.Element {
             <TextField
               id="outlined-read-only-input"
               label="Username"
-              defaultValue={ profile.username }
+              defaultValue={ !(profile?.username) && profile?.displayName?.includes(' ') ? profile?.username : profile?.displayName }
               InputProps={ {
                 readOnly: true,
               } }
