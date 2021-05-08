@@ -82,7 +82,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Tasks',
-    Notes,
+    DefaultDisplay,
   ],
   [
     'Transactions',
