@@ -55,11 +55,11 @@ export default function Medias({ data }: { data: any }) {
         </div>
       </Modal>
       <h3>
-        {`${ data.data.length } medias`}
+        {`${ data.data.slice(0, 194).length } medias`}
       </h3>
       <div className={ classes.root }>
         <GridList cols={ 6 } className={ classes.gridList }>
-          {data.data.map((tile: any) => (
+          {data.data.slice(0, 194).map((tile: any) => (
             <GridListTile onClick={ () => handleOpen(tile.url) } key={ tile.url } cols={ 1 }>
               <img src={ tile.url } alt={ tile.fileName }/>
               <GridListTileBar
