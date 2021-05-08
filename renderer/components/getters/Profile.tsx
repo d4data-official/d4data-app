@@ -1,5 +1,5 @@
-import type { GetterData } from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
-import type { Profile as ProfileType } from 'd4data-archive-lib/dist/src/types/schemas'
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
 
 export interface Props {
   data: NonNullable<GetterData<Array<ProfileType>>>

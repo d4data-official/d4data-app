@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
-import Contacts from './Contacts'
+import Contacts from '../../../getters/Contacts'
 import Profile from '../../../getters/Profile'
 
 interface ComponentProps {
