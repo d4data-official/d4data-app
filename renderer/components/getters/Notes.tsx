@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
 
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -23,28 +22,28 @@ const useStyles = makeStyles({
   },
 });
 
-interface getterData {
+interface GetterData {
   data: any[];
 }
 
-interface note {
+interface Note {
   title: string,
   creationDate: Date,
   content: string
 }
 
-export default function DisplayNotes({ data }: getterData) {
+export default function DisplayNotes({ data }: GetterData) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-  const notes = data as Array<note>
+  const bull = <span className={ classes.bullet }>•</span>;
+  const notes = data as Array<Note>
 
   return (
     <>
       {
         notes.map((note) => (
-          < Card className={classes.root} >
+          < Card className={ classes.root } >
             <CardContent>
-              <Typography variant="h5" className={classes.title} gutterBottom>
+              <Typography variant="h5" className={ classes.title } gutterBottom>
                 {note.title}
               </Typography>
               <Typography variant="body2" component="h2">
@@ -56,7 +55,8 @@ export default function DisplayNotes({ data }: getterData) {
             </CardContent>
             <Divider />
           </Card >
-        ))}
+        ))
+}
     </>
   );
 }
