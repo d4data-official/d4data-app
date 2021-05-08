@@ -65,6 +65,10 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
     DefaultDisplay,
   ],
   [
+    'Notes',
+    Notes,
+  ],
+  [
     'Posts',
     DefaultDisplay,
   ],
