@@ -39,7 +39,8 @@ const clovis = {
   profilePicture: '',
 }
 
-const profiles: { firstName: string; lastName: string; email: string; username: string; phoneNumber: string; birthday: string; nickname: string; creationDate: string; gender: string; profilePicture: string; }[] = [];
+const profiles: { firstName: string; lastName: string; email: string; username: string; phoneNumber: string;
+  birthday: string; nickname: string; creationDate: string; gender: string; profilePicture: string; }[] = [];
 
 profiles.push(jessy)
 profiles.push(clovis)
@@ -83,7 +84,7 @@ export default function Contacts({ data }: { data: any }) {
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          2 contacts found
+          {`${ data.data.length } contacts found`}
         </Typography>
       </Box>
       <Following state={ [open, setOpen] } profile={ jessy }/>
