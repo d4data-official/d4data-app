@@ -1,9 +1,11 @@
 import React from 'react';
+import type { GetterData } from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Message as NoteType } from 'd4data-archive-lib/dist/src/types/schemas'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Divider } from '@material-ui/core';
+import { darken, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -22,25 +24,18 @@ const useStyles = makeStyles({
   },
 });
 
-interface GetterData {
-  data: any[];
+export interface Props {
+  data: NonNullable<GetterData<Array<NoteType>>>
 }
 
-interface Note {
-  title: string,
-  creationDate: Date,
-  content: string
-}
-
-export default function DisplayNotes({ data }: GetterData) {
+export default function DisplayNotes({ data }: Props) {
   const classes = useStyles();
   const bull = <span className={ classes.bullet }>•</span>;
-  const notes = data as Array<Note>
 
   return (
     <>
       {
-        notes.map((note) => (
+        data.data.map((note) => (
           < Card className={ classes.root } >
             <CardContent>
               <Typography variant="h5" className={ classes.title } gutterBottom>
