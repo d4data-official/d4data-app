@@ -47,7 +47,7 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
   if (data === null) {
     return (
-      <div>No data available.</div>
+      <NoDataAvailable/>
     )
   }
 
