@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
-import Medias from './Medias'
+import Medias from '../../../getters/Medias'
 
 interface ComponentProps {
   data: any
