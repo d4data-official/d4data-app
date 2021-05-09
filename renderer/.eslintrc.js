@@ -4,6 +4,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'react/jsx-one-expression-per-line': 'off',
     'react/jsx-tag-spacing': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
