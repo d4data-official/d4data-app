@@ -1,8 +1,8 @@
-import type { Standardizer } from 'd4data-archive-lib'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
-import type Parser from 'd4data-archive-lib/dist/src/classes/Parser'
-import type { GetterOptions } from 'd4data-archive-lib/dist/src/types/standardizer/Standardizer'
-import type GetterReturn from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Standardizer } from '@d4data/archive-lib'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
+import type Parser from '@d4data/archive-lib/dist/src/classes/Parser'
+import type { GetterOptions } from '@d4data/archive-lib/dist/src/types/standardizer/Standardizer'
+import type GetterReturn from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import {
   API,
   AuthorizedDevice,
@@ -21,7 +21,7 @@ import {
   Post,
   Reacted,
   Setting,
-  Task,
+  TaskList,
   Transaction,
   Whereabout,
 } from 'd4data-archive-lib/dist/src/types/schemas'
@@ -125,7 +125,7 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.callMethod('getSettings')
   }
 
-  getTasks(options?: GetterOptions): GetterReturn<Array<Task>> {
+  getTasks(options?: GetterOptions): GetterReturn<Array<TaskList>> {
     return this.callMethod('getTasks')
   }
 
