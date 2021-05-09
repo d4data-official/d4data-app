@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,11 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar, Grid } from '@material-ui/core';
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
-export default function ContactComponent(props: any): JSX.Element {
-  // eslint-disable-next-line react/destructuring-assignment
-  const states = props.state;
-  const { profile } = props;
-  const [open, setOpen] = states;
+export default function ContactComponent({ show, profile, onClose }: Props) {
   const useStyles = makeStyles((theme: Theme) => createStyles({
     avatar: {
       boxShadow: theme.shadows[3],
@@ -26,6 +23,8 @@ export default function ContactComponent(props: any): JSX.Element {
   const handleClose = () => {
     setOpen(false);
   };
+
+  if (!profile) return <></>
 
   return (
     <Dialog open={ open } onClose={ handleClose } maxWidth="md" fullWidth aria-labelledby="form-dialog-title">

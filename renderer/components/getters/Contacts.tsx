@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
 import { Contact } from '@d4data/archive-lib/src/types/schemas'
+import { GetterData } from '@d4data/archive-lib/src/types/standardizer/GetterReturn';
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
 
@@ -39,16 +40,15 @@ const useStyles = makeStyles({
   },
 });
 
-function handleClick(setOpen: any, profile: any, setProfile: any) {
-  setProfile(profile)
-  setOpen(true);
-  return profile;
-}
-
-export default function Contacts({ data }: { data: any }) {
-  const classes = useStyles();
+export default function Contacts({ data }: { data: NonNullable<GetterData<Array<Contact>>> }) {
+  const classes = useStyles()
   const [open, setOpen] = React.useState(false)
-  const [clickedProfile, setProfile] = React.useState({});
+  const [clickedProfile, setProfile] = React.useState<Contact | undefined>()
+
+  const handleClick = (profile: Contact) => {
+    setProfile(profile)
+    setOpen(true)
+  }
 
   return (
     <Container maxWidth="lg">
@@ -80,7 +80,7 @@ export default function Contacts({ data }: { data: any }) {
                 return (
                   <StyledTableRow key={ row.nickname }>
                     <TableCell
-                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
@@ -89,21 +89,21 @@ export default function Contacts({ data }: { data: any }) {
                       </Avatar>
                     </TableCell>
                     <TableCell
-                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
                       { profile.displayName }
                     </TableCell>
                     <TableCell
-                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
                       { row.username }
                     </TableCell>
                     <TableCell
-                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
