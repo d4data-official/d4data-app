@@ -41,14 +41,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Transactions({ data }: { data: GetterData<Array<Transaction>> }) {
+export default function Transactions({ data }: { data: NonNullable<GetterData<Array<Transaction>>> }) {
   const classes = useStyles()
 
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          {`${ data?.data.length } transactions found`}
+          {`${ data.data.length } transactions found`}
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -64,7 +64,7 @@ export default function Transactions({ data }: { data: GetterData<Array<Transact
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data?.data.map((row) => {
+              {data.data.map((row) => {
                 const transaction = row;
                 return (
                   <StyledTableRow key={ row.product }>
