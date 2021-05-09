@@ -4,7 +4,9 @@ import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfie
 import { Box } from '@material-ui/core';
 
 interface Props {
-  componentName: string;
+  componentName: string,
+  title?: string,
+  description?: string,
 }
 
 const useStyles = makeStyles(() => ({
@@ -36,7 +38,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function NoDataAvailable({ componentName }: Props) {
+function GenerateDefaultDescription({ componentName }:any) {
+  const classes = useStyles();
+
+  return (
+    <div className={ classes.descr }>
+      <span>Awesome ! This service collected no</span>
+      <span>
+        {' '}
+        { componentName }
+        {' '}
+      </span>
+      <span>data about you !</span>
+    </div>
+  );
+}
+
+export default function NoDataAvailable({ componentName, title, description }: Props) {
   const classes = useStyles();
 
   return (
@@ -44,16 +62,8 @@ export default function NoDataAvailable({ componentName }: Props) {
       <Box className={ classes.box }>
         <div className={ classes.nda }>
           <SentimentVerySatisfiedIcon className={ classes.icon }/>
-          <h2 className={ classes.ndaTitle }>No data available</h2>
-          <p className={ classes.descr }>
-            <span>Awesome ! This service collected no</span>
-            <span>
-              {' '}
-              { componentName }
-              {' '}
-            </span>
-            <span>data about you !</span>
-          </p>
+          <h2 className={ classes.ndaTitle }>{ title ?? 'No data available' }</h2>
+          {description ?? <GenerateDefaultDescription componentName={ componentName } />}
         </div>
       </Box>
     </div>
