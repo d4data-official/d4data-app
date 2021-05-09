@@ -3,6 +3,7 @@ import DefaultDisplay from './DefaultDisplay'
 import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
+import Communities from '../../../getters/Communities'
 
 interface ComponentProps {
   data: any
@@ -35,7 +36,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Communities',
-    DefaultDisplay,
+    Communities,
   ],
   [
     'Connections',
