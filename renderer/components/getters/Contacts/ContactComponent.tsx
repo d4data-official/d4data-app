@@ -9,6 +9,7 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar, Grid } from '@material-ui/core';
 import { Contact } from '@d4data/archive-lib/src/types/schemas';
+import moment from 'moment';
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
 export interface Props {
@@ -109,7 +110,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
               label="Birthday"
               type="date"
               fullWidth
-              defaultValue={ profile?.birthday }
+              defaultValue={ moment(new Date(profile.birthday)).format('yyyy-MM-DD') }
               InputLabelProps={ {
                 shrink: true,
               } }
@@ -151,7 +152,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
               label="Creation date"
               type="date"
               fullWidth
-              defaultValue={ profile.creationDate }
+              defaultValue={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
               InputLabelProps={ {
                 shrink: true,
               } }
