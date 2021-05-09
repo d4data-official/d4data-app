@@ -2,6 +2,7 @@ import React from 'react'
 import { capitalize } from '@material-ui/core'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import ArchiveManager from '../../../../modules/ArchiveManager'
+import NoDataAvailable from '../components/NoDataAvailable'
 
 export interface WithDataFetchProps {
   component: any
@@ -46,7 +47,7 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
   if (data === null) {
     return (
-      <div>No data available.</div>
+      <NoDataAvailable componentName={ capitalize(componentName) } />
     )
   }
 
