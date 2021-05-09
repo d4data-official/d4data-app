@@ -46,11 +46,13 @@ export default function NoDataAvailable({ componentName }: Props) {
           <SentimentVerySatisfiedIcon className={ classes.icon }/>
           <h2 className={ classes.ndaTitle }>No data available</h2>
           <p className={ classes.descr }>
-            Awesome ! This service collected no
+            <span>Awesome ! This service collected no</span>
             <span>
-              {componentName}
+              {' '}
+              { componentName }
+              {' '}
             </span>
-            data about you !
+            <span>data about you !</span>
           </p>
         </div>
       </Box>
