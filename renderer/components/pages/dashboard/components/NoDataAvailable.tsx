@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function NoDataAvailable(props: Props) {
+export default function NoDataAvailable({ componentName }: Props) {
   const classes = useStyles();
 
   return (
@@ -47,10 +47,9 @@ export default function NoDataAvailable(props: Props) {
           <h2 className={ classes.ndaTitle }>No data available</h2>
           <p className={ classes.descr }>
             Awesome ! This service collected no
-            {' '}
-            {/* eslint-disable-next-line react/destructuring-assignment */}
-            {props.componentName}
-            {' '}
+            <span>
+              {componentName}
+            </span>
             data about you !
           </p>
         </div>
