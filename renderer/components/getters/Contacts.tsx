@@ -57,7 +57,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
           {`${ data.data.length } contacts found`}
         </Typography>
       </Box>
-      <ContactComponent state={ [open, setOpen] } profile={ clickedProfile }/>
+      <ContactComponent show={ open } onClose={ () => setOpen(false) } profile={ clickedProfile }/>
       <Box my={ 2 }>
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">

@@ -8,7 +8,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar, Grid } from '@material-ui/core';
+import { Contact } from '@d4data/archive-lib/src/types/schemas';
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
+
+export interface Props {
+  onClose?: () => void
+  show: boolean
+  profile: Contact
+}
 
 export default function ContactComponent({ show, profile, onClose }: Props) {
   const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -21,13 +28,13 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
   const classes = useStyles();
 
   const handleClose = () => {
-    setOpen(false);
+    onClose?.()
   };
 
   if (!profile) return <></>
 
   return (
-    <Dialog open={ open } onClose={ handleClose } maxWidth="md" fullWidth aria-labelledby="form-dialog-title">
+    <Dialog open={ show } onClose={ handleClose } maxWidth="md" fullWidth aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Contact</DialogTitle>
       <DialogContent
         style={
