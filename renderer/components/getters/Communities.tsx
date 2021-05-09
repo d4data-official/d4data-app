@@ -10,10 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { Community, Contact } from '@d4data/archive-lib/src/types/schemas'
+import { Community } from '@d4data/archive-lib/src/types/schemas'
 import { GetterData } from '@d4data/archive-lib/src/types/standardizer/GetterReturn';
 import moment from 'moment';
-import ContactComponent from './Contacts/ContactComponent'
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
@@ -41,13 +40,7 @@ const useStyles = makeStyles({
 
 export default function Communities({ data }: { data: NonNullable<GetterData<Array<Community>>> }) {
   const classes = useStyles()
-  const [open, setOpen] = React.useState(false)
-  const [clickedProfile, setProfile] = React.useState<Contact | undefined>()
 
-  const handleClick = (profile: Contact) => {
-    setProfile(profile)
-    setOpen(true)
-  }
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
@@ -55,7 +48,6 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
           {`${ data.data.length } communities found`}
         </Typography>
       </Box>
-      <ContactComponent show={ open } onClose={ () => setOpen(false) } profile={ clickedProfile }/>
       <Box my={ 2 }>
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
@@ -67,23 +59,21 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
             </TableHead>
             <TableBody>
               {data.data.map((row) => {
-                const profile = row;
+                const community = row;
                 return (
-                  <StyledTableRow key={ row.nickname }>
+                  <StyledTableRow key={ row.name }>
                     <TableCell
-                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
-                      { profile.name }
+                      { community.name }
                     </TableCell>
                     <TableCell
-                      onClick={ () => handleClick(profile) }
                       component="th"
                       scope="row"
                     >
-                      { profile.joinedDate
-                        ? moment(new Date(profile.joinedDate)).format('yyyy-MM-DD')
+                      { community.joinedDate
+                        ? moment(new Date(community.joinedDate)).format('yyyy-MM-DD')
                         : 'No date provided' }
                     </TableCell>
                   </StyledTableRow>
