@@ -15,40 +15,6 @@ import { Contact } from '@d4data/archive-lib/src/types/schemas'
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
 
-const jessy = {
-  firstName: 'Jessy',
-  lastName: 'SOBREIRO',
-  email: 'jessy.sobreiro@epitech.eu',
-  username: 'jess_sys',
-  phoneNumber: '+33 6 59 28 15 37',
-  birthday: '1998-11-17',
-  nickname: 'M. Jessy SOBREIRO',
-  creationDate: '2014-04-02',
-  gender: 'Male',
-  profilePicture: 'https://pbs.twimg.com/profile_images/888475149846106113/ddRQCpDE.jpg',
-}
-
-const clovis = {
-  firstName: 'Clovis',
-  lastName: 'ROUX DE VILLARS',
-  email: 'clovis.roux-de-villars@epitech.eu',
-  username: 'Xelorion',
-  phoneNumber: '+33 6 69 69 69 69',
-  birthday: '1989-04-21',
-  nickname: 'M. Clovis De Villars',
-  creationDate: '2012-09-02',
-  gender: 'Male',
-  profilePicture: '',
-}
-
-const profiles: {
-  firstName: string; lastName: string; email: string; username: string; phoneNumber: string;
-  birthday: string; nickname: string; creationDate: string; gender: string; profilePicture: string;
-}[] = [];
-
-profiles.push(jessy)
-profiles.push(clovis)
-
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -127,21 +93,21 @@ export default function Contacts({ data }: { data: any }) {
                       component="th"
                       scope="row"
                     >
-                      {profile?.displayName}
+                      { profile.displayName }
                     </TableCell>
                     <TableCell
                       onClick={ () => handleClick(setOpen, profile, setProfile) }
                       component="th"
                       scope="row"
                     >
-                      {row?.username}
+                      { row.username }
                     </TableCell>
                     <TableCell
                       onClick={ () => handleClick(setOpen, profile, setProfile) }
                       component="th"
                       scope="row"
                     >
-                      {row?.email}
+                      { row.email }
                     </TableCell>
                   </StyledTableRow>
                 )

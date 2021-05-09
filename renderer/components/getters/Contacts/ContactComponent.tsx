@@ -32,8 +32,8 @@ export default function ContactComponent(props: any): JSX.Element {
       <DialogTitle id="form-dialog-title">Contact</DialogTitle>
       <DialogContent
         style={
-                    { overflow: 'hidden' }
-                }
+          { overflow: 'hidden' }
+        }
       >
         <Grid container spacing={ 4 }>
           <Grid item xs={ 5 }/>
