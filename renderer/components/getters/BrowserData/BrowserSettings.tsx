@@ -1,4 +1,4 @@
-import { Preference } from 'd4data-archive-lib/dist/src/types/schemas/BrowserData'
+import { Preference } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
 import { Box } from '@material-ui/core'
 import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
 import { makeStyles } from '@material-ui/styles'

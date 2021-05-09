@@ -1,4 +1,4 @@
-import { Extension } from 'd4data-archive-lib/dist/src/types/schemas/BrowserData'
+import { Extension } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
 import { Box } from '@material-ui/core'
 import ExtensionCard from './BrowserExtensions/ExtensionCard'
 

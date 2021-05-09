@@ -1,4 +1,4 @@
-import { History } from 'd4data-archive-lib/dist/src/types/schemas/BrowserData'
+import { History } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
 import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
 import { Box, Button, Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
