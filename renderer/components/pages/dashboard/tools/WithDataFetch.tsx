@@ -41,7 +41,7 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
   if (data === undefined) {
     return (
-      <NoDataAvailable componentName={ capitalize(componentName) } />
+      <div>Loading data...</div>
     )
   }
 
