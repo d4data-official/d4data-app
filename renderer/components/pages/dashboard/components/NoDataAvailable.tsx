@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/styles';
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 import { Box } from '@material-ui/core';
 
+interface Props {
+  componentName: string;
+}
+
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
@@ -32,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function NoDataAvailable() {
+export default function NoDataAvailable(props: Props) {
   const classes = useStyles();
 
   return (
@@ -41,7 +45,14 @@ export default function NoDataAvailable() {
         <div className={ classes.nda }>
           <SentimentVerySatisfiedIcon className={ classes.icon }/>
           <h2 className={ classes.ndaTitle }>No data available</h2>
-          <p className={ classes.descr }>It looks like there are no data to show for this category. Awesome!</p>
+          <p className={ classes.descr }>
+            Awesome ! This service collected no
+            {' '}
+            {/* eslint-disable-next-line react/destructuring-assignment */}
+            {props.componentName}
+            {' '}
+            data about you !
+          </p>
         </div>
       </Box>
     </div>
