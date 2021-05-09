@@ -7,8 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar, Grid } from '@material-ui/core';
+import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
-export default function Following(props: any): JSX.Element {
+export default function ContactComponent(props: any): JSX.Element {
   // eslint-disable-next-line react/destructuring-assignment
   const states = props.state;
   const { profile } = props;
@@ -38,8 +39,7 @@ export default function Following(props: any): JSX.Element {
           <Grid item xs={ 5 }/>
           <Grid item>
             <Avatar alt={ profile.firstName } src={ profile.profilePicture } className={ classes.avatar }>
-              {profile?.firstName?.charAt(0)}
-              {profile?.lastName?.charAt(0)}
+              { getInitialsFromContact(profile) }
             </Avatar>
           </Grid>
         </Grid>
@@ -59,12 +59,11 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 1 }/>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
-              label="First name"
-              defaultValue={ profile.firstName }
+              label="Display name"
+              defaultValue={ profile?.displayName }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -72,14 +71,23 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
+            <TextField
+              id="outlined-read-only-input"
+              label="First name"
+              defaultValue={ profile?.firstName }
+              fullWidth
+              InputProps={ {
+                readOnly: true,
+              } }
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
               label="Last name"
-              defaultValue={ profile?.lastName || profile?.displayName?.includes(' ')
-                ? profile?.displayName?.split(' ')
-                  .slice(1, profile?.displayName?.length)
-                  .toString().replaceAll(',', ' ') : '' }
+              defaultValue={ profile?.lastName }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -105,12 +113,11 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 1 }/>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
               label="Username"
-              defaultValue={ !(profile?.username) && profile?.displayName?.includes(' ') ? profile?.username : profile?.displayName }
+              defaultValue={ profile.username }
               InputProps={ {
                 readOnly: true,
               } }
@@ -118,7 +125,7 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
               label="Nickname"
@@ -148,8 +155,7 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 1 }/>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
               label="Email"
@@ -161,7 +167,7 @@ export default function Following(props: any): JSX.Element {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 4 }>
+          <Grid item xs={ 3 }>
             <TextField
               id="outlined-read-only-input"
               label="Phone"

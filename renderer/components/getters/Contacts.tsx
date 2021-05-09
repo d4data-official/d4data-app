@@ -11,7 +11,9 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
-import Following from './Contacts/Following'
+import { Contact } from '@d4data/archive-lib/src/types/schemas'
+import getInitialsFromContact from '../../modules/getInitialsFromContact'
+import ContactComponent from './Contacts/ContactComponent'
 
 const jessy = {
   firstName: 'Jessy',
@@ -39,8 +41,10 @@ const clovis = {
   profilePicture: '',
 }
 
-const profiles: { firstName: string; lastName: string; email: string; username: string; phoneNumber: string;
-  birthday: string; nickname: string; creationDate: string; gender: string; profilePicture: string; }[] = [];
+const profiles: {
+  firstName: string; lastName: string; email: string; username: string; phoneNumber: string;
+  birthday: string; nickname: string; creationDate: string; gender: string; profilePicture: string;
+}[] = [];
 
 profiles.push(jessy)
 profiles.push(clovis)
@@ -79,7 +83,7 @@ export default function Contacts({ data }: { data: any }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false)
   const [clickedProfile, setProfile] = React.useState({});
-  console.log(data)
+
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
@@ -87,7 +91,7 @@ export default function Contacts({ data }: { data: any }) {
           {`${ data.data.length } contacts found`}
         </Typography>
       </Box>
-      <Following state={ [open, setOpen] } profile={ clickedProfile }/>
+      <ContactComponent state={ [open, setOpen] } profile={ clickedProfile }/>
       <Box my={ 2 }>
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
@@ -100,25 +104,48 @@ export default function Contacts({ data }: { data: any }) {
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {profiles.map((row:any) => (
-                <StyledTableRow key={ row.nickname }>
-                  <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    <Avatar alt={ row.firstName } src={ row.profilePicture }>
-                      {row?.firstName?.charAt(0)}
-                      {row?.lastName?.charAt(0)}
-                    </Avatar>
-                  </TableCell>
-                  <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row?.firstName || row?.displayName?.toString('latin1').toString('utf8') || `${ row?.firstName } ${ row?.lastName }`}
-                  </TableCell>
-                  <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row?.username}
-                  </TableCell>
-                  <TableCell onClick={ () => handleClick(setOpen, row, setProfile) } component="th" scope="row">
-                    {row?.email}
-                  </TableCell>
-                </StyledTableRow>
-              ))}
+              {data.data.map((row: Contact) => {
+                const profile: Contact = {
+                  ...row,
+                  displayName: row.displayName
+                  ?? (row.firstName && row.lastName && `${ row.firstName } ${ row.lastName }`),
+                }
+
+                return (
+                  <StyledTableRow key={ row.nickname }>
+                    <TableCell
+                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      component="th"
+                      scope="row"
+                    >
+                      <Avatar alt={ row.firstName } src={ row.profilePicture }>
+                        { getInitialsFromContact(profile) }
+                      </Avatar>
+                    </TableCell>
+                    <TableCell
+                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      component="th"
+                      scope="row"
+                    >
+                      {profile?.displayName}
+                    </TableCell>
+                    <TableCell
+                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      component="th"
+                      scope="row"
+                    >
+                      {row?.username}
+                    </TableCell>
+                    <TableCell
+                      onClick={ () => handleClick(setOpen, profile, setProfile) }
+                      component="th"
+                      scope="row"
+                    >
+                      {row?.email}
+                    </TableCell>
+                  </StyledTableRow>
+                )
+              })}
             </TableBody>
           </Table>
         </TableContainer>
