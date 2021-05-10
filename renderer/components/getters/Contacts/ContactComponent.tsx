@@ -58,7 +58,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Gender"
-              defaultValue={ profile?.gender }
+              value={ profile?.gender }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -70,7 +70,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Display name"
-              defaultValue={ profile?.displayName }
+              value={ profile?.displayName }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -82,7 +82,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="First name"
-              defaultValue={ profile?.firstName }
+              value={ profile?.firstName }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -94,7 +94,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Last name"
-              defaultValue={ profile?.lastName }
+              value={ profile?.lastName }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -110,7 +110,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
               label="Birthday"
               type="date"
               fullWidth
-              defaultValue={ moment(new Date(profile.birthday)).format('yyyy-MM-DD') }
+              value={ moment(new Date(profile.birthday)).format('yyyy-MM-DD') }
               InputLabelProps={ {
                 shrink: true,
               } }
@@ -124,7 +124,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Username"
-              defaultValue={ profile.username }
+              value={ profile.username }
               InputProps={ {
                 readOnly: true,
               } }
@@ -136,7 +136,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Nickname"
-              defaultValue={ profile.nickname }
+              value={ profile.nickname }
               InputProps={ {
                 readOnly: true,
               } }
@@ -152,7 +152,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
               label="Creation date"
               type="date"
               fullWidth
-              defaultValue={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
+              value={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
               InputLabelProps={ {
                 shrink: true,
               } }
@@ -166,7 +166,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Email"
-              defaultValue={ profile.email }
+              value={ profile.email }
               fullWidth
               InputProps={ {
                 readOnly: true,
@@ -178,7 +178,7 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
             <TextField
               id="outlined-read-only-input"
               label="Phone"
-              defaultValue={ profile.phoneNumber }
+              value={ profile.phoneNumber }
               fullWidth
               InputProps={ {
                 readOnly: true,
