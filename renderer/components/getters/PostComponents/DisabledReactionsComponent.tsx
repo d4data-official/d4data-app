@@ -5,25 +5,8 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    padding: '10px 20px',
-  },
-  title: {
-    marginBottom: 10,
-  },
-  description: {
-    marginBottom: 12,
-  },
-  pos: {
-    fontSize: 10,
-  },
   heading: {
     fontSize: 15,
-  },
-  reactions: {
-    width: '100%',
-    marginBottom: 10,
   },
   box: {
     boxShadow: 'none',
