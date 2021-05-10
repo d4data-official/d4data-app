@@ -23,7 +23,7 @@
     "axios": "^0.21.1",
     "case": "^1.6.3",
     "clsx": "^1.1.1",
-    "d4data-archive-lib": "https://github.com/d4data-official/d4data-archive-lib",
+    "@d4data/archive-lib": "^0.1.0-alpha.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.3",
     "fuse.js": "^6.4.6",

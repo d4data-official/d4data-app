@@ -1,5 +1,5 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
-import { Archive, ArchiveFactory, Standardizer, StandardizerFactory } from 'd4data-archive-lib'
+import { Archive, ArchiveFactory, Standardizer, StandardizerFactory } from '@d4data/archive-lib'
 import { v4 as uuidV4 } from 'uuid'
 import ACTIONS from '../types/Actions'
 import ID from '../types/ID'
