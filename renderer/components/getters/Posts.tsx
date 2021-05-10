@@ -15,9 +15,9 @@ export default function Posts({ data }: { data: NonNullable<GetterData<Array<Pos
         </Typography>
       </Box>
       <Box my={ 2 }>
-        {data.data.map((row) => (
+        {data.data.map((row, idx) => (
           <div>
-            <PostComponent data={ row } />
+            <PostComponent key={ idx.toString() } data={ row } />
             <br/>
           </div>
         ))}

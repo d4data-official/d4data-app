@@ -41,8 +41,8 @@ export default function ReactionsComponent({ data }: { data: NonNullable<Array<R
         <TableContainer>
           <Table className={ classes.reactions } aria-label="simple table">
             <TableBody>
-              {data.map((row) => (
-                <TableRow key="name" >
+              {data.map((row, idx) => (
+                <TableRow key={ idx.toString() } >
                   <TableCell component="th" scope="row">
                     <SmsFailed/>
                   </TableCell>
