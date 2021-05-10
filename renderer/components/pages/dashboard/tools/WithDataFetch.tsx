@@ -47,8 +47,7 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
   if (data === null) {
     return (
-      <Component data={ data }/>
-    // <NoDataAvailable componentName={ capitalize(componentName) } />
+      <NoDataAvailable componentName={ capitalize(componentName) } />
     )
   }
 
