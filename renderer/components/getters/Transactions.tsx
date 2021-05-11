@@ -64,10 +64,10 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data.data.map((row) => {
+              {data.data.map((row, idx) => {
                 const transaction = row;
                 return (
-                  <StyledTableRow key={ row.product }>
+                  <StyledTableRow key={ idx.toString() }>
                     <TableCell
                       component="th"
                       scope="row"
