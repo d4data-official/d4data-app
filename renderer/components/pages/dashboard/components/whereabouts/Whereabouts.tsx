@@ -5,6 +5,8 @@ import Tab from '@material-ui/core/Tab';
 import {
   AppBar, Container, Typography,
 } from '@material-ui/core';
+import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+
 import MUIDataTable from 'mui-datatables';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
@@ -182,6 +184,13 @@ function Map({ whereabouts }: { whereabouts: Array<Whereabout> }) {
   return MapComp
 }
 
+const useStyles = makeStyles({
+  fullWidth: {
+    width: '100%',
+    overflow: 'hidden',
+  },
+});
+
 function Menu({ data }: { data: Array<Whereabout> }) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -190,8 +199,9 @@ function Menu({ data }: { data: Array<Whereabout> }) {
   const handleChangeIndex = (index: number) => {
     setValue(index);
   };
+  const classes = useStyles()
   return (
-    <>
+    <div className={ classes.fullWidth }>
       <AppBar position="static" color="default">
         <Tabs
           value={ value }
@@ -213,7 +223,7 @@ function Menu({ data }: { data: Array<Whereabout> }) {
           <Table whereabouts={ data }/>
         </Container>
       </TabPanel>
-    </>
+    </div>
   )
 }
 
