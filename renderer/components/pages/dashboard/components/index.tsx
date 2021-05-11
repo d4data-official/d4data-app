@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
 import Posts from '../../../getters/Posts'
+import Reacteds from '../../../getters/Reacteds'
 
 interface ComponentProps {
   data: any
@@ -30,7 +31,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Comments',
-    DefaultDisplay,
+    Posts,
   ],
   [
     'Communities',
@@ -74,7 +75,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Reacted',
-    DefaultDisplay,
+    Reacteds,
   ],
   [
     'Settings',
