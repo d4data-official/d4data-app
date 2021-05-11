@@ -70,7 +70,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data.data.map((row: Contact) => {
+              {data.data.map((row: Contact, idx) => {
                 const profile: Contact = {
                   ...row,
                   displayName: row.displayName
@@ -78,7 +78,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
                 }
 
                 return (
-                  <StyledTableRow key={ row.nickname }>
+                  <StyledTableRow key={ idx.toString() }>
                     <TableCell
                       onClick={ () => handleClick(profile) }
                       component="th"
