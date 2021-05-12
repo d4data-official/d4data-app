@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Post } from '@d4data/archive-lib/src/types/schemas'
+import { Post } from '@d4data/archive-lib/dist/src/types/schemas'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
