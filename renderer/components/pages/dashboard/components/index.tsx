@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
+import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
 import Transactions from '../../../getters/Transactions'
 import Medias from '../../../getters/Medias'
@@ -16,7 +17,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'AuthorizedDevices',
-    DefaultDisplay,
+    AuthorizedDevices,
   ],
   [
     'BrowserData',
