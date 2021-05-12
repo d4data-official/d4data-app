@@ -38,18 +38,18 @@ export default function PostComponent({ data }: { data: NonNullable<Post> }) {
       <CardContent>
         <Typography className={ classes.title } variant="h5" component="h2">
           { data.title
-            ?? (
+            ?? (data.metaData?.links?.[0] && (
             <span>
               A publié
               <Button variant="text" onClick={ () => openInBrowser(data.metaData?.links?.[0]) }>un lien</Button>
             </span>
-            )
-            ?? (
+            ))
+            ?? (data.metaData?.medias?.[0] && (
             <span>
               A publié
-              <Button variant="text" onClick={ () => openInBrowser(data.metaData?.links?.[0]) }>un média</Button>
+              <Button variant="text" onClick={ () => openInBrowser(data.metaData?.medias?.[0]) }>un média</Button>
             </span>
-            )
+            ))
             ?? 'No title provided'}
         </Typography>
         <Typography className={ classes.description } variant="body2" component="p">

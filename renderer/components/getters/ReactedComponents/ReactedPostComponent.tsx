@@ -37,18 +37,23 @@ export default function ReactedPostComponent({ data }: { data: NonNullable<React
       <CardContent>
         <Typography className={ classes.title } variant="h5" component="h2">
           { data.entity.title
-            ?? (
+          ?? (data.entity.metaData?.links?.[0] && (
             <span>
               A réagi à un lien
               <Button variant="text" onClick={ () => openInBrowser(data.entity.metaData?.links?.[0]) }>un lien</Button>
             </span>
-            )
-            ?? (
+          ))
+            ?? (data.entity.metaData?.medias?.[0] && (
             <span>
               A réagi à un média
-              <Button variant="text" onClick={ () => openInBrowser(data.entity.metaData?.links?.[0]) }>un média</Button>
+              <Button
+                variant="text"
+                onClick={ () => openInBrowser(data.entity.metaData?.medias?.[0]) }
+              >
+                un média
+              </Button>
             </span>
-            )
+            ))
             ?? 'No title provided'}
         </Typography>
         <Typography className={ classes.pos } color="textSecondary">
