@@ -24,9 +24,10 @@ import {
   TaskList,
   Transaction,
   Whereabout,
-} from 'd4data-archive-lib/dist/src/types/schemas'
+} from '@d4data/archive-lib/dist/src/types/schemas'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
+import { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
 
@@ -43,6 +44,10 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     super(id, CHANNEL_NAME)
     this.id = id
     this.path = path
+  }
+
+  newParser(defaultOptions?: ParsingOptions & PaginationOptions): never {
+    throw new Error('this method not working from renderer')
   }
 
   getAPIs(options?: GetterOptions): GetterReturn<Array<API>> {
@@ -135,6 +140,10 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
 
   getWhereabouts(options?: GetterOptions): GetterReturn<Array<Whereabout>> {
     return this.callMethod('getWhereabouts')
+  }
+
+  getRawData(filePath: string, options?: GetterOptions): Promise<any> {
+    return this.callMethod('getRawData')
   }
 
   get service(): Services {
