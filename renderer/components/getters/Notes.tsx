@@ -1,6 +1,6 @@
 import React from 'react';
-import type { GetterData } from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
-import type { Message as NoteType } from 'd4data-archive-lib/dist/src/types/schemas'
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Message as NoteType } from '@d4data/archive-lib/dist/src/types/schemas'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
