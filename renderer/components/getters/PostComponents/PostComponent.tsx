@@ -56,7 +56,9 @@ export default function PostComponent({ data }: { data: NonNullable<Post> }) {
           { data.description ?? 'No description provided' }
         </Typography>
         <Typography className={ classes.pos } color="textSecondary">
-          Sent by { data.sender ?? 'Unknown' } { moment.duration(data.creationDate.valueOf() / 10).humanize() } ago
+          Sent by { data.sender ?? 'Unknown' }
+          {' '}
+          { data.creationDate && `${ moment.duration(data.creationDate.valueOf() / 10).humanize() } ago` }
         </Typography>
       </CardContent>
       <div className={ classes.reactions }>
