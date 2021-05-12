@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     background:
         'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  tile: {
+    maxWidth: 200,
+  },
 }));
 
 export default function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
@@ -62,7 +65,7 @@ export default function Medias({ data }: { data: NonNullable<GetterData<Array<Me
       <div className={ classes.root }>
         <GridList cols={ 6 } className={ classes.gridList }>
           {data.data.slice(0, 194).map((tile: any) => (
-            <GridListTile onClick={ () => handleOpen(tile.url) } key={ tile.url } cols={ 1 }>
+            <GridListTile className={ classes.tile } onClick={ () => handleOpen(tile.url) } key={ tile.url } cols={ 1 }>
               <img src={ tile.url } alt={ tile.fileName }/>
               <GridListTileBar
                 title={ tile.fileName.split('.')[0] }
