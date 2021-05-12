@@ -8,6 +8,8 @@ import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
 import Transactions from '../../../getters/Transactions'
 import Medias from '../../../getters/Medias'
+import Posts from '../../../getters/Posts'
+import Reacteds from '../../../getters/Reacteds'
 
 interface ComponentProps {
   data: any
@@ -36,7 +38,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Comments',
-    DefaultDisplay,
+    Posts,
   ],
   [
     'Communities',
@@ -72,7 +74,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Posts',
-    DefaultDisplay,
+    Posts,
   ],
   [
     'Profile',
@@ -80,7 +82,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Reacted',
-    DefaultDisplay,
+    Reacteds,
   ],
   [
     'Settings',
