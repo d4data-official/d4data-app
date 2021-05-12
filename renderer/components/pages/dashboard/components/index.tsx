@@ -1,6 +1,9 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
+import Contacts from '../../../getters/Contacts'
+import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
+import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
 import Transactions from '../../../getters/Transactions'
@@ -37,7 +40,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Communities',
-    DefaultDisplay,
+    Communities,
   ],
   [
     'Connections',
@@ -45,11 +48,11 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Contacts',
-    DefaultDisplay,
+    Contacts,
   ],
   [
     'Followings',
-    DefaultDisplay,
+    Followings,
   ],
   [
     'Mails',
