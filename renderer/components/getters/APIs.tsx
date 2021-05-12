@@ -82,7 +82,7 @@ export default function APIs({ data }: { data: NonNullable<GetterData<Array<API>
                       component="th"
                       scope="row"
                     >
-                      { api.linkingDate }
+                      { api.linkingDate.toLocaleString() }
                     </TableCell>
                   </StyledTableRow>
                 )
