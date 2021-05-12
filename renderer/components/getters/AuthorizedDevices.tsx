@@ -1,5 +1,5 @@
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { AuthorizedDevice } from '@d4data/archive-lib/src/types/schemas'
+import { AuthorizedDevice } from '@d4data/archive-lib/dist/src/types/schemas'
 import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
