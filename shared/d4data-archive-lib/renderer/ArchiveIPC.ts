@@ -1,10 +1,10 @@
-import type { Archive, Standardizer } from 'd4data-archive-lib'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
-import { ArchiveFormat, ExtractOptions } from 'd4data-archive-lib/dist/src/modules/ArchiveExtraction'
+import type { Archive, Standardizer } from '@d4data/archive-lib'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
+import { ArchiveFormat, ExtractOptions } from '@d4data/archive-lib/dist/src/modules/ArchiveExtraction'
 import StandardizerIPC from './StandardizerIPC'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
-import { ArchiveMetaData } from 'd4data-archive-lib/dist/src/types/schemas'
+import { ArchiveMetaData } from '@d4data/archive-lib/dist/src/types/schemas'
 
 export const CHANNEL_NAME = 'archive-lib/archive'
 

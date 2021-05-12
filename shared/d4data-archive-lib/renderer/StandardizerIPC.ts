@@ -1,8 +1,8 @@
-import type { Standardizer } from 'd4data-archive-lib'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
-import type Parser from 'd4data-archive-lib/dist/src/classes/Parser'
-import type { GetterOptions } from 'd4data-archive-lib/dist/src/types/standardizer/Standardizer'
-import type GetterReturn from 'd4data-archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Standardizer } from '@d4data/archive-lib'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
+import type Parser from '@d4data/archive-lib/dist/src/classes/Parser'
+import type { GetterOptions } from '@d4data/archive-lib/dist/src/types/standardizer/Standardizer'
+import type GetterReturn from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import {
   API,
   AuthorizedDevice,
