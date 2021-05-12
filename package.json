@@ -27,7 +27,7 @@
     "material-ui-dropzone": "^3.5.0",
     "mui-datatables": "^3.7.7",
     "react-chat-elements": "^10.14.0",
-    "react-json-view": "^1.21.3",
+    "react-json-view-ssr": "^1.19.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

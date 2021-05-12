@@ -51,7 +51,7 @@ export default function WithDataFetch({
     )
   }
 
-  if (data === null || !(data?.map?.length)) {
+  if (data === null || ((data.data?.map) && !data.data.map.length)) {
     return (
       <NoDataAvailable componentName={ capitalize(componentName ?? '') } />
     )

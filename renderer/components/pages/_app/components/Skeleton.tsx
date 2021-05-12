@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react'
-// import Show from 'components/Show'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-// import Sidebar from './Sidebar';
 import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Menu } from '@material-ui/icons'

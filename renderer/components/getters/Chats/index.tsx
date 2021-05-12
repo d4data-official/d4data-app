@@ -33,7 +33,6 @@ export default function Chats({ data: { data: chats } }: Props) {
   const classes = useStyles();
   const [currentChat, setCurrentChat] = useState<number>();
   const [userNames, setUserNames] = useState<Array<string>>([])
-  console.log(chats)
 
   const handleCurrentTabChange = useCallback((_, selected) => {
     setCurrentChat(selected);
