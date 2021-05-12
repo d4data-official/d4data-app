@@ -53,7 +53,7 @@ export default function PostComponent({ data }: { data: NonNullable<Post> }) {
             ?? 'No title provided'}
         </Typography>
         <Typography className={ classes.description } variant="body2" component="p">
-          { data.description ?? 'No content provided' }
+          { data.content ?? 'No content provided' }
         </Typography>
         <Typography className={ classes.pos } color="textSecondary">
           Sent by { data.sender ?? 'Unknown' }

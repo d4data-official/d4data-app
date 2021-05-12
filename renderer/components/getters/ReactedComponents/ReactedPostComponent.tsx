@@ -56,6 +56,9 @@ export default function ReactedPostComponent({ data }: { data: NonNullable<React
             ))
             ?? 'No title provided'}
         </Typography>
+        <Typography className={ classes.description } variant="body2" component="p">
+          { data.entity.content ?? 'No content provided' }
+        </Typography>
         <Typography className={ classes.pos } color="textSecondary">
           { data.entity.sender && `Sent by ${ data.entity.ender }`}
           { data.entity.creationDate
