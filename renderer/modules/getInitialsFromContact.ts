@@ -1,4 +1,4 @@
-import { Contact } from '@d4data/archive-lib/src/types/schemas'
+import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
 
 export default function getInitialsFromContact({ firstName, lastName, displayName }: Contact) {
   const initials = []
