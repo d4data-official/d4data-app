@@ -1,5 +1,6 @@
 import { Reaction } from '@d4data/archive-lib/dist/src/types/schemas'
 import ThumbUp from '@material-ui/icons/ThumbUp';
+import ThumbDown from '@material-ui/icons/ThumbDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Mood from '@material-ui/icons/Mood';
 import MoodBad from '@material-ui/icons/MoodBad';
@@ -18,11 +19,12 @@ const useStyles = makeStyles({
 
 function generateIconFromReaction(reaction: NonNullable<Reaction>) {
   const classes = useStyles();
-  const reactionList = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SORRY', 'UP']
+  const reactionList = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SORRY', 'UP', 'DOWN']
 
   return (
     <div className={ classes.reactionBox }>
       {reaction.name.toUpperCase() === 'UP' && <ThumbUp/>}
+      {reaction.name.toUpperCase() === 'DOWN' && <ThumbDown/>}
       {reaction.name.toUpperCase() === 'LIKE' && <ThumbUp/>}
       {reaction.name.toUpperCase() === 'LOVE' && <FavoriteIcon/>}
       {reaction.name.toUpperCase() === 'HAHA' && <SentimentSatisfied/>}
