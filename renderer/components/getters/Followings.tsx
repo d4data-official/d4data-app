@@ -3,8 +3,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import { Following } from '@d4data/archive-lib/src/types/schemas'
-import { GetterData } from '@d4data/archive-lib/src/types/standardizer/GetterReturn';
+import { Following } from '@d4data/archive-lib/dist/src/types/schemas'
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import Communities from './Communities'
 import Contacts from './Contacts'
 import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable';
