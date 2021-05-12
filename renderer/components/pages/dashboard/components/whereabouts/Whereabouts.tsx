@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Table from './components/Table'
 import {
   AppBar, Container, Typography,
 } from '@material-ui/core';
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
+import Map from './components/Map'
 import MUIDataTable from 'mui-datatables';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
-import Whereabout from './Whereabout';
+import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
 
 async function resolveLocations(whereabouts: Array<Whereabout>) {
   console.log(whereabouts)
@@ -87,103 +89,6 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function Table({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const data = whereabouts.map((location: any) => [
-    location?.recordDate?.toString() ?? '', location?.location?.relativePosition?.raw ?? '',
-    location?.location?.absolutePosition?.latitude ?? '', location?.location?.absolutePosition?.longitude ?? ''])
-  return (
-    <>
-      <MUIDataTable
-        title="Whereabouts"
-        data={ data }
-        columns={ ['date', 'address', 'latitude', 'longitude'] }
-        options={ {
-          selectableRowsHeader: false,
-          selectableRowsOnClick: false,
-          selectableRowsHideCheckboxes: true,
-        } }
-      />
-    </>
-  )
-}
-
-async function imports2({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const {
-    Marker, Popup,
-  } = await import('react-leaflet')
-
-  return (
-    <>
-      {whereabouts?.filter((location: any) => location.location.absolutePosition).map((location: any, i: Number) => {
-        const position = location.location.absolutePosition
-        return (
-          <Marker key={ i.toString() } position={ [position.latitude, position.longitude] }>
-            <Popup>
-              <b>{location?.location?.relativePosition?.raw ?? ''}</b>
-              <br/>
-              {location.recordDate.toString()}
-              {' '}
-              <br/>
-              {position.latitude}
-              ,
-              {position.longitude}
-              {' '}
-              <br/>
-            </Popup>
-          </Marker>
-        )
-      })}
-    </>
-  )
-}
-
-function Markers({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const [MapComp, setMapComp] = useState(<>Loading...</>)
-  useEffect(() => {
-    imports2({ whereabouts }).then((html) => setMapComp(html))
-  }, [whereabouts])
-  return MapComp
-}
-
-async function imports({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const {
-    TileLayer, MapContainer,
-  } = await import('react-leaflet')
-  return (
-    <div style={ { display: 'flex', height: '100%' } }>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossOrigin=""
-      />
-
-      <div style={ { display: 'flex', flexGrow: 1 } }>
-        <MapContainer
-          center={ [51.505, -0.09] }
-          zoom={ 3 }
-          scrollWheelZoom
-          style={ { height: '100%', width: '100%' } }
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Markers whereabouts={ whereabouts ?? [] }/>
-        </MapContainer>
-      </div>
-    </div>
-  )
-}
-
-function Map({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const [MapComp, setMapComp] = useState(<>Loading...</>)
-  useEffect(() => {
-    imports({ whereabouts }).then((html) => setMapComp(html))
-  }, [])
-  return MapComp
-}
-
 const useStyles = makeStyles({
   fullWidth: {
     width: '100%',
@@ -238,7 +143,7 @@ function Whereabouts({ data }: { data: Prop }) {
     console.log(data)
     setData(data?.data)
     resolveLocations(data?.data ?? []).then((locations) => setData(locations))
-  }, [data?.data])
+  }, [data.data])
   return (
     <>
       <Menu data={ data2 }/>

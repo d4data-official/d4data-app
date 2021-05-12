@@ -9,10 +9,11 @@ import MUIDataTable from 'mui-datatables';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
 import dynamic from 'next/dynamic';
-import Connection from './Connection';
+import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
+import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
-function resolveLocations(connexions: Array<Connection>) {
-  const ret = connexions.map(async (connexion: any) => {
+function resolveLocations(connexions: NonNullable<Array<Connection>>) {
+  const ret = connexions?.map(async (connexion: Connection) => {
     if (!connexion.location.relativePosition && !connexion.location.absolutePosition) {
       return connexion
     }
@@ -172,6 +173,13 @@ function Map({ connexions }: { connexions: Array<Connection> }) {
   return MapComp
 }
 
+const useStyles = makeStyles({
+  fullWidth: {
+    width: '100%',
+    overflow: 'hidden',
+  },
+});
+
 function Menu({ data }: { data: Array<Connection> }) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -180,8 +188,9 @@ function Menu({ data }: { data: Array<Connection> }) {
   const handleChangeIndex = (index: number) => {
     setValue(index);
   };
+  const classes = useStyles()
   return (
-    <>
+    <div className={ classes.fullWidth }>
       <AppBar position="static" color="default">
         <Tabs
           value={ value }
@@ -203,16 +212,21 @@ function Menu({ data }: { data: Array<Connection> }) {
           <Table connexions={ data }/>
         </Container>
       </TabPanel>
-    </>
+    </div>
   )
 }
 
-function Connexions({ data }: { data: Array<Connection> }) {
+interface Prop {
+  data: Array<Connection>,
+  parsedFiles?: string
+}
+
+function Connexions({ data }: { data: Prop }) {
   const [data2, setData] = useState<any>([])
   useEffect(() => {
-    setData(data)
-    resolveLocations(data).then((locations) => setData(locations))
-  }, [])
+    setData(data.data)
+    resolveLocations(data.data).then((locations) => setData(locations))
+  }, [data.data])
   return (
     <>
       <Menu data={ data2 }/>
