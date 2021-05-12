@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
+import Medias from '../../../getters/Medias'
 import Posts from '../../../getters/Posts'
 import Reacteds from '../../../getters/Reacteds'
 
@@ -55,7 +56,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Medias',
-    DefaultDisplay,
+    Medias,
   ],
   [
     'Messages',
