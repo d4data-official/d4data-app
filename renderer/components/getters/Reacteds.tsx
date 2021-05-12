@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { Reacted } from '@d4data/archive-lib/src/types/schemas'
+import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
 import Container from '@material-ui/core/Container';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
