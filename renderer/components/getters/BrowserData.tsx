@@ -10,9 +10,7 @@ import BrowserHistoryStats from './BrowserData/BrowserHistoryStats'
 import BrowserExtensions from './BrowserData/BrowserExtensions'
 import BrowserSettings from './BrowserData/BrowserSettings'
 import BrowserThemes from './BrowserData/BrowserThemes'
-import browserData from './browserData.json'
-
-const data = browserData as NonNullable<GetterData<BrowserDataType>>
+import BrowserSavedForms from './BrowserData/BrowserSavedForms'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function BrowserData() {
+export default function BrowserData({ data }: { data: NonNullable<GetterData<BrowserDataType>> }) {
   const classes = useStyles()
   const [currentTab, setCurrentTab] = useState(0)
 
