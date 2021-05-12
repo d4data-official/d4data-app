@@ -11,8 +11,8 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
-import { Contact } from '@d4data/archive-lib/src/types/schemas'
-import { GetterData } from '@d4data/archive-lib/src/types/standardizer/GetterReturn';
+import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
 
