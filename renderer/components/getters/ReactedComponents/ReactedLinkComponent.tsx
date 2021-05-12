@@ -36,7 +36,7 @@ export default function ReactedLinkComponent({ data }: { data: NonNullable<React
       <CardContent>
         <Typography className={ classes.title } variant="h5" component="h2">
           <span>
-            A réagi à un lien
+            A réagi à
             <Button variant="text" onClick={ () => openInBrowser(data.entity) }>un lien</Button>
           </span>
         </Typography>

@@ -18,10 +18,11 @@ const useStyles = makeStyles({
 
 function generateIconFromReaction(reaction: NonNullable<Reaction>) {
   const classes = useStyles();
-  const reactionList = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SORRY']
+  const reactionList = ['LIKE', 'LOVE', 'HAHA', 'WOW', 'SORRY', 'UP']
 
   return (
     <div className={ classes.reactionBox }>
+      {reaction.name.toUpperCase() === 'UP' && <ThumbUp/>}
       {reaction.name.toUpperCase() === 'LIKE' && <ThumbUp/>}
       {reaction.name.toUpperCase() === 'LOVE' && <FavoriteIcon/>}
       {reaction.name.toUpperCase() === 'HAHA' && <SentimentSatisfied/>}
