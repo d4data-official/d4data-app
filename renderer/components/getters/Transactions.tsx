@@ -96,7 +96,7 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
                       component="th"
                       scope="row"
                     >
-                      { transaction.date.toLocaleString() ?? 'No date provided' }
+                      { transaction.date?.toLocaleString() ?? 'No date provided' }
                     </TableCell>
                   </StyledTableRow>
                 )
