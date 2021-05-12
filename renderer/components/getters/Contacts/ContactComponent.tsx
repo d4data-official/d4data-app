@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Avatar, Grid } from '@material-ui/core';
-import { Contact } from '@d4data/archive-lib/src/types/schemas';
+import { Contact } from '@d4data/archive-lib/dist/src/types/schemas';
 import moment from 'moment';
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
