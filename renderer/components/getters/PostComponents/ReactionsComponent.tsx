@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reaction } from '@d4data/archive-lib/src/types/schemas'
+import { Reaction } from '@d4data/archive-lib/dist/src/types/schemas'
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
