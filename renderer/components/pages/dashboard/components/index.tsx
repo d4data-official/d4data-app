@@ -4,6 +4,10 @@ import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
 import Communities from '../../../getters/Communities'
+import AuthorizedDevices from '../../../getters/AuthorizedDevices'
+import APIs from '../../../getters/APIs'
+import Transactions from '../../../getters/Transactions'
+import Medias from '../../../getters/Medias'
 
 interface ComponentProps {
   data: any
@@ -12,11 +16,11 @@ interface ComponentProps {
 export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   [
     'APIs',
-    DefaultDisplay,
+    APIs,
   ],
   [
     'AuthorizedDevices',
-    DefaultDisplay,
+    AuthorizedDevices,
   ],
   [
     'BrowserData',
@@ -56,7 +60,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Medias',
-    DefaultDisplay,
+    Medias,
   ],
   [
     'Messages',
@@ -88,7 +92,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Transactions',
-    DefaultDisplay,
+    Transactions,
   ],
   [
     'Whereabouts',
