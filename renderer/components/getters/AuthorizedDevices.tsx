@@ -82,7 +82,7 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
                       component="th"
                       scope="row"
                     >
-                      { device.authorizationDate.toLocaleString() }
+                      { device.authorizationDate?.toLocaleString() ?? 'No date provided' }
                     </TableCell>
                   </StyledTableRow>
                 )
