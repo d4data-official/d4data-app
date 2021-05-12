@@ -1,6 +1,8 @@
 import React from 'react'
 import { GridList, GridListTile, GridListTileBar, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
+import { Media } from '@d4data/archive-lib/dist/src/types/schemas';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Medias({ data }: { data: any }) {
+export default function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [image, setImage] = React.useState('');
