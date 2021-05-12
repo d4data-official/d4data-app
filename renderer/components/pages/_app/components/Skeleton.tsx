@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 // import Show from 'components/Show'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
 // import Sidebar from './Sidebar';
@@ -22,15 +22,21 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
     setDrawerOpen(typeof open === 'boolean' ? open : !drawerOpen)
-  }, [drawerOpen])
+  }, [drawerOpen]);
+
+  const handleDetectDashbord = useCallback((route) => {
+    handleDrawerChange(/dashboard/.test(route));
+  }, [])
+
   React.useEffect(() => {
-    router.events.on('routeChangeComplete', (route) => {
-      handleDrawerChange(/dashboard/.test(route))
-    })
+    router.events.on('routeChangeComplete', handleDetectDashbord);
+    return () => {
+      router.events.off('routeChangeComplete', handleDetectDashbord);
+    }
   }, [])
   return (
     <div className={ classes.root }>
-      <CssBaseline/>
+      <CssBaseline />
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {
@@ -47,14 +53,14 @@ export default function Skeleton({ children }: SkeletonProps) {
                 edge="start"
                 className={ clsx(classes.menuButton, drawerOpen && classes.hide) }
               >
-                <Menu/>
+                <Menu />
               </IconButton>
             </Show>
           </div>
           <Typography variant="h6" noWrap>
-            { Case.capital(componentName as string) ?? 'D4Data' }
+            {Case.capital(componentName as string) ?? 'D4Data'}
           </Typography>
-          <div/>
+          <div />
         </Toolbar>
       </AppBar>
       <Sidebar
@@ -67,8 +73,8 @@ export default function Skeleton({ children }: SkeletonProps) {
           [classes.mainShift]: drawerOpen,
         }) }
       >
-        <div className={ classes.drawerHeader }/>
-        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{ children }</Box>
+        {/* <div className={ classes.drawerHeader } /> */}
+        <Box padding={ 3 } height="100%" flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
       </main>
     </div>
   )

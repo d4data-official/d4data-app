@@ -54,8 +54,9 @@ export default makeStyles((theme) => ({
     display: 'hidden',
   },
   main: {
-    height: '100%',
+    height: '100vh',
     display: 'flex',
+    marginTop: theme.mixins.toolbar.minHeight,
     flexDirection: 'column',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,

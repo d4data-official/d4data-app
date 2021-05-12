@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+import Chats from '../../../getters/Chats'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
 
@@ -21,11 +22,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Chats',
-    DefaultDisplay,
-  ],
-  [
-    'ChatMessages',
-    DefaultDisplay,
+    Chats,
   ],
   [
     'Comments',
