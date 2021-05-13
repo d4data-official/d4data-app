@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Grid } from '@material-ui/core';
+import moment from 'moment';
 
 const useStyles = makeStyles({
   root: {
@@ -43,7 +44,9 @@ export default function DisplayNotes({ data }: Props) {
                   {note.title ?? 'Unnamed task'}
                 </Typography>
                 <Typography variant="body2" component="h2">
-                  {note.creationDate ?? 'No date provided'}
+                  { note.creationDate
+                    ? `${ moment.duration(note.creationDate.valueOf() / 10).humanize() } ago`
+                    : 'No date provided'}
                 </Typography>
                 <Typography variant="body1" component="p">
                   {note.content ?? 'Empty note'}
