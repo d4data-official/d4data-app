@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@d4data/archive-lib": "^0.1.0-alpha.1",
+    "@d4data/archive-lib": "^0.1.0-alpha.2",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.3",

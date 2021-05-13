@@ -17,6 +17,7 @@ import {
   Mail,
   Media,
   Message,
+  Note,
   Notification,
   Post,
   Reacted,
@@ -28,6 +29,7 @@ import {
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
 import { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
+import RawDataReturn from '@d4data/archive-lib/dist/src/types/standardizer/RawDataReturn'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
 
@@ -142,7 +144,11 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.callMethod('getWhereabouts')
   }
 
-  getRawData(filePath: string, options?: GetterOptions): Promise<any> {
+  getNotes(options?: GetterOptions): GetterReturn<Array<Note>> {
+    return this.callMethod('getNotes')
+  }
+
+  getRawData(filePath: string, options?: GetterOptions): Promise<RawDataReturn> {
     return this.callMethod('getRawData')
   }
 
