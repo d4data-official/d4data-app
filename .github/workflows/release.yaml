@@ -1,0 +1,90 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build binaries for Linux/Windows/MacOS
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  create_release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      package_version: ${{ steps.package_version.outputs.current-version }}
+    steps:
+      - uses: actions/checkout@v2
+        name: Clone Repo
+        
+      - name: Retrieve package.json version
+        id: package_version
+        uses: martinbeentjes/npm-get-version-action@master
+                
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: v${{ steps.package_version.outputs.current-version }}
+          release_name: Release v${{ steps.package_version.outputs.current-version }}
+          
+  build_release:
+    name: Build release for ${{ matrix.os }}
+    needs: create_release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [15.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            binary_name: d4data-${{ needs.create_release.outputs.package_version}}.AppImage
+          - os: macos-latest
+            binary_name: d4data-${{ needs.create_release.outputs.package_version}}.dmg
+          - os: windows-latest
+            binary_name: "d4data Setup ${{ needs.create_release.outputs.package_version}}.exe"
+    steps:
+    - name: Set git to use LF
+      run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+          
+    - uses: actions/checkout@v2
+      name: Clone repo
+      
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build binaries
+      run: npm runbuild
+      env:
+        GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.binary_name }}
+        path: dist_electron/${{ matrix.binary_name }}
+  
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: dist_electron/${{ matrix.binary_name }}
+        asset_name: ${{ matrix.binary_name }}
+        asset_content_type: application/octet-stream
