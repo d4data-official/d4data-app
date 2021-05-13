@@ -66,10 +66,10 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     
     - name: Install dependencies
-      run: npm install
+      run: yarn install
 
     - name: Build binaries
-      run: npm runbuild
+      run: yarn build
       env:
         GH_TOKEN: "${{ secrets.GH_TOKEN }}"
 
