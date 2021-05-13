@@ -1,6 +1,7 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
 import { makeStyles } from '@material-ui/core'
+import { Unarchive } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   dropzone: {
@@ -41,7 +42,6 @@ export default function Dropzone(props: { onLoaded: CallableFunction }) {
   return (
     <>
       <DropzoneAreaBase
-        // onAdd={onChange}
         onDrop={ onChange }
         fileObjects={ [] }
         classes={ {
@@ -50,7 +50,9 @@ export default function Dropzone(props: { onLoaded: CallableFunction }) {
           text: list.length ? classes.none : classes.dropzone,
           textContainer: list.length ? classes.none : classes.dropzone,
         } }
-        dropzoneText="Here upload your archive"
+        // @ts-ignore
+        Icon={ Unarchive }
+        dropzoneText="Click to select your GDPR archive or drop it here"
         acceptedFiles={ ['.zip'] }
         filesLimit={ 1 }
         maxFileSize={ 50000000000 }
