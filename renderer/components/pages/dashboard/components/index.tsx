@@ -1,9 +1,18 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
+import Contacts from '../../../getters/Contacts'
+import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
 import Whereabouts from '../../../getters/whereabouts/Whereabouts';
 import TaskLists from '../../../getters/taskList/TaskLists';
 import Connexions from '../../../getters/connexions/Connexions';
+import Communities from '../../../getters/Communities'
+import AuthorizedDevices from '../../../getters/AuthorizedDevices'
+import APIs from '../../../getters/APIs'
+import Transactions from '../../../getters/Transactions'
+import Medias from '../../../getters/Medias'
+import Posts from '../../../getters/Posts'
+import Reacteds from '../../../getters/Reacteds'
 
 interface ComponentProps {
   data: any
@@ -12,11 +21,11 @@ interface ComponentProps {
 export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   [
     'APIs',
-    DefaultDisplay,
+    APIs,
   ],
   [
     'AuthorizedDevices',
-    DefaultDisplay,
+    AuthorizedDevices,
   ],
   [
     'BrowserData',
@@ -32,11 +41,11 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Comments',
-    DefaultDisplay,
+    Posts,
   ],
   [
     'Communities',
-    DefaultDisplay,
+    Communities,
   ],
   [
     'Connections',
@@ -44,11 +53,11 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Contacts',
-    DefaultDisplay,
+    Contacts,
   ],
   [
     'Followings',
-    DefaultDisplay,
+    Followings,
   ],
   [
     'Mails',
@@ -56,7 +65,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Medias',
-    DefaultDisplay,
+    Medias,
   ],
   [
     'Messages',
@@ -68,7 +77,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Posts',
-    DefaultDisplay,
+    Posts,
   ],
   [
     'Profile',
@@ -76,7 +85,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Reacted',
-    DefaultDisplay,
+    Reacteds,
   ],
   [
     'Settings',
@@ -88,7 +97,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Transactions',
-    DefaultDisplay,
+    Transactions,
   ],
   [
     'Whereabouts',
