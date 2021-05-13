@@ -14,8 +14,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import type { TaskList } from '@d4data/archive-lib/src/types/schemas';
-import type { Task } from '@d4data/archive-lib/src/types/schemas/TaskList'
+import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas';
+import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 
 const drawerWidth = 240;
