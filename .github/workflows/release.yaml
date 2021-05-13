@@ -76,7 +76,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.binary_name }}
-        path: dist_electron/${{ matrix.binary_name }}
+        path: dist/${{ matrix.binary_name }}
   
     - name: Upload Release Asset
       id: upload-release-asset 
@@ -85,6 +85,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: dist_electron/${{ matrix.binary_name }}
+        asset_path: dist/${{ matrix.binary_name }}
         asset_name: ${{ matrix.binary_name }}
         asset_content_type: application/octet-stream
