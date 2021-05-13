@@ -1,4 +1,4 @@
-import type { Archive, ArchiveFactory } from '@d4data/archive-lib'
+import type { ArchiveFactory } from '@d4data/archive-lib'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveIPC from './ArchiveIPC'
 import StandardizerIPC from './StandardizerIPC'
@@ -25,7 +25,7 @@ export default class ArchiveFactoryIPC extends ClientInstance implements Partial
     return this.callMethod<Services>('identify')
   }
 
-  getServiceArchive(service: Services): Archive {
+  getServiceArchive(service: Services): ArchiveIPC {
     throw new Error('not implemented')
   }
 
