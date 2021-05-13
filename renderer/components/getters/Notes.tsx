@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { darken, Divider } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -30,28 +30,31 @@ export interface Props {
 
 export default function DisplayNotes({ data }: Props) {
   const classes = useStyles();
-  const bull = <span className={ classes.bullet }>•</span>;
 
   return (
-    <>
-      {
+    <div>
+      <Grid container xs={ 8 } spacing={ 2 }>
+        {
         data.data.map((note) => (
-          <Card className={ classes.root }>
-            <CardContent>
-              <Typography variant="h5" className={ classes.title } gutterBottom>
-                {note.title ?? 'Unnamed task'}
-              </Typography>
-              <Typography variant="body2" component="h2">
-                {note.creationDate ?? 'No date provided'}
-              </Typography>
-              <Typography variant="body1" component="p">
-                {note.content ?? 'Empty note'}
-              </Typography>
-            </CardContent>
-            <Divider />
-          </Card>
+          <Grid item xs={ 4 }>
+            <Card className={ classes.root }>
+              <CardContent>
+                <Typography variant="h5" className={ classes.title } gutterBottom>
+                  {note.title ?? 'Unnamed task'}
+                </Typography>
+                <Typography variant="body2" component="h2">
+                  {note.creationDate ?? 'No date provided'}
+                </Typography>
+                <Typography variant="body1" component="p">
+                  {note.content ?? 'Empty note'}
+                </Typography>
+              </CardContent>
+              <Divider />
+            </Card>
+          </Grid>
         ))
 }
-    </>
+      </Grid>
+    </div>
   );
 }
