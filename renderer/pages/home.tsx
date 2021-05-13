@@ -3,12 +3,31 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { NextRouter, withRouter } from 'next/router'
+import ArchiveExtractProgress from 'pages-components/home/components/ArchiveExtractProgress'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
 import ArchiveManager from '../modules/ArchiveManager'
 
+interface ProgressState {
+  service: string | undefined,
+  fileName: string | undefined,
+  extractedCount: number | undefined,
+  total: number | undefined,
+}
+
 function MainPage({ router }: { router: NextRouter }) {
+  const [progressBar, setProgress] = React.useState<ProgressState>({
+    service: undefined,
+    extractedCount: undefined,
+    fileName: undefined,
+    total: undefined,
+  })
+
+  const handleProgress = (arg: any) => {
+    setProgress(arg)
+  }
+
   const handleExtract = React.useCallback((path: string) => {
     ArchiveFactoryIPC.init(path)
       .then(async (factory) => {
@@ -22,6 +41,8 @@ function MainPage({ router }: { router: NextRouter }) {
           return
         }
 
+        handleProgress({ service, fileName: 'start', extractedCount: 0, total: 100 })
+
         console.info('Archive service detected:', service)
 
         const archivePlugin = await factory.getPlugin()
@@ -29,7 +50,7 @@ function MainPage({ router }: { router: NextRouter }) {
         console.info('Start archive extraction...')
         await archivePlugin.extract({
           onProgress: (fileName, extractedCount, total) => {
-
+            handleProgress({ service, fileName, extractedCount, total })
           },
         })
         console.info('Archive extraction ended')
@@ -39,7 +60,7 @@ function MainPage({ router }: { router: NextRouter }) {
         ArchiveManager.currentArchive = archivePlugin
         ArchiveManager.currentStandardizer = standardizer
 
-        router.push('/dashboard', {
+        await router.push('/dashboard', {
           query: {
             id: standardizer.id,
           },
@@ -82,6 +103,7 @@ function MainPage({ router }: { router: NextRouter }) {
       {/* <Extraction /> */ }
       <Grid item xs={ 8 }>
         <Dropzone onLoaded={ handleExtract }/>
+        <ArchiveExtractProgress state={ progressBar } />
       </Grid>
       {/* <History /> */ }
     </Grid>
