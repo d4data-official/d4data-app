@@ -25,8 +25,6 @@ function MainPage({ router }: { router: NextRouter }) {
         console.info('Archive service detected:', service)
 
         const archivePlugin = await factory.getPlugin()
-        factory.destroy()
-          .catch((err) => console.error(err))
 
         console.info('Start archive extraction...')
         await archivePlugin.extract({
@@ -38,6 +36,7 @@ function MainPage({ router }: { router: NextRouter }) {
 
         const standardizer = await archivePlugin.getStandardizer()
 
+        ArchiveManager.currentArchive = archivePlugin
         ArchiveManager.currentStandardizer = standardizer
 
         router.push('/dashboard', {

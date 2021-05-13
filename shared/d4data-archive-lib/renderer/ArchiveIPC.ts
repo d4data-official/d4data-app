@@ -34,7 +34,7 @@ export default class ArchiveIPC extends ClientInstance implements Archive {
   }
 
   async getMetadata(): Promise<ArchiveMetaData> {
-    return await this.callMethod<ArchiveMetaData>('getMetadata')
+    return this.callMethod<ArchiveMetaData>('getMetadata')
   }
 
   identifyFormat(): Promise<ArchiveFormat> {
