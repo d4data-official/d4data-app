@@ -35,7 +35,6 @@ async function resolveLocations(whereabouts: Array<Whereabout>) {
       whereaboutCopy.location.absolutePosition.latitude = res?.data?.[0]?.lat
       whereaboutCopy.location.absolutePosition.longitude = res?.data?.[0]?.lon
     }
-    console.log(whereaboutCopy)
     return whereaboutCopy
   })
   return Promise.all(result)
@@ -122,7 +121,7 @@ function Whereabouts({ data }: { data: Prop }) {
   useEffect(() => {
     setData(data.data?.slice(0, 1))
     resolveLocations(data.data?.slice(0, 1) ?? []).then((locations) => setData(locations))
-  }, [data.data])
+  }, [data.data?.slice(0, 1)])
   return (
     <>
       <Menu data={ data2 }/>

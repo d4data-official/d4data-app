@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react'
 import DefaultDisplay from './DefaultDisplay'
 import Profile from '../../../getters/Profile'
-import Whereabouts from './whereabouts/Whereabouts';
-import TaskLists from './taskList/TaskLists';
-import Connexions from './connexions/Connexions';
+import Whereabouts from '../../../getters/whereabouts/Whereabouts';
+import TaskLists from '../../../getters/taskList/TaskLists';
+import Connexions from '../../../getters/connexions/Connexions';
 
 interface ComponentProps {
   data: any

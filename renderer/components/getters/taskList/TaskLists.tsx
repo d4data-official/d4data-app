@@ -5,7 +5,7 @@ import {
   AccordionSummary,
   AppBar, createStyles, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText,
   makeStyles, Theme, Toolbar,
-  Typography, useTheme,
+  Typography,
 } from '@material-ui/core';
 import {
   BlurCircular, CalendarToday, CheckCircle, RadioButtonUnchecked,
@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import type { TaskList } from '@d4data/archive-lib/src/types/schemas';
 import type { Task } from '@d4data/archive-lib/src/types/schemas/TaskList'
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 
 const drawerWidth = 240;
 
@@ -25,12 +26,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
+    paddingTop: 2,
+    marginLeft: 20,
     flexBasis: '33.33%',
     flexShrink: 0,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
+    paddingTop: 2,
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -83,6 +87,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     }),
     marginLeft: 0,
   },
+  timeBox: {
+    display: 'flex',
+    marginTop: '30px',
+    marginLeft: '10px',
+    color: 'grey',
+  },
+  status: {
+    marginTop: '0px',
+  },
 }));
 
 function TaskDisplay({ task }: { task: Task }) {
@@ -99,18 +112,18 @@ function TaskDisplay({ task }: { task: Task }) {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <div>
+        <div className={ classes.status }>
           {task?.status === 'todo' && <RadioButtonUnchecked style={ { color: 'blue' } }/>}
           {task?.status === 'done' && <CheckCircle style={ { color: 'green' } }/>}
         </div>
         <Typography className={ classes.heading }>
-          {task?.name}
+          {task.name.length > 0 ? task.name : 'Unnamed Task'}
         </Typography>
         <Typography
           className={ classes.secondaryHeading }
           style={ { whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' } }
         >
-          {task?.description}
+          { task.description && task?.description?.length > 0 ? task.description : 'An empty description was provided'}
         </Typography>
       </AccordionSummary>
       <Divider/>
@@ -119,19 +132,24 @@ function TaskDisplay({ task }: { task: Task }) {
         <div style={ { display: 'flex', flexDirection: 'column', flexGrow: 1 } }>
           <div>
             <div style={ { display: 'flex', margin: '25px' } }>
-              {task?.description}
+              { task.description && task?.description?.length > 0 ? task.description : 'No description provided'}
             </div>
-            <div style={ {
-              display: 'flex',
-              marginTop: '30px',
-              marginLeft: '10px',
-              marginBottom: '5px',
-              color: 'grey',
-            } }
-            >
+            <div className={ classes.timeBox } >
               <CalendarToday fontSize="small"/>
               <div style={ { display: 'flex', marginLeft: '5px' } }>
-                {task?.dueDate?.toLocaleString()}
+                Creation date: {task?.createdAt?.toLocaleString() ?? 'No date provided'}
+              </div>
+            </div>
+            <div className={ classes.timeBox } >
+              <CalendarToday fontSize="small"/>
+              <div style={ { display: 'flex', marginLeft: '5px' } }>
+                Last update date: {task?.updateAt?.toLocaleString() ?? 'No date provided'}
+              </div>
+            </div>
+            <div className={ classes.timeBox } >
+              <CalendarToday fontSize="small"/>
+              <div style={ { display: 'flex', marginLeft: '5px' } }>
+                End date: {task?.dueDate?.toLocaleString() ?? 'No date provided'}
               </div>
             </div>
           </div>
@@ -159,9 +177,8 @@ function TaskDisplay({ task }: { task: Task }) {
   )
 }
 
-function PersistentDrawerLeft({ taskList }: { taskList: Array<TaskList> }) {
+function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskList>> }) {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [index, setIndex] = React.useState(0);
 
@@ -243,15 +260,11 @@ function PersistentDrawerLeft({ taskList }: { taskList: Array<TaskList> }) {
   );
 }
 
-interface Prop {
-  data?: Array<TaskList>,
-  parsedFiles?: string
-}
-
-function TaskLists({ data }: { data: Prop }) {
+function TaskLists({ data }: { data: NonNullable<GetterData<Array<TaskList>>> }) {
+  console.log(data.data)
   return (
     <>
-      <PersistentDrawerLeft taskList={ data?.data ?? [] }/>
+      <PersistentDrawerLeft taskList={ data.data ?? [] }/>
     </>
   )
 }
