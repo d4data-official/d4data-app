@@ -36,20 +36,20 @@ export default function DisplayNotes({ data }: Props) {
     <>
       {
         data.data.map((note) => (
-          < Card className={ classes.root } >
+          <Card className={ classes.root }>
             <CardContent>
               <Typography variant="h5" className={ classes.title } gutterBottom>
-                {note.title}
+                {note.title ?? 'Unnamed task'}
               </Typography>
               <Typography variant="body2" component="h2">
-                {note.creationDate}
+                {note.creationDate ?? 'No date provided'}
               </Typography>
               <Typography variant="body1" component="p">
-                {note.content}
+                {note.content ?? 'Empty note'}
               </Typography>
             </CardContent>
             <Divider />
-          </Card >
+          </Card>
         ))
 }
     </>
