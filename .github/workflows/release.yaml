@@ -41,11 +41,11 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         include:
           - os: ubuntu-latest
-            binary_name: d4data-${{ needs.create_release.outputs.package_version}}.AppImage
+            binary_name: "D4Data App-${{ needs.create_release.outputs.package_version}}.AppImage"
           - os: macos-latest
-            binary_name: d4data-${{ needs.create_release.outputs.package_version}}.dmg
+            binary_name: "D4Data App-${{ needs.create_release.outputs.package_version}}.dmg"
           - os: windows-latest
-            binary_name: "d4data Setup ${{ needs.create_release.outputs.package_version}}.exe"
+            binary_name: "D4Data App Setup ${{ needs.create_release.outputs.package_version}}.exe"
     steps:
     - name: Set git to use LF
       run: |
@@ -66,17 +66,17 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     
     - name: Install dependencies
-      run: npm install
+      run: yarn install
 
     - name: Build binaries
-      run: npm runbuild
+      run: yarn build
       env:
         GH_TOKEN: "${{ secrets.GH_TOKEN }}"
 
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.binary_name }}
-        path: dist_electron/${{ matrix.binary_name }}
+        path: dist/${{ matrix.binary_name }}
   
     - name: Upload Release Asset
       id: upload-release-asset 
@@ -85,6 +85,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: dist_electron/${{ matrix.binary_name }}
+        asset_path: dist/${{ matrix.binary_name }}
         asset_name: ${{ matrix.binary_name }}
         asset_content_type: application/octet-stream
