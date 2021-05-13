@@ -35,7 +35,7 @@ export default function DisplayNotes({ data }: Props) {
   return (
     <div>
       <h2>{ data.data.length } notes</h2>
-      <Grid container xs={ 8 } spacing={ 2 }>
+      <Grid container xs={ 12 } spacing={ 2 }>
         {
         data.data.map((note) => (
           <Grid item xs={ 4 }>
