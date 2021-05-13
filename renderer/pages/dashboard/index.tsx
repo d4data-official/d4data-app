@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Filesize from 'filesize';
-import type { ArchiveMetaData } from '@d4data/archive-lib';
+import ArchiveMetaData from '@d4data/archive-lib';
 import { Card, Container, Grid, Typography } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import UnarchiveIcon from '@material-ui/icons/Unarchive';
