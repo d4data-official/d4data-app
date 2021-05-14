@@ -73,6 +73,7 @@ export default function HomePage() {
           </Typography>
         </Box>
       </Grid>
+
       <Grid item xs={ 8 }>
         <Typography variant="h6" align="center">
           Visualize your personal data in just one click !
@@ -83,7 +84,7 @@ export default function HomePage() {
           can understand its digital fingerprint.
         </Typography>
       </Grid>
-      {/* <Extraction /> */ }
+
       <Grid item xs={ 8 }>
         <Dropzone onLoaded={ handleExtract }/>
         <ArchiveExtractProgress state={ progressBar }/>
