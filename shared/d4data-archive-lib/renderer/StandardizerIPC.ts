@@ -27,6 +27,7 @@ import {
 } from '@d4data/archive-lib/dist/src/types/schemas'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
+import { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
 
@@ -45,8 +46,8 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     this.path = path
   }
 
-  newParser(defaultOptions?: any): never {
-    throw new Error('this getter not working from renderer, use getSubServices method instead');
+  newParser(defaultOptions?: ParsingOptions & PaginationOptions): never {
+    throw new Error('this method not working from renderer')
   }
 
   getAPIs(options?: GetterOptions): GetterReturn<Array<API>> {
