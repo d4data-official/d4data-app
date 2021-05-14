@@ -1,14 +1,16 @@
-import { Dialog, DialogTitle, LinearProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Dialog, DialogTitle, LinearProgress } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-interface ProgressState {
-  state: {
-    show: boolean,
-    service: string | undefined,
-    fileName: string | undefined,
-    extractedCount: number | undefined,
-    total: number | undefined,
-  }
+export interface ProgressState {
+  show: boolean
+  service?: string
+  fileName?: string
+  extractedCount?: number
+  total?: number
+}
+
+export interface Props {
+  state: ProgressState
 }
 
 const useStyles = makeStyles({
@@ -21,19 +23,18 @@ const useStyles = makeStyles({
     marginBottom: 25,
     overflow: 'hidden',
   },
-});
+})
 
-function ArchiveExtraction({ state } : NonNullable<ProgressState>) {
+function ArchiveExtraction({ state }: { state: ProgressState }) {
   const classes = useStyles()
-  let percentage = state.extractedCount! * 100
-  percentage /= state.total!
+  const percentage = (state.extractedCount! * 100) / state.total!
 
   return (
     <>
-      <DialogTitle id="simple-dialog-title">{state.service} archive: extraction in progress...</DialogTitle>
+      <DialogTitle>{ state.service } archive: extraction in progress...</DialogTitle>
       <div className={ classes.dialog }>
-        <h3>{Math.trunc(percentage)} %</h3>
-        <LinearProgress variant="determinate" value={ percentage } />
+        <h3>{ Math.trunc(percentage) } %</h3>
+        <LinearProgress variant="determinate" value={ percentage }/>
       </div>
     </>
   )
@@ -44,38 +45,29 @@ function ArchiveIdentification() {
 
   return (
     <>
-      <DialogTitle id="simple-dialog-title">Archive identification...</DialogTitle>
+      <DialogTitle>Archive identification...</DialogTitle>
       <div className={ classes.dialog }>
         <h3>In progress</h3>
-        <LinearProgress />
+        <LinearProgress/>
       </div>
     </>
   )
 }
 
-function getDialogContent(state: ProgressState['state']) {
-  if (state.service === undefined) {
-    return (
-      <ArchiveIdentification/>
-    )
-  }
-  return (
-    <ArchiveExtraction state={ state }/>
-  )
-}
-
-export default function ArchiveExtractProgress({ state } : ProgressState) {
+export default function ArchiveExtractProgress({ state }: Props) {
   const classes = useStyles()
+
+  const getDialogContent = () => (state.service === undefined ? <ArchiveIdentification/>
+    : <ArchiveExtraction state={ state }/>)
 
   return (
     <Dialog
       fullWidth
       maxWidth="lg"
       className={ classes.root }
-      aria-labelledby="simple-dialog-title"
       open={ state.show }
     >
-      { getDialogContent(state) }
+      { getDialogContent() }
     </Dialog>
   )
 }
