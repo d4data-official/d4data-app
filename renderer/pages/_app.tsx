@@ -3,9 +3,9 @@ import Head from 'next/head'
 import { SnackbarProvider } from 'notistack'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import type { AppProps } from 'next/app'
 import theme from 'lib/theme'
 import Skeleton from 'components/pages/_app/components/Skeleton'
+import type { AppProps } from 'next/app'
 import '../style.css'
 
 export default function App(props: AppProps) {
