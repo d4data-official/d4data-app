@@ -1,7 +1,7 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
 import { makeStyles } from '@material-ui/core'
-import { Unarchive } from '@material-ui/icons';
+import { Unarchive } from '@material-ui/icons'
 
 const useStyles = makeStyles({
   dropzone: {
@@ -56,6 +56,7 @@ export default function Dropzone(props: { onLoaded: CallableFunction }) {
         acceptedFiles={ ['.zip'] }
         filesLimit={ 1 }
         maxFileSize={ 50000000000 }
+        showAlerts={ false }
       />
     </>
   )
