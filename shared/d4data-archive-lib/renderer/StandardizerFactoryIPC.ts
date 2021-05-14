@@ -2,6 +2,7 @@ import type { StandardizerFactory } from '@d4data/archive-lib'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import StandardizerIPC from './StandardizerIPC'
 import ClientInstance from './ClientInstance'
+import { StandardizerFactoryArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer-factory'
 
@@ -26,7 +27,7 @@ export default class StandardizerFactoryIPC extends ClientInstance implements Pa
   }
 
   static async init(extractedArchivePath: string): Promise<StandardizerFactoryIPC> {
-    const { id, args } = await ClientInstance.instantiate<[string]>(CHANNEL_NAME, extractedArchivePath)
+    const { id, args } = await ClientInstance.instantiate<StandardizerFactoryArgs>(CHANNEL_NAME, extractedArchivePath)
     return new StandardizerFactoryIPC(id, ...args)
   }
 }
