@@ -1,12 +1,10 @@
-/* eslint-disable max-len */
-/* eslint-disable no-tabs */
 import React from 'react'
 import { Box, Grid, Typography } from '@material-ui/core'
 import { NextRouter, withRouter } from 'next/router'
-import ArchiveExtractProgress from 'pages-components/home/components/ArchiveExtractProgress'
-import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
+import ArchiveExtractProgress from 'pages-components/home/components/ArchiveExtractProgress'
+import Dropzone from 'pages-components/home/components/Dropzone'
 import ArchiveManager from '../modules/ArchiveManager'
 
 interface ProgressState {
@@ -37,7 +35,9 @@ function MainPage({ router }: { router: NextRouter }) {
       .then(async (factory) => {
         const service = await factory.identify()
         if (service === Services.UNKNOWN) {
-          handleProgress({ show: false, service: undefined, fileName: undefined, extractedCount: undefined, total: undefined })
+          handleProgress({
+            show: false, service: undefined, fileName: undefined, extractedCount: undefined, total: undefined,
+          })
           console.info('Unknown archive service, cancel import')
           factory.destroy()
             .catch((err) => console.error(err))
@@ -72,7 +72,7 @@ function MainPage({ router }: { router: NextRouter }) {
     <Grid container justify="center" spacing={ 4 } style={ { textAlign: 'center' } }>
       <Grid item xs={ 12 }>
         <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
-          <img src="/images/logo.png" alt="logo" width="4%" />
+          <img src="/images/logo.png" alt="logo" width="4%"/>
           <Typography style={ { marginLeft: 30 } } variant="h3">
             D4Data
           </Typography>
@@ -91,7 +91,7 @@ function MainPage({ router }: { router: NextRouter }) {
       {/* <Extraction /> */ }
       <Grid item xs={ 8 }>
         <Dropzone onLoaded={ handleExtract }/>
-        <ArchiveExtractProgress state={ progressBar } />
+        <ArchiveExtractProgress state={ progressBar }/>
       </Grid>
       {/* <History /> */ }
     </Grid>
