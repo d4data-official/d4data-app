@@ -47,7 +47,8 @@ export default function ChatComponent({ data: { data: messagesList }, chat, user
   const [selectedParticipant, setSelectedParticipant] = useState<string>();
 
   useEffect(() => {
-    const uname = chat.participants.find((participant) => userNames.includes(participant));
+    console.log(messagesList);
+    const uname = chat.participants.find((participant: string) => userNames.includes(participant));
     if (!uname) {
       setDialogOpen(true);
     } else {

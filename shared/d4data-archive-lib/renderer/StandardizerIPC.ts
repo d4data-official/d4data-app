@@ -45,6 +45,10 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     this.path = path
   }
 
+  newParser(defaultOptions?: any): never {
+    throw new Error('this getter not working from renderer, use getSubServices method instead');
+  }
+
   getAPIs(options?: GetterOptions): GetterReturn<Array<API>> {
     return this.callMethod('getAPIs', options)
   }
@@ -137,11 +141,15 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.callMethod('getWhereabouts', options)
   }
 
+  async getRawData(filePath: string, options?: GetterOptions): Promise<any> {
+    return this.callMethod('getRawData', filePath, options)
+  }
+
   get service(): Services {
     return this._service
   }
 
-  get subServices(): Array<Services> {
+  get subServices(): never {
     throw new Error('this getter not working from renderer, use getSubServices method instead')
   }
 
@@ -149,7 +157,7 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
     return this.accessProperty('subServices')
   }
 
-  get subStandardizers(): Array<StandardizerIPC> {
+  get subStandardizers(): never {
     throw new Error('this getter not working from renderer, use getSubStandardizers method instead')
   }
 

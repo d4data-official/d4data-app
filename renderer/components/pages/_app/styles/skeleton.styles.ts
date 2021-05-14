@@ -34,6 +34,11 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  toolbarLeft: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
   toolbarOpen: {
     width: 'calc(100vw - 240px)',
   },

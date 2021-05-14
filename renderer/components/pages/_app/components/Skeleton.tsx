@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, CssBaseline, IconButton, Toolbar, Tooltip, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Menu } from '@material-ui/icons'
+import CodeIcon from '@material-ui/icons/Code';
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
@@ -16,6 +17,7 @@ export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
   const { componentName } = router.query
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(/dashboard/.test(router.pathname))
+  const [showRawData, setShowRawData] = React.useState(/dahsboard\/.+/.test(router.pathname));
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
@@ -24,6 +26,7 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   const handleDetectDashbord = useCallback((route) => {
     handleDrawerChange(/dashboard/.test(route));
+    setShowRawData(/dashboard\/.+/.test(route))
   }, [])
 
   React.useEffect(() => {
@@ -31,7 +34,7 @@ export default function Skeleton({ children }: SkeletonProps) {
     return () => {
       router.events.off('routeChangeComplete', handleDetectDashbord);
     }
-  }, [])
+  }, [router])
   return (
     <div className={ classes.root }>
       <CssBaseline />
@@ -41,8 +44,8 @@ export default function Skeleton({ children }: SkeletonProps) {
           [classes.appBarShift]: drawerOpen,
         }) }
       >
-        <Toolbar>
-          <div>
+        <Toolbar className={ classes.toolbar }>
+          <div className={ classes.toolbarLeft }>
             <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"
@@ -54,11 +57,24 @@ export default function Skeleton({ children }: SkeletonProps) {
                 <Menu />
               </IconButton>
             </Show>
+            <Typography variant="h6" noWrap>
+              {Case.capital(componentName as string) ?? 'D4Data'}
+            </Typography>
           </div>
-          <Typography variant="h6" noWrap>
-            {Case.capital(componentName as string) ?? 'D4Data'}
-          </Typography>
-          <div />
+          <div>
+            { showRawData && (
+            <Tooltip title="Show me raw data">
+              <IconButton
+                color="inherit"
+                edge="end"
+                aria-label="open drawer"
+                onClick={ () => window.dispatchEvent(new Event('rawData')) }
+              >
+                <CodeIcon />
+              </IconButton>
+            </Tooltip>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
       <Sidebar
