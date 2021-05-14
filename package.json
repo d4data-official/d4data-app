@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@d4data/archive-lib": "^0.1.0-alpha.1",
+    "@d4data/archive-lib": "^0.1.0-alpha.4",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.3",
@@ -25,6 +25,7 @@
     "electron-store": "^7.0.3",
     "fuse.js": "^6.4.6",
     "material-ui-dropzone": "^3.5.0",
+    "moment": "^2.29.1",
     "mui-datatables": "^3.7.7",
     "react-chat-elements": "^10.14.0",
     "react-json-view-ssr": "^1.19.1",
