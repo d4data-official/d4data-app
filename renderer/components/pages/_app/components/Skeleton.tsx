@@ -2,7 +2,6 @@ import React, { useCallback } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
 import { AppBar, Box, CssBaseline, IconButton, Toolbar, Tooltip, Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import { Menu } from '@material-ui/icons'
 import CodeIcon from '@material-ui/icons/Code';
 import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
