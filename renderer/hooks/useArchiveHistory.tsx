@@ -6,6 +6,10 @@ import ArchiveManager from '../modules/ArchiveManager'
 
 const { archiveHistoryManager } = ArchiveManager
 
+/**
+ * React hook to access and manage archive history from everywhere.
+ * The state is shared between all hook instances and will trigger a rerender on any changes.
+ */
 export default function useArchiveHistory() {
   const router = useRouter()
   const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void
