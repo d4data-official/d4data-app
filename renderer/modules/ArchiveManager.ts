@@ -9,6 +9,14 @@ class ArchiveManager {
   currentStandardizer?: StandardizerIPC
 
   archiveHistoryManager = new ArchiveHistoryManager()
+
+  /**
+   * Clear current state of archive manager
+   */
+  clear() {
+    this.currentStandardizer = undefined
+    this.currentStandardizer = undefined
+  }
 }
 
 export default new ArchiveManager()
