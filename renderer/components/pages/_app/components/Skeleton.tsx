@@ -4,6 +4,7 @@ import { AppBar, Box, CssBaseline, IconButton, Toolbar, Tooltip, Typography } fr
 import clsx from 'clsx'
 import { Menu } from '@material-ui/icons'
 import CodeIcon from '@material-ui/icons/Code';
+import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
