@@ -30,6 +30,7 @@ import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
 import { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
 import RawDataReturn from '@d4data/archive-lib/dist/src/types/standardizer/RawDataReturn'
+import { StandardizerArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
 
@@ -169,12 +170,12 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
   }
 
   async getSubStandardizers(): Promise<Array<StandardizerIPC>> {
-    const subStandardizersParams = await this.accessProperty<Array<[ID, [Services, string]]>>('subStandardizers')
-    return subStandardizersParams.map(([id, params]) => new StandardizerIPC(id, ...params))
+    const subStandardizersParams = await this.accessProperty<Array<[ID, StandardizerArgs]>>('subStandardizers')
+    return subStandardizersParams.map(([id, args]) => new StandardizerIPC(id, ...args))
   }
 
   static async init(service: Services, path: string): Promise<StandardizerIPC> {
-    const { id, args } = await ClientInstance.instantiate<[Services, string]>(CHANNEL_NAME, service, path)
+    const { id, args } = await ClientInstance.instantiate<StandardizerArgs>(CHANNEL_NAME, service, path)
     return new StandardizerIPC(id, ...args)
   }
 }
