@@ -1,8 +1,6 @@
-import {
-  Box, Button, Checkbox, FormControlLabel, Paper, styled, Typography,
-} from '@material-ui/core'
+import { Box, Button, Checkbox, FormControlLabel, Paper, styled, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Extension } from 'd4data-archive-lib/dist/src/types/schemas/BrowserData'
+import { Extension } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
 import openInBrowser from '../../../../modules/openInBrowser'
 
 const useStyles = makeStyles((theme) => ({
