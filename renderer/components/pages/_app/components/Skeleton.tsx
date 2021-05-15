@@ -4,7 +4,7 @@ import useStyles from 'pages-components/_app/styles/skeleton.styles'
 // import Sidebar from './Sidebar';
 import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import { Menu } from '@material-ui/icons'
+import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
@@ -39,6 +39,11 @@ export default function Skeleton({ children }: SkeletonProps) {
       >
         <Toolbar>
           <div>
+            <Show condition={ router.pathname !== '/home' }>
+              <IconButton color="inherit" onClick={ () => router.push('/home') } edge="start">
+                <Home/>
+              </IconButton>
+            </Show>
             <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"
