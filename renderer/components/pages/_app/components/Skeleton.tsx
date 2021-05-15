@@ -9,6 +9,7 @@ import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
 import Sidebar from './Sidebar'
+import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -36,6 +37,12 @@ export default function Skeleton({ children }: SkeletonProps) {
       router.events.off('routeChangeComplete', handleDetectDashbord);
     }
   }, [router])
+  
+  const clearCurrentArchive = () => {
+    ArchiveManager.clear()
+    router.push('/home')
+  }
+  
   return (
     <div className={ classes.root }>
       <CssBaseline />
