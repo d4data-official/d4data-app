@@ -3,6 +3,8 @@
   "compilerOptions": {
     "paths": {
       "components/*": ["renderer/components/*"],
+      "@components/*": ["renderer/components/*"],
+      "@modules/*": ["renderer/modules/*"],
       "lib/*": ["renderer/lib/*"],
       "pages-components/*": ["renderer/components/pages/*"],
       "@shared/*": ["shared/*"]

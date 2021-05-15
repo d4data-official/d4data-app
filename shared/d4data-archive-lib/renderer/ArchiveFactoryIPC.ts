@@ -4,6 +4,7 @@ import ArchiveIPC from './ArchiveIPC'
 import StandardizerIPC from './StandardizerIPC'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
+import { ArchiveArgs, ArchiveFactoryArgs, StandardizerArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
 
 export const CHANNEL_NAME = 'archive-lib/archive-factory'
 
@@ -30,17 +31,17 @@ export default class ArchiveFactoryIPC extends ClientInstance implements Partial
   }
 
   async getPlugin(): Promise<ArchiveIPC> {
-    const [id, args] = await this.callMethod<[ID, [Services, string, string]]>('getPlugin')
+    const [id, args] = await this.callMethod<[ID, ArchiveArgs]>('getPlugin')
     return new ArchiveIPC(id, ...args)
   }
 
   async getStandardizer(): Promise<StandardizerIPC> {
-    const [id, args] = await this.callMethod<[ID, [Services, string]]>('getStandardizer')
+    const [id, args] = await this.callMethod<[ID, StandardizerArgs]>('getStandardizer')
     return new StandardizerIPC(id, ...args)
   }
 
   static async init(archivePath: string, outputDir?: string): Promise<ArchiveFactoryIPC> {
-    const { id, args } = await ClientInstance.instantiate<[string, string]>(CHANNEL_NAME, archivePath, outputDir)
+    const { id, args } = await ClientInstance.instantiate<ArchiveFactoryArgs>(CHANNEL_NAME, archivePath, outputDir)
     return new ArchiveFactoryIPC(id, ...args)
   }
 }
