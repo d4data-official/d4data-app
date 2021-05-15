@@ -36,12 +36,12 @@ export default function Skeleton({ children }: SkeletonProps) {
       router.events.off('routeChangeComplete', handleDetectDashbord);
     }
   }, [router])
-  
+
   const clearCurrentArchive = () => {
     ArchiveManager.clear()
     router.push('/home')
   }
-  
+
   return (
     <div className={ classes.root }>
       <CssBaseline />
