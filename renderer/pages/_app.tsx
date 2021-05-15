@@ -26,7 +26,7 @@ export default function App(props: AppProps) {
         <title>D4Data App</title>
       </Head>
       <ThemeProvider theme={ theme }>
-        <SnackbarProvider>
+        <SnackbarProvider autoHideDuration={ 5000 }>
           <CssBaseline/>
           <Skeleton>
             <Component { ...pageProps } />
