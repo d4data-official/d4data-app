@@ -4,6 +4,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'react/jsx-one-expression-per-line': 'off',
     'react/jsx-tag-spacing': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
@@ -18,6 +19,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'template-curly-spacing': ['error', 'always'],
     'import/no-extraneous-dependencies': [2, { devDependencies: true }],
+    'import/order': 'warn',
     'no-console': 'off',
     'no-restricted-syntax': [
       'warn',

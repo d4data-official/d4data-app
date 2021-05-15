@@ -1,10 +1,11 @@
-import type { Archive, Standardizer } from 'd4data-archive-lib'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
-import { ArchiveFormat, ExtractOptions } from 'd4data-archive-lib/dist/src/modules/ArchiveExtraction'
+import type { Archive, Standardizer } from '@d4data/archive-lib'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
+import { ArchiveFormat, ExtractOptions } from '@d4data/archive-lib/dist/src/modules/ArchiveExtraction'
 import StandardizerIPC from './StandardizerIPC'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
-import { ArchiveMetaData } from 'd4data-archive-lib/dist/src/types/schemas'
+import { ArchiveMetaData } from '@d4data/archive-lib/dist/src/types/schemas'
+import { ArchiveArgs, StandardizerArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
 
 export const CHANNEL_NAME = 'archive-lib/archive'
 
@@ -34,7 +35,7 @@ export default class ArchiveIPC extends ClientInstance implements Archive {
   }
 
   async getMetadata(): Promise<ArchiveMetaData> {
-    return await this.callMethod<ArchiveMetaData>('getMetadata')
+    return this.callMethod<ArchiveMetaData>('getMetadata')
   }
 
   identifyFormat(): Promise<ArchiveFormat> {
@@ -58,13 +59,13 @@ export default class ArchiveIPC extends ClientInstance implements Archive {
   }
 
   async getStandardizer(): Promise<StandardizerIPC> {
-    const [id, args] = await this.accessProperty<[ID, [Services, string]]>('standardizer')
+    const [id, args] = await this.accessProperty<[ID, StandardizerArgs]>('standardizer')
     return new StandardizerIPC(id, ...args)
   }
 
   static async init(service: Services, path: string, outputDir?: string): Promise<ArchiveIPC> {
     const { id, args } = await ClientInstance
-      .instantiate<[Services, string, string]>(CHANNEL_NAME, service, path, outputDir)
+      .instantiate<ArchiveArgs>(CHANNEL_NAME, service, path, outputDir)
     return new ArchiveIPC(id, ...args)
   }
 }

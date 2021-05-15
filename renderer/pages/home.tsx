@@ -1,95 +1,94 @@
-/* eslint-disable max-len */
-/* eslint-disable no-tabs */
 import React from 'react'
-import { Grid, Typography } from '@material-ui/core'
-import { NextRouter, withRouter } from 'next/router'
-import Dropzone from 'pages-components/home/components/Dropzone'
-import Services from 'd4data-archive-lib/dist/src/types/Services'
+import { Box, Grid, IconButton, Typography } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
+import Dropzone from 'pages-components/home/components/Dropzone'
+import { useSnackbar } from 'notistack'
+import CloseIcon from '@material-ui/icons/Close'
 import ArchiveManager from '../modules/ArchiveManager'
+import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 
-function MainPage({ router }: { router: NextRouter }) {
-  const handleExtract = React.useCallback((path: string) => {
-    ArchiveFactoryIPC.init(path)
-      .then(async (factory) => {
-        const service = await factory.identify()
+export default function HomePage() {
+  const router = useRouter()
+  const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-        if (service === Services.UNKNOWN) {
-          console.info('Unknown archive service, cancel import')
-          factory.destroy()
-            .catch((err) => console.error(err))
+  const handleExtract = React.useCallback(async (path: string) => {
+    setProgress({ show: true })
 
-          return
-        }
+    const archiveFactory = await ArchiveFactoryIPC.init(path)
 
-        console.info('Archive service detected:', service)
+    console.info('[Archive] Identifying service')
 
-        const archivePlugin = await factory.getPlugin()
-        factory.destroy()
-          .catch((err) => console.error(err))
-
-        console.info('Start archive extraction...')
-        await archivePlugin.extract({
-          onProgress: (fileName, extractedCount, total) => {
-
-          },
-        })
-        console.info('Archive extraction ended')
-
-        const standardizer = await archivePlugin.getStandardizer()
-
-        ArchiveManager.currentStandardizer = standardizer
-
-        router.push('/dashboard', {
-          query: {
-            id: standardizer.id,
-          },
-        })
+    const service = await archiveFactory.identify()
+    if (service === Services.UNKNOWN) {
+      setProgress({ show: false })
+      enqueueSnackbar('Fail to identify archive service', {
+        variant: 'error',
+        autoHideDuration: 5000,
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'center',
+        },
+        action: (key) => (
+          <IconButton onClick={ () => closeSnackbar(key) } style={ { color: 'white' } }>
+            <CloseIcon/>
+          </IconButton>
+        ),
       })
+      console.info('[Archive] Unknown service, cancel import')
+      archiveFactory.destroy()
+        .catch((err) => console.error(err))
+      return
+    }
+
+    console.info('[Archive] Service detected:', service)
+    setProgress({ show: true, service, extractedCount: 0, total: 100 })
+
+    const archivePlugin = await archiveFactory.getPlugin()
+
+    console.info('[Archive] Start extraction')
+    await archivePlugin.extract({
+      onProgress: (fileName, extractedCount, total) => {
+        setProgress({ show: (extractedCount !== total), service, fileName, extractedCount, total })
+      },
+    })
+    console.info('[Archive] Extraction ended')
+
+    const standardizer = await archivePlugin.getStandardizer()
+    ArchiveManager.currentArchive = archivePlugin
+    ArchiveManager.currentStandardizer = standardizer
+
+    await router.push('/dashboard')
   }, [])
 
   return (
     <Grid container justify="center" spacing={ 4 } style={ { textAlign: 'center' } }>
-      {/* <Grid item xs={12}>
-        <div style={{
-          marginTop: 30, marginBottom: 30, width: '100vw', display: 'flex', alignContent: 'center', justifyContent: 'center',
-        }}
-        >
-          <img src="/images/assets/logo-grey.svg" alt="logo" width="19%" />
-        </div>
-      </Grid> */ }
-      <Grid item xs={ 8 }>
-        <Typography variant="h3">
-          Your data is important, take control of it.
-        </Typography>
+      <Grid item xs={ 12 }>
+        <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
+          <img src="/images/logo.png" alt="logo" width="4%"/>
+          <Typography style={ { marginLeft: 30 } } variant="h3">
+            D4Data
+          </Typography>
+        </Box>
       </Grid>
-      <Grid item xs={ 8 }>
-        <Typography variant="body2">
-          { `D4Data helps you having a better understanding of your data.
-					Even if you have nothing to hide, your digital fingerprint defines who you are.
-					Thanks to European regulations (GDPR), all companies that gathered data about you,
-					must supply a package containing all of those data on demand.
-					The only problem is that those data are not human-readable.` }
-        </Typography>
 
-      </Grid>
       <Grid item xs={ 8 }>
-        <Typography variant="body1">
+        <Typography variant="h6" align="center">
+          Visualize your personal data in just one click !
+        </Typography>
+        <br/>
+        <Typography variant="body1" align="center">
           D4Data is the secure interface to convert non-human readable data to an intuitive user interface where anybody
           can understand its digital fingerprint.
         </Typography>
-
       </Grid>
-      {/* <Extraction /> */ }
+
       <Grid item xs={ 8 }>
         <Dropzone onLoaded={ handleExtract }/>
+        <ArchiveExtractProgress state={ progressBar }/>
       </Grid>
-      {/* <History /> */ }
     </Grid>
   )
 }
-
-const Main = withRouter(MainPage)
-
-export { Main }
-export default Main
