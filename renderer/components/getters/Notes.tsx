@@ -1,12 +1,12 @@
 import React from 'react';
-import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
+import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Grid } from '@material-ui/core';
-import moment from 'moment';
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
 
 const useStyles = makeStyles({
   root: {
