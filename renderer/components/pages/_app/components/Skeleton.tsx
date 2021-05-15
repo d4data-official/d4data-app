@@ -4,11 +4,12 @@ import useStyles from 'pages-components/_app/styles/skeleton.styles'
 // import Sidebar from './Sidebar';
 import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import { Menu } from '@material-ui/icons'
+import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
 import Sidebar from './Sidebar'
+import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -28,6 +29,12 @@ export default function Skeleton({ children }: SkeletonProps) {
       handleDrawerChange(/dashboard/.test(route))
     })
   }, [])
+
+  const clearCurrentArchive = () => {
+    ArchiveManager.clear()
+    router.push('/home')
+  }
+
   return (
     <div className={ classes.root }>
       <CssBaseline/>
@@ -39,6 +46,11 @@ export default function Skeleton({ children }: SkeletonProps) {
       >
         <Toolbar>
           <div>
+            <Show condition={ router.pathname !== '/home' }>
+              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
+                <Home/>
+              </IconButton>
+            </Show>
             <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"

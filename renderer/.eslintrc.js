@@ -19,6 +19,7 @@ module.exports = {
     'object-curly-newline': 'off',
     'template-curly-spacing': ['error', 'always'],
     'import/no-extraneous-dependencies': [2, { devDependencies: true }],
+    'import/order': 'warn',
     'no-console': 'off',
     'no-restricted-syntax': [
       'warn',
