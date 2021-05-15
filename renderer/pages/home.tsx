@@ -1,18 +1,26 @@
 import React from 'react'
-import { Box, Grid, IconButton, Typography } from '@material-ui/core'
-import { useRouter } from 'next/router'
+import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core'
+import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
-import Dropzone from 'pages-components/home/components/Dropzone'
 import { useSnackbar } from 'notistack'
 import CloseIcon from '@material-ui/icons/Close'
+import { useRouter } from 'next/router'
+import Path from 'path'
+import useArchiveHistory from '@hooks/useArchiveHistory'
 import ArchiveManager from '../modules/ArchiveManager'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
+import LastHistoryEntry from '../components/history/LastHistoryEntry'
 
 export default function HomePage() {
   const router = useRouter()
   const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const {
+    lastHistoryEntry,
+    history,
+    addHistoryEntry,
+  } = useArchiveHistory()
 
   const handleExtract = React.useCallback(async (path: string) => {
     setProgress({ show: true })
@@ -60,7 +68,16 @@ export default function HomePage() {
     ArchiveManager.currentArchive = archivePlugin
     ArchiveManager.currentStandardizer = standardizer
 
-    await router.push('/dashboard')
+    addHistoryEntry({
+      archiveName: Path.parse(path).base,
+      path: standardizer.path,
+      service: standardizer.service,
+      date: new Date(),
+      size: await archivePlugin.getMetadata()
+        .then((metadata) => metadata.size),
+    })
+
+    router.push('/dashboard')
   }, [])
 
   return (
@@ -89,6 +106,18 @@ export default function HomePage() {
         <Dropzone onLoaded={ handleExtract }/>
         <ArchiveExtractProgress state={ progressBar }/>
       </Grid>
+
+      { lastHistoryEntry && (
+        <Grid item xs={ 8 }>
+          <Typography variant="h6">Last archive processed</Typography>
+          <Box marginY={ 2 }>
+            <LastHistoryEntry/>
+          </Box>
+          <Button onClick={ () => router.push('/archive-history') } variant="outlined">
+            Show complete history ({ history.length })
+          </Button>
+        </Grid>
+      ) }
     </Grid>
   )
 }
