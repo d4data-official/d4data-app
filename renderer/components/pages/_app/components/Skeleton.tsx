@@ -9,6 +9,7 @@ import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
 import Sidebar from './Sidebar'
+import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -28,6 +29,12 @@ export default function Skeleton({ children }: SkeletonProps) {
       handleDrawerChange(/dashboard/.test(route))
     })
   }, [])
+
+  const clearCurrentArchive = () => {
+    ArchiveManager.clear()
+    router.push('/home')
+  }
+
   return (
     <div className={ classes.root }>
       <CssBaseline/>
@@ -40,7 +47,7 @@ export default function Skeleton({ children }: SkeletonProps) {
         <Toolbar>
           <div>
             <Show condition={ router.pathname !== '/home' }>
-              <IconButton color="inherit" onClick={ () => router.push('/home') } edge="start">
+              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
                 <Home/>
               </IconButton>
             </Show>
