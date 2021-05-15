@@ -46,7 +46,9 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
       case 3:
         return <BrowserSettings data={ data.data.preferences }/>
       case 4:
-        return <BrowserThemes/>
+        return <BrowserThemes data={ data.data.theme }/>
+      case 5:
+        return <BrowserSavedForms data={ data.data.savedForms }/>
       default:
         return undefined
     }
