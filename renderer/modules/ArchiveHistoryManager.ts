@@ -54,7 +54,9 @@ export default class ArchiveHistoryManager {
     return this.deleteEntry(this.history.length - 1)
   }
 
-  async deleteEntry(index: number): Promise<ArchiveHistory> {
+  async deleteEntry(indexOrEntry: number | ArchiveHistoryEntry): Promise<ArchiveHistory> {
+    const index = typeof indexOrEntry === 'number' ? indexOrEntry
+      : this.history.findIndex((entry) => indexOrEntry.path === entry.path)
     const [deletedEntry] = this.history.splice(index, 1)
 
     await fs.promises.unlink(deletedEntry.path)

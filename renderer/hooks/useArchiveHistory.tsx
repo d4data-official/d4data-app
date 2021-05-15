@@ -20,10 +20,11 @@ export default function useArchiveHistory() {
 
   return {
     lastHistoryEntry: archiveHistoryManager.lastEntry,
+    lastHistoryEntryIndex: archiveHistoryManager.history.length - 1,
     history: archiveHistoryManager.history,
     addHistoryEntry: (entry: ArchiveHistoryEntry) => archiveHistoryManager.addHistoryEntry(entry),
-    deleteLastEntry: () => archiveHistoryManager.deleteLastEntry(),
-    deleteEntry: (index: number) => archiveHistoryManager.deleteEntry(index),
+    deleteLastHistoryEntry: () => archiveHistoryManager.deleteLastEntry(),
+    deleteHistoryEntry: (indexOrEntry: number | ArchiveHistoryEntry) => archiveHistoryManager.deleteEntry(indexOrEntry),
     resetHistory: () => archiveHistoryManager.resetHistory(),
     restoreArchiveFromEntry: async (entry: ArchiveHistoryEntry) => {
       ArchiveManager.currentStandardizer = await StandardizerIPC.init(entry.service, entry.path)
