@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Box, Paper, Tab, Tabs, Typography } from '@material-ui/core'
-import { ColorLens, Extension, History, Settings, Timeline } from '@material-ui/icons'
+import { Box, Paper, Tab, Tabs } from '@material-ui/core'
+import { ColorLens, Extension, History, ListAlt, Settings, Timeline } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { BrowserData as BrowserDataType } from '@d4data/archive-lib/dist/src/types/schemas'
@@ -14,6 +14,8 @@ import BrowserSavedForms from './BrowserData/BrowserSavedForms'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    height: '100%',
+    width: '100%',
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     '& .Mui-selected': {
       background: grey['50'],
     },
+    minHeight: 72,
   },
 }))
 
@@ -55,27 +58,24 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
   }
 
   return (
-    <Box height={ 1 } width={ 1 } display="flex" flexDirection="column">
-      <Typography variant="h4" component="h2" className={ classes.title }>BROWSER DATA</Typography>
+    <Paper className={ classes.paper }>
+      <Tabs
+        className={ classes.tabs }
+        value={ currentTab }
+        onChange={ (event, newValue) => setCurrentTab(newValue) }
+        variant="fullWidth"
+        indicatorColor="primary"
+        textColor="primary"
+      >
+        <Tab icon={ <History/> } label="History"/>
+        <Tab icon={ <Timeline/> } label="History stat"/>
+        <Tab icon={ <Extension/> } label="Extensions"/>
+        <Tab icon={ <Settings/> } label="Settings"/>
+        <Tab icon={ <ColorLens/> } label="Themes"/>
+        <Tab icon={ <ListAlt/> } label="Forms"/>
+      </Tabs>
 
-      <Paper className={ classes.paper }>
-        <Tabs
-          className={ classes.tabs }
-          value={ currentTab }
-          onChange={ (event, newValue) => setCurrentTab(newValue) }
-          variant="fullWidth"
-          indicatorColor="primary"
-          textColor="primary"
-        >
-          <Tab icon={ <History/> } label="History"/>
-          <Tab icon={ <Timeline/> } label="History stat"/>
-          <Tab icon={ <Extension/> } label="Extensions"/>
-          <Tab icon={ <Settings/> } label="Settings"/>
-          <Tab icon={ <ColorLens/> } label="Themes"/>
-        </Tabs>
-
-        <Box flexGrow={ 1 }>{ getTabContent() }</Box>
-      </Paper>
-    </Box>
+      <Box flexGrow={ 1 } overflow="hidden">{ getTabContent() }</Box>
+    </Paper>
   )
 }
