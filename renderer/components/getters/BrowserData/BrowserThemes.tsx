@@ -29,7 +29,7 @@ export default function BrowserThemes({ data }: Props) {
   return (
     <Container maxWidth="sm" className={ classes.root }>
       <Box height={ 1 } width={ 1 } display="flex" flexDirection="column" justifyContent="center">
-        <Card>
+        <Card elevation={ 2 }>
           <CardHeader title="Current browser theme"/>
           <CardContent>
             <Box display="flex" alignItems="center" justifyContent="center">

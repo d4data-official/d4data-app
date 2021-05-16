@@ -8,7 +8,7 @@ export interface Props {
 
 export default function BrowserExtensions({ data }: Props) {
   return (
-    <Box padding={ 2 } display="flex" flexWrap="wrap">
+    <Box display="flex" flexWrap="wrap">
       {
         data.map((extension) => (
           <ExtensionCard data={ extension } key={ extension.name }/>

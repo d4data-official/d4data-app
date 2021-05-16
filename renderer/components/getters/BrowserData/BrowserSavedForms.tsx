@@ -1,5 +1,5 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, List, ListItem } from '@material-ui/core'
+import { List, ListItem, Paper } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { useMemo, useState } from 'react'
 import clsx from 'clsx'
@@ -11,9 +11,15 @@ export interface Props {
 }
 
 const useStyles = makeStyles((theme) => createStyles({
+  root: {
+    height: '100%',
+    display: 'flex',
+    overflow: 'hidden',
+  },
   formList: {
-    padding: 0,
+    height: '100%',
     width: '25%',
+    padding: 0,
     borderRight: '1px solid lightgrey',
     overflow: 'auto',
   },
@@ -48,7 +54,7 @@ export default function BrowserSavedForms({ data }: Props) {
   }), [data])
 
   return (
-    <Box height={ 1 } display="flex" overflow="hidden">
+    <Paper className={ classes.root } elevation={ 2 }>
       <div className={ classes.formList }>
         <List component="nav" aria-label="mailbox folders">
           { sortedForms.map((form, idx) => (
@@ -79,6 +85,6 @@ export default function BrowserSavedForms({ data }: Props) {
         )
       }
       <div/>
-    </Box>
+    </Paper>
   )
 }

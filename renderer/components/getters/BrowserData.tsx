@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Paper, Tab, Tabs } from '@material-ui/core'
+import { Box, Tab, Tabs } from '@material-ui/core'
 import { ColorLens, Extension, History, ListAlt, Settings, Timeline } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 import { grey } from '@material-ui/core/colors'
@@ -13,24 +13,25 @@ import BrowserThemes from './BrowserData/BrowserThemes'
 import BrowserSavedForms from './BrowserData/BrowserSavedForms'
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    height: '100%',
+  root: {
+    height: `calc(100% + ${ theme.spacing(3) })`,
     width: '100%',
+    margin: theme.spacing(3) * -1,
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
   },
-  title: {
-    fontWeight: 100,
-    marginBottom: theme.spacing(2),
-  },
   tabs: {
-    background: grey[300],
-    borderBottom: '1px solid lightgrey',
     '& .Mui-selected': {
       background: grey['50'],
     },
     minHeight: 72,
+  },
+  tabsRoot: {
+    justifyContent: 'center',
+  },
+  tabsScroller: {
+    flexGrow: 0,
   },
 }))
 
@@ -43,7 +44,7 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
       case 0:
         return <BrowserHistory data={ data.data.history }/>
       case 1:
-        return <BrowserHistoryStats/>
+        return <BrowserHistoryStats data={ data.data }/>
       case 2:
         return <BrowserExtensions data={ data.data.extensions }/>
       case 3:
@@ -58,24 +59,27 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
   }
 
   return (
-    <Paper className={ classes.paper }>
-      <Tabs
-        className={ classes.tabs }
-        value={ currentTab }
-        onChange={ (event, newValue) => setCurrentTab(newValue) }
-        variant="fullWidth"
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab icon={ <History/> } label="History"/>
-        <Tab icon={ <Timeline/> } label="History stat"/>
-        <Tab icon={ <Extension/> } label="Extensions"/>
-        <Tab icon={ <Settings/> } label="Settings"/>
-        <Tab icon={ <ColorLens/> } label="Themes"/>
-        <Tab icon={ <ListAlt/> } label="Forms"/>
-      </Tabs>
+    <Box className={ classes.root }>
+      <Box padding={ 4 } paddingBottom={ 0 }>
+        <Tabs
+          classes={ { root: classes.tabsRoot, scroller: classes.tabsScroller } }
+          className={ classes.tabs }
+          value={ currentTab }
+          onChange={ (event, newValue) => setCurrentTab(newValue) }
+          variant="scrollable"
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab icon={ <History/> } label="History"/>
+          <Tab icon={ <Timeline/> } label="History stat"/>
+          <Tab icon={ <Extension/> } label="Extensions"/>
+          <Tab icon={ <Settings/> } label="Settings"/>
+          <Tab icon={ <ColorLens/> } label="Themes"/>
+          <Tab icon={ <ListAlt/> } label="Forms"/>
+        </Tabs>
+      </Box>
 
-      <Box flexGrow={ 1 } overflow="hidden">{ getTabContent() }</Box>
-    </Paper>
+      <Box flexGrow={ 1 } padding={ 4 } overflow="hidden">{ getTabContent() }</Box>
+    </Box>
   )
 }
