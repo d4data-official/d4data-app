@@ -15,14 +15,15 @@ import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface ThemeProps {
-  theme: Function
+  setTheme: Function,
+  themeName: string,
 }
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export default function Skeleton({ theme, children }: ThemeProps & SkeletonProps) {
+export default function Skeleton({ themeName, setTheme, children }: ThemeProps & SkeletonProps) {
   const router = useRouter()
   const { componentName } = router.query
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(/dashboard/.test(router.pathname))
@@ -42,10 +43,8 @@ export default function Skeleton({ theme, children }: ThemeProps & SkeletonProps
     router.push('/home')
   }
 
-  const [alignment, setAlignment] = React.useState<string | null>('left');
-
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
-    setAlignment(newAlignment);
+  const handleThemeChange = () => {
+    themeName === 'light' ? setTheme('dark') : setTheme('light')
   };
 
   return (
@@ -81,15 +80,15 @@ export default function Skeleton({ theme, children }: ThemeProps & SkeletonProps
           </div>
           <div className={ classes.toolbarRight }>
             <ToggleButtonGroup
-              value={ alignment }
+              value={ themeName }
               exclusive
-              onChange={ handleAlignment }
+              onChange={ handleThemeChange }
               aria-label="text alignment"
             >
-              <ToggleButton value="left" aria-label="left aligned">
+              <ToggleButton value="light" aria-label="light">
                 <WbSunnyIcon />
               </ToggleButton>
-              <ToggleButton value="right" aria-label="right aligned">
+              <ToggleButton value="dark" aria-label="dark">
                 <Brightness3Icon />
               </ToggleButton>
             </ToggleButtonGroup>
