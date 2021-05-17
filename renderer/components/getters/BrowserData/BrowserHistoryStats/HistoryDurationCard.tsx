@@ -1,8 +1,8 @@
 import { capitalize, Grid, Paper, Typography } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TimelineIcon from '@material-ui/icons/Timeline'
-import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'
 import { useMemo } from 'react'
+import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'
 
 export interface Props {
   browserDataStats: BrowserDataStats
