@@ -42,9 +42,9 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
   const getTabContent = () => {
     switch (currentTab) {
       case 0:
-        return <BrowserHistory data={ data.data.history }/>
-      case 1:
         return <BrowserHistoryStats data={ data.data }/>
+      case 1:
+        return <BrowserHistory data={ data.data.history }/>
       case 2:
         return <BrowserExtensions data={ data.data.extensions }/>
       case 3:
@@ -70,8 +70,8 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab icon={ <History/> } label="History"/>
           <Tab icon={ <Timeline/> } label="History stat"/>
+          <Tab icon={ <History/> } label="History"/>
           <Tab icon={ <Extension/> } label="Extensions"/>
           <Tab icon={ <Settings/> } label="Settings"/>
           <Tab icon={ <ColorLens/> } label="Themes"/>
