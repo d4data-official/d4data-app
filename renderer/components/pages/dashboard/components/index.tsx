@@ -3,9 +3,7 @@ import DefaultDisplay from './DefaultDisplay'
 import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
-<<<<<<< HEAD
 import Mails from '../../../getters/Mails'
-=======
 import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
@@ -13,7 +11,6 @@ import Transactions from '../../../getters/Transactions'
 import Medias from '../../../getters/Medias'
 import Posts from '../../../getters/Posts'
 import Reacteds from '../../../getters/Reacteds'
->>>>>>> 18cdd227b511425b5afccd368891136a36d9c2c7
 
 interface ComponentProps {
   data: any

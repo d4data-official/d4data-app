@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   title: {
     fontSize: 20,
   },
+  subtitle: {
+    fontSize: 17,
+  },
   pos: {
     marginBottom: 12,
   },
@@ -40,10 +43,16 @@ export default function Mails({ data }: Props) {
           < Card className={classes.root} >
             <CardContent>
               <Typography variant="h5" className={classes.title} gutterBottom>
-                {mail.from}
+                Object: {mail.subject}
+              </Typography>
+              <Typography variant="h5" className={classes.subtitle} gutterBottom>
+                From :{mail.from}
+              </Typography>
+              <Typography variant="h5" className={classes.subtitle} gutterBottom>
+                To :{mail.to}
               </Typography>
               <Typography variant="body2" component="h2">
-                {mail.date}
+                Date: {mail.date.toLocaleString()}
               </Typography>
               <Typography variant="body1" component="p">
                 {mail.content}
