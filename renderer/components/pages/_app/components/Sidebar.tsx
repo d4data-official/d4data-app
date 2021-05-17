@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Case from 'case'
-import {
-  Button, Divider, Drawer, IconButton, List, ListItem, ListItemText,
-} from '@material-ui/core'
-import { ChevronLeft, Home } from '@material-ui/icons'
+import { Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@material-ui/core'
+import { ChevronLeft } from '@material-ui/icons'
 import useStyles from 'pages-components/_app/styles/sidebar.styles'
 import { ComponentList } from 'components/pages/dashboard/components'
 
@@ -22,6 +20,7 @@ export default function Sidebar(
   const handleComponentClick = React.useCallback((componentName: string) => () => {
     router.push(`/dashboard/${ Case.camel(componentName) }`)
   }, [])
+
   return (
     <Drawer
       variant="persistent"
@@ -33,14 +32,6 @@ export default function Sidebar(
       } }
     >
       <div className={ drawerHeaderClass }>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={ <Home/> }
-          onClick={ () => router.push('/home') }
-        >
-          Go to home
-        </Button>
         <IconButton onClick={ handleDrawerChange }>
           <ChevronLeft/>
         </IconButton>
