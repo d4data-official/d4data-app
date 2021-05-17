@@ -1,5 +1,5 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { List, ListItem, Paper } from '@material-ui/core'
+import { Box, List, ListItem, Paper } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { useMemo, useState } from 'react'
 import clsx from 'clsx'
@@ -11,7 +11,7 @@ export interface Props {
 }
 
 const useStyles = makeStyles((theme) => createStyles({
-  root: {
+  paper: {
     height: '100%',
     display: 'flex',
     overflow: 'hidden',
@@ -54,37 +54,39 @@ export default function BrowserSavedForms({ data }: Props) {
   }), [data])
 
   return (
-    <Paper className={ classes.root } elevation={ 2 }>
-      <div className={ classes.formList }>
-        <List component="nav" aria-label="mailbox folders">
-          { sortedForms.map((form, idx) => (
-            <ListItem
-              button
-              divider
-              key={ computeKey(form) }
-              onClick={ () => setCurrentFormIdx(idx) }
-              className={ clsx({ [classes.selectedFormListItem]: idx === currentFormIdx }) }
-            >
-              <FormListItem
-                name={ `Saved form ${ idx + 1 }` }
-                form={ form }
-                className={ classes.formListItem }
-              />
-            </ListItem>
-          )) }
-        </List>
-      </div>
+    <Box height={ 1 } padding={ 4 }>
+      <Paper className={ classes.paper } elevation={ 2 }>
+        <div className={ classes.formList }>
+          <List component="nav" aria-label="mailbox folders">
+            { sortedForms.map((form, idx) => (
+              <ListItem
+                button
+                divider
+                key={ computeKey(form) }
+                onClick={ () => setCurrentFormIdx(idx) }
+                className={ clsx({ [classes.selectedFormListItem]: idx === currentFormIdx }) }
+              >
+                <FormListItem
+                  name={ `Saved form ${ idx + 1 }` }
+                  form={ form }
+                  className={ classes.formListItem }
+                />
+              </ListItem>
+            )) }
+          </List>
+        </div>
 
-      {
-        currentFormIdx !== undefined && (
-          <SavedFormDetails
-            name={ `Saved form ${ currentFormIdx + 1 }` }
-            form={ sortedForms[currentFormIdx] }
-            className={ classes.formDetails }
-          />
-        )
-      }
-      <div/>
-    </Paper>
+        {
+          currentFormIdx !== undefined && (
+            <SavedFormDetails
+              name={ `Saved form ${ currentFormIdx + 1 }` }
+              form={ sortedForms[currentFormIdx] }
+              className={ classes.formDetails }
+            />
+          )
+        }
+        <div/>
+      </Paper>
+    </Box>
   )
 }

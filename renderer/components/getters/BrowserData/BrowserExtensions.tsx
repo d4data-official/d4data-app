@@ -1,5 +1,5 @@
 import { Extension } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 import ExtensionCard from './BrowserExtensions/ExtensionCard'
 
 export interface Props {
@@ -8,12 +8,16 @@ export interface Props {
 
 export default function BrowserExtensions({ data }: Props) {
   return (
-    <Box display="flex" flexWrap="wrap">
-      {
-        data.map((extension) => (
-          <ExtensionCard data={ extension } key={ extension.name }/>
-        ))
-      }
+    <Box height={ 1 } padding={ 4 } display="flex" flexWrap="wrap" overflow="auto">
+      <Grid container spacing={ 4 }>
+        {
+          data.map((extension) => (
+            <Grid item>
+              <ExtensionCard data={ extension } key={ extension.name }/>
+            </Grid>
+          ))
+        }
+      </Grid>
     </Box>
   )
 }

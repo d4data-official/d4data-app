@@ -1,6 +1,5 @@
-import { Grid } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { useMemo } from 'react'
+import { Box, Grid } from '@material-ui/core'
+import React, { useMemo } from 'react'
 import { BrowserData } from '@d4data/archive-lib'
 import HistoryCountCard from './BrowserHistoryStats/HistoryCountCard'
 import BrowserDataStats from '../../../modules/stats/BrowserDataStats'
@@ -12,31 +11,25 @@ export interface Props {
   data: BrowserData
 }
 
-const useStyles = makeStyles((theme) => createStyles({
-  root: {
-    height: '100%',
-    overflow: 'auto',
-  },
-}))
-
 export default function BrowserHistoryStats({ data }: Props) {
-  const classes = useStyles()
   const browserDataStats = useMemo(() => new BrowserDataStats(data), [data])
 
   return (
-    <Grid container spacing={ 4 } className={ classes.root }>
-      <Grid item>
-        <HistoryCountCard browserDataStats={ browserDataStats }/>
+    <Box height={ 1 } padding={ 4 } overflow="auto">
+      <Grid container spacing={ 4 }>
+        <Grid item>
+          <HistoryCountCard browserDataStats={ browserDataStats }/>
+        </Grid>
+        <Grid item>
+          <HistoryWebsiteCountCard browserDataStats={ browserDataStats }/>
+        </Grid>
+        <Grid item>
+          <HistoryDurationCard browserDataStats={ browserDataStats }/>
+        </Grid>
+        <Grid item>
+          <HistoryTopWebsites browserDataStats={ browserDataStats }/>
+        </Grid>
       </Grid>
-      <Grid item>
-        <HistoryWebsiteCountCard browserDataStats={ browserDataStats }/>
-      </Grid>
-      <Grid item>
-        <HistoryDurationCard browserDataStats={ browserDataStats }/>
-      </Grid>
-      <Grid item>
-        <HistoryTopWebsites browserDataStats={ browserDataStats }/>
-      </Grid>
-    </Grid>
+    </Box>
   )
 }

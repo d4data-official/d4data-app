@@ -1,7 +1,6 @@
 import { Preference } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
 import { Box } from '@material-ui/core'
 import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
-import { makeStyles } from '@material-ui/styles'
 import useTableColumns, { TableColumn } from '../../../modules/hooks/useTableColumns'
 
 export interface Props {
@@ -20,22 +19,16 @@ const columns: Array<TableColumn> = [
 ]
 
 const options: MUIDataTableOptions = {
-  elevation: 0,
+  elevation: 2,
   pagination: false,
   selectableRows: 'none',
   filter: 'false',
   responsive: 'simple',
 }
 
-const useStyles = makeStyles({
-  root: {},
-})
-
 export default function BrowserSettings({ data }: Props) {
-  const classes = useStyles()
-
   return (
-    <Box className={ classes.root } height={ 1 }>
+    <Box height={ 1 } padding={ 4 } overflow="auto">
       <MUIDataTable
         title=""
         data={ data }

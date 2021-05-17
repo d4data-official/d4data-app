@@ -77,7 +77,7 @@ export default function BrowserHistory({ data }: Props) {
   const classes = useStyles()
 
   return (
-    <Box className={ classes.root } height={ 1 } display="flex" flexDirection="column">
+    <Box className={ classes.root } height={ 1 } padding={ 4 } display="flex" flexDirection="column" overflow="auto">
       <Box flexGrow={ 1 }>
         <MUIDataTable
           title=""

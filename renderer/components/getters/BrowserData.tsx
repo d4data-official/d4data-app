@@ -79,7 +79,7 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
         </Tabs>
       </Box>
 
-      <Box flexGrow={ 1 } padding={ 4 } overflow="hidden">{ getTabContent() }</Box>
+      <Box flexGrow={ 1 } padding={ 0 } overflow="hidden">{ getTabContent() }</Box>
     </Box>
   )
 }
