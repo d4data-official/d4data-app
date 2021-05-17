@@ -3,9 +3,9 @@ import DefaultDisplay from './DefaultDisplay'
 import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
+import Connections from '../../../getters/Connections';
 import Whereabouts from '../../../getters/Whereabouts';
 import Tasks from '../../../getters/Tasks';
-import Connections from '../../../getters/Connections';
 import Notes from '../../../getters/Notes'
 import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
