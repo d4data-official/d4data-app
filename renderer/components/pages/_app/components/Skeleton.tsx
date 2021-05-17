@@ -46,11 +46,6 @@ export default function Skeleton({ children }: SkeletonProps) {
       >
         <Toolbar>
           <div>
-            <Show condition={ router.pathname !== '/home' }>
-              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
-                <Home/>
-              </IconButton>
-            </Show>
             <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"
@@ -60,6 +55,11 @@ export default function Skeleton({ children }: SkeletonProps) {
                 className={ clsx(classes.menuButton, drawerOpen && classes.hide) }
               >
                 <Menu/>
+              </IconButton>
+            </Show>
+            <Show condition={ router.pathname !== '/home' }>
+              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
+                <Home/>
               </IconButton>
             </Show>
           </div>
