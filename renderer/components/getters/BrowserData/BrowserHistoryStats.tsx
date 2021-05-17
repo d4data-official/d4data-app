@@ -16,7 +16,7 @@ export default function BrowserHistoryStats({ data }: Props) {
 
   return (
     <Box height={ 1 } padding={ 4 } overflow="auto">
-      <Grid container spacing={ 4 }>
+      <Grid container spacing={ 4 } justify="center">
         <Grid item>
           <HistoryCountCard browserDataStats={ browserDataStats }/>
         </Grid>
