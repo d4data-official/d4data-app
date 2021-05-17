@@ -3,6 +3,7 @@ import { capitalize } from '@material-ui/core'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import NoDataAvailable from '../components/NoDataAvailable'
+import Loading from '../components/Loading'
 
 export interface WithDataFetchProps {
   component: any
@@ -41,7 +42,7 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
 
   if (data === undefined) {
     return (
-      <div>Loading data...</div>
+      <Loading componentName={ capitalize(componentName) } />
     )
   }
 
