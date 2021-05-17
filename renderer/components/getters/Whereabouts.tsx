@@ -12,7 +12,7 @@ import WhereaboutsMap from './LocationComponents/WhereaboutsMap';
 
 const LIMIT = 14
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
   whole: {
     overflow: 'hidden',
     height: '90%',

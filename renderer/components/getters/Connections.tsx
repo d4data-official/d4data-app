@@ -4,7 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import { Container } from '@material-ui/core';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas';
 import ConnectionHistory from './LocationComponents/ConnectionHistory';
@@ -12,7 +12,7 @@ import ConnectionsMap from './LocationComponents/ConnectionsMap';
 
 const LIMIT = 14
 
-const useStyless = makeStyles((theme: Theme) => createStyles({
+const useStyless = makeStyles(() => createStyles({
   whole: {
     overflow: 'hidden',
     height: '90%',

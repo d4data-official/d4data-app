@@ -2,8 +2,6 @@ import MUIDataTable from 'mui-datatables';
 import React from 'react';
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
 
-const E7 = 10000000
-
 export default function ConnectionHistory({ whereabouts }: { whereabouts: Array<Whereabout> }) {
   const data = whereabouts.map((location: any) => [
     location?.timestamp?.toString() ?? '',
