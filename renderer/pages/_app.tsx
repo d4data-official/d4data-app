@@ -11,7 +11,7 @@ import '../style.css'
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props
-  const [currentTheme, setTheme] = useState<'dark' | 'light'>('light')
+  const [currentTheme, setTheme] = useState<'dark'|'light'>('light')
 
   const handleThemeChange = useCallback((newTheme: 'dark' | 'light') => {
     setTheme(newTheme);
