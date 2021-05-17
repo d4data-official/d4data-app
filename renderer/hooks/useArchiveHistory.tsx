@@ -3,6 +3,7 @@ import StandardizerIPC from '@shared/d4data-archive-lib/renderer/StandardizerIPC
 import { useRouter } from 'next/router'
 import { ArchiveHistoryCallback, ArchiveHistoryEntry } from '../modules/ArchiveHistoryManager'
 import ArchiveManager from '../modules/ArchiveManager'
+import useArchiveManager from './useArchiveManager'
 
 const { archiveHistoryManager } = ArchiveManager
 
@@ -12,6 +13,7 @@ const { archiveHistoryManager } = ArchiveManager
  */
 export default function useArchiveHistory() {
   const router = useRouter()
+  const { setRestoredArchive } = useArchiveManager()
   const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export default function useArchiveHistory() {
     resetHistory: () => archiveHistoryManager.resetHistory(),
     restoreArchiveFromEntry: async (entry: ArchiveHistoryEntry) => {
       ArchiveManager.currentStandardizer = await StandardizerIPC.init(entry.service, entry.path)
+      setRestoredArchive(entry)
       await router.push('/dashboard')
     },
   }
