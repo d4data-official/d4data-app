@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }))
 
-export default function HistoryTopWebsites({ browserDataStats }: Props) {
+export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
   const classes = useStyles()
   const topWebsites = useMemo(() => browserDataStats.getHistoryTopWebsites(5), [browserDataStats])
 
