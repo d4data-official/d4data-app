@@ -1069,10 +1069,10 @@
   dependencies:
     chalk "^4.0.0"
 
-"@d4data/archive-lib@^0.1.0-alpha.4":
-  version "0.1.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@d4data/archive-lib/-/archive-lib-0.1.0-alpha.4.tgz#e33409854731421c87f894d2c78ca784b90b4b8d"
-  integrity sha512-kh/BMINlX9Qi2SRn/An0Ykw3ce5JSumjEmhQ80bXZ0FcdVyjQ0d2Meu6tqdx/p92QKaUWPDYon9T4GL0uV/06g==
+"@d4data/archive-lib@^0.1.0-alpha.5":
+  version "0.1.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@d4data/archive-lib/-/archive-lib-0.1.0-alpha.5.tgz#0f3ac8b3f840b139c4377db3f143d1ce64fa60de"
+  integrity sha512-Z54wGIk2F33Otz8ShCcSlsXkhB46vkyXYyoaYwkBoz5WeRrEeMmc70EOvQ1vS7Cn7cKbesy4wFSoYirUt7Gq5g==
   dependencies:
     cross-env "^7.0.3"
     dotenv "^8.2.0"
