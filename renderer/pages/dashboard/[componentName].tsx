@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Case from 'case'
 import { fetchComponent } from 'pages-components/dashboard/components'
@@ -9,7 +9,11 @@ export default function DashboardComponent() {
   const componentName = router.query.componentName?.toString()
   const Component = componentName ? fetchComponent(Case.pascal(componentName)) : undefined
 
+  useEffect(() => {
+    if (!componentName) router.push('/dashboard')
+  }, [componentName])
+
   return (
-    <WithDataFetch component={ Component } componentName={ componentName! }/>
+    <WithDataFetch component={ Component } componentName={ componentName ?? '' }/>
   )
 }
