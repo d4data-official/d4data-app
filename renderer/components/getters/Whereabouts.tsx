@@ -5,8 +5,8 @@ import { Container } from '@material-ui/core';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
-import { GetterData } from '../../../../d4data-archive-lib/dist/src/types/standardizer/GetterReturn';
 import LocationHistory from './LocationComponents/LocationHistory';
 import WhereaboutsMap from './LocationComponents/WhereaboutsMap';
 
