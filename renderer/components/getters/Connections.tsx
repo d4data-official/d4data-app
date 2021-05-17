@@ -39,8 +39,6 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
   const getTabContent = () => {
     switch (value) {
       case 0:
-        // eslint-disable-next-line no-case-declarations
-        // const WhereaboutsMap = await import('./LocationComponents/WhereaboutsMap').then((module) => module.default)
         return <ConnectionsMap connections={ slicedData } />
       case 1:
         return <ConnectionHistory whereabouts={ slicedData } />

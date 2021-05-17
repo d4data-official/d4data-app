@@ -4,7 +4,7 @@ import Tab from '@material-ui/core/Tab';
 import { Container } from '@material-ui/core';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
 import LocationHistory from './LocationComponents/LocationHistory';
@@ -39,8 +39,6 @@ export default function Whereabouts({ data }: { data: NonNullable<GetterData<Arr
   const getTabContent = () => {
     switch (value) {
       case 0:
-        // eslint-disable-next-line no-case-declarations
-        // const WhereaboutsMap = await import('./LocationComponents/WhereaboutsMap').then((module) => module.default)
         return <WhereaboutsMap whereabouts={ slicedData } />
       case 1:
         return <LocationHistory whereabouts={ slicedData } />
