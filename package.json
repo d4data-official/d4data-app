@@ -24,6 +24,7 @@
     "clsx": "^1.1.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.3",
+    "filesize": "^6.3.0",
     "fuse.js": "^6.4.6",
     "material-ui-dropzone": "^3.5.0",
     "moment": "^2.29.1",
