@@ -19,7 +19,7 @@ function computeLogoFromServiceName(serviceName: string) {
   return (<UnarchiveIcon/>)
 }
 
-function generateTeamNotes(serviceName: string) {
+function generateTeamNotes() {
   return (
     <div>
       <h2>A note from the team</h2>
