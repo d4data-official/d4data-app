@@ -12,7 +12,6 @@ export type Data = Array<Record<any, any>>
 
 export interface Props {
   placeholder?: string
-  className?: string
   data: Data
   keys: Array<string>
   onSearch?: (filteredData: Data) => void
@@ -42,7 +41,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function Searchbar({
   placeholder,
-  className,
   data,
   keys,
   onSearch,
@@ -68,7 +66,7 @@ export default function Searchbar({
     const filteredData = fuse.search(search)
       .map((result) => result.item)
 
-    onSearch?.(search.length ? filteredData : data)
+    onSearch?.(filteredData)
   }, [search])
 
   return (
