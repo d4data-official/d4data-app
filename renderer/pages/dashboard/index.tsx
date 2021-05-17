@@ -87,7 +87,7 @@ const Dashboard = () => {
       </Grid>
       <br/>
       <div>
-        { archiveMetadata?.service && generateTeamNotes(archiveMetadata?.service) }
+        { archiveMetadata?.service && generateTeamNotes() }
       </div>
     </Container>
   )
