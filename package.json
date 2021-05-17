@@ -31,7 +31,7 @@
     "mui-datatables": "^3.7.7",
     "notistack": "^1.0.7",
     "numeral": "^2.0.6",
-    "react-json-view": "^1.21.3",
+    "react-json-view-ssr": "^1.19.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
