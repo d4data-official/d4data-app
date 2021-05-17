@@ -42,7 +42,7 @@ export interface Props {
 
 export default function ChatComponent({ data: { data: messagesList }, chat, userNames, onAddUserName }: Props) {
   const classes = useStyles()
-  const [messages, setMessages] = useState(messagesList)
+  const [filteredMessages, setMessages] = useState(messagesList)
   const [userName, setUserName] = useState<string>()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [selectedParticipant, setSelectedParticipant] = useState<string>()
@@ -103,7 +103,7 @@ export default function ChatComponent({ data: { data: messagesList }, chat, user
       <MessageList
         lockable
         className={ classes.chat }
-        dataSource={ messages.map((message) => ({
+        dataSource={ filteredMessages.map((message) => ({
           position: message.sender === userName ? 'right' : 'left',
           type: 'text',
           text: message.text,
