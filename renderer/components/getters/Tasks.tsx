@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flexShrink: 0,
   },
   secondaryHeading: {
+    maxWidth: '30vw',
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
     paddingTop: 2,
