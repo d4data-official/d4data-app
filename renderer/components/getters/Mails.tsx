@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,19 +13,22 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
     fontSize: 20,
   },
-  subtitle: {
-    fontSize: 17,
+  subtitleFrom: {
+    marginTop: 20,
+    fontSize: 14,
   },
-  pos: {
-    marginBottom: 12,
+  subtitle: {
+    fontSize: 14,
+  },
+  date: {
+    fontSize: 12,
+    marginTop: 30,
+  },
+  mailContent: {
+    marginTop: 30,
   },
 });
 
@@ -36,7 +41,7 @@ export default function Mails({ data }: Props) {
 
   return (
     <Box width={ 1 } height={ 1 }>
-      <h2>{data.data.length} Mails</h2>
+      <h2>{data.data.length} mails</h2>
       <Grid container spacing={ 2 }>
         {
           data.data.map((mail) => (
@@ -44,20 +49,21 @@ export default function Mails({ data }: Props) {
               < Card className={ classes.root } >
                 <CardContent>
                   <Typography variant="h5" className={ classes.title } gutterBottom>
-                    {mail.subject}
+                    <b>{mail.subject}</b>
                   </Typography>
-                  <Typography variant="h5" className={ classes.subtitle } gutterBottom>
+                  <Typography variant="h5" className={ classes.subtitleFrom } gutterBottom>
                     From : {mail.from}
                   </Typography>
                   <Typography variant="h5" className={ classes.subtitle } gutterBottom>
                     To : {mail.to.join(', ')}
                   </Typography>
-                  <Typography variant="h5" className={ classes.subtitle } gutterBottom>
+                  <Typography variant="h6" className={ classes.date } gutterBottom>
                     Date : {mail.date.toLocaleString()}
                   </Typography>
-                  <Typography variant="body1" component="p">
-                    {mail.content}
-                  </Typography>
+                  <Divider />
+                  <div className={ classes.mailContent }>
+                    { ReactHtmlParser(mail.content) }
+                  </div>
                 </CardContent>
                 <Divider />
               </Card >
