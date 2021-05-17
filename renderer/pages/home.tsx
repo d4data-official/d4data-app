@@ -8,9 +8,9 @@ import CloseIcon from '@material-ui/icons/Close'
 import { useRouter } from 'next/router'
 import Path from 'path'
 import useArchiveHistory from '@hooks/useArchiveHistory'
-import ArchiveManager from '../modules/ArchiveManager'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
+import useArchiveManager from '../hooks/useArchiveManager'
 
 export default function HomePage() {
   const router = useRouter()
@@ -21,6 +21,7 @@ export default function HomePage() {
     history,
     addHistoryEntry,
   } = useArchiveHistory()
+  const { setCurrentArchive, setCurrentStandardizer } = useArchiveManager()
 
   const handleExtract = React.useCallback(async (path: string) => {
     setProgress({ show: true })
@@ -65,8 +66,8 @@ export default function HomePage() {
     console.info('[Archive] Extraction ended')
 
     const standardizer = await archivePlugin.getStandardizer()
-    ArchiveManager.currentArchive = archivePlugin
-    ArchiveManager.currentStandardizer = standardizer
+    setCurrentArchive(archivePlugin)
+    setCurrentStandardizer(standardizer)
 
     addHistoryEntry({
       archiveName: Path.parse(path).base,
