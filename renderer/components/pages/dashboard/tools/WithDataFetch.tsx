@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { capitalize } from '@material-ui/core'
+import Case from 'case'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import NoDataAvailable from '../components/NoDataAvailable'
 import Loading from '../components/Loading'
+import { fetchComponent } from '../components'
 
 export interface WithDataFetchProps {
-  component: any
   componentName: string
 }
 
-export default function WithDataFetch({ component, componentName }: WithDataFetchProps) {
-  const [data, setData] = React.useState<any>(undefined)
-  const Component = component
+export default function WithDataFetch({ componentName }: WithDataFetchProps) {
+  const [data, setData] = React.useState<{ componentName: string, data: any } | undefined>(undefined)
+  const Component: any = fetchComponent(Case.pascal(componentName))
 
-  React.useEffect(() => {
+  useEffect(() => {
     setData(undefined)
 
     const standardizer = ArchiveManager.currentStandardizer
@@ -36,23 +37,23 @@ export default function WithDataFetch({ component, componentName }: WithDataFetc
     standardizer[getterName]()
       .then((getterData: GetterData<any>) => {
         console.info(`${ capitalize(componentName) } getter data retrieved`)
-        setData(getterData)
+        setData({ componentName, data: getterData })
       })
   }, [componentName])
 
-  if (data === undefined) {
+  if (data === undefined || data.componentName !== componentName) {
     return (
-      <Loading componentName={ capitalize(componentName) } />
+      <Loading componentName={ capitalize(componentName) }/>
     )
   }
 
-  if (data === null) {
+  if (data.data === null) {
     return (
-      <NoDataAvailable componentName={ capitalize(componentName) } />
+      <NoDataAvailable componentName={ capitalize(componentName) }/>
     )
   }
 
   return (
-    <Component data={ data }/>
+    <Component data={ data.data }/>
   )
 }
