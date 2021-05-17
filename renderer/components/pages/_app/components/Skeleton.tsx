@@ -64,6 +64,11 @@ export default function Skeleton({ children }: SkeletonProps) {
                 <Menu />
               </IconButton>
             </Show>
+            <Show condition={ router.pathname !== '/home' }>
+              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
+                <Home/>
+              </IconButton>
+            </Show>
             <Typography variant="h6" noWrap>
               {Case.capital(componentName as string) ?? 'D4Data'}
             </Typography>
