@@ -9,6 +9,7 @@ import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { useSnackbar } from 'notistack'
 import CloseIcon from '@material-ui/icons/Close'
+import useArchiveManager from '../../hooks/useArchiveManager'
 
 export interface Props {
   entry: ArchiveHistoryEntry
@@ -47,6 +48,7 @@ export default function HistoryEntry({
   style,
 }: Props) {
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
+  const { setRestoredArchive } = useArchiveManager()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [loading, setLoading] = useState(false)
   const classes = useStyles()
@@ -73,6 +75,7 @@ export default function HistoryEntry({
     setLoading(true)
     restoreArchiveFromEntry(entry)
       .then(() => {
+        setRestoredArchive(entry)
         enqueueSnackbar(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>, {
           variant: 'success',
           action: (key) => (

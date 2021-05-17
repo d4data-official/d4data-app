@@ -30,6 +30,7 @@
     "moment": "^2.29.1",
     "mui-datatables": "^3.7.7",
     "notistack": "^1.0.7",
+    "numeral": "^2.0.6",
     "react-json-view": "^1.21.3",
     "uuid": "^8.3.2"
   },
@@ -39,6 +40,7 @@
     "@types/loadable__component": "^5.13.3",
     "@types/mui-datatables": "^3.7.3",
     "@types/node": "^14.6.4",
+    "@types/numeral": "^2.0.1",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/uuid": "^8.3.0",
