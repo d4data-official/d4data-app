@@ -76,7 +76,7 @@ function Table({ connexions }: { connexions: Array<Connection> }) {
   return (
     <>
       <MUIDataTable
-        title="Connexions"
+        title="Connections"
         data={ data }
         columns={ ['IP', 'Date', 'Address', 'Browser', 'Latitude', 'Longitude'] }
         options={ {
@@ -219,7 +219,7 @@ interface Prop {
   parsedFiles?: string
 }
 
-function Connexions({ data }: { data: Prop }) {
+function Connections({ data }: { data: Prop }) {
   const [data2, setData] = useState<any>([])
   useEffect(() => {
     setData(data.data?.slice(0, 1))
@@ -232,4 +232,4 @@ function Connexions({ data }: { data: Prop }) {
   )
 }
 
-export default Connexions;
+export default Connections;

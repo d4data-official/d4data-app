@@ -260,7 +260,7 @@ function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskLi
   );
 }
 
-function TaskLists({ data }: { data: NonNullable<GetterData<Array<TaskList>>> }) {
+function Tasks({ data }: { data: NonNullable<GetterData<Array<TaskList>>> }) {
   console.log(data.data)
   return (
     <>
@@ -269,4 +269,4 @@ function TaskLists({ data }: { data: NonNullable<GetterData<Array<TaskList>>> })
   )
 }
 
-export default TaskLists
+export default Tasks

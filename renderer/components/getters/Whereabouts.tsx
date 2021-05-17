@@ -9,8 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
-import Table from './components/Table'
-import Map from './components/Map'
+import Table from './LocationComponents/Table'
+import Map from './LocationComponents/Map'
 
 const E7 = 10000000
 
