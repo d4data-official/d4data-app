@@ -3,6 +3,12 @@ import moment from 'moment'
 
 export type UniqueWebsites = Record<string, number>
 
+export interface TopWebsites {
+  max: number,
+  min: number,
+  websites: Array<{ domain: string, count: number }>
+}
+
 export default class BrowserDataStats {
   private uniqueWebsites?: UniqueWebsites = undefined
 
@@ -35,6 +41,19 @@ export default class BrowserDataStats {
     this.uniqueWebsites = uniqueWebsites
 
     return this.uniqueWebsites
+  }
+
+  getHistoryTopWebsites(websiteCount: number = 5): TopWebsites {
+    const topWebsites = Object.entries(this.getHistoryUniqueWebsites())
+      .sort((entry1, entry2) => entry2[1] - entry1[1])
+      .slice(0, websiteCount)
+      .map(([domain, count]) => ({ domain, count }))
+
+    return {
+      max: topWebsites[0].count,
+      min: topWebsites[topWebsites.length - 1].count,
+      websites: topWebsites,
+    }
   }
 
   getHistoryDuration(): moment.Duration | undefined {
