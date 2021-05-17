@@ -6,6 +6,7 @@ import Profile from '../../../getters/Profile'
 import Whereabouts from '../../../getters/Whereabouts';
 import Tasks from '../../../getters/Tasks';
 import Connections from '../../../getters/Connections';
+import Notes from '../../../getters/Notes'
 import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
@@ -74,6 +75,10 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   [
     'Notifications',
     DefaultDisplay,
+  ],
+  [
+    'Notes',
+    Notes,
   ],
   [
     'Posts',

@@ -1,9 +1,9 @@
 import React from 'react';
-import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import ReactedPostComponent from './ReactedComponents/ReactedPostComponent';
 import ReactedMediaComponent from './ReactedComponents/ReactedMediaComponent';
 import ReactedCommunityComponent from './ReactedComponents/ReactedCommunityComponent';
