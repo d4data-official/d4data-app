@@ -9,7 +9,7 @@ export interface Props {
 export default function BrowserExtensions({ data }: Props) {
   return (
     <Box height={ 1 } padding={ 4 } display="flex" flexWrap="wrap" overflow="auto">
-      <Grid container spacing={ 4 }>
+      <Grid container spacing={ 4 } justify="center">
         {
           data.map((extension) => (
             <Grid item>
