@@ -12,6 +12,7 @@ import Transactions from '../../../getters/Transactions'
 import Medias from '../../../getters/Medias'
 import Posts from '../../../getters/Posts'
 import Reacteds from '../../../getters/Reacteds'
+import BrowserData from '../../../getters/BrowserData'
 
 interface ComponentProps {
   data: any
@@ -28,7 +29,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'BrowserData',
-    DefaultDisplay,
+    BrowserData,
   ],
   [
     'Chats',
