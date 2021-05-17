@@ -1,7 +1,7 @@
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
-import ChatMessage from '@d4data/archive-lib/dist/src/types/schemas/ChatMessage';
-import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat';
-import { useCallback, useEffect, useState } from 'react';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import ChatMessage from '@d4data/archive-lib/dist/src/types/schemas/ChatMessage'
+import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat'
+import { useCallback, useEffect, useState } from 'react'
 // @ts-ignore
 import { MessageList } from 'react-chat-elements'
 import {
@@ -9,11 +9,12 @@ import {
   Checkbox,
   Dialog,
   DialogContent,
-  DialogTitle, FormControl,
+  DialogTitle,
+  FormControl,
   FormControlLabel,
   makeStyles,
-} from '@material-ui/core';
-import Searchbar from 'components/Searchbar';
+} from '@material-ui/core'
+import Searchbar from 'components/Searchbar'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '15px',
     overflowY: 'scroll',
   },
-}));
+}))
 
 export interface Props {
   data: NonNullable<GetterData<Array<ChatMessage>>>
@@ -40,34 +41,33 @@ export interface Props {
 }
 
 export default function ChatComponent({ data: { data: messagesList }, chat, userNames, onAddUserName }: Props) {
-  const classes = useStyles();
-  const [messages, setMessages] = useState(messagesList);
-  const [userName, setUserName] = useState<string>();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedParticipant, setSelectedParticipant] = useState<string>();
+  const classes = useStyles()
+  const [messages, setMessages] = useState(messagesList)
+  const [userName, setUserName] = useState<string>()
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [selectedParticipant, setSelectedParticipant] = useState<string>()
 
   useEffect(() => {
-    console.log(messagesList);
-    const uname = chat.participants.find((participant: string) => userNames.includes(participant));
+    const uname = chat.participants.find((participant: string) => userNames.includes(participant))
     if (!uname) {
-      setDialogOpen(true);
+      setDialogOpen(true)
     } else {
-      setUserName(userNames.find((each) => chat.participants.includes(each)) ?? '');
+      setUserName(userNames.find((each) => chat.participants.includes(each)) ?? '')
     }
-  }, [chat, userNames]);
+  }, [chat, userNames])
 
   const handleSearch = useCallback((searchedData) => {
     setMessages(searchedData)
-  }, []);
+  }, [])
 
   const handleSubmit = useCallback(() => {
     onAddUserName(selectedParticipant)
-    setDialogOpen(false);
-  }, [selectedParticipant]);
+    setDialogOpen(false)
+  }, [selectedParticipant])
 
   const handleParticipantSelection = useCallback((e: any) => {
-    setSelectedParticipant((prev) => ((prev === e.target.name) ? undefined : e.target.name));
-  }, []);
+    setSelectedParticipant((prev) => ((prev === e.target.name) ? undefined : e.target.name))
+  }, [])
 
   return (
     <div className={ classes.container }>
@@ -75,7 +75,7 @@ export default function ChatComponent({ data: { data: messagesList }, chat, user
         <DialogTitle>Who are you ?</DialogTitle>
         <DialogContent>
           <FormControl component="fieldset">
-            {[...chat.participants, 'None'].map((participant) => (
+            { [...chat.participants, 'None'].map((participant) => (
               <FormControlLabel
                 key={ participant }
                 control={ (
@@ -87,7 +87,7 @@ export default function ChatComponent({ data: { data: messagesList }, chat, user
                 ) }
                 label={ participant }
               />
-            ))}
+            )) }
             <Button disabled={ selectedParticipant === undefined } type="submit" onClick={ handleSubmit }>
               Select
             </Button>
