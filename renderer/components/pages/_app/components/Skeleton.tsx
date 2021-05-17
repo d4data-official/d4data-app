@@ -44,7 +44,8 @@ export default function Skeleton({ themeName, setTheme, children }: ThemeProps &
   }
 
   const handleThemeChange = () => {
-    themeName === 'light' ? setTheme('dark') : setTheme('light')
+    if (themeName === 'light') setTheme('dark')
+    else setTheme('light')
   };
 
   return (
