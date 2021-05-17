@@ -1,9 +1,11 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core';
-import React, { ReactNode } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core'
+import React, { ReactNode } from 'react'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 interface MetaDataCardComponent {
-  icon: ReactNode, metadata: string, subtitle: string
+  icon: ReactNode,
+  metadata: string,
+  subtitle: string
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }))
 
-export default function MetadataCard({ icon, metadata, subtitle } : MetaDataCardComponent) {
+export default function MetadataCard({ icon, metadata, subtitle }: MetaDataCardComponent) {
   const classes = useStyles({})
   return (
     <Card className={ classes.root }>
@@ -32,11 +34,7 @@ export default function MetadataCard({ icon, metadata, subtitle } : MetaDataCard
             { icon }
           </Grid>
           <Grid item>
-            <Typography color="textSecondary" gutterBottom>
-              <div className={ classes.flexIcon }>
-                { metadata }
-              </div>
-            </Typography>
+            <Typography color="textSecondary" gutterBottom className={ classes.flexIcon }>{ metadata }</Typography>
           </Grid>
         </Grid>
       </CardContent>
