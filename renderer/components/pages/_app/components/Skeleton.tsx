@@ -15,15 +15,15 @@ import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 
 export interface ThemeProps {
-  setTheme: Function,
-  themeName: string,
+  onChangeTheme: (theme: 'dark' | 'light') => void,
+  themeName: 'dark' | 'light',
 }
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export default function Skeleton({ themeName, setTheme, children }: ThemeProps & SkeletonProps) {
+export default function Skeleton({ themeName, onChangeTheme, children }: ThemeProps & SkeletonProps) {
   const router = useRouter()
   const { componentName } = router.query
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(/dashboard/.test(router.pathname))
@@ -44,8 +44,8 @@ export default function Skeleton({ themeName, setTheme, children }: ThemeProps &
   }
 
   const handleThemeChange = () => {
-    if (themeName === 'light') setTheme('dark')
-    else setTheme('light')
+    if (themeName === 'light') onChangeTheme('dark')
+    else onChangeTheme('light')
   };
 
   return (
