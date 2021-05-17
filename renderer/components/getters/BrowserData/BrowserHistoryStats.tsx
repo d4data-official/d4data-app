@@ -6,6 +6,7 @@ import HistoryCountCard from './BrowserHistoryStats/HistoryCountCard'
 import BrowserDataStats from '../../../modules/stats/BrowserDataStats'
 import HistoryWebsiteCountCard from './BrowserHistoryStats/HistoryWebsiteCountCard'
 import HistoryDurationCard from './BrowserHistoryStats/HistoryDurationCard'
+import HistoryTopWebsites from './BrowserHistoryStats/HistoryTopWebsites'
 
 export interface Props {
   data: BrowserData
@@ -13,7 +14,8 @@ export interface Props {
 
 const useStyles = makeStyles((theme) => createStyles({
   root: {
-    padding: theme.spacing(0),
+    height: '100%',
+    overflow: 'auto',
   },
 }))
 
@@ -31,6 +33,9 @@ export default function BrowserHistoryStats({ data }: Props) {
       </Grid>
       <Grid item>
         <HistoryDurationCard browserDataStats={ browserDataStats }/>
+      </Grid>
+      <Grid item>
+        <HistoryTopWebsites browserDataStats={ browserDataStats }/>
       </Grid>
     </Grid>
   )
