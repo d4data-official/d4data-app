@@ -83,7 +83,6 @@ export default function Skeleton({ children }: SkeletonProps) {
               value={ currentTheme }
               exclusive
               onChange={ handleThemeChange }
-              aria-label="text alignment"
             >
               <ToggleButton value="light" aria-label="light">
                 <WbSunnyIcon/>

@@ -18,7 +18,7 @@ function AppContent(props: AppProps) {
       <SnackbarProvider autoHideDuration={ 5000 }>
         <CssBaseline/>
         <Skeleton>
-          <Component { ...pageProps } />
+          <Component { ...pageProps }/>
         </Skeleton>
       </SnackbarProvider>
     </ThemeProvider>
