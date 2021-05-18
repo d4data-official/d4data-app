@@ -11,6 +11,7 @@ import Notes from '../../../getters/Notes'
 import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
 import APIs from '../../../getters/APIs'
+import Settings from '../../../getters/Settings'
 import Transactions from '../../../getters/Transactions'
 import Medias from '../../../getters/Medias'
 import Posts from '../../../getters/Posts'
@@ -96,7 +97,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Settings',
-    DefaultDisplay,
+    Settings,
   ],
   [
     'Tasks',
