@@ -19,7 +19,7 @@ export default function Sidebar(
   const classes = useStyles()
   const { dispatch } = useContext(GlobalContext)
   const handleComponentClick = React.useCallback((componentName: string) => () => {
-    dispatch({ type: 'UPDATE_COMPONENT', payload: componentName })
+    dispatch({ type: 'UPDATE_COMPONENT', componentName })
   }, [])
 
   return (

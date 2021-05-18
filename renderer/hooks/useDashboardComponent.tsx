@@ -5,6 +5,7 @@ import ArchiveManager from '@modules/ArchiveManager'
 import { GlobalContext } from 'renderer/context/Store'
 import { capitalize } from '@material-ui/core'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import DefaultDisplay from 'components/pages/dashboard/components/DefaultDisplay'
 
 interface UseStandardizerArgs {
   componentName?: string,
@@ -12,7 +13,7 @@ interface UseStandardizerArgs {
   getterArgs?: Array<any>
 }
 
-function useStandardizer(args?: UseStandardizerArgs) {
+function useDashboardComponent(args?: UseStandardizerArgs) {
   const [data, setData] = useState<{ componentName: string, data: GetterData<any> } | undefined>(undefined)
   const { componentName: contextComponentName } = useContext(GlobalContext)
   const componentName = args?.componentName ?? contextComponentName
@@ -48,8 +49,8 @@ function useStandardizer(args?: UseStandardizerArgs) {
   return ({
     data,
     componentName,
-    Component,
+    Component: Component ?? DefaultDisplay,
   })
 }
 
-export default useStandardizer
+export default useDashboardComponent

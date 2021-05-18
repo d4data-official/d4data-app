@@ -1,11 +1,10 @@
-import { useReducer, createContext, Dispatch } from 'react'
+import { useReducer, createContext, Dispatch, Reducer } from 'react'
 
 type Action = {
-  type: 'UPDATE_THEME'
-  payload: 'dark' | 'light'
+  type: 'TOGGLE_THEME'
 } | {
   type: 'UPDATE_COMPONENT'
-  payload?: string
+  componentName?: string
 }
 
 interface GlobalState {
@@ -22,7 +21,7 @@ interface Props {
 }
 
 const initialStates: GlobalState = {
-  currentTheme: 'dark', componentName: undefined,
+  currentTheme: 'light', componentName: undefined,
 }
 
 const GlobalContext = createContext<AppContextType>({
@@ -32,18 +31,18 @@ const GlobalContext = createContext<AppContextType>({
 const { Provider: ContextProvider } = GlobalContext;
 
 function Store({ children }: Props) {
-  const reducer = (state: GlobalState, action: Action) => {
+  const reducer: Reducer<GlobalState, Action> = (state: GlobalState, action: Action) => {
     switch (action.type) {
-      case 'UPDATE_THEME': {
+      case 'TOGGLE_THEME': {
         return {
           ...state,
-          currentTheme: action.payload,
+          currentTheme: state.currentTheme === 'light' ? 'dark' : 'light',
         }
       }
       case 'UPDATE_COMPONENT': {
         return {
           ...state,
-          componentName: action.payload,
+          componentName: action.componentName,
         }
       }
       default: {

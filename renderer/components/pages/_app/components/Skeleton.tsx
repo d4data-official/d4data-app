@@ -1,8 +1,6 @@
 import React, { useCallback, useContext } from 'react'
-// import Show from 'components/Show'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-// import Sidebar from './Sidebar';
-import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
@@ -40,20 +38,18 @@ export default function Skeleton({ children }: SkeletonProps) {
     }
   }, [])
 
-  const clearCurrentArchive = () => {
-    ArchiveManager.clear()
-    dispatch({ type: 'UPDATE_COMPONENT', payload: undefined })
+  const clearCurrentArchive = useCallback(() => {
     router.push('/home')
-  }
+    ArchiveManager.clear()
+    dispatch({ type: 'UPDATE_COMPONENT' })
+  }, [])
 
   const handleThemeChange = useCallback(() => {
-    if (currentTheme === 'light') dispatch({ type: 'UPDATE_THEME', payload: 'dark' })
-    else dispatch({ type: 'UPDATE_THEME', payload: 'light' })
-  }, [currentTheme]);
+    dispatch({ type: 'TOGGLE_THEME' })
+  }, []);
 
   return (
     <div className={ classes.root }>
-      <CssBaseline/>
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {
@@ -74,7 +70,7 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Show condition={ router.pathname !== '/home' }>
-              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
+              <IconButton color="inherit" onClick={ clearCurrentArchive } edge="start">
                 <Home/>
               </IconButton>
             </Show>
