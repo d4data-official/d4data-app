@@ -5,11 +5,14 @@ type Action = {
 } | {
   type: 'UPDATE_COMPONENT'
   componentName?: string
+} | {
+  type: 'TOGGLE_RAWDATA'
 }
 
 interface GlobalState {
   currentTheme: 'dark' | 'light',
-  componentName?: string
+  componentName?: string,
+  rawData: boolean
 }
 
 interface AppContextType extends GlobalState {
@@ -21,7 +24,7 @@ interface Props {
 }
 
 const initialStates: GlobalState = {
-  currentTheme: 'light', componentName: undefined,
+  currentTheme: 'light', componentName: undefined, rawData: false,
 }
 
 const GlobalContext = createContext<AppContextType>({
@@ -43,6 +46,12 @@ function Store({ children }: Props) {
         return {
           ...state,
           componentName: action.componentName,
+        }
+      }
+      case 'TOGGLE_RAWDATA': {
+        return {
+          ...state,
+          rawData: !state.rawData,
         }
       }
       default: {
