@@ -1,8 +1,6 @@
-import React from 'react'
-// import Show from 'components/Show'
+import React, { useCallback, useContext } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-// import Sidebar from './Sidebar';
-import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { Home, Menu } from '@material-ui/icons'
 import Show from 'components/Show'
@@ -11,46 +9,47 @@ import Case from 'case'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
+import { GlobalContext } from 'renderer/context/Store'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
-
-export interface ThemeProps {
-  onChangeTheme: (theme: 'dark' | 'light') => void,
-  themeName: 'dark' | 'light',
-}
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
 }
 
-export default function Skeleton({ themeName, onChangeTheme, children }: ThemeProps & SkeletonProps) {
+export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
-  const { componentName } = router.query
-  const [drawerOpen, setDrawerOpen] = React.useState<boolean>(/dashboard/.test(router.pathname))
+  const { currentTheme, componentName, dispatch } = useContext(GlobalContext)
+  const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
     setDrawerOpen(typeof open === 'boolean' ? open : !drawerOpen)
   }, [drawerOpen])
-  React.useEffect(() => {
-    router.events.on('routeChangeComplete', (route) => {
-      handleDrawerChange(/dashboard/.test(route))
-    })
+
+  const handleRouteChange = useCallback((route) => {
+    handleDrawerChange(/dashboard/.test(route));
   }, [])
 
-  const clearCurrentArchive = () => {
-    ArchiveManager.clear()
-    router.push('/home')
-  }
+  React.useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    }
+  }, [])
 
-  const handleThemeChange = () => {
-    if (themeName === 'light') onChangeTheme('dark')
-    else onChangeTheme('light')
-  };
+  const clearCurrentArchive = useCallback(() => {
+    router.push('/home')
+    ArchiveManager.clear()
+    dispatch({ type: 'UPDATE_COMPONENT' })
+  }, [])
+
+  const handleThemeChange = useCallback(() => {
+    dispatch({ type: 'TOGGLE_THEME' })
+  }, []);
 
   return (
     <div className={ classes.root }>
-      <CssBaseline/>
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {
@@ -71,26 +70,25 @@ export default function Skeleton({ themeName, onChangeTheme, children }: ThemePr
               </IconButton>
             </Show>
             <Show condition={ router.pathname !== '/home' }>
-              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
+              <IconButton color="inherit" onClick={ clearCurrentArchive } edge="start">
                 <Home/>
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              { Case.capital(componentName as string) ?? 'D4Data' }
+              {componentName ? Case.capital(componentName) : 'D4Data'}
             </Typography>
           </div>
           <div className={ classes.toolbarRight }>
             <ToggleButtonGroup
-              value={ themeName }
+              value={ currentTheme }
               exclusive
               onChange={ handleThemeChange }
-              aria-label="text alignment"
             >
               <ToggleButton value="light" aria-label="light">
-                <WbSunnyIcon />
+                <WbSunnyIcon/>
               </ToggleButton>
               <ToggleButton value="dark" aria-label="dark">
-                <Brightness3Icon />
+                <Brightness3Icon/>
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
@@ -107,7 +105,7 @@ export default function Skeleton({ themeName, onChangeTheme, children }: ThemePr
         }) }
       >
         <div className={ classes.drawerHeader }/>
-        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{ children }</Box>
+        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
       </main>
     </div>
   )

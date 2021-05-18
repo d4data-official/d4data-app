@@ -14,7 +14,7 @@ export default function useArchiveManager() {
         }
       }
 
-      return archiveManager.currentArchive!.getMetadata()
+      return archiveManager.currentArchive?.getMetadata()
     },
     restoredArchive: archiveManager.restoredHistoryEntry,
     archiveHistoryManager: archiveManager.archiveHistoryManager,
