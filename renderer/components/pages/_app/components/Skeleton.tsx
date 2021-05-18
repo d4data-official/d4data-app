@@ -53,7 +53,7 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   return (
     <div className={ classes.root }>
-      <CssBaseline />
+      <CssBaseline/>
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {
@@ -70,12 +70,12 @@ export default function Skeleton({ children }: SkeletonProps) {
                 edge="start"
                 className={ clsx(classes.menuButton, drawerOpen && classes.hide) }
               >
-                <Menu />
+                <Menu/>
               </IconButton>
             </Show>
             <Show condition={ router.pathname !== '/home' }>
               <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
-                <Home />
+                <Home/>
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
@@ -90,10 +90,10 @@ export default function Skeleton({ children }: SkeletonProps) {
               aria-label="text alignment"
             >
               <ToggleButton value="light" aria-label="light">
-                <WbSunnyIcon />
+                <WbSunnyIcon/>
               </ToggleButton>
               <ToggleButton value="dark" aria-label="dark">
-                <Brightness3Icon />
+                <Brightness3Icon/>
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
@@ -109,7 +109,7 @@ export default function Skeleton({ children }: SkeletonProps) {
           [classes.mainShift]: drawerOpen,
         }) }
       >
-        <div className={ classes.drawerHeader } />
+        <div className={ classes.drawerHeader }/>
         <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
       </main>
     </div>

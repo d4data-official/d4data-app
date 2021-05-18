@@ -16,7 +16,7 @@ function AppContent(props: AppProps) {
   return (
     <ThemeProvider theme={ currentTheme === 'light' ? themeLight : themeDark }>
       <SnackbarProvider autoHideDuration={ 5000 }>
-        <CssBaseline />
+        <CssBaseline/>
         <Skeleton>
           <Component { ...pageProps } />
         </Skeleton>
@@ -36,12 +36,12 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
         <title>D4Data App</title>
       </Head>
-      <Store >
-        <AppContent { ...props } />
+      <Store>
+        <AppContent { ...props }/>
       </Store>
     </>
   )

@@ -34,10 +34,10 @@ export default function Sidebar(
     >
       <div className={ drawerHeaderClass }>
         <IconButton onClick={ handleDrawerChange }>
-          <ChevronLeft />
+          <ChevronLeft/>
         </IconButton>
       </div>
-      <Divider />
+      <Divider/>
       <List>
         {ComponentList.map(([component]) => (
           <ListItem
@@ -46,7 +46,7 @@ export default function Sidebar(
             button
             onClick={ handleComponentClick(component) }
           >
-            <ListItemText primary={ Case.capital(component) } />
+            <ListItemText primary={ Case.capital(component) }/>
           </ListItem>
         ))}
       </List>
