@@ -3,17 +3,16 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  AppBar, createStyles, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText,
-  makeStyles, Theme, Toolbar,
+  createStyles, Divider, List, ListItem, ListItemIcon, ListItemText,
+  makeStyles, MenuItem, Theme,
   Typography,
 } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
 import {
   BlurCircular, CalendarToday, CheckCircle, RadioButtonUnchecked,
 } from '@material-ui/icons';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
 import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas';
 import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
@@ -67,9 +66,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(1, 10),
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   content: {
     flexGrow: 1,
@@ -181,52 +180,31 @@ function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskLi
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [index, setIndex] = React.useState(0);
+  const [value, setValue] = React.useState<string>('');
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setValue(event.target.value as string);
   };
 
   return (
     <div className={ classes.root }>
-      <Drawer
-        className={ classes.drawer }
-        variant="persistent"
-        anchor="left"
-        open={ open }
-        classes={ {
-          paper: classes.drawerPaper,
-        } }
-      >
-        <div className={ classes.drawerHeader }>
-          <IconButton onClick={ handleDrawerClose }>
-            <ChevronLeftIcon/>
-          </IconButton>
-        </div>
-        <List>
-          {taskList.map((taskL: TaskList, i: number) => (
-            <ListItem
-              button
-              key={ taskL.title }
-              onClick={ () => {
-                setIndex(i)
-              } }
-            >
-              <ListItemIcon><BlurCircular/></ListItemIcon>
-              <ListItemText primary={ taskL.title }/>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
       <main
         className={ clsx(classes.content, {
           [classes.contentShift]: open,
         }) }
       >
-        <div className={ classes.drawerHeader }/>
+        <div className={ classes.drawerHeader }>
+          <Select
+            value={ taskList?.[0]?.title }
+            onChange={ handleChange }
+          >
+            {taskList.map((taskL: TaskList) => (
+              <MenuItem value={ taskL.title }>
+                <ListItemText primary={ taskL.title }/>
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
         <div style={ {
           display: 'flex', alignItems: 'center', flexDirection: 'column', marginLeft: '10%',
         } }

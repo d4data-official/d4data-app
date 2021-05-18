@@ -14,8 +14,6 @@ const LIMIT = 14
 
 const useStyless = makeStyles(() => createStyles({
   whole: {
-    overflow: 'hidden',
-    height: '90%',
   },
 }));
 
