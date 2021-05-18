@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import {

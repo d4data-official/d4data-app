@@ -13,9 +13,9 @@ import { makeStyles } from '@material-ui/core';
 import { AccountCircle, SupervisedUserCircle } from '@material-ui/icons';
 import { useCallback, useEffect, useState } from 'react';
 import ArchiveManager from '@modules/ArchiveManager';
+import Loading from 'components/pages/dashboard/components/Loading';
 import Conversation from './Chats/Conversation';
 import Searchbar from './Chats/Searchbar';
-import Loading from 'components/pages/dashboard/components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   container: {
