@@ -13,11 +13,21 @@ interface UseStandardizerArgs {
   getterArgs?: Array<any>
 }
 
-function useDashboardComponent(args?: UseStandardizerArgs) {
+interface UseDashboardComponentReturn {
+  componentName?: string,
+  Component: FunctionComponent<{ data: NonNullable<GetterData<any>> }> & { disableRawData?: boolean }
+  data?: {
+    data: GetterData<any>
+    componentName: string
+  }
+}
+
+function useDashboardComponent(args?: UseStandardizerArgs): UseDashboardComponentReturn {
   const [data, setData] = useState<{ componentName: string, data: GetterData<any> } | undefined>(undefined)
   const { componentName: contextComponentName } = useContext(GlobalContext)
   const componentName = args?.componentName ?? contextComponentName
-  const Component: FunctionComponent<{ data: NonNullable<GetterData<any>> }> | null = args?.Component
+  const Component: FunctionComponent<{ data: NonNullable<GetterData<any>> }> & { disableRawData?: boolean }
+  | null = args?.Component
     ?? (componentName ? fetchComponent(Case.pascal(componentName)) : null)
 
   useEffect(() => {

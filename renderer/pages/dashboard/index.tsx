@@ -29,7 +29,7 @@ function Dashboard() {
     )
   }
 
-  return (rawData
+  return ((rawData && !Component.disableRawData)
     ? <RawData data={ data.data }/>
     : <Component data={ data.data }/>
   )
