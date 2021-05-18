@@ -9,7 +9,7 @@ export default createMuiTheme({
       main: '#00c687', // Green
       light: 'rgb(81, 91, 95)',
       dark: 'rgb(26, 35, 39)',
-      contrastText: 'lack',
+      contrastText: 'white',
     },
     secondary: {
       main: '#19857b',
