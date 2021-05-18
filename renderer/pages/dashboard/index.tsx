@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { capitalize } from '@material-ui/core'
 import useDashboardComponent from '@hooks/useDashboardComponent'
 import Loading from 'components/pages/dashboard/components/Loading'
 import NoDataAvailable from 'components/pages/dashboard/components/NoDataAvailable'
 import Overview from 'components/Overview'
+import { GlobalContext } from 'renderer/context/Store'
+import RawData from 'components/getters/RawData'
 
 function Dashboard() {
+  const { rawData } = useContext(GlobalContext)
   const { componentName, Component, data } = useDashboardComponent();
 
   if (!componentName) {
@@ -26,8 +29,9 @@ function Dashboard() {
     )
   }
 
-  return (
-    <Component data={ data.data }/>
+  return ((rawData && !Component.disableRawData)
+    ? <RawData data={ data.data }/>
+    : <Component data={ data.data }/>
   )
 }
 

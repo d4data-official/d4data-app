@@ -23,7 +23,9 @@ interface ComponentProps {
   data: any
 }
 
-export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
+type GetterComponent = FunctionComponent<ComponentProps> & { disableRawData?: boolean }
+
+export const ComponentList: Array<[string, GetterComponent]> = [
   [
     'APIs',
     APIs,
@@ -110,7 +112,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
 ]
 
-export const fetchComponent = (componentName: string) => {
+export const fetchComponent = (componentName: string): GetterComponent | null => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [, Component] = ComponentList.find(([component]) => componentName === component) ?? []
   return Component ?? null

@@ -90,4 +90,15 @@ export default makeStyles((theme) => ({
   hide: {
     display: 'none',
   },
+  settingsButton: {
+    color: theme.palette.primary.contrastText,
+  },
+  dialogTitle: {
+    textAlign: 'center',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
+  dialogContent: {
+    backgroundColor: theme.palette.background.paper,
+  },
 }))

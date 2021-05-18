@@ -1,13 +1,20 @@
 import React, { useCallback, useContext } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@material-ui/core'
+import {
+  AppBar,
+  Box,
+  capitalize,
+  Dialog, DialogContent, DialogTitle, Grid, IconButton, Toolbar, Typography,
+} from '@material-ui/core'
 import clsx from 'clsx'
-import { Home, Menu } from '@material-ui/icons'
+import { Home, Menu, Settings } from '@material-ui/icons'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import CodeIcon from '@material-ui/icons/Code';
+import ListIcon from '@material-ui/icons/List';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import { GlobalContext } from 'renderer/context/Store'
 import Sidebar from './Sidebar'
@@ -19,8 +26,9 @@ export interface SkeletonProps {
 
 export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
-  const { currentTheme, componentName, dispatch } = useContext(GlobalContext)
+  const { currentTheme, rawData, componentName, dispatch } = useContext(GlobalContext)
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
+  const [dialogOpen, setDialogOpen] = React.useState<boolean>(false)
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
@@ -47,6 +55,14 @@ export default function Skeleton({ children }: SkeletonProps) {
   const handleThemeChange = useCallback(() => {
     dispatch({ type: 'TOGGLE_THEME' })
   }, []);
+
+  const handleRawdataChange = useCallback(() => {
+    dispatch({ type: 'TOGGLE_RAWDATA' })
+  }, []);
+
+  const handleDialogOpen = useCallback(() => {
+    setDialogOpen((prev) => !prev);
+  }, [])
 
   return (
     <div className={ classes.root }>
@@ -79,18 +95,60 @@ export default function Skeleton({ children }: SkeletonProps) {
             </Typography>
           </div>
           <div className={ classes.toolbarRight }>
-            <ToggleButtonGroup
-              value={ currentTheme }
-              exclusive
-              onChange={ handleThemeChange }
+            <IconButton onClick={ handleDialogOpen }>
+              <Settings className={ classes.settingsButton } />
+            </IconButton>
+            <Dialog
+              open={ dialogOpen }
+              onClose={ handleDialogOpen }
+              maxWidth="md"
+              fullWidth
             >
-              <ToggleButton value="light" aria-label="light">
-                <WbSunnyIcon/>
-              </ToggleButton>
-              <ToggleButton value="dark" aria-label="dark">
-                <Brightness3Icon/>
-              </ToggleButton>
-            </ToggleButtonGroup>
+              <DialogTitle className={ classes.dialogTitle } >Settings</DialogTitle>
+              <DialogContent className={ classes.dialogContent } >
+                <Grid container spacing={ 1 } justify="space-between" alignItems="center">
+                  <Grid item >
+                    <Typography variant="h4">
+                      Theme: { capitalize(currentTheme) }
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <ToggleButtonGroup
+                      value={ currentTheme }
+                      exclusive
+                      onChange={ handleThemeChange }
+                    >
+                      <ToggleButton value="light" aria-label="light">
+                        <WbSunnyIcon/>
+                      </ToggleButton>
+                      <ToggleButton value="dark" aria-label="dark">
+                        <Brightness3Icon/>
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                  </Grid>
+                  <Grid item xs={ 12 }/>
+                  <Grid item>
+                    <Typography variant="h4">
+                      Display type: { rawData ? 'Raw Data' : 'Ergonomic Display' }
+                    </Typography>
+                  </Grid>
+                  <Grid item >
+                    <ToggleButtonGroup
+                      value={ rawData }
+                      exclusive
+                      onChange={ handleRawdataChange }
+                    >
+                      <ToggleButton value={ false } aria-label="light">
+                        <ListIcon/>
+                      </ToggleButton>
+                      <ToggleButton value aria-label="dark">
+                        <CodeIcon/>
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                  </Grid>
+                </Grid>
+              </DialogContent>
+            </Dialog>
           </div>
         </Toolbar>
       </AppBar>

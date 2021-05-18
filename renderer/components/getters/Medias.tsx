@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
+function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [image, setImage] = React.useState('');
@@ -81,3 +81,7 @@ export default function Medias({ data }: { data: NonNullable<GetterData<Array<Me
     </div>
   )
 }
+
+Medias.disableRawData = true;
+
+export default Medias;
