@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/Clear'
 import { IconButton } from '@material-ui/core'
+import clsx from 'clsx'
 
 export type Data = Array<Record<any, any>>
 
@@ -14,6 +15,8 @@ export interface Props {
   data: Data
   keys: Array<string>
   onSearch?: (filteredData: Data) => void
+  className?: string
+  style?: CSSProperties
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -41,18 +44,24 @@ export default function Searchbar({
   data,
   keys,
   onSearch,
+  className,
+  style,
 }: Props) {
   const classes = useStyles()
   const [search, setSearch] = useState('')
+  const fuse = useMemo(() => new Fuse(data, {
+    keys,
+    threshold: 0.3,
+    minMatchCharLength: 3,
+    ignoreLocation: true,
+    useExtendedSearch: true,
+  }), [data, keys])
 
   useEffect(() => {
-    const fuse = new Fuse(data, {
-      keys,
-      threshold: 0.3,
-      minMatchCharLength: 3,
-      ignoreLocation: true,
-      useExtendedSearch: true,
-    })
+    if (search.length === 0) {
+      onSearch?.(data)
+      return
+    }
 
     const filteredData = fuse.search(search)
       .map((result) => result.item)
@@ -61,7 +70,7 @@ export default function Searchbar({
   }, [search])
 
   return (
-    <Paper component="form" className={ classes.root }>
+    <Paper component="form" className={ clsx(classes.root, className) } style={ style }>
       <SearchIcon className={ classes.icon }/>
       <InputBase
         className={ classes.input }

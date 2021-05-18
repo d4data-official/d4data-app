@@ -102,7 +102,7 @@ export default class Manager<T> {
   protected storeIfInstance(instance: any): [ID, Array<any>] | null {
     if (instance instanceof Archive) {
       const id = this.storage.archiveManager!.registerInstance(instance)
-      return [id, [instance.path, instance.outputDir]]
+      return [id, [instance.service, instance.path, instance.outputDir]]
     }
     if (instance instanceof ArchiveFactory) {
       const id = this.storage.archiveFactoryManager!.registerInstance(instance)
@@ -110,7 +110,7 @@ export default class Manager<T> {
     }
     if (instance instanceof Standardizer) {
       const id = this.storage.standardizerManager!.registerInstance(instance)
-      return [id, [instance.path, instance.service]]
+      return [id, [instance.service, instance.path]]
     }
     if (instance instanceof StandardizerFactory) {
       const id = this.storage.standardizerFactoryManager!.registerInstance(instance)

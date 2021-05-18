@@ -4,7 +4,7 @@ import grey from '@material-ui/core/colors/grey'
 export default makeStyles((theme) => ({
   root: {
     height: '100%',
-    background: grey[50],
+    background: theme?.palette?.background?.default ?? grey[100],
   },
   drawerHeader: {
     display: 'flex',
@@ -32,6 +32,15 @@ export default makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  toolbarLeft: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  toolbarRight: {
+    display: 'flex',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   toolbarOpen: {
@@ -80,5 +89,16 @@ export default makeStyles((theme) => ({
   },
   hide: {
     display: 'none',
+  },
+  settingsButton: {
+    color: theme.palette.primary.contrastText,
+  },
+  dialogTitle: {
+    textAlign: 'center',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
+  dialogContent: {
+    backgroundColor: theme.palette.background.paper,
   },
 }))

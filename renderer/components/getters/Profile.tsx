@@ -1,11 +1,11 @@
-import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
 import { Avatar, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import React from 'react';
 import moment from 'moment';
+import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import getInitialsFromContact from '../../modules/getInitialsFromContact';
 
 export interface Props {

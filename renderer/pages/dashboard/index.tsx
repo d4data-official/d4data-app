@@ -1,38 +1,37 @@
-import React from 'react'
-import Head from 'next/head'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { useRouter } from 'next/router'
+import React, { useContext } from 'react'
+import { capitalize } from '@material-ui/core'
+import useDashboardComponent from '@hooks/useDashboardComponent'
+import Loading from 'components/pages/dashboard/components/Loading'
+import NoDataAvailable from 'components/pages/dashboard/components/NoDataAvailable'
+import Overview from 'components/Overview'
+import { GlobalContext } from 'renderer/context/Store'
+import RawData from 'components/getters/RawData'
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing(4),
-  },
-}))
+function Dashboard() {
+  const { rawData } = useContext(GlobalContext)
+  const { componentName, Component, data } = useDashboardComponent();
 
-const Dashboard = () => {
-  const classes = useStyles({})
-  const router = useRouter()
+  if (!componentName) {
+    return (
+      <Overview/>
+    )
+  }
 
-  return (
-    <>
-      <Head>
-        <title>D4Data App</title>
-      </Head>
-      <div className={ classes.root }>
-        We still have got a damn lot of work to do in the dashboard
-      </div>
-      <div className={ classes.root }>
-        <button
-          type="button"
-          onClick={ () => {
-            router.push('/home')
-          } }
-        >
-          Get back home
-        </button>
-      </div>
-    </>
+  if (data === undefined || data.componentName !== componentName) {
+    return (
+      <Loading componentName={ capitalize(componentName) }/>
+    )
+  }
+
+  if (data.data === null) {
+    return (
+      <NoDataAvailable componentName={ capitalize(componentName) }/>
+    )
+  }
+
+  return ((rawData && !Component.disableRawData)
+    ? <RawData data={ data.data }/>
+    : <Component data={ data.data }/>
   )
 }
 

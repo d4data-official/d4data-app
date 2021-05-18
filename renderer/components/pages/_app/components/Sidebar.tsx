@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router'
-import React from 'react'
+// import { useRouter } from 'next/router'
+import React, { useContext } from 'react'
 import Case from 'case'
-import {
-  Button, Divider, Drawer, IconButton, List, ListItem, ListItemText,
-} from '@material-ui/core'
-import { ChevronLeft, Home } from '@material-ui/icons'
+import { Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@material-ui/core'
+import { ChevronLeft } from '@material-ui/icons'
 import useStyles from 'pages-components/_app/styles/sidebar.styles'
 import { ComponentList } from 'components/pages/dashboard/components'
+import { GlobalContext } from 'renderer/context/Store'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -18,10 +17,11 @@ export default function Sidebar(
   { drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps,
 ) {
   const classes = useStyles()
-  const router = useRouter()
+  const { dispatch } = useContext(GlobalContext)
   const handleComponentClick = React.useCallback((componentName: string) => () => {
-    router.push(`/dashboard/${ Case.camel(componentName) }`)
+    dispatch({ type: 'UPDATE_COMPONENT', componentName })
   }, [])
+
   return (
     <Drawer
       variant="persistent"
@@ -33,21 +33,13 @@ export default function Sidebar(
       } }
     >
       <div className={ drawerHeaderClass }>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={ <Home/> }
-          onClick={ () => router.push('/home') }
-        >
-          Go to home
-        </Button>
         <IconButton onClick={ handleDrawerChange }>
           <ChevronLeft/>
         </IconButton>
       </div>
       <Divider/>
       <List>
-        { ComponentList.map(([component]) => (
+        {ComponentList.map(([component]) => (
           <ListItem
             key={ component }
             className={ classes.component }
@@ -56,7 +48,7 @@ export default function Sidebar(
           >
             <ListItemText primary={ Case.capital(component) }/>
           </ListItem>
-        )) }
+        ))}
       </List>
     </Drawer>
   )
