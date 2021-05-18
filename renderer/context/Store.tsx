@@ -55,7 +55,7 @@ function Store({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialStates);
 
   return (
-    <ContextProvider value={{ ...state, dispatch }}>
+    <ContextProvider value={ { ...state, dispatch } }>
       {children}
     </ContextProvider>
   )

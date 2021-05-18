@@ -27,11 +27,11 @@ function generateTeamNotes() {
     <div>
       <h2>A note from the team</h2>
 
-      <Card component="fieldset" style={{ borderColor: 'transparent', padding: 15, paddingBottom: 5 }}>
+      <Card component="fieldset" style={ { borderColor: 'transparent', padding: 15, paddingBottom: 5 } }>
         <Grid container>
           <Grid item>
             <Typography component="legend">GDPR Score (coming soon)</Typography>
-            <Rating name="read-only" value={0} disabled readOnly />
+            <Rating name="read-only" value={ 0 } disabled readOnly />
           </Grid>
         </Grid>
         <Grid item>
@@ -58,33 +58,33 @@ const Dashboard = () => {
     return (
       <Container>
         <h2>About your archive</h2>
-        <Grid container spacing={4}>
-          <Grid item xs={4}>
+        <Grid container spacing={ 4 }>
+          <Grid item xs={ 4 }>
             <MetadataCard
-              icon={archiveMetadata?.service
+              icon={ archiveMetadata?.service
                 ? computeLogoFromServiceName(archiveMetadata?.service)
-                : 'Loading...'}
-              metadata={archiveMetadata?.service}
+                : 'Loading...' }
+              metadata={ archiveMetadata?.service }
               subtitle="Service"
             />
 
           </Grid>
 
           {archiveMetadata?.size && (
-            <Grid item xs={4}>
+            <Grid item xs={ 4 }>
               <MetadataCard
-                icon={<UnarchiveIcon />}
-                metadata={Filesize(archiveMetadata?.size)}
+                icon={ <UnarchiveIcon /> }
+                metadata={ Filesize(archiveMetadata?.size) }
                 subtitle="Archive size"
               />
             </Grid>
           )}
 
           {archiveMetadata?.creationDate && (
-            <Grid item xs={4}>
+            <Grid item xs={ 4 }>
               <MetadataCard
-                icon={<EventNoteIcon />}
-                metadata={moment.duration(archiveMetadata?.creationDate?.valueOf() / 100).humanize()}
+                icon={ <EventNoteIcon /> }
+                metadata={ moment.duration(archiveMetadata?.creationDate?.valueOf() / 100).humanize() }
                 subtitle="Archive age"
               />
             </Grid>
@@ -100,18 +100,18 @@ const Dashboard = () => {
 
   if (data === undefined || data.componentName !== componentName) {
     return (
-      <Loading componentName={capitalize(componentName)} />
+      <Loading componentName={ capitalize(componentName) } />
     )
   }
 
   if (data.data === null) {
     return (
-      <NoDataAvailable componentName={capitalize(componentName)} />
+      <NoDataAvailable componentName={ capitalize(componentName) } />
     )
   }
 
   return (
-    Component ? <Component data={data.data} /> : null
+    Component ? <Component data={ data.data } /> : null
   )
 }
 

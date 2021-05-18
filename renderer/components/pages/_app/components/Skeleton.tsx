@@ -52,29 +52,29 @@ export default function Skeleton({ children }: SkeletonProps) {
   }, [currentTheme]);
 
   return (
-    <div className={classes.root}>
+    <div className={ classes.root }>
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appbar, {
+        className={ clsx(classes.appbar, {
           [classes.appBarShift]: drawerOpen,
-        })}
+        }) }
       >
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.toolbarLeft}>
-            <Show condition={/dashboard/.test(router.pathname)}>
+        <Toolbar className={ classes.toolbar }>
+          <div className={ classes.toolbarLeft }>
+            <Show condition={ /dashboard/.test(router.pathname) }>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={handleDrawerChange}
+                onClick={ handleDrawerChange }
                 edge="start"
-                className={clsx(classes.menuButton, drawerOpen && classes.hide)}
+                className={ clsx(classes.menuButton, drawerOpen && classes.hide) }
               >
                 <Menu />
               </IconButton>
             </Show>
-            <Show condition={router.pathname !== '/home'}>
-              <IconButton color="inherit" onClick={() => clearCurrentArchive()} edge="start">
+            <Show condition={ router.pathname !== '/home' }>
+              <IconButton color="inherit" onClick={ () => clearCurrentArchive() } edge="start">
                 <Home />
               </IconButton>
             </Show>
@@ -82,11 +82,11 @@ export default function Skeleton({ children }: SkeletonProps) {
               {componentName ? Case.capital(componentName) : 'D4Data'}
             </Typography>
           </div>
-          <div className={classes.toolbarRight}>
+          <div className={ classes.toolbarRight }>
             <ToggleButtonGroup
-              value={currentTheme}
+              value={ currentTheme }
               exclusive
-              onChange={handleThemeChange}
+              onChange={ handleThemeChange }
               aria-label="text alignment"
             >
               <ToggleButton value="light" aria-label="light">
@@ -100,17 +100,17 @@ export default function Skeleton({ children }: SkeletonProps) {
         </Toolbar>
       </AppBar>
       <Sidebar
-        drawerOpen={drawerOpen}
-        drawerHeaderClass={classes.drawerHeader}
-        handleDrawerChange={handleDrawerChange}
+        drawerOpen={ drawerOpen }
+        drawerHeaderClass={ classes.drawerHeader }
+        handleDrawerChange={ handleDrawerChange }
       />
       <main
-        className={clsx(classes.main, {
+        className={ clsx(classes.main, {
           [classes.mainShift]: drawerOpen,
-        })}
+        }) }
       >
-        <div className={classes.drawerHeader} />
-        <Box padding={3} flexGrow={1} display="flex" overflow="auto">{children}</Box>
+        <div className={ classes.drawerHeader } />
+        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
       </main>
     </div>
   )

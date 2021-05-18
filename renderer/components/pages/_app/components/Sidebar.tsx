@@ -25,15 +25,15 @@ export default function Sidebar(
   return (
     <Drawer
       variant="persistent"
-      open={drawerOpen}
-      onClose={handleDrawerChange}
-      className={classes.drawer}
-      classes={{
+      open={ drawerOpen }
+      onClose={ handleDrawerChange }
+      className={ classes.drawer }
+      classes={ {
         paper: classes.drawerPaper,
-      }}
+      } }
     >
-      <div className={drawerHeaderClass}>
-        <IconButton onClick={handleDrawerChange}>
+      <div className={ drawerHeaderClass }>
+        <IconButton onClick={ handleDrawerChange }>
           <ChevronLeft />
         </IconButton>
       </div>
@@ -41,12 +41,12 @@ export default function Sidebar(
       <List>
         {ComponentList.map(([component]) => (
           <ListItem
-            key={component}
-            className={classes.component}
+            key={ component }
+            className={ classes.component }
             button
-            onClick={handleComponentClick(component)}
+            onClick={ handleComponentClick(component) }
           >
-            <ListItemText primary={Case.capital(component)} />
+            <ListItemText primary={ Case.capital(component) } />
           </ListItem>
         ))}
       </List>

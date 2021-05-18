@@ -14,11 +14,11 @@ function AppContent(props: AppProps) {
   const { currentTheme } = useContext(GlobalContext)
   const { Component, pageProps } = props;
   return (
-    <ThemeProvider theme={currentTheme === 'light' ? themeLight : themeDark}>
-      <SnackbarProvider autoHideDuration={5000}>
+    <ThemeProvider theme={ currentTheme === 'light' ? themeLight : themeDark }>
+      <SnackbarProvider autoHideDuration={ 5000 }>
         <CssBaseline />
         <Skeleton>
-          <Component {...pageProps} />
+          <Component { ...pageProps } />
         </Skeleton>
       </SnackbarProvider>
     </ThemeProvider>
@@ -41,7 +41,7 @@ export default function App(props: AppProps) {
         <title>D4Data App</title>
       </Head>
       <Store >
-        <AppContent {...props} />
+        <AppContent { ...props } />
       </Store>
     </>
   )

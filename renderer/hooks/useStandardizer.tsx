@@ -9,6 +9,7 @@ import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/Gett
 interface UseStandardizerArgs {
   componentName?: string,
   Component?: FunctionComponent<{ data: NonNullable<GetterData<any>> }>
+  getterArgs?: Array<any>
 }
 
 function useStandardizer(args?: UseStandardizerArgs) {
@@ -27,19 +28,19 @@ function useStandardizer(args?: UseStandardizerArgs) {
         return
       }
 
-      const getterName = `get${capitalize(componentName)}`
+      const getterName = `get${ capitalize(componentName) }`
 
       // @ts-ignore
       if (!standardizer[getterName]) {
-        throw new Error(`Bad getter name, please rename ${componentName} component with valid getter name`)
+        throw new Error(`Bad getter name, please rename ${ componentName } component with valid getter name`)
       }
 
-      console.info(`Retrieving data of ${capitalize(componentName)} getter`)
+      console.info(`Retrieving data of ${ capitalize(componentName) } getter`)
 
       // @ts-ignore
-      standardizer[getterName]()
+      standardizer[getterName](...(args?.getterArgs ?? []))
         .then((getterData: GetterData<any>) => {
-          console.info(`${capitalize(componentName)} getter data retrieved`)
+          console.info(`${ capitalize(componentName) } getter data retrieved`)
           setData({ componentName, data: getterData })
         })
     }
