@@ -1,9 +1,10 @@
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
-import { FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core';
+import { Button, FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import ArchiveManager from '@modules/ArchiveManager';
 import DefaultDisplay from 'components/pages/dashboard/components/DefaultDisplay';
-import { relative } from 'path';
+import { shell } from 'electron';
+import { join, relative } from 'path';
 import { useCallback, useEffect, useState } from 'react';
 
 interface Props {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(3),
+    width: '100%',
   },
   formContainer: {
     width: '100%',
@@ -27,6 +29,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   formControl: {
     minWidth: '25%',
+  },
+  topSection: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  button: {
+    whiteSpace: 'nowrap',
   },
 }))
 
@@ -60,17 +71,34 @@ export default function RawData({ data: { parsedFiles } }: Props) {
     }
   }, [file])
 
+  const showInFolder = useCallback(() => {
+    const standardizer = ArchiveManager.currentStandardizer;
+    if (!standardizer || !file) {
+      return;
+    }
+    shell.showItemInFolder(join(standardizer.path, file))
+  }, [ArchiveManager])
+
   return (
     <div className={ classes.root }>
-      <div className={ classes.formContainer }>
-        <FormControl className={ classes.formControl }>
-          <FormLabel>Choose your file</FormLabel>
-          <Select value={ file } onChange={ handleChangeFile }>
-            {processPardedFile().map((parsedFile) => (
-              <MenuItem className={ classes.menuItem } value={ parsedFile }>{parsedFile}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <div className={ classes.topSection }>
+        <div className={ classes.formContainer }>
+          <FormControl className={ classes.formControl }>
+            <FormLabel>Choose your file</FormLabel>
+            <Select value={ file } onChange={ handleChangeFile }>
+              {processPardedFile().map((parsedFile) => (
+                <MenuItem className={ classes.menuItem } value={ parsedFile }>{parsedFile}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <Button
+          className={ classes.button }
+          variant="outlined"
+          onClick={ showInFolder }
+        >
+          See in file explorer
+        </Button>
       </div>
       {data && <DefaultDisplay data={ data }/>}
     </div>
