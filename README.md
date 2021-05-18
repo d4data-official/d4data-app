@@ -1,23 +1,19 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
+# D4Data App
 
-## Usage
+[![GitHub issues](https://img.shields.io/github/issues-raw/d4data-official/d4data-app)](https://github.com/d4data-official/d4data-app)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/d4data-official/d4data-app)](https://github.com/d4data-official/d4data-app)
 
-### Install Dependencies
+Application to visualize data from GDPR personal data archives.
 
-```
-# using yarn or npm
-$ yarn (or `npm install`)
+⚠ This project is under heavy development.
 
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
+Supported services :
 
-### Use it
+- Facebook
+- Google
+- Discord
+- Reddit
 
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
+*Supported service data may not be fully extracted.*
 
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
-```
+This project uses the [d4data-official/archive-lib](https://github.com/d4data-official/archive-lib) library internally to extract data from GDPR archives.
