@@ -3,7 +3,7 @@
   "license": "MIT",
   "name": "d4data",
   "description": "D4Data app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "D4Data Team",
   "main": "app/background.js",
   "scripts": {
