@@ -3,6 +3,10 @@ import DefaultDisplay from './DefaultDisplay'
 import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
+import Connections from '../../../getters/Connections';
+import Whereabouts from '../../../getters/Whereabouts';
+import Tasks from '../../../getters/Tasks';
+import Mails from '../../../getters/Mails'
 import Notes from '../../../getters/Notes'
 import Communities from '../../../getters/Communities'
 import AuthorizedDevices from '../../../getters/AuthorizedDevices'
@@ -48,7 +52,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Connections',
-    DefaultDisplay,
+    Connections,
   ],
   [
     'Contacts',
@@ -60,7 +64,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Mails',
-    DefaultDisplay,
+    Mails,
   ],
   [
     'Medias',
@@ -96,7 +100,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Tasks',
-    DefaultDisplay,
+    Tasks,
   ],
   [
     'Transactions',
@@ -104,7 +108,7 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
   ],
   [
     'Whereabouts',
-    DefaultDisplay,
+    Whereabouts,
   ],
 ]
 

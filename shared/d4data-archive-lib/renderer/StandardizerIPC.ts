@@ -54,103 +54,103 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
   }
 
   getAPIs(options?: GetterOptions): GetterReturn<Array<API>> {
-    return this.callMethod('getAPIs')
+    return this.callMethod('getAPIs', options)
   }
 
   getAuthorizedDevices(options?: GetterOptions): GetterReturn<Array<AuthorizedDevice>> {
-    return this.callMethod('getAuthorizedDevices')
+    return this.callMethod('getAuthorizedDevices', options)
   }
 
   getBrowserData(options?: GetterOptions): GetterReturn<BrowserData> {
-    return this.callMethod('getBrowserData')
+    return this.callMethod('getBrowserData', options)
   }
 
   getChatMessages(chatId: string, options?: GetterOptions): GetterReturn<Array<ChatMessage>> {
-    return this.callMethod('getChatMessages')
+    return this.callMethod('getChatMessages', chatId, options)
   }
 
   getChats(options?: GetterOptions): GetterReturn<Array<Chat>> {
-    return this.callMethod('getChats')
+    return this.callMethod('getChats', options)
   }
 
   getComments(options?: GetterOptions): GetterReturn<Array<Comment>> {
-    return this.callMethod('getComments')
+    return this.callMethod('getComments', options)
   }
 
   getCommunities(options?: GetterOptions): GetterReturn<Array<Community>> {
-    return this.callMethod('getCommunities')
+    return this.callMethod('getCommunities', options)
   }
 
   getConnections(options?: GetterOptions): GetterReturn<Array<Connection>> {
-    return this.callMethod('getConnections')
+    return this.callMethod('getConnections', options)
   }
 
   getContacts(options?: GetterOptions): GetterReturn<Array<Contact>> {
-    return this.callMethod('getContacts')
+    return this.callMethod('getContacts', options)
   }
 
   getFollowers(options?: GetterOptions): GetterReturn<Array<Contact>> {
-    return this.callMethod('getFollowers')
+    return this.callMethod('getFollowers', options)
   }
 
   getFollowings(options?: GetterOptions): GetterReturn<Array<Following>> {
-    return this.callMethod('getFollowings')
+    return this.callMethod('getFollowings', options)
   }
 
   getFriends(options?: GetterOptions): GetterReturn<Array<Contact>> {
-    return this.callMethod('getFriends')
+    return this.callMethod('getFriends', options)
   }
 
   getMails(options?: GetterOptions): GetterReturn<Array<Mail>> {
-    return this.callMethod('getMails')
+    return this.callMethod('getMails', options)
   }
 
   getMedias(options?: GetterOptions): GetterReturn<Array<Media>> {
-    return this.callMethod('getMedias')
+    return this.callMethod('getMedias', options)
   }
 
   getMessages(options?: GetterOptions): GetterReturn<Array<Message>> {
-    return this.callMethod('getMessages')
+    return this.callMethod('getMessages', options)
   }
 
   getNotifications(options?: GetterOptions): GetterReturn<Array<Notification>> {
-    return this.callMethod('getNotifications')
+    return this.callMethod('getNotifications', options)
   }
 
   getPosts(options?: GetterOptions): GetterReturn<Array<Post>> {
-    return this.callMethod('getPosts')
+    return this.callMethod('getPosts', options)
   }
 
   getProfile(options?: GetterOptions): GetterReturn<Contact> {
-    return this.callMethod('getProfile')
+    return this.callMethod('getProfile', options)
   }
 
   getReacted(options?: GetterOptions): GetterReturn<Array<Reacted>> {
-    return this.callMethod('getReacted')
+    return this.callMethod('getReacted', options)
   }
 
   getSettings(options?: GetterOptions): GetterReturn<Array<Setting>> {
-    return this.callMethod('getSettings')
+    return this.callMethod('getSettings', options)
   }
 
   getTasks(options?: GetterOptions): GetterReturn<Array<TaskList>> {
-    return this.callMethod('getTasks')
+    return this.callMethod('getTasks', options)
   }
 
   getTransactions(options?: GetterOptions): GetterReturn<Array<Transaction>> {
-    return this.callMethod('getTransactions')
+    return this.callMethod('getTransactions', options)
   }
 
   getWhereabouts(options?: GetterOptions): GetterReturn<Array<Whereabout>> {
-    return this.callMethod('getWhereabouts')
+    return this.callMethod('getWhereabouts', options)
   }
 
   getNotes(options?: GetterOptions): GetterReturn<Array<Note>> {
-    return this.callMethod('getNotes')
+    return this.callMethod('getNotes', options)
   }
 
   getRawData(filePath: string, options?: GetterOptions): Promise<RawDataReturn> {
-    return this.callMethod('getRawData')
+    return this.callMethod('getRawData', filePath, options)
   }
 
   get service(): Services {
