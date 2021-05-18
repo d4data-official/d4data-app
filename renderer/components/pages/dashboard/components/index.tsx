@@ -115,5 +115,5 @@ export const ComponentList: [string, FunctionComponent<ComponentProps>][] = [
 export const fetchComponent = (componentName: string) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [, Component] = ComponentList.find(([component]) => componentName === component) ?? []
-  return Component
+  return Component ?? null
 }
