@@ -5,6 +5,7 @@ import LibManager from '@shared/d4data-archive-lib/main/LibManager'
 import { autoUpdater } from 'electron-updater'
 import createWindow from './helpers/create-window'
 import AppUpdate from './updater';
+import './helpers/setupSentryElectron'
 
 AppUpdate()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
