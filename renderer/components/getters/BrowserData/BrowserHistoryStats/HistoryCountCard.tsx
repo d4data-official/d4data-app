@@ -32,14 +32,14 @@ export default function HistoryCountCard({ browserDataStats }: Props) {
 
   return (
     <Paper className={ classes.root } elevation={ 2 }>
-      <Grid container alignItems="center" justify="space-between" wrap="nowrap" style={ { height: '100%' } }>
+      <Grid container alignItems="center" justifyContent="space-between" wrap="nowrap" style={ { height: '100%' } }>
         <Grid item>
           <Typography variant="h3" className={ classes.value }>
             { getHumanReadableCount(browserDataStats.historyCount) }
           </Typography>
           <Typography variant="h6" className={ classes.description }>History entries</Typography>
         </Grid>
-        <Grid item container alignItems="center" justify="flex-end" style={ { flexBasis: 0 } }>
+        <Grid item container alignItems="center" justifyContent="flex-end" style={ { flexBasis: 0 } }>
           <LanguageIcon fontSize="large" className={ classes.icon }/>
         </Grid>
       </Grid>

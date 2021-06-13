@@ -20,7 +20,7 @@ export default function ArchiveHistoryPage() {
 
   return (
     <Container maxWidth="md">
-      <Grid container alignItems="center" justify="space-between">
+      <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">{ history.length } entries</Typography>
         </Grid>

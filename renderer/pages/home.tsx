@@ -82,7 +82,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Grid container justify="center" spacing={ 4 } style={ { textAlign: 'center' } }>
+    <Grid container justifyContent="center" spacing={ 4 } style={ { textAlign: 'center' } }>
       <Grid item xs={ 12 }>
         <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
           <img src="/images/logo.png" alt="logo" width="4%"/>

@@ -46,7 +46,7 @@ export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
         container
         spacing={ 2 }
         alignItems="center"
-        justify="space-between"
+        justifyContent="space-between"
         wrap="nowrap"
         style={ { height: '100%' } }
       >
@@ -70,7 +70,7 @@ export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
           </Box>
         </Grid>
 
-        <Grid item container alignItems="center" justify="flex-end" style={ { flexBasis: 0 } }>
+        <Grid item container alignItems="center" justifyContent="flex-end" style={ { flexBasis: 0 } }>
           <FormatListNumberedIcon fontSize="large" className={ classes.icon }/>
         </Grid>
       </Grid>

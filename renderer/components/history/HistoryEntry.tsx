@@ -95,7 +95,7 @@ export default function HistoryEntry({
     <Grid
       container
       alignItems="center"
-      justify="space-between"
+      justifyContent="space-between"
       spacing={ 1 }
       wrap="nowrap"
       className={ className }
@@ -129,7 +129,7 @@ export default function HistoryEntry({
       ) }
 
       { showDeleteButton && showRestoreButton && (
-        <Grid container justify="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
+        <Grid container justifyContent="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
           { showDeleteButton && (
             <Grid item>
               <Button

@@ -106,7 +106,7 @@ export default function Skeleton({ children }: SkeletonProps) {
             >
               <DialogTitle className={ classes.dialogTitle } >Settings</DialogTitle>
               <DialogContent className={ classes.dialogContent } >
-                <Grid container spacing={ 1 } justify="space-between" alignItems="center">
+                <Grid container spacing={ 1 } justifyContent="space-between" alignItems="center">
                   <Grid item >
                     <Typography variant="h4">
                       Theme: { capitalize(currentTheme) }
