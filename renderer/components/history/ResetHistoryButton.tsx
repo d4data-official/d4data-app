@@ -1,7 +1,7 @@
-import { Button, createStyles, IconButton } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
 import React, { CSSProperties, ReactNode, useState } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import CloseIcon from '@material-ui/icons/Close'
@@ -14,7 +14,7 @@ export interface Props {
   style?: CSSProperties
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme) => createStyles({
   button: {
     color: 'white',
     backgroundColor: theme.palette.error.main,

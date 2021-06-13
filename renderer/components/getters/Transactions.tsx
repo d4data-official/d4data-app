@@ -1,23 +1,23 @@
 import { Transaction } from '@d4data/archive-lib/dist/src/types/schemas'
-import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 
 export interface Props {
   data: NonNullable<GetterData<Array<Transaction>>>
 }
 
-const StyledTableCell = withStyles((theme: Theme) => createStyles({
+const StyledTableCell = withStyles((theme) => createStyles({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -25,21 +25,21 @@ const StyledTableCell = withStyles((theme: Theme) => createStyles({
   body: {
     fontSize: 14,
   },
-}))(TableCell);
+}))(TableCell)
 
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
+const StyledTableRow = withStyles((theme) => createStyles({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
     },
   },
-}))(TableRow);
+}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-});
+})
 
 export default function Transactions({ data }: { data: NonNullable<GetterData<Array<Transaction>>> }) {
   const classes = useStyles()
@@ -48,7 +48,7 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          {`${ data.data.length } transactions found`}
+          { `${ data.data.length } transactions found` }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -64,8 +64,8 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data.data.map((row, idx) => {
-                const transaction = row;
+              { data.data.map((row, idx) => {
+                const transaction = row
                 return (
                   <StyledTableRow key={ idx.toString() }>
                     <TableCell
@@ -78,7 +78,7 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
                       component="th"
                       scope="row"
                     >
-                      { `${ transaction.value } (${ transaction.currency })`}
+                      { `${ transaction.value } (${ transaction.currency })` }
                     </TableCell>
                     <TableCell
                       component="th"
@@ -100,11 +100,11 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
                     </TableCell>
                   </StyledTableRow>
                 )
-              })}
+              }) }
             </TableBody>
           </Table>
         </TableContainer>
       </Box>
     </Container>
-  );
+  )
 }

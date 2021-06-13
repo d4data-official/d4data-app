@@ -1,13 +1,13 @@
-import React from 'react';
-import moment from 'moment';
+import React from 'react'
+import moment from 'moment'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import { Button } from '@material-ui/core'
 import GenericReactionComponent from './GenericReactionComponent'
-import openInBrowser from '../../../modules/openInBrowser';
+import openInBrowser from '../../../modules/openInBrowser'
 
 const useStyles = makeStyles({
   root: {
@@ -27,10 +27,10 @@ const useStyles = makeStyles({
     marginLeft: 15,
     marginBottom: 10,
   },
-});
+})
 
 export default function ReactedPostComponent({ data }: { data: NonNullable<Reacted> }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Card className={ classes.root } variant="outlined">
@@ -43,7 +43,7 @@ export default function ReactedPostComponent({ data }: { data: NonNullable<React
               <Button variant="text" onClick={ () => openInBrowser(data.entity.metaData?.links?.[0]) }>un lien</Button>
             </span>
           ))
-            ?? (data.entity.metaData?.medias?.[0] && (
+          ?? (data.entity.metaData?.medias?.[0] && (
             <span>
               A réagi à un média
               <Button
@@ -53,21 +53,21 @@ export default function ReactedPostComponent({ data }: { data: NonNullable<React
                 un média
               </Button>
             </span>
-            ))
-            ?? 'No title provided'}
+          ))
+          ?? 'No title provided' }
         </Typography>
         <Typography className={ classes.description } variant="body2" component="p">
           { data.entity.content ?? 'No content provided' }
         </Typography>
         <Typography className={ classes.pos } color="textSecondary">
-          { data.entity.sender && `Sent by ${ data.entity.ender }`}
+          { data.entity.sender && `Sent by ${ data.entity.ender }` }
           { data.entity.creationDate
           // eslint-disable-next-line no-mixed-operators
-          && `${ moment.duration(data.entity.creationDate?.valueOf() / 10).humanize() } ago` || 'No date provided'}
+          && `${ moment.duration(data.entity.creationDate?.valueOf() / 10).humanize() } ago` || 'No date provided' }
         </Typography>
       </CardContent>
       <div className={ classes.reactions }>
-        <GenericReactionComponent reaction={ data.reaction } />
+        <GenericReactionComponent reaction={ data.reaction }/>
       </div>
     </Card>
   )

@@ -1,30 +1,30 @@
-import { Avatar, Grid } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import React from 'react';
-import moment from 'moment';
+import { Avatar, Grid } from '@material-ui/core'
+import TextField from '@material-ui/core/TextField'
+import { createStyles, makeStyles } from '@material-ui/styles'
+import Container from '@material-ui/core/Container'
+import React from 'react'
+import moment from 'moment'
 import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import getInitialsFromContact from '../../modules/getInitialsFromContact';
+import getInitialsFromContact from '../../modules/getInitialsFromContact'
 
 export interface Props {
   data: NonNullable<GetterData<ProfileType>>
 }
 
 export default function Profile({ data }: Props) {
-  const useStyles = makeStyles((theme: Theme) => createStyles({
+  const useStyles = makeStyles((theme) => createStyles({
     avatar: {
       boxShadow: theme.shadows[3],
       width: theme.spacing(16),
       height: theme.spacing(16),
     },
-  }));
-  const classes = useStyles();
+  }))
+  const classes = useStyles()
 
-  const profile = data.data;
+  const profile = data.data
   const formattedName = (profile.displayName ?? profile.firstName)
-      && profile.lastName && profile.firstName && `${ profile.firstName } ${ profile.lastName }`
+    && profile.lastName && profile.firstName && `${ profile.firstName } ${ profile.lastName }`
 
   return (
     <Container maxWidth="lg">
@@ -32,7 +32,7 @@ export default function Profile({ data }: Props) {
         { getInitialsFromContact(profile) }
       </Avatar>
       <Grid container spacing={ 4 }>
-        <Grid item />
+        <Grid item/>
       </Grid>
       <h1>{ formattedName }</h1>
 

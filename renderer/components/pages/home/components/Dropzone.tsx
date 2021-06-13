@@ -1,7 +1,7 @@
 import React from 'react'
 import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { makeStyles } from '@material-ui/core'
 import { Unarchive } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles({
   dropzone: {

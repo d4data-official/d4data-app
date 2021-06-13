@@ -1,5 +1,5 @@
 import { capitalize, Grid, Paper, Typography } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import TimelineIcon from '@material-ui/icons/Timeline'
 import { useMemo } from 'react'
 import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'

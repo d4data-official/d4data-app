@@ -1,21 +1,20 @@
-import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css'
 import {
   Avatar,
-  MainContainer,
-  ConversationList,
   Conversation as ConversationPreview,
+  ConversationList,
+  MainContainer,
   Sidebar,
-  // @ts-ignore
-} from '@chatscope/chat-ui-kit-react';
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
-import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat';
-import { makeStyles } from '@material-ui/core';
-import { AccountCircle, SupervisedUserCircle } from '@material-ui/icons';
-import { useCallback, useEffect, useState } from 'react';
-import ArchiveManager from '@modules/ArchiveManager';
-import Loading from 'components/pages/dashboard/components/Loading';
-import Conversation from './Chats/Conversation';
-import Searchbar from './Chats/Searchbar';
+} from '@chatscope/chat-ui-kit-react'
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat'
+import { makeStyles } from '@material-ui/styles'
+import { AccountCircle, SupervisedUserCircle } from '@material-ui/icons'
+import { useCallback, useEffect, useState } from 'react'
+import ArchiveManager from '@modules/ArchiveManager'
+import Loading from 'components/pages/dashboard/components/Loading'
+import Conversation from './Chats/Conversation'
+import Searchbar from './Chats/Searchbar'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -62,17 +61,17 @@ export interface Props {
 }
 
 export default function Chats({ data: { data: chatList } }: Props) {
-  const classes = useStyles();
-  const [data, setData] = useState<any>();
+  const classes = useStyles()
+  const [data, setData] = useState<any>()
   const [currentChat, setCurrentChat] = useState<Chat>()
-  const [filtered, setFiltered] = useState(chatList);
+  const [filtered, setFiltered] = useState(chatList)
 
   const handleChangeCurrentChat = useCallback((chat: Chat) => () => {
-    setCurrentChat(chat);
-  }, []);
+    setCurrentChat(chat)
+  }, [])
 
   const handleSearch = useCallback((newData) => {
-    setFiltered(newData);
+    setFiltered(newData)
   }, [])
 
   useEffect(() => {
@@ -93,7 +92,7 @@ export default function Chats({ data: { data: chatList } }: Props) {
           setData(getterData)
         })
     }
-  }, [currentChat]);
+  }, [currentChat])
 
   return (
     <MainContainer className={ classes.container }>
@@ -105,26 +104,26 @@ export default function Chats({ data: { data: chatList } }: Props) {
           data={ chatList }
         />
         <ConversationList>
-          {filtered.map((chat) => (
+          { filtered.map((chat) => (
             <ConversationPreview
               onClick={ handleChangeCurrentChat(chat) }
               key={ chat._id }
               className={ classes.conversationPreview }
             >
               <Avatar name={ chat.title } status="available">
-                {chat.participants.length > 2
-                  ? <SupervisedUserCircle fontSize="large" color="primary" />
-                  : <AccountCircle fontSize="large" color="primary" />}
+                { chat.participants.length > 2
+                  ? <SupervisedUserCircle fontSize="large" color="primary"/>
+                  : <AccountCircle fontSize="large" color="primary"/> }
               </Avatar>
               <ConversationPreview.Content name={ chat.title } className={ classes.conversationPreview }/>
             </ConversationPreview>
-          ))}
+          )) }
         </ConversationList>
       </Sidebar>
       { data && <Conversation chat={ currentChat! } data={ data }/> }
       { !data && (data === null
         ? <Loading componentName="ChatMessages"/>
-        : <div className={ classes.empty }>Please select a conversation</div>)}
+        : <div className={ classes.empty }>Please select a conversation</div>) }
     </MainContainer>
   )
 }

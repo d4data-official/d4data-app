@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Tab, Tabs } from '@material-ui/core'
 import { ColorLens, Extension, History, ListAlt, Settings, Timeline } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import { grey } from '@material-ui/core/colors'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { BrowserData as BrowserDataType } from '@d4data/archive-lib/dist/src/types/schemas'
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: `calc(100% + ${ theme.spacing(3) })`,
     width: '100%',
-    margin: theme.spacing(3) * -1,
+    margin: `-${ theme.spacing(3) }`,
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',

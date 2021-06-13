@@ -1,14 +1,15 @@
 import { Box, Grid, Paper, Typography } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import { useMemo } from 'react'
+import { Theme } from '@material-ui/core/styles'
 import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'
 
 export interface Props {
   browserDataStats: BrowserDataStats
 }
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     height: 350,
     width: 700 + 32,

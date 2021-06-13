@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import LanguageIcon from '@material-ui/icons/Language'
 import numeral from 'numeral'
 import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'

@@ -1,20 +1,20 @@
-import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 import { Community } from '@d4data/archive-lib/dist/src/types/schemas'
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
-import moment from 'moment';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import moment from 'moment'
 
-const StyledTableCell = withStyles((theme: Theme) => createStyles({
+const StyledTableCell = withStyles((theme) => createStyles({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -22,21 +22,21 @@ const StyledTableCell = withStyles((theme: Theme) => createStyles({
   body: {
     fontSize: 14,
   },
-}))(TableCell);
+}))(TableCell)
 
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
+const StyledTableRow = withStyles((theme) => createStyles({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
     },
   },
-}))(TableRow);
+}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-});
+})
 
 export default function Communities({ data }: { data: NonNullable<GetterData<Array<Community>>> }) {
   const classes = useStyles()
@@ -45,7 +45,7 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          {`${ data.data.length } communities found`}
+          { `${ data.data.length } communities found` }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -58,8 +58,8 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data.data.map((row) => {
-                const community = row;
+              { data.data.map((row) => {
+                const community = row
                 return (
                   <StyledTableRow key={ row.name }>
                     <TableCell
@@ -78,11 +78,11 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
                     </TableCell>
                   </StyledTableRow>
                 )
-              })}
+              }) }
             </TableBody>
           </Table>
         </TableContainer>
       </Box>
     </Container>
-  );
+  )
 }

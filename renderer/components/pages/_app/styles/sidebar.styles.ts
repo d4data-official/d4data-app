@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles'
 
 export default makeStyles({
   drawer: {
@@ -12,4 +12,4 @@ export default makeStyles({
     textAlign: 'center',
     height: '60px',
   },
-});
+})

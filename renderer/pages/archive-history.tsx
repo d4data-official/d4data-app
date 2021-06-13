@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from '@material-ui/core'
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import useArchiveHistory from '../hooks/useArchiveHistory'
 import ResetHistoryButton from '../components/history/ResetHistoryButton'
 import HistoryEntry from '../components/history/HistoryEntry'

@@ -1,22 +1,22 @@
-import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import { Avatar } from '@material-ui/core';
+import React from 'react'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import { Avatar } from '@material-ui/core'
 import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
 
-const StyledTableCell = withStyles((theme: Theme) => createStyles({
+const StyledTableCell = withStyles((theme) => createStyles({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -24,21 +24,21 @@ const StyledTableCell = withStyles((theme: Theme) => createStyles({
   body: {
     fontSize: 14,
   },
-}))(TableCell);
+}))(TableCell)
 
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
+const StyledTableRow = withStyles((theme) => createStyles({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
     },
   },
-}))(TableRow);
+}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-});
+})
 
 export default function Contacts({ data }: { data: NonNullable<GetterData<Array<Contact>>> }) {
   const classes = useStyles()
@@ -54,7 +54,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          {`${ data.data.length } contacts found`}
+          { `${ data.data.length } contacts found` }
         </Typography>
       </Box>
       <ContactComponent show={ open } onClose={ () => setOpen(false) } profile={ clickedProfile }/>
@@ -70,11 +70,11 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {data.data.map((row: Contact, idx) => {
+              { data.data.map((row: Contact, idx) => {
                 const profile: Contact = {
                   ...row,
                   displayName: row.displayName
-                  ?? (row.firstName && row.lastName && `${ row.firstName } ${ row.lastName }`),
+                    ?? (row.firstName && row.lastName && `${ row.firstName } ${ row.lastName }`),
                 }
 
                 return (
@@ -111,7 +111,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
                     </TableCell>
                   </StyledTableRow>
                 )
-              })}
+              }) }
             </TableBody>
           </Table>
         </TableContainer>
