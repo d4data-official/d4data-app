@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
 import { createStyles, makeStyles } from '@material-ui/styles'
+// @ts-ignore
 import { Search } from '@chatscope/chat-ui-kit-react'
 
 export type Data = Array<Record<any, any>>

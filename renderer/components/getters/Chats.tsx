@@ -5,6 +5,7 @@ import {
   ConversationList,
   MainContainer,
   Sidebar,
+// @ts-ignore
 } from '@chatscope/chat-ui-kit-react'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat'
