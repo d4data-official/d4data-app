@@ -5162,6 +5162,11 @@ globby@^11.0.1:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
+goober@^2.0.33:
+  version "2.0.37"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.0.37.tgz#5598c41f4c19bc1fca2c926e876a58a685faffb8"
+  integrity sha512-wgj5C7IJX2+MyHZ4TgOA+hLL1mCDW+jGorQ5KCMLF1ofE9gQkfbo1s8txIrzIsAX65XRTm0qaipolId2KMYUkw==
+
 got@^9.6.0:
   version "9.6.0"
   resolved "https://registry.yarnpkg.com/got/-/got-9.6.0.tgz#edf45e7d67f99545705de1f7bbeeeb121765ed85"
@@ -6995,12 +7000,13 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.0.tgz#453354087e6ca96957bd8f5baf753f5982142129"
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
-notistack@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-1.0.7.tgz#1a5a3a8ba91d6ce9bd34cfd27eaff17b16c5d45c"
-  integrity sha512-D6pHvYgSGmS86r8KspQb4A75DXnIRrCdmUX79Gg8eJ1/I4IMDy0DULUqjytwEkQT02naeSnTLc9WkepLjHKQug==
+notistack@^2.0.1-alpha.4:
+  version "2.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-2.0.1-alpha.4.tgz#2cdb5cfa117d973cd50512db2a4b030641aebf48"
+  integrity sha512-WZT50okf/nLwLUJ9pkobDB2vXdUjUJVMo5XRFiv+1A6Fjf9DKQ8FY90uocZOdufsuG845IgVJc2v11+lp/Lnxw==
   dependencies:
     clsx "^1.1.0"
+    goober "^2.0.33"
     hoist-non-react-statics "^3.3.0"
 
 npm-conf@^1.1.3:
