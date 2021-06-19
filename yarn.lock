@@ -1547,6 +1547,13 @@
   dependencies:
     "@types/react" "^16"
 
+"@types/react-dropzone@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-dropzone/-/react-dropzone-5.1.0.tgz#5e27eb0b1ccadd7964ce4d328e1926fcd1c1f1ef"
+  integrity sha512-VCdDCwSsr1MT2frsVl5p8qH+LWwUGzsaNtGkEQekHviZqK0dmTbiIp2Pzfb8lTkH4oTE2JtBbWnbuM6B4FH80A==
+  dependencies:
+    react-dropzone "*"
+
 "@types/react-html-parser@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-html-parser/-/react-html-parser-2.0.1.tgz#2d9002ac5bf1adf9aff8eae77ace5488bd78c98d"
@@ -2247,7 +2254,7 @@ atomically@^1.7.0:
   resolved "https://registry.yarnpkg.com/atomically/-/atomically-1.7.0.tgz#c07a0458432ea6dbc9a3506fffa424b48bccaafe"
   integrity sha512-Xcz9l0z7y9yQ9rdDaxlmaI4uJHf/T8g9hOEzJcsEqX2SjCj4J20uK7+ldkDHMbpJDK76wF7xEIgxc/vSlsfw5w==
 
-attr-accept@^2.0.0:
+attr-accept@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
   integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
@@ -2882,7 +2889,7 @@ clone-response@^1.0.2:
   dependencies:
     mimic-response "^1.0.0"
 
-clsx@^1.0.2, clsx@^1.0.4, clsx@^1.1.0, clsx@^1.1.1:
+clsx@^1.0.4, clsx@^1.1.0, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -4440,12 +4447,12 @@ file-entry-cache@^6.0.1:
   dependencies:
     flat-cache "^3.0.4"
 
-file-selector@^0.1.12:
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.1.19.tgz#8ecc9d069a6f544f2e4a096b64a8052e70ec8abf"
-  integrity sha512-kCWw3+Aai8Uox+5tHCNgMFaUdgidxvMnLWO6fM5sZ0hA2wlHP5/DHGF0ECe84BiB95qdJbKNEJhWKVDvMN+JDQ==
+file-selector@^0.2.2:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.2.4.tgz#7b98286f9dbb9925f420130ea5ed0a69238d4d80"
+  integrity sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==
   dependencies:
-    tslib "^2.0.1"
+    tslib "^2.0.3"
 
 file-uri-to-path@1.0.0:
   version "1.0.0"
@@ -6215,15 +6222,6 @@ matcher@^3.0.0:
   dependencies:
     escape-string-regexp "^4.0.0"
 
-material-ui-dropzone@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/material-ui-dropzone/-/material-ui-dropzone-3.5.0.tgz#2d7f36032db96c24ce97b42e4d0053f94e91a9fc"
-  integrity sha512-3BC6mz/4OEM4ZpbqMfuMN065JQyqfEbifT6/VzIua7Zj4b0DaR5YPCgpN+fL/e8yBgTs9MGBZJQY06p5pfKwvw==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    clsx "^1.0.2"
-    react-dropzone "^10.2.1"
-
 mbox-parser@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mbox-parser/-/mbox-parser-1.0.1.tgz#cba6bb372a1d3c27aff9da356b4519aeee458e1f"
@@ -7436,13 +7434,13 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-dropzone@^10.2.1:
-  version "10.2.2"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-10.2.2.tgz#67b4db7459589a42c3b891a82eaf9ade7650b815"
-  integrity sha512-U5EKckXVt6IrEyhMMsgmHQiWTGLudhajPPG77KFSvgsMqNEHSyGpqWvOMc5+DhEah/vH4E1n+J5weBNLd5VtyA==
+react-dropzone@*, react-dropzone@^11.3.2:
+  version "11.3.2"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-11.3.2.tgz#2efb6af800a4779a9daa1e7ba1f8d51d0ab862d7"
+  integrity sha512-Z0l/YHcrNK1r85o6RT77Z5XgTARmlZZGfEKBl3tqTXL9fZNQDuIdRx/J0QjvR60X+yYu26dnHeaG2pWU+1HHvw==
   dependencies:
-    attr-accept "^2.0.0"
-    file-selector "^0.1.12"
+    attr-accept "^2.2.1"
+    file-selector "^0.2.2"
     prop-types "^15.7.2"
 
 react-html-parser@^2.0.2:
@@ -8824,7 +8822,12 @@ tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.1, tslib@^2.1.0:
+tslib@^2.0.3:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
+tslib@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
