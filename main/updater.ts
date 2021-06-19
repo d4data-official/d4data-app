@@ -16,9 +16,6 @@ function getUpdater(options: AllPublishOptions) {
 
 export default async function appUpdate(): Promise<UpdateCheckResult | null> {
   const options: AllPublishOptions = {
-    requestHeaders: {
-      Authorization: 'Basic AUTH_CREDS_VALUE',
-    },
     provider: 'github',
     repo: 'd4data-app',
     owner: 'd4data-official',
