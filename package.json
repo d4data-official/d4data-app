@@ -1,9 +1,10 @@
 {
   "private": true,
   "license": "MIT",
-  "name": "d4data",
+  "name": "d4data-app",
   "description": "D4Data app",
-  "version": "0.1.1",
+  "version": "0.2.0",
+  "repository": "https://github.com/d4data-official/d4data-app",
   "author": "D4Data Team",
   "main": "app/background.js",
   "scripts": {
@@ -25,8 +26,10 @@
     "axios": "^0.21.1",
     "case": "^1.6.3",
     "clsx": "^1.1.1",
+    "electron-log": "^4.3.5",
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.3",
+    "electron-updater": "^4.3.9",
     "filesize": "^6.3.0",
     "fuse.js": "^6.4.6",
     "material-ui-dropzone": "^3.5.0",

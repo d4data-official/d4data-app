@@ -78,7 +78,7 @@ export default function Overview() {
           <Grid item xs={ 4 }>
             <MetadataCard
               icon={ <EventNoteIcon/> }
-              metadata={ moment.duration(archiveMetadata?.creationDate?.valueOf() / 100).humanize() }
+              metadata={ moment.duration(archiveMetadata?.creationDate?.valueOf() / 1000).humanize() }
               subtitle="Archive age"
             />
           </Grid>
