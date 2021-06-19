@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "buildonly": "nextron build --no-publish",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "postinstall": "electron-builder install-app-deps",
