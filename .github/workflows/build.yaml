@@ -22,5 +22,5 @@ jobs:
     - run: yarn install
       name: Install dependencies
     
-    - run: yarn build --no-publish
+    - run: yarn build --publish never
       name: Build
