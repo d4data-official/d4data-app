@@ -9,7 +9,7 @@
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
-    "build": "nextron build --publish always",
+    "build": "nextron build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "postinstall": "electron-builder install-app-deps",
