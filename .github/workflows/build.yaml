@@ -24,3 +24,5 @@ jobs:
     
     - run: yarn build
       name: Build
+      env:
+        CI: false
