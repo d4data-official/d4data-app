@@ -2,8 +2,11 @@ import { app } from 'electron'
 import serve from 'electron-serve'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import LibManager from '@shared/d4data-archive-lib/main/LibManager'
+import { autoUpdater } from 'electron-updater'
 import createWindow from './helpers/create-window'
+import AppUpdate from './updater';
 
+AppUpdate()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const libManager = new LibManager()
 
@@ -47,4 +50,8 @@ async function installDevToolExtensions() {
 
 app.on('window-all-closed', () => {
   app.quit()
+})
+// @ts-ignore
+app.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall(true, true)
 })
