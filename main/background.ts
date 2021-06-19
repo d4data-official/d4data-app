@@ -3,7 +3,9 @@ import serve from 'electron-serve'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import LibManager from '@shared/d4data-archive-lib/main/LibManager'
 import createWindow from './helpers/create-window'
+import AppUpdate from './updater';
 
+AppUpdate()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const libManager = new LibManager()
 
