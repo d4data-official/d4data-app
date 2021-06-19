@@ -10,8 +10,4 @@ files:
       - package.json
       - app
 publish: 
-  provider: 'github',
-  repo: 'd4data-app',
-  owner: 'd4data-official',
-  host: 'github.com',
-  protocol: 'https',
+  provider: github
