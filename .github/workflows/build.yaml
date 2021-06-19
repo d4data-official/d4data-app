@@ -22,7 +22,5 @@ jobs:
     - run: yarn install
       name: Install dependencies
     
-    - run: yarn build
+    - run: yarn build --no-publish
       name: Build
-      env:
-        CI: false
