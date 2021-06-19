@@ -3,7 +3,8 @@
   "license": "MIT",
   "name": "d4data-app",
   "description": "D4Data app",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "repository": "https://github.com/d4data-official/d4data-app",
   "author": "D4Data Team",
   "main": "app/background.js",
   "scripts": {
