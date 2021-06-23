@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
-import { makeStyles, Input } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { Unarchive } from '@material-ui/icons'
 
 interface Props {
@@ -50,8 +50,8 @@ export default function Dropzone({ onLoaded }: Props) {
 
   return (
     <div { ...getRootProps() } className={ classes.root }>
-      <input { ...getInputProps() } className={ classes.dropzone } />
-      <Unarchive className={ classes.icon } fontSize="large" />
+      <input { ...getInputProps() } className={ classes.dropzone }/>
+      <Unarchive className={ classes.icon } fontSize="large"/>
       <h1>Click to select your GDPR archive or drop it here</h1>
     </div>
   )
