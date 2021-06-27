@@ -9,4 +9,8 @@ files:
     filter:
       - package.json
       - app
-publish: null
+linux:
+  target:
+    - "AppImage"
+publish:
+  provider: github
