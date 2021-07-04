@@ -1,64 +1,29 @@
 import React, { useState } from 'react';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker, ZoomableGroup,
-} from 'react-simple-maps';
-import ReactTooltip from 'react-tooltip';
+import dynamic from 'next/dynamic'
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
+import 'leaflet/dist/leaflet.css'
 
-const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
-
-const E7 = 10000000
+const MapContainer = dynamic<any>(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false })
+const TileLayer = dynamic<any>(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false })
+const Marker = dynamic<any>(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false })
+const Popup = dynamic<any>(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false })
 
 export default function WhereaboutsMap({ whereabouts }: { whereabouts: Array<Whereabout> }) {
   const [content, setContent] = useState('');
 
   return (
     <div>
-      <ComposableMap
-        data-tip=""
-        projectionConfig={ {
-          scale: 400,
-        } }
-      >
-        <ZoomableGroup center={ [0, 20.0] }>
-          <Geographies geography={ geoUrl }>
-            {({ geographies }) => geographies
-              .map((geo) => (
-                <Geography
-                  key={ geo.rsmKey }
-                  geography={ geo }
-                  fill="#EAEAEC"
-                  stroke="#D6D6DA"
-                />
-              ))}
-          </Geographies>
-          {whereabouts
-            .filter((r) => r.location?.absolutePosition)
-            .map((loc, idx) => (
-              <Marker
-                key={ idx.toString() }
-                onMouseEnter={ () => {
-                  setContent(`
-                  ${ loc.location.absolutePosition.latitude / E7 }, 
-                  ${ loc.location.absolutePosition.longitude / E7 }`);
-                } }
-                onMouseLeave={ () => {
-                  setContent('');
-                } }
-                coordinates={
-                  [loc.location.absolutePosition.longitude / E7, loc.location.absolutePosition.latitude / E7]
-              }
-              >
-                <circle r={ 2 } fill="green"/>
-              </Marker>
-            ))}
-        </ZoomableGroup>
-      </ComposableMap>
-      <ReactTooltip>{content}</ReactTooltip>
+      <MapContainer center={ [51.505, -0.09] } zoom={ 13 } scrollWheelZoom={ false }>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={ [51.505, -0.09] }>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </MapContainer>
     </div>
-
   )
 }
