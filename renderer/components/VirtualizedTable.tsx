@@ -50,7 +50,7 @@ export function CellRenderer({
       sx={ { width: 1 } }
     >
       { cellRender ? cellRender(cellData, columnData) : (
-        <ConditionalTooltip show={ ellipsis } title={ cellData } placement={ 'top' }>
+        <ConditionalTooltip show={ ellipsis } title={ cellData } placement="top">
           <Typography
             ref={ (ref) => ref?.offsetWidth! < ref?.scrollWidth! && setEllipsis(true) }
             variant="body2"
