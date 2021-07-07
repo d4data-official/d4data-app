@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { Container } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import MapIcon from '@material-ui/icons/Map'
 import ListIcon from '@material-ui/icons/List'
 import { createStyles, makeStyles } from '@material-ui/styles'
@@ -45,7 +45,7 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
   }
 
   return (
-    <Container>
+    <Box width={ 1 } display="flex" flexDirection="column" alignItems="center" id="test">
       <Tabs
         value={ value }
         onChange={ handleChange }
@@ -56,9 +56,15 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
         <Tab label="World map" icon={ <MapIcon/> } { ...a11yProps(0) } />
         <Tab label="Connection history" icon={ <ListIcon/> } { ...a11yProps(1) } />
       </Tabs>
-      <div className={ classes.whole } id={ `simple-tabpanel-${ value }` } aria-labelledby={ `simple-tab-${ value }` }>
+      <Box
+        width={ 1 }
+        flexGrow={ 1 }
+        className={ classes.whole }
+        id={ `simple-tabpanel-${ value }` }
+        aria-labelledby={ `simple-tab-${ value }` }
+      >
         { getTabContent() }
-      </div>
-    </Container>
+      </Box>
+    </Box>
   )
 }
