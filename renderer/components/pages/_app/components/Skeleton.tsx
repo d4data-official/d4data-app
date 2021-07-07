@@ -4,18 +4,26 @@ import {
   AppBar,
   Box,
   capitalize,
-  Dialog, DialogContent, DialogTitle, Grid, IconButton, Toolbar, Typography,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
 } from '@material-ui/core'
 import clsx from 'clsx'
-import { Home, Menu, Settings } from '@material-ui/icons'
+import Home from '@material-ui/icons/Home'
+import Menu from '@material-ui/icons/Menu'
+import Settings from '@material-ui/icons/Settings'
+import Brightness3Icon from '@material-ui/icons/Brightness3'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import Case from 'case'
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import CodeIcon from '@material-ui/icons/Code';
-import ListIcon from '@material-ui/icons/List';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
+import WbSunnyIcon from '@material-ui/icons/WbSunny'
+import CodeIcon from '@material-ui/icons/Code'
+import ListIcon from '@material-ui/icons/List'
 import { GlobalContext } from 'renderer/context/Store'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
@@ -36,13 +44,13 @@ export default function Skeleton({ children }: SkeletonProps) {
   }, [drawerOpen])
 
   const handleRouteChange = useCallback((route) => {
-    handleDrawerChange(/dashboard/.test(route));
+    handleDrawerChange(/dashboard/.test(route))
   }, [])
 
   React.useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [])
 
@@ -54,14 +62,14 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   const handleThemeChange = useCallback(() => {
     dispatch({ type: 'TOGGLE_THEME' })
-  }, []);
+  }, [])
 
   const handleRawdataChange = useCallback(() => {
     dispatch({ type: 'TOGGLE_RAWDATA' })
-  }, []);
+  }, [])
 
   const handleDialogOpen = useCallback(() => {
-    setDialogOpen((prev) => !prev);
+    setDialogOpen((prev) => !prev)
   }, [])
 
   return (
@@ -91,12 +99,12 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              {componentName ? Case.capital(componentName) : 'D4Data'}
+              { componentName ? Case.capital(componentName) : 'D4Data' }
             </Typography>
           </div>
           <div className={ classes.toolbarRight }>
             <IconButton onClick={ handleDialogOpen }>
-              <Settings className={ classes.settingsButton } />
+              <Settings className={ classes.settingsButton }/>
             </IconButton>
             <Dialog
               open={ dialogOpen }
@@ -104,10 +112,10 @@ export default function Skeleton({ children }: SkeletonProps) {
               maxWidth="md"
               fullWidth
             >
-              <DialogTitle className={ classes.dialogTitle } >Settings</DialogTitle>
-              <DialogContent className={ classes.dialogContent } >
+              <DialogTitle className={ classes.dialogTitle }>Settings</DialogTitle>
+              <DialogContent className={ classes.dialogContent }>
                 <Grid container spacing={ 1 } justifyContent="space-between" alignItems="center">
-                  <Grid item >
+                  <Grid item>
                     <Typography variant="h4">
                       Theme: { capitalize(currentTheme) }
                     </Typography>
@@ -132,7 +140,7 @@ export default function Skeleton({ children }: SkeletonProps) {
                       Display type: { rawData ? 'Raw Data' : 'Ergonomic Display' }
                     </Typography>
                   </Grid>
-                  <Grid item >
+                  <Grid item>
                     <ToggleButtonGroup
                       value={ rawData }
                       exclusive
@@ -163,7 +171,7 @@ export default function Skeleton({ children }: SkeletonProps) {
         }) }
       >
         <div className={ classes.drawerHeader }/>
-        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
+        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{ children }</Box>
       </main>
     </div>
   )
