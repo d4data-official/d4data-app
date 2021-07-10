@@ -1391,7 +1391,7 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/lab@~5.0.0-alpha.39":
+"@material-ui/lab@^5.0.0-alpha.39":
   version "5.0.0-alpha.39"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-5.0.0-alpha.39.tgz#2bd7278693e4c341fb33c7e645ed41917ad93df8"
   integrity sha512-is8nRR/2lwWBTihE6nie2zphBESCf1EDUxVaC8mL9fiSfYkmA9L2X/JO4mn5QS2RXCKBBIm+qF2BMXKDdepGRA==
