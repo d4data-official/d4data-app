@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import AssignmentIcon from '@material-ui/icons/Assignment'
 import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'
 
@@ -29,14 +29,14 @@ export default function HistoryWebsiteCountCard({ browserDataStats }: Props) {
 
   return (
     <Paper className={ classes.root } elevation={ 2 }>
-      <Grid container alignItems="center" justify="space-between" wrap="nowrap" style={ { height: '100%' } }>
+      <Grid container alignItems="center" justifyContent="space-between" wrap="nowrap" style={ { height: '100%' } }>
         <Grid item>
           <Typography variant="h3" className={ classes.value }>
             { browserDataStats.historyUniqueWebsitesCount }
           </Typography>
           <Typography variant="h6" className={ classes.description }>Visited websites</Typography>
         </Grid>
-        <Grid item container alignItems="center" justify="flex-end" style={ { flexBasis: 0 } }>
+        <Grid item container alignItems="center" justifyContent="flex-end" style={ { flexBasis: 0 } }>
           <AssignmentIcon fontSize="large" className={ classes.icon }/>
         </Grid>
       </Grid>

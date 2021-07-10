@@ -1,13 +1,12 @@
 import React from 'react'
-import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core'
+import { Box, Button, Grid, Typography } from '@material-ui/core'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
-import { useSnackbar } from 'notistack'
-import CloseIcon from '@material-ui/icons/Close'
 import { useRouter } from 'next/router'
 import Path from 'path'
 import useArchiveHistory from '@hooks/useArchiveHistory'
+import { toast } from 'react-hot-toast'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
@@ -15,7 +14,6 @@ import useArchiveManager from '../hooks/useArchiveManager'
 export default function HomePage() {
   const router = useRouter()
   const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const {
     lastHistoryEntry,
     history,
@@ -32,20 +30,8 @@ export default function HomePage() {
 
     const service = await archiveFactory.identify()
     if (service === Services.UNKNOWN) {
-      setProgress({ show: false })
-      enqueueSnackbar('Fail to identify archive service', {
-        variant: 'error',
-        autoHideDuration: 5000,
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'center',
-        },
-        action: (key) => (
-          <IconButton onClick={ () => closeSnackbar(key) } style={ { color: 'white' } }>
-            <CloseIcon/>
-          </IconButton>
-        ),
-      })
+      toast.error('Fail to identify archive service', { position: 'bottom-left' })
+
       console.info('[Archive] Unknown service, cancel import')
       archiveFactory.destroy()
         .catch((err) => console.error(err))
@@ -82,7 +68,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Grid container justify="center" spacing={ 4 } style={ { textAlign: 'center' } }>
+    <Grid container justifyContent="center" spacing={ 4 } style={ { textAlign: 'center' } }>
       <Grid item xs={ 12 }>
         <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
           <img src="/images/logo.png" alt="logo" width="4%"/>

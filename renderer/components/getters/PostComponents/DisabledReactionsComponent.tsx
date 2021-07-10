@@ -1,8 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import { makeStyles } from '@material-ui/styles'
+import Accordion from '@material-ui/core/Accordion'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
   heading: {
@@ -11,10 +11,10 @@ const useStyles = makeStyles({
   box: {
     boxShadow: 'none',
   },
-});
+})
 
 export default function DisabledReactionsComponent() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Accordion className={ classes.box } disabled>

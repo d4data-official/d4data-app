@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import { Button } from '@material-ui/core'
 import GenericReactionComponent from './GenericReactionComponent'
-import openInBrowser from '../../../modules/openInBrowser';
+import openInBrowser from '../../../modules/openInBrowser'
 
 const useStyles = makeStyles({
   root: {
@@ -26,10 +26,10 @@ const useStyles = makeStyles({
     marginLeft: 15,
     marginBottom: 10,
   },
-});
+})
 
 export default function ReactedLinkComponent({ data }: { data: NonNullable<Reacted> }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Card className={ classes.root } variant="outlined">
@@ -42,7 +42,7 @@ export default function ReactedLinkComponent({ data }: { data: NonNullable<React
         </Typography>
       </CardContent>
       <div className={ classes.reactions }>
-        <GenericReactionComponent reaction={ data.reaction } />
+        <GenericReactionComponent reaction={ data.reaction }/>
       </div>
     </Card>
   )

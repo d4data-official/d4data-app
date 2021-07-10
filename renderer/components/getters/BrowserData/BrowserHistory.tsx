@@ -1,69 +1,51 @@
 import { History } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
-import { Box, Button, Tooltip } from '@material-ui/core'
+import { Box, Button, Paper, Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import openInBrowser from '../../../modules/openInBrowser'
-import useTableColumns, { TableColumn } from '../../../modules/hooks/useTableColumns'
+import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 
 export interface Props {
   data: Array<History>
 }
 
-const columns: Array<TableColumn> = [
+const columns: Array<ColumnData> = [
   {
-    name: 'faviconUrl',
+    dataKey: 'faviconUrl',
     label: 'Icon',
-    options: {
-      customBodyRender: (url) => url && (
-        <Tooltip title={ url } placement="bottom-start">
-          <img src={ url } alt="favicon" style={ { maxWidth: 32 } }/>
-        </Tooltip>
-      ),
-    },
+    width: 70,
+    cellRender: (url: string) => url && (
+      <Tooltip title={ url } placement="bottom-start">
+        <img src={ url } alt="favicon" style={ { maxWidth: 32 } }/>
+      </Tooltip>
+    ),
   },
   {
-    name: 'title',
+    dataKey: 'title',
     label: 'Title',
-    options: {
-      filterType: 'textField',
-    },
   },
   {
-    name: 'url',
+    dataKey: 'url',
     label: 'URL',
-    options: {
-      filter: false,
-      customBodyRender: (url) => (
-        <Box textAlign="center">
-          <Tooltip title={ url } placement="bottom">
-            <Button variant="outlined" color="primary" onClick={ () => openInBrowser(url) }>Open</Button>
-          </Tooltip>
-        </Box>
-      ),
-    },
     alignHeader: 'center',
+    width: 110,
+    cellRender: (url: string) => (
+      <Box textAlign="center">
+        <Tooltip title={ url } placement="bottom">
+          <Button variant="outlined" color="primary" onClick={ () => openInBrowser(url) }>Open</Button>
+        </Tooltip>
+      </Box>
+    ),
   },
   {
-    name: 'datetime',
+    dataKey: 'datetime',
     label: 'Date',
-    options: {
-      customBodyRender: (value) => <span>{ new Date(value).toLocaleString() }</span>,
-    },
+    cellRender: (cellData: Date) => cellData.toLocaleString(),
   },
   {
-    name: 'clientId',
+    dataKey: 'clientId',
     label: 'Client id',
-    options: {
-      filterType: 'multiselect',
-    },
   },
 ]
-
-const options: MUIDataTableOptions = {
-  rowsPerPage: 5,
-  elevation: 0,
-  selectableRows: 'none',
-}
 
 const useStyles = makeStyles({
   root: {
@@ -78,14 +60,9 @@ export default function BrowserHistory({ data }: Props) {
 
   return (
     <Box className={ classes.root } height={ 1 } padding={ 4 } display="flex" flexDirection="column" overflow="auto">
-      <Box flexGrow={ 1 }>
-        <MUIDataTable
-          title=""
-          data={ data }
-          columns={ useTableColumns(columns) }
-          options={ options }
-        />
-      </Box>
+      <Paper variant="outlined" sx={ { height: 1 } }>
+        <VirtualizedTable columns={ columns } data={ data }/>
+      </Paper>
     </Box>
   )
 }

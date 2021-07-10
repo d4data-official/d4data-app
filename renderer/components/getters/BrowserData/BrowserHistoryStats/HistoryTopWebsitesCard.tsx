@@ -1,14 +1,15 @@
 import { Box, Grid, Paper, Typography } from '@material-ui/core'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import { useMemo } from 'react'
+import { Theme } from '@material-ui/core/styles'
 import BrowserDataStats from '../../../../modules/stats/BrowserDataStats'
 
 export interface Props {
   browserDataStats: BrowserDataStats
 }
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     height: 350,
     width: 700 + 32,
@@ -46,7 +47,7 @@ export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
         container
         spacing={ 2 }
         alignItems="center"
-        justify="space-between"
+        justifyContent="space-between"
         wrap="nowrap"
         style={ { height: '100%' } }
       >
@@ -70,7 +71,7 @@ export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
           </Box>
         </Grid>
 
-        <Grid item container alignItems="center" justify="flex-end" style={ { flexBasis: 0 } }>
+        <Grid item container alignItems="center" justifyContent="flex-end" style={ { flexBasis: 0 } }>
           <FormatListNumberedIcon fontSize="large" className={ classes.icon }/>
         </Grid>
       </Grid>

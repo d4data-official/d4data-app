@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
-import { makeStyles } from '@material-ui/core'
 import { Unarchive } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/styles'
 
 interface Props {
   onLoaded: Function

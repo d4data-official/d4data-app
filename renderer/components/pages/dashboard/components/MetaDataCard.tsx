@@ -1,6 +1,6 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core'
 import React, { ReactNode } from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 
 interface MetaDataCardComponent {
   icon: ReactNode,
@@ -8,7 +8,7 @@ interface MetaDataCardComponent {
   subtitle: string
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme) => createStyles({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing(2),

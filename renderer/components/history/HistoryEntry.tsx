@@ -1,14 +1,14 @@
-import { Button, createStyles, Grid, IconButton, Typography } from '@material-ui/core'
+import { Button, Grid, Typography } from '@material-ui/core'
 import React, { CSSProperties, useState } from 'react'
 import moment from 'moment'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import RestoreIcon from '@material-ui/icons/Restore'
 import DeleteIcon from '@material-ui/icons/Delete'
 import filesize from 'filesize'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
-import { useSnackbar } from 'notistack'
-import CloseIcon from '@material-ui/icons/Close'
+import { toast } from 'react-hot-toast'
 
 export interface Props {
   entry: ArchiveHistoryEntry
@@ -47,7 +47,6 @@ export default function HistoryEntry({
   style,
 }: Props) {
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [loading, setLoading] = useState(false)
   const classes = useStyles()
 
@@ -57,14 +56,7 @@ export default function HistoryEntry({
     setLoading(true)
     deleteHistoryEntry(entry)
       .then(() => {
-        enqueueSnackbar(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> deleted</span>, {
-          variant: 'info',
-          action: (key) => (
-            <IconButton onClick={ () => closeSnackbar(key) } style={ { color: 'white' } }>
-              <CloseIcon/>
-            </IconButton>
-          ),
-        })
+        toast(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> deleted</span>, { position: 'bottom-left' })
       })
       .finally(() => setLoading(false))
   }
@@ -73,14 +65,10 @@ export default function HistoryEntry({
     setLoading(true)
     restoreArchiveFromEntry(entry)
       .then(() => {
-        enqueueSnackbar(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>, {
-          variant: 'success',
-          action: (key) => (
-            <IconButton onClick={ () => closeSnackbar(key) } style={ { color: 'white' } }>
-              <CloseIcon/>
-            </IconButton>
-          ),
-        })
+        toast.success(
+          <span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>,
+          { position: 'bottom-left' },
+        )
       })
       .finally(() => setLoading(false))
   }
@@ -95,7 +83,7 @@ export default function HistoryEntry({
     <Grid
       container
       alignItems="center"
-      justify="space-between"
+      justifyContent="space-between"
       spacing={ 1 }
       wrap="nowrap"
       className={ className }
@@ -129,7 +117,7 @@ export default function HistoryEntry({
       ) }
 
       { showDeleteButton && showRestoreButton && (
-        <Grid container justify="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
+        <Grid container justifyContent="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
           { showDeleteButton && (
             <Grid item>
               <Button
