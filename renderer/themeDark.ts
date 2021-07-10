@@ -3,6 +3,7 @@ import { red } from '@material-ui/core/colors'
 
 export default createTheme({
   palette: {
+    mode: 'dark',
     primary: {
       // main: '#556cd6', // Blue
       main: '#00c687', // Green
