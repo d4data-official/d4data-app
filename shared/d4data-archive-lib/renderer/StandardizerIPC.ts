@@ -1,8 +1,9 @@
 import type { Standardizer } from '@d4data/archive-lib'
-import Services from '@d4data/archive-lib/dist/src/types/Services'
+import type { Getters } from '@d4data/archive-lib'
+import type Services from '@d4data/archive-lib/dist/src/types/Services'
 import type Parser from '@d4data/archive-lib/dist/src/classes/Parser'
 import type { GetterOptions } from '@d4data/archive-lib/dist/src/types/standardizer/Standardizer'
-import type GetterReturn from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import type { default as GetterReturn, GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import {
   API,
   AuthorizedDevice,
@@ -13,6 +14,7 @@ import {
   Community,
   Connection,
   Contact,
+  Event,
   Following,
   Mail,
   Media,
@@ -28,8 +30,8 @@ import {
 } from '@d4data/archive-lib/dist/src/types/schemas'
 import ClientInstance from './ClientInstance'
 import ID from '../types/ID'
-import { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
-import RawDataReturn from '@d4data/archive-lib/dist/src/types/standardizer/RawDataReturn'
+import type { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
+import type RawDataReturn from '@d4data/archive-lib/dist/src/types/standardizer/RawDataReturn'
 import { StandardizerArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
@@ -151,6 +153,18 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
 
   getRawData(filePath: string, options?: GetterOptions): Promise<RawDataReturn> {
     return this.callMethod('getRawData', filePath, options)
+  }
+
+  getEvents(options?: GetterOptions): GetterReturn<Array<Event>> {
+    return this.callMethod('getEvents', options)
+  }
+
+  getAvailableGetters(): Promise<Array<Getters>> {
+    return this.callMethod('getAvailableGetters')
+  }
+
+  callAllGetters(options?: GetterOptions): Promise<Record<Getters, GetterData<any>>> {
+    throw new Error('this method is not working from renderer')
   }
 
   get service(): Services {
