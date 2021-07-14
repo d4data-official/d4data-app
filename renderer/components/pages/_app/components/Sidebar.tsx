@@ -12,9 +12,9 @@ export interface SidebarProps {
   handleDrawerChange: (open?: boolean | any) => void
 }
 
-export default function Sidebar(
-  { drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps,
-) {
+const DRAWER_WIDTH = 240
+
+export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
   const { dispatch } = useContext(GlobalContext)
   const handleComponentClick = React.useCallback((componentName: string) => () => {
     dispatch({ type: 'UPDATE_COMPONENT', componentName })
@@ -25,7 +25,7 @@ export default function Sidebar(
       variant="persistent"
       open={ drawerOpen }
       onClose={ handleDrawerChange }
-      sx={ { width: 240, flexShrink: 0 } }
+      sx={ { width: DRAWER_WIDTH, flexShrink: 0, '& .MuiDrawer-paper': { width: DRAWER_WIDTH } } }
     >
       <div className={ drawerHeaderClass }>
         <IconButton onClick={ handleDrawerChange }>
@@ -34,7 +34,7 @@ export default function Sidebar(
       </div>
       <Divider/>
       <List>
-        {ComponentList.map(([component]) => (
+        { ComponentList.map(([component]) => (
           <ListItem
             key={ component }
             button
@@ -43,7 +43,7 @@ export default function Sidebar(
           >
             <ListItemText primary={ Case.capital(component) }/>
           </ListItem>
-        ))}
+        )) }
       </List>
     </Drawer>
   )
