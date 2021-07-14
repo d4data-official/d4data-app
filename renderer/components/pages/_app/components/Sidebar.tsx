@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import Case from 'case'
 import { Divider, Drawer, IconButton, List, ListItem, ListItemText } from '@material-ui/core'
 import { ChevronLeft } from '@material-ui/icons'
-import useStyles from 'pages-components/_app/styles/sidebar.styles'
 import { ComponentList } from 'components/pages/dashboard/components'
 import { GlobalContext } from 'renderer/context/Store'
 
@@ -16,7 +15,6 @@ export interface SidebarProps {
 export default function Sidebar(
   { drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps,
 ) {
-  const classes = useStyles()
   const { dispatch } = useContext(GlobalContext)
   const handleComponentClick = React.useCallback((componentName: string) => () => {
     dispatch({ type: 'UPDATE_COMPONENT', componentName })
@@ -27,10 +25,7 @@ export default function Sidebar(
       variant="persistent"
       open={ drawerOpen }
       onClose={ handleDrawerChange }
-      className={ classes.drawer }
-      classes={ {
-        paper: classes.drawerPaper,
-      } }
+      sx={ { width: 240, flexShrink: 0 } }
     >
       <div className={ drawerHeaderClass }>
         <IconButton onClick={ handleDrawerChange }>
@@ -42,9 +37,9 @@ export default function Sidebar(
         {ComponentList.map(([component]) => (
           <ListItem
             key={ component }
-            className={ classes.component }
             button
             onClick={ handleComponentClick(component) }
+            sx={ { textAlign: 'center', height: '60px' } }
           >
             <ListItemText primary={ Case.capital(component) }/>
           </ListItem>
