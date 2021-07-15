@@ -1,9 +1,7 @@
 import { fetchComponent } from 'components/pages/dashboard/components'
 import { FunctionComponent, useContext, useEffect, useState } from 'react'
-import Case from 'case'
 import ArchiveManager from '@modules/ArchiveManager'
 import { GlobalContext } from 'renderer/context/Store'
-import { capitalize } from '@material-ui/core'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import DefaultDisplay from 'components/pages/dashboard/components/DefaultDisplay'
 
@@ -27,8 +25,7 @@ function useDashboardComponent(args?: UseStandardizerArgs): UseDashboardComponen
   const { componentName: contextComponentName } = useContext(GlobalContext)
   const componentName = args?.componentName ?? contextComponentName
   const Component: FunctionComponent<{ data: NonNullable<GetterData<any>> }> & { disableRawData?: boolean }
-  | null = args?.Component
-    ?? (componentName ? fetchComponent(Case.pascal(componentName)) : null)
+  | null = args?.Component ?? (componentName ? fetchComponent(componentName) : null)
 
   useEffect(() => {
     setData(undefined)
@@ -39,23 +36,23 @@ function useDashboardComponent(args?: UseStandardizerArgs): UseDashboardComponen
         return
       }
 
-      const getterName = `get${ capitalize(componentName) }`
+      const getterName = componentName
 
       // @ts-ignore
       if (!standardizer[getterName]) {
-        throw new Error(`Bad getter name, please rename ${ componentName } component with valid getter name`)
+        throw new Error(`Bad getter name : ${ componentName }`)
       }
 
-      console.info(`Retrieving data of ${ capitalize(componentName) } getter`)
+      console.info(`Retrieving data of ${ componentName } getter`)
 
       // @ts-ignore
       standardizer[getterName](...(args?.getterArgs ?? []))
         .then((getterData: GetterData<any>) => {
-          console.info(`${ capitalize(componentName) } getter data retrieved`)
+          console.info(`${ componentName } getter data retrieved`)
           setData({ componentName, data: getterData })
         })
     }
-  }, [componentName]);
+  }, [componentName])
   return ({
     data,
     componentName,
