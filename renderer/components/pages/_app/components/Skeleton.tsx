@@ -7,11 +7,12 @@ import Menu from '@material-ui/icons/Menu'
 import Settings from '@material-ui/icons/Settings'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
-import Case from 'case'
 import { GlobalContext } from 'renderer/context/Store'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
+import getGetterLabel from '../../../../modules/getGetterLabel'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -76,7 +77,7 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              { componentName ? Case.capital(componentName) : 'D4Data' }
+              { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>
 
