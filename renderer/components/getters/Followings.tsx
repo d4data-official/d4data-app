@@ -1,13 +1,13 @@
-import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import React from 'react'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
 import { Following } from '@d4data/archive-lib/dist/src/types/schemas'
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import Communities from './Communities'
 import Contacts from './Contacts'
-import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable';
+import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
 
 interface Props {
   value: any,
@@ -29,11 +29,11 @@ function ShowCommunities({ data }: { data: NonNullable<GetterData<Array<Followin
           <NoDataAvailable/>
         </Box>
       </Container>
-    );
+    )
   }
   return (
-    <Communities data={ reformattedFile } />
-  );
+    <Communities data={ reformattedFile }/>
+  )
 }
 
 function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>> }) {
@@ -50,22 +50,20 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
           <NoDataAvailable/>
         </Box>
       </Container>
-    );
+    )
   }
   return (
-    <Contacts data={ reformattedFile } />
-  );
+    <Contacts data={ reformattedFile }/>
+  )
 }
 
 function TabPanel(props: Props) {
-  const { value, index, followings } = props;
+  const { value, index, followings } = props
 
   return (
     <div
       role="tabpanel"
       hidden={ value !== index }
-      id={ `simple-tabpanel-${ index }` }
-      aria-labelledby={ `simple-tab-${ index }` }
     >
       {
         index === 0 && <ShowCommunities data={ followings }/>
@@ -77,19 +75,12 @@ function TabPanel(props: Props) {
   )
 }
 
-function a11yProps(index:any) {
-  return {
-    id: `simple-tab-${ index }`,
-    'aria-controls': `simple-tabpanel-${ index }`,
-  };
-}
-
 export default function Followings({ data }: { data: NonNullable<GetterData<Array<Following>>> }) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
-  const handleChange = (event:any, newValue:any) => {
-    setValue(newValue);
-  };
+  const handleChange = (event: any, newValue: any) => {
+    setValue(newValue)
+  }
 
   return (
     <Container>
@@ -100,8 +91,8 @@ export default function Followings({ data }: { data: NonNullable<GetterData<Arra
         textColor="primary"
         centered
       >
-        <Tab label="Communities" { ...a11yProps(0) } />
-        <Tab label="Friends" { ...a11yProps(1) } />
+        <Tab label="Communities"/>
+        <Tab label="Users"/>
       </Tabs>
       <TabPanel value={ value } index={ 0 } followings={ data }/>
       <TabPanel value={ value } index={ 1 } followings={ data }/>
