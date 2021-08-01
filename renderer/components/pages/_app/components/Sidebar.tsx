@@ -36,6 +36,8 @@ const GETTERS = Object.values(Getters)
 
 const DRAWER_WIDTH = 240
 
+const IGNORED_GETTER: Array<Getters> = [Getters.CHAT_MESSAGES]
+
 export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
   const { dispatch } = useContext(GlobalContext)
   const [availableGetters, setAvailableGetters] = useState<Array<Getters>>()
@@ -57,7 +59,10 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
     }
 
     currentStandardizer.getAvailableGetters()
-      .then((result) => setAvailableGetters(result))
+      .then((getters) => {
+        const filteredGetter = getters.filter((getter) => !IGNORED_GETTER.includes(getter))
+        setAvailableGetters(filteredGetter)
+      })
   }, [currentStandardizer])
 
   return (
