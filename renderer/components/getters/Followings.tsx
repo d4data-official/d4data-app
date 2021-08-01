@@ -26,7 +26,7 @@ function ShowCommunities({ data }: { data: NonNullable<GetterData<Array<Followin
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable componentName="Communities"/>
+          <NoDataAvailable/>
         </Box>
       </Container>
     );
@@ -47,7 +47,7 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable componentName="Friends"/>
+          <NoDataAvailable/>
         </Box>
       </Container>
     );

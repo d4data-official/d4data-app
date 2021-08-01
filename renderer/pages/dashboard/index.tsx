@@ -25,7 +25,7 @@ function Dashboard() {
 
   if (data.data === null) {
     return (
-      <NoDataAvailable componentName={ capitalize(componentName) }/>
+      <NoDataAvailable/>
     )
   }
 
