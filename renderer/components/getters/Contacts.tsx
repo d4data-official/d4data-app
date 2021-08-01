@@ -78,7 +78,10 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
                 }
 
                 return (
-                  <StyledTableRow key={ idx.toString() }>
+                  <StyledTableRow
+                    key={ idx.toString() }
+                    sx={ { cursor: 'pointer', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.1) !important' } } }
+                  >
                     <TableCell
                       onClick={ () => handleClick(profile) }
                       component="th"
