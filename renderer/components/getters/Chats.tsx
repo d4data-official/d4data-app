@@ -123,7 +123,7 @@ export default function Chats({ data: { data: chatList } }: Props) {
       </Sidebar>
       { data && <Conversation chat={ currentChat! } data={ data }/> }
       { !data && (data === null
-        ? <Loading componentName="ChatMessages"/>
+        ? <Loading />
         : <div className={ classes.empty }>Please select a conversation</div>) }
     </MainContainer>
   )

@@ -19,7 +19,7 @@ function Dashboard() {
 
   if (data === undefined || data.componentName !== componentName) {
     return (
-      <Loading componentName={ capitalize(componentName) }/>
+      <Loading />
     )
   }
 

@@ -5,7 +5,6 @@ import { Box, Theme } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
 interface Props {
-  componentName: string,
   title?: string,
   description?: string,
 }
@@ -40,23 +39,17 @@ const useStyles = makeStyles({
   },
 });
 
-function GenerateDefaultDescription({ componentName }: any) {
+function GenerateDefaultDescription() {
   const classes = useStyles();
 
   return (
     <div className={ classes.descr }>
-      <span>It seems that this service collected some</span>
-      <span>
-        {' '}
-        {componentName}
-        {' '}
-      </span>
-      <span>data about you...</span>
+      <span>It seems that this service collected some data about you in this category...</span>
     </div>
   );
 }
 
-export default function Loading({ componentName, title, description }: Props) {
+export default function Loading({ title, description }: Props) {
   const classes = useStyles();
 
   return (
@@ -65,7 +58,7 @@ export default function Loading({ componentName, title, description }: Props) {
         <div className={ classes.nda }>
           <SentimentVerySatisfiedIcon className={ classes.icon } />
           <h2 className={ classes.ndaTitle }>{title ?? 'Loading'}</h2>
-          {description ?? <GenerateDefaultDescription componentName={ componentName } />}
+          {description ?? <GenerateDefaultDescription />}
         </div>
       </Box>
     </div>
