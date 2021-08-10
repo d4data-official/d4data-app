@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
@@ -15,24 +15,6 @@ import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
-
-const StyledTableCell = withStyles((theme) => createStyles({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
-
-const StyledTableRow = withStyles((theme) => createStyles({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
@@ -62,12 +44,12 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
-              <StyledTableRow>
-                <StyledTableCell>Picture</StyledTableCell>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell>Username</StyledTableCell>
-                <StyledTableCell>E-mail</StyledTableCell>
-              </StyledTableRow>
+              <TableRow>
+                <TableCell>Picture</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Username</TableCell>
+                <TableCell>E-mail</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               { data.data.map((row: Contact, idx) => {
@@ -78,7 +60,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
                 }
 
                 return (
-                  <StyledTableRow
+                  <TableRow
                     key={ idx.toString() }
                     sx={ { cursor: 'pointer', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.1) !important' } } }
                   >
@@ -112,7 +94,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
                     >
                       { row.email }
                     </TableCell>
-                  </StyledTableRow>
+                  </TableRow>
                 )
               }) }
             </TableBody>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
@@ -13,24 +13,6 @@ import Typography from '@material-ui/core/Typography'
 import { Community } from '@d4data/archive-lib/dist/src/types/schemas'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import moment from 'moment'
-
-const StyledTableCell = withStyles((theme) => createStyles({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
-
-const StyledTableRow = withStyles((theme) => createStyles({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
@@ -52,16 +34,16 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
-              <StyledTableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell>Joined date</StyledTableCell>
-              </StyledTableRow>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>Joined date</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               { data.data.map((row) => {
                 const community = row
                 return (
-                  <StyledTableRow key={ row.name }>
+                  <TableRow key={ row.name }>
                     <TableCell
                       component="th"
                       scope="row"
@@ -76,7 +58,7 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
                         ? moment(new Date(community.joinedDate)).format('yyyy-MM-DD')
                         : 'No date provided' }
                     </TableCell>
-                  </StyledTableRow>
+                  </TableRow>
                 )
               }) }
             </TableBody>

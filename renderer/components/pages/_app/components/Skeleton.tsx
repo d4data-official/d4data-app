@@ -8,11 +8,11 @@ import Settings from '@material-ui/icons/Settings'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import { GlobalContext } from 'renderer/context/Store'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
 import getGetterLabel from '../../../../modules/getGetterLabel'
-import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
