@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles';
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
-import { Box, Theme } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
 interface Props {

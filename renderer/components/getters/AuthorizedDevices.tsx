@@ -2,8 +2,7 @@ import { AuthorizedDevice } from '@d4data/archive-lib/dist/src/types/schemas'
 import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import { Theme } from '@material-ui/core/styles'
-import { createStyles, makeStyles, withStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
@@ -17,24 +16,6 @@ import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer
 export interface Props {
   data: NonNullable<GetterData<Array<AuthorizedDevice>>>
 }
-
-const StyledTableCell = withStyles((theme: Theme) => createStyles({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
-
-const StyledTableRow = withStyles((theme: Theme) => createStyles({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow)
 
 const useStyles = makeStyles({
   table: {
@@ -56,17 +37,17 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
         <TableContainer component={ Paper }>
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
-              <StyledTableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell>IP</StyledTableCell>
-                <StyledTableCell>Date</StyledTableCell>
-              </StyledTableRow>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>IP</TableCell>
+                <TableCell>Date</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               { data.data.map((row) => {
                 const device = row
                 return (
-                  <StyledTableRow key={ row.name }>
+                  <TableRow key={ row.name }>
                     <TableCell
                       component="th"
                       scope="row"
@@ -85,7 +66,7 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
                     >
                       { device.authorizationDate?.toLocaleString() ?? 'No date provided' }
                     </TableCell>
-                  </StyledTableRow>
+                  </TableRow>
                 )
               }) }
             </TableBody>

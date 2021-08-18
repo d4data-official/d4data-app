@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { capitalize } from '@material-ui/core'
 import useDashboardComponent from '@hooks/useDashboardComponent'
 import Loading from 'components/pages/dashboard/components/Loading'
 import NoDataAvailable from 'components/pages/dashboard/components/NoDataAvailable'
