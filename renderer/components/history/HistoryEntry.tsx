@@ -80,68 +80,70 @@ export default function HistoryEntry({
   }
 
   return (
-    <Grid
-      container
-      alignItems="center"
-      justifyContent="space-between"
-      spacing={ 1 }
-      wrap="nowrap"
-      className={ className }
-      style={ style }
-    >
-      { entry.archiveName && (
-        <Grid item xs={ 3 }>
-          <Typography variant="h6" align="left" noWrap>{ entry.archiveName }</Typography>
-        </Grid>
-      ) }
+    <div>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        spacing={ 1 }
+        wrap="nowrap"
+        className={ className }
+        style={ style }
+      >
+        { entry.archiveName && (
+          <Grid item xs={ 3 }>
+            <Typography variant="h6" align="left" noWrap>{ entry.archiveName }</Typography>
+          </Grid>
+        ) }
 
-      <Grid item xs={ 1 }>
-        <Typography variant="body1" align="left">{ entry.service }</Typography>
-      </Grid>
-
-      { showSize && (
-        <Grid item xs={ 2 }>
-          <Typography variant="body1" align="left">{ filesize(entry.size) }</Typography>
-        </Grid>
-      ) }
-
-      { showDeltaTime && (
         <Grid item xs={ 1 }>
-          <Typography
-            variant="overline"
-            align="center"
-            noWrap
-          >{ getDeltaTimeHumanized(entry.date).humanize(true, { s: 0, ss: 0 }) }
-          </Typography>
+          <Typography variant="body1" align="left">{ entry.service }</Typography>
         </Grid>
-      ) }
 
-      { showDeleteButton && showRestoreButton && (
-        <Grid container justifyContent="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
-          { showDeleteButton && (
-            <Grid item>
-              <Button
-                onClick={ () => deleteEntryHandler() }
-                disabled={ loading }
-                startIcon={ <DeleteIcon/> }
-                className={ classes.deleteButton }
-              >Delete
-              </Button>
-            </Grid>
-          ) }
-          { showRestoreButton && (
-            <Grid item>
-              <Button
-                onClick={ () => restoreEntryHandler() }
-                disabled={ loading }
-                startIcon={ <RestoreIcon/> }
-                className={ classes.restoreButton }
-              >Restore
-              </Button>
-            </Grid>
-          ) }
-        </Grid>
-      ) }
-    </Grid>
+        { showSize && (
+          <Grid item xs={ 2 }>
+            <Typography variant="body1" align="left">{ filesize(entry.size) }</Typography>
+          </Grid>
+        ) }
+
+        { showDeltaTime && (
+          <Grid item xs={ 1 }>
+            <Typography
+              variant="overline"
+              align="center"
+              noWrap
+            >{ getDeltaTimeHumanized(entry.date).humanize(true, { s: 0, ss: 0 }) }
+            </Typography>
+          </Grid>
+        ) }
+
+        { showDeleteButton && showRestoreButton && (
+          <Grid container justifyContent="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
+            { showDeleteButton && (
+              <Grid item>
+                <Button
+                  onClick={ () => deleteEntryHandler() }
+                  disabled={ loading }
+                  startIcon={ <DeleteIcon/> }
+                  className={ classes.deleteButton }
+                >Delete
+                </Button>
+              </Grid>
+            ) }
+            { showRestoreButton && (
+              <Grid item>
+                <Button
+                  onClick={ () => restoreEntryHandler() }
+                  disabled={ loading }
+                  startIcon={ <RestoreIcon/> }
+                  className={ classes.restoreButton }
+                >Restore
+                </Button>
+              </Grid>
+            ) }
+          </Grid>
+        ) }
+      </Grid>
+    </div>
   )
 }
