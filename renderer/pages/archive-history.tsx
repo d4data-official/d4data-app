@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from '@material-ui/core'
+import { Box, Container, Grid, Stack, Typography } from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import useArchiveHistory from '../hooks/useArchiveHistory'
@@ -30,7 +30,10 @@ export default function ArchiveHistoryPage() {
       </Grid>
 
       <Box marginY={ 4 }>
-        { orderedHistory.map((entry) => <HistoryEntry entry={ entry } key={ entry.path }/>) }
+        <Stack spacing={ 1 }>
+          { orderedHistory.map((entry) => <HistoryEntry entry={ entry } key={ entry.path }/>) }
+        </Stack>
+
         <Show condition={ history.length === 0 }>
           <Box marginTop={ 12 } display="flex" alignItems="center" justifyContent="center">
             <Typography variant="h5" className={ classes.emptyMessage }>Empty history</Typography>
