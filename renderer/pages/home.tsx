@@ -7,8 +7,9 @@ import { useRouter } from 'next/router'
 import Path from 'path'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
-import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
-import LastHistoryEntry from '../components/history/LastHistoryEntry'
+import Trans from 'components/Translate';
+import ArchiveExtractProgress, { ProgressState } from 'components/pages/home/components/ArchiveExtractProgress'
+import LastHistoryEntry from 'components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
 
 export default function HomePage() {
@@ -80,12 +81,11 @@ export default function HomePage() {
 
       <Grid item xs={ 8 }>
         <Typography variant="h6" align="center">
-          Visualize your personal data in just one click !
+          <Trans page="homepage" section="header" />
         </Typography>
         <br/>
         <Typography variant="body1" align="center">
-          D4Data is the secure interface to convert non-human readable data to an intuitive user interface where anybody
-          can understand its digital fingerprint.
+          <Trans page="homepage" section="description" />
         </Typography>
       </Grid>
 
@@ -96,12 +96,12 @@ export default function HomePage() {
 
       { lastHistoryEntry && (
         <Grid item xs={ 8 }>
-          <Typography variant="h6">Last archive processed</Typography>
+          <Typography variant="h6"><Trans page="homepage" section="historyTitle" /></Typography>
           <Box marginY={ 2 }>
             <LastHistoryEntry/>
           </Box>
           <Button onClick={ () => router.push('/archive-history') } variant="outlined">
-            Show complete history ({ history.length })
+            <Trans page="homepage" section="historyButton" /> ({ history.length })
           </Button>
         </Grid>
       ) }

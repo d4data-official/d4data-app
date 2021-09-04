@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from '@material-ui/core'
-import React, { CSSProperties, useState } from 'react'
+import React, { CSSProperties, useState, useContext } from 'react'
 import moment from 'moment'
 import { Theme } from '@material-ui/core/styles'
 import { createStyles, makeStyles } from '@material-ui/styles'
@@ -9,6 +9,8 @@ import filesize from 'filesize'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
+import Trans from 'components/Translate'
+import { GlobalContext } from 'renderer/context/Store'
 
 export interface Props {
   entry: ArchiveHistoryEntry
@@ -30,9 +32,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   restoreButton: {
     color: 'white',
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: theme.palette.success.dark,
+      backgroundColor: theme.palette.primary.dark,
     },
   },
 }))
@@ -46,17 +48,22 @@ export default function HistoryEntry({
   className,
   style,
 }: Props) {
+  const { language } = useContext(GlobalContext);
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
   const classes = useStyles()
 
-  const getDeltaTimeHumanized = (date: Date) => moment.duration(date.valueOf() - new Date().valueOf())
+  const getDeltaTimeHumanized = (date: Date) => {
+    const duration = moment.duration(date.valueOf() - new Date().valueOf())
+    duration.locale(language.key);
+    return duration;
+  }
 
   const deleteEntryHandler = () => {
     setLoading(true)
     deleteHistoryEntry(entry)
       .then(() => {
-        toast(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> deleted</span>, { position: 'bottom-left' })
+        toast(<span>Archive <b>{entry.archiveName ?? entry.service}</b> deleted</span>, { position: 'bottom-left' })
       })
       .finally(() => setLoading(false))
   }
@@ -66,7 +73,7 @@ export default function HistoryEntry({
     restoreArchiveFromEntry(entry)
       .then(() => {
         toast.success(
-          <span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>,
+          <span>Archive <b>{entry.archiveName ?? entry.service}</b> restored</span>,
           { position: 'bottom-left' },
         )
       })
@@ -89,59 +96,61 @@ export default function HistoryEntry({
       className={ className }
       style={ style }
     >
-      { entry.archiveName && (
+      {entry.archiveName && (
         <Grid item xs={ 3 }>
-          <Typography variant="h6" align="left" noWrap>{ entry.archiveName }</Typography>
+          <Typography variant="h6" align="left" noWrap>{entry.archiveName}</Typography>
         </Grid>
-      ) }
+      )}
 
       <Grid item xs={ 1 }>
-        <Typography variant="body1" align="left">{ entry.service }</Typography>
+        <Typography variant="body1" align="left">{entry.service}</Typography>
       </Grid>
 
-      { showSize && (
+      {showSize && (
         <Grid item xs={ 2 }>
-          <Typography variant="body1" align="left">{ filesize(entry.size) }</Typography>
+          <Typography variant="body1" align="left">{filesize(entry.size)}</Typography>
         </Grid>
-      ) }
+      )}
 
-      { showDeltaTime && (
+      {showDeltaTime && (
         <Grid item xs={ 1 }>
           <Typography
             variant="overline"
             align="center"
             noWrap
-          >{ getDeltaTimeHumanized(entry.date).humanize(true, { s: 0, ss: 0 }) }
+          >{getDeltaTimeHumanized(entry.date).humanize(true, { s: 0, ss: 0 })}
           </Typography>
         </Grid>
-      ) }
+      )}
 
-      { showDeleteButton && showRestoreButton && (
+      {showDeleteButton && showRestoreButton && (
         <Grid container justifyContent="flex-end" wrap="nowrap" spacing={ 1 } item style={ { width: 'auto' } }>
-          { showDeleteButton && (
+          {showDeleteButton && (
             <Grid item>
               <Button
                 onClick={ () => deleteEntryHandler() }
                 disabled={ loading }
-                startIcon={ <DeleteIcon/> }
+                startIcon={ <DeleteIcon /> }
                 className={ classes.deleteButton }
-              >Delete
+              >
+                <Trans page="history" section="delete" />
               </Button>
             </Grid>
-          ) }
-          { showRestoreButton && (
+          )}
+          {showRestoreButton && (
             <Grid item>
               <Button
                 onClick={ () => restoreEntryHandler() }
                 disabled={ loading }
-                startIcon={ <RestoreIcon/> }
+                startIcon={ <RestoreIcon /> }
                 className={ classes.restoreButton }
-              >Restore
+              >
+                <Trans page="history" section="restore" />
               </Button>
             </Grid>
-          ) }
+          )}
         </Grid>
-      ) }
+      )}
     </Grid>
   )
 }

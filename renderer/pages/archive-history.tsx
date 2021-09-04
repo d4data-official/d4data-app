@@ -19,7 +19,7 @@ export default function ArchiveHistoryPage() {
   const orderedHistory = [...history].reverse()
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">{ history.length } entries</Typography>
