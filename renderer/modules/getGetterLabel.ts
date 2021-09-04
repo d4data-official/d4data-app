@@ -1,11 +1,8 @@
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
-import Case from 'case'
+import { useTranslation } from 'components/Translate'
 
-export default function getGetterLabel(getter: Getters) {
-  switch (getter) {
-    case Getters.APIS:
-      return 'Linked applications'
-    default:
-      return Case.capital(getter).replace('Get ', '')
-  }
+export default function useLabelizeLabel() {
+  const translate = useTranslation();
+
+  return (getter: Getters) => translate('getters', getter.replace('get', '').toLowerCase());
 }

@@ -16,8 +16,6 @@ export interface Props {
   onClose?: DialogProps['onClose']
 }
 
-const DIALOG_TITLE = 'Settings'
-
 export default function AppSettingsDialog({ open, onClose }: Props) {
   const { currentTheme, rawData, language, dispatch } = useContext(GlobalContext)
   const translate = useTranslation();
@@ -48,7 +46,7 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
           color: (theme) => theme.palette.primary.contrastText,
         } }
       >
-        {DIALOG_TITLE}
+        <Trans page="settings" section="title" />
       </DialogTitle>
 
       <DialogContent sx={ { p: 0 } }>

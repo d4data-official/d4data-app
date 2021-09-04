@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => createStyles({
     alignItems: 'center',
     fontSize: '18pt',
   },
+  grid: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }))
 
 export default function MetadataCard({ icon, metadata, subtitle }: MetaDataCardComponent) {
@@ -27,13 +31,13 @@ export default function MetadataCard({ icon, metadata, subtitle }: MetaDataCardC
     <Card className={ classes.root }>
       <CardContent>
         <Grid container spacing={ 2 }>
-          <Grid item xs={ 4 }>
-            <Typography variant="body2" component="p">
-              { subtitle }
-            </Typography>
+          <Grid item xs={ 4 } className={ classes.grid }>
             { icon }
           </Grid>
           <Grid item>
+            <Typography variant="body2" component="p">
+              { subtitle }
+            </Typography>
             <Typography color="textSecondary" gutterBottom className={ classes.flexIcon }>{ metadata }</Typography>
           </Grid>
         </Grid>

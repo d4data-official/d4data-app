@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Filesize from 'filesize'
 import { ArchiveMetaData } from '@d4data/archive-lib'
 import { Card, Container, Grid, Typography } from '@material-ui/core'
@@ -10,10 +10,12 @@ import EventNoteIcon from '@material-ui/icons/EventNote'
 import moment from 'moment'
 import MetadataCard from '@components/pages/dashboard/components/MetaDataCard'
 import useArchiveManager from '@hooks/useArchiveManager'
+import { GlobalContext } from 'renderer/context/Store'
+import Trans, { useTranslation } from './Translate'
 
 function computeLogoFromServiceName(serviceName: string) {
-  if (serviceName.toUpperCase() === 'FACEBOOK') return (<Facebook/>)
-  if (serviceName.toUpperCase() === 'REDDIT') return (<Reddit/>)
+  if (serviceName.toUpperCase() === 'FACEBOOK') return (<Facebook fontSize="large"/>)
+  if (serviceName.toUpperCase() === 'REDDIT') return (<Reddit fontSize="large"/>)
   // if (serviceName.toUpperCase() === 'DISCORD') return (<Reddit/>)
   // if (serviceName.toUpperCase() === 'GOOGLE') return (<Reddit/>)
   return (<UnarchiveIcon/>)
@@ -22,18 +24,18 @@ function computeLogoFromServiceName(serviceName: string) {
 function generateTeamNotes() {
   return (
     <div>
-      <h2>A note from the team</h2>
+      <h2><Trans page="overview" section="note" /></h2>
 
       <Card component="fieldset" style={ { borderColor: 'transparent', padding: 15, paddingBottom: 5 } }>
         <Grid container>
           <Grid item>
-            <Typography component="legend">GDPR Score (coming soon)</Typography>
+            <Typography component="legend"><Trans page="overview" section="score" /></Typography>
             <Rating name="read-only" value={ 0 } disabled readOnly/>
           </Grid>
         </Grid>
         <Grid item>
-          <p>This section will help you know more about the services you are using and their data policies.</p>
-          <p>D4Data will set a score for each supported services. More to come during the release!</p>
+          <p><Trans page="overview" section="noteDescription" /></p>
+          <p><Trans page="overview" section="scoreDescription" /></p>
         </Grid>
       </Card>
 
@@ -44,6 +46,8 @@ function generateTeamNotes() {
 export default function Overview() {
   const [archiveMetadata, setArchiveMetadata] = useState<ArchiveMetaData | undefined>()
   const { getArchiveMetadata } = useArchiveManager()
+  const { language } = useContext(GlobalContext);
+  const translate = useTranslation();
 
   useEffect(() => {
     getArchiveMetadata()
@@ -51,7 +55,7 @@ export default function Overview() {
   }, [])
   return (
     <Container>
-      <h2>About your archive</h2>
+      <h2><Trans page="overview" section="about" /></h2>
       <Grid container spacing={ 4 }>
         <Grid item xs={ 4 }>
           <MetadataCard
@@ -59,7 +63,7 @@ export default function Overview() {
               ? computeLogoFromServiceName(archiveMetadata?.service)
               : 'Loading...' }
             metadata={ archiveMetadata?.service }
-            subtitle="Service"
+            subtitle={ translate('overview', 'service') }
           />
 
         </Grid>
@@ -67,9 +71,9 @@ export default function Overview() {
         {archiveMetadata?.size && (
           <Grid item xs={ 4 }>
             <MetadataCard
-              icon={ <UnarchiveIcon/> }
+              icon={ <UnarchiveIcon fontSize="large" /> }
               metadata={ Filesize(archiveMetadata?.size) }
-              subtitle="Archive size"
+              subtitle={ translate('overview', 'size') }
             />
           </Grid>
         )}
@@ -77,9 +81,11 @@ export default function Overview() {
         {archiveMetadata?.creationDate && (
           <Grid item xs={ 4 }>
             <MetadataCard
-              icon={ <EventNoteIcon/> }
-              metadata={ moment.duration(archiveMetadata?.creationDate?.valueOf() / 1000).humanize() }
-              subtitle="Archive age"
+              icon={ <EventNoteIcon fontSize="large" /> }
+              metadata={ moment.duration(
+                archiveMetadata?.creationDate?.valueOf() / 1000,
+              ).locale(language.key).humanize() }
+              subtitle={ translate('overview', 'date') }
             />
           </Grid>
         )}
