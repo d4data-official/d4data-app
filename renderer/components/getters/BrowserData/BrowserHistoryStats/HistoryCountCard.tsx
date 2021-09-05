@@ -31,7 +31,7 @@ export default function HistoryCountCard({ browserDataStats }: Props) {
   const getHumanReadableCount = (value: number) => numeral(value).format(value > 1000 ? '0.0a' : '0a')
 
   return (
-    <Paper className={ classes.root } elevation={ 2 }>
+    <Paper className={ classes.root } elevation={ 0 }>
       <Grid container alignItems="center" justifyContent="space-between" wrap="nowrap" style={ { height: '100%' } }>
         <Grid item>
           <Typography variant="h3" className={ classes.value }>

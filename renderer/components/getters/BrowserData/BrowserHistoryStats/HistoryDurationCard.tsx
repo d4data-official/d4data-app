@@ -35,7 +35,7 @@ export default function HistoryDurationCard({ browserDataStats }: Props) {
   }
 
   return (
-    <Paper className={ classes.root } elevation={ 2 }>
+    <Paper className={ classes.root } elevation={ 0 }>
       <Grid container alignItems="center" justifyContent="space-between" wrap="nowrap" style={ { height: '100%' } }>
         <Grid item>
           <Typography variant="h3" className={ classes.value }>
