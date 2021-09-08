@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-tag-spacing': 'off',
+    '@typescript-eslint/no-shadow': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',

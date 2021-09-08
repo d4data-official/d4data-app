@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => createStyles({
   root: {
     height: 175,
     width: 350,
-    padding: `calc(${ theme.spacing(4) }px - 3px)`,
+    padding: theme.spacing(4),
     color: theme.palette.primary.main,
     border: `3px solid ${ theme.palette.primary.main }`,
   },
