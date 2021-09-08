@@ -64,7 +64,42 @@ interface Dictionary {
     mails: string,
     events: string,
     [k: string]: string
+  },
+  common: {
+    name: string,
+    displayName: string,
+    firstName: string,
+    lastName: string,
+    date: string,
+    address: string,
+    longitude: string,
+    latitude: string,
+    username: string,
+    ip: string,
+    joinedDate: string,
+    picture: string,
+    email: string,
+    value: string,
+    item: string,
+    price: string,
+    paymentMethod: string,
+    transactionStatus: string,
+    transactionDate: string,
+    gender: string,
+    nickname: string,
+    birthday: string,
+    creationDate: string,
+    phone: string,
+  },
+  apis: {
+    found: string,
   }
+  authorizeddevices: {
+    found: string,
+  },
+  communities: {
+    found: string,
+  },
   // [k: string]: {
   //   [k: string]: string
   // }
@@ -139,6 +174,41 @@ const dictionaries: Dictionaries = {
       mails: 'Mails',
       events: 'Events',
     },
+    common: {
+      name: 'Name',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      displayName: 'Display Name',
+      date: 'Date',
+      address: 'Address',
+      longitude: 'Longitude',
+      latitude: 'Latitude',
+      username: 'Username',
+      ip: 'IP Address',
+      joinedDate: 'Joined Date',
+      picture: 'Picture',
+      email: 'E-Mail',
+      value: 'Value',
+      item: 'Item',
+      price: 'Price (Currency)',
+      paymentMethod: 'Payment Method',
+      transactionStatus: 'Transaction Status',
+      transactionDate: 'Transaction Date',
+      gender: 'Gender',
+      nickname: 'Nickname',
+      birthday: 'Birthday',
+      creationDate: 'CreationDate',
+      phone: 'Phone',
+    },
+    authorizeddevices: {
+      found: 'authorized devices found',
+    },
+    communities: {
+      found: 'communities found',
+    },
+    apis: {
+      found: 'linked applications found',
+    },
   },
   fr: {
     homepage: {
@@ -191,7 +261,7 @@ const dictionaries: Dictionaries = {
       chats: 'Discussions',
       chatmessages: 'Messages',
       comments: 'Commentaires',
-      posts: 'Postes',
+      posts: 'Publications',
       messages: 'Messages',
       apis: 'Applications Connectées',
       connections: 'Connections',
@@ -206,6 +276,41 @@ const dictionaries: Dictionaries = {
       authorizeddevices: 'Appareils autorisés',
       mails: 'Mails',
       events: 'Événements',
+    },
+    common: {
+      name: 'Nom',
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      displayName: 'Nom d\'affichage',
+      date: 'Date',
+      address: 'Addresse',
+      longitude: 'Longitude',
+      latitude: 'Latitude',
+      username: 'Nom d\'utilisateur',
+      ip: 'Addresse IP',
+      joinedDate: 'Date d\'adhésion',
+      picture: 'Image',
+      email: 'Courriel',
+      value: 'Valeur',
+      item: 'Article',
+      price: 'Prix (Monnaie)',
+      paymentMethod: 'Méthode de paiment',
+      transactionStatus: 'Status de la transaction',
+      transactionDate: 'Date de la transaction',
+      gender: 'Genre',
+      nickname: 'Surnom',
+      birthday: 'Date de naissance',
+      creationDate: 'Date de création',
+      phone: 'Téléphone',
+    },
+    authorizeddevices: {
+      found: 'apparails autorisés trouvées',
+    },
+    communities: {
+      found: 'communautés trouvées',
+    },
+    apis: {
+      found: 'application connectées trouvées',
     },
   },
 };
@@ -230,6 +335,18 @@ export function useTranslation() {
   const translate = useCallback(
     <P extends keyof Dictionary, K extends keyof Dictionary[P]>(p: P, k: K): string => (
       dictionaries[language.key][p][k] as unknown as string
+    ),
+    [language],
+  )
+  return translate;
+}
+
+export function useCommonTranslation() {
+  const { language } = useContext(GlobalContext);
+
+  const translate = useCallback(
+    <K extends keyof Dictionary['common']>(k: K): string => (
+      dictionaries[language.key].common[k]
     ),
     [language],
   )

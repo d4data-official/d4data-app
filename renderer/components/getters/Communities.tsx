@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { Community } from '@d4data/archive-lib/dist/src/types/schemas'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import moment from 'moment'
+import Trans from 'components/Translate'
 
 const useStyles = makeStyles({
   table: {
@@ -27,7 +28,7 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } communities found` }
+          <Trans page="communities" section="found" template={ `${ data.data.length } {{template}}.` } />
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -35,8 +36,10 @@ export default function Communities({ data }: { data: NonNullable<GetterData<Arr
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Joined date</TableCell>
+                <TableCell>
+                  <Trans page="common" section="name" />
+                </TableCell>
+                <TableCell><Trans page="common" section="joinedDate" /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

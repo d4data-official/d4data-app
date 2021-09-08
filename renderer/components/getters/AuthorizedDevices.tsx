@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import Trans from 'components/Translate'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 
 export interface Props {
@@ -30,7 +31,7 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } authorized devices found` }
+          <Trans page="authorizeddevices" section="found" template={ `${ data.data.length } {{template}}.` } />
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -38,9 +39,9 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>IP</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell><Trans page="common" section="name" /></TableCell>
+                <TableCell><Trans page="common" section="ip" /></TableCell>
+                <TableCell><Trans page="common" section="date" /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

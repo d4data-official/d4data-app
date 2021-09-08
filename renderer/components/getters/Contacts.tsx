@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { Avatar } from '@material-ui/core'
 import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
+import Trans from 'components/Translate'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import ContactComponent from './Contacts/ContactComponent'
@@ -45,10 +46,12 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Picture</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Username</TableCell>
-                <TableCell>E-mail</TableCell>
+                <TableCell><Trans page="common" section="picture" /></TableCell>
+                <TableCell>
+                  <Trans page="common" section="name" />
+                </TableCell>
+                <TableCell><Trans page="common" section="username" /></TableCell>
+                <TableCell><Trans page="common" section="email" /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

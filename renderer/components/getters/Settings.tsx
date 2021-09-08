@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import Trans from 'components/Translate'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 
 export interface Props {
@@ -38,8 +39,10 @@ export default function Settings({ data }: { data: NonNullable<GetterData<Array<
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Value</TableCell>
+                <TableCell>
+                  <Trans page="common" section="name" />
+                </TableCell>
+                <TableCell><Trans page="common" section="value" /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

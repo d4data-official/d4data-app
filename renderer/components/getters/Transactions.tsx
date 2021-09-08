@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
+import Trans from 'components/Translate'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 
 export interface Props {
@@ -38,11 +39,11 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Item</TableCell>
-                <TableCell>Price (Currency)</TableCell>
-                <TableCell>Payment method</TableCell>
-                <TableCell>Transaction status</TableCell>
-                <TableCell>Transaction date</TableCell>
+                <TableCell><Trans page="common" section="item" /></TableCell>
+                <TableCell><Trans page="common" section="price" /></TableCell>
+                <TableCell><Trans page="common" section="paymentMethod" /></TableCell>
+                <TableCell><Trans page="common" section="transactionStatus" /></TableCell>
+                <TableCell><Trans page="common" section="transactionDate" /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

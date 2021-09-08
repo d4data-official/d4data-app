@@ -1,6 +1,6 @@
 import { useReducer, createContext, Dispatch, Reducer } from 'react'
 
-type Language = { name: string, key: 'en'|'fr' }
+type Language = { name: string, key: 'en' | 'fr' }
 
 export const availableLanguages: Array<Language> = [
   { key: 'en', name: 'English' }, { key: 'fr', name: 'Français' },

@@ -5,9 +5,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Skeleton from 'components/pages/_app/components/Skeleton'
 import Store, { GlobalContext } from 'renderer/context/Store'
 import { Toaster } from 'react-hot-toast'
+import type { AppProps } from 'next/app'
 import themeDark from '../themeDark'
 import themeLight from '../themeLight'
-import type { AppProps } from 'next/app'
 import '../style.css'
 
 function AppContent(props: AppProps) {

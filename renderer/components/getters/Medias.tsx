@@ -1,10 +1,10 @@
 import React from 'react'
-import { ImageList, ImageListItem, ImageListItemBar, Modal } from '@material-ui/core'
+import { ImageList, ImageListItem, ImageListItemBar, Modal, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Media } from '@d4data/archive-lib/dist/src/types/schemas'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexWrap: 'wrap',
     justifyContent: 'space-around',

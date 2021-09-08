@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 import { Unarchive } from '@material-ui/icons'
+import { toast } from 'react-hot-toast'
 import { makeStyles } from '@material-ui/styles'
 import Trans from 'components/Translate'
 
@@ -50,7 +51,19 @@ export default function Dropzone({ onLoaded }: Props) {
       onLoaded(fileList[0].path)
     }
   }, [])
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: ['.zip'] })
+
+  const handleDropRejected = useCallback(() => {
+    toast.error(<span>File type not supported !</span>,
+      { position: 'bottom-left' });
+  }, [])
+
+  const { getRootProps, getInputProps } = useDropzone(
+    {
+      onDrop,
+      accept: ['.zip', '.tar', '.tgz'],
+      onDropRejected: handleDropRejected,
+    },
+  )
 
   return (
     <div { ...getRootProps() } className={ classes.root }>

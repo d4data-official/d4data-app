@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/styles'
 import { grey } from '@material-ui/core/colors'
+import { Theme } from '@material-ui/core'
 
-export default makeStyles((theme) => ({
+export default makeStyles((theme: Theme) => ({
   root: {
     height: '100%',
     background: theme?.palette?.background?.default ?? grey[100],
