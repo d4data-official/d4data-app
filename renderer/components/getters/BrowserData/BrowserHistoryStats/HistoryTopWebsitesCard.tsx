@@ -42,7 +42,7 @@ export default function HistoryTopWebsitesCard({ browserDataStats }: Props) {
   const topWebsites = useMemo(() => browserDataStats.getHistoryTopWebsites(5), [browserDataStats])
 
   return (
-    <Paper className={ classes.root } elevation={ 2 }>
+    <Paper className={ classes.root } elevation={ 0 }>
       <Grid
         container
         spacing={ 2 }
