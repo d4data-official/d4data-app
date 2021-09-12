@@ -45,7 +45,7 @@ export default function DisplayNotes({ data }: Props) {
                     { note.title ?? 'Unnamed task' }
                   </Typography>
                   <Typography variant="body2" component="h2">
-                    { note.creationDate
+                    { moment.duration(note.creationDate.valueOf() / 10).humanize()
                       ? `${ moment.duration(note.creationDate.valueOf() / 10).humanize() } ago`
                       : 'No date provided' }
                   </Typography>
