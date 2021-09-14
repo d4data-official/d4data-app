@@ -53,7 +53,7 @@ export default function SharableContent({
   const wrapperRef = useRef<HTMLDivElement>(null)
   const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
 
-  const handleExportToClipboard = (destination: 'clipboard' | 'file') => {
+  const handleExport = (destination: 'clipboard' | 'file') => {
     popupState.close()
 
     html2canvas(wrapperRef.current!, {
@@ -82,14 +82,14 @@ export default function SharableContent({
       </Box>
 
       <Menu { ...bindMenu(popupState) }>
-        <MenuItem onClick={ () => handleExportToClipboard('clipboard') }>
+        <MenuItem onClick={ () => handleExport('clipboard') }>
           <ListItemIcon>
             <ContentCopyIcon fontSize="small"/>
           </ListItemIcon>
           <ListItemText>{ MENU_ITEM_EXPORT_TO_CLIPBOARD }</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={ () => handleExportToClipboard('file') }>
+        <MenuItem onClick={ () => handleExport('file') }>
           <ListItemIcon>
             <FileDownloadIcon fontSize="small"/>
           </ListItemIcon>
