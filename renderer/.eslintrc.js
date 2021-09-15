@@ -15,7 +15,7 @@ module.exports = {
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'no-underscore-dangle': 'off',
-    'max-len': ['error', { 'code': 120 }],
+    'max-len': ['warn', { 'code': 120 }],
     'class-methods-use-this': 'off',
     'object-curly-newline': 'off',
     'template-curly-spacing': ['error', 'always'],
