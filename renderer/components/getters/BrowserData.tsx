@@ -42,7 +42,7 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
   const getTabContent = () => {
     switch (currentTab) {
       case 0:
-        return <BrowserHistoryStats data={ data.data }/>
+        return <BrowserHistoryStats/>
       case 1:
         return <BrowserHistory data={ data.data.history }/>
       case 2:
