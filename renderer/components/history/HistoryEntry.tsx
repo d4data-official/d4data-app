@@ -9,6 +9,7 @@ import filesize from 'filesize'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
+import EllipsisTooltip from '../EllipsisTooltip'
 
 export interface Props {
   entry: ArchiveHistoryEntry
@@ -92,7 +93,9 @@ export default function HistoryEntry({
       >
         { entry.archiveName && (
           <Grid item xs={ 3 }>
-            <Typography variant="h6" align="left" noWrap>{ entry.archiveName }</Typography>
+            <Typography variant="h6" align="left" noWrap>
+              <EllipsisTooltip text={ entry.archiveName }/>
+            </Typography>
           </Grid>
         ) }
 
@@ -126,6 +129,8 @@ export default function HistoryEntry({
                   disabled={ loading }
                   startIcon={ <DeleteIcon/> }
                   className={ classes.deleteButton }
+                  size="small"
+                  sx={ { px: 1 } }
                 >Delete
                 </Button>
               </Grid>
@@ -137,6 +142,8 @@ export default function HistoryEntry({
                   disabled={ loading }
                   startIcon={ <RestoreIcon/> }
                   className={ classes.restoreButton }
+                  size="small"
+                  sx={ { px: 1 } }
                 >Restore
                 </Button>
               </Grid>
