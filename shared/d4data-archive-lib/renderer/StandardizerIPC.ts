@@ -33,6 +33,7 @@ import ID from '../types/ID'
 import type { PaginationOptions, ParsingOptions } from '@d4data/archive-lib/dist/src/types/Parsing'
 import type RawDataReturn from '@d4data/archive-lib/dist/src/types/standardizer/RawDataReturn'
 import { StandardizerArgs } from '@shared/d4data-archive-lib/types/InstanceArgs'
+import StatisticGetterReturn from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
 
 export const CHANNEL_NAME = 'archive-lib/standardizer'
 
@@ -158,6 +159,110 @@ export default class StandardizerIPC extends ClientInstance implements Standardi
   getEvents(options?: GetterOptions): GetterReturn<Array<Event>> {
     return this.callMethod('getEvents', options)
   }
+
+  // Statistics getters
+
+  async getGlobalStatistics(): StatisticGetterReturn {
+    return this.callMethod('getGlobalStatistics')
+  }
+
+  async getProfileStatistics(): StatisticGetterReturn {
+    return this.callMethod('getProfileStatistics')
+  }
+
+  async getFriendsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getFriendsStatistics')
+  }
+
+  async getFollowingsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getFollowingsStatistics')
+  }
+
+  async getFollowersStatistics(): StatisticGetterReturn {
+    return this.callMethod('getFollowersStatistics')
+  }
+
+  async getContactsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getContactsStatistics')
+  }
+
+  async getWhereaboutsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getWhereaboutsStatistics')
+  }
+
+  async getNotificationsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getNotificationsStatistics')
+  }
+
+  async getChatsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getChatsStatistics')
+  }
+
+  async getCommentsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getCommentsStatistics')
+  }
+
+  async getPostsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getPostsStatistics')
+  }
+
+  async getMessagesStatistics(): StatisticGetterReturn {
+    return this.callMethod('getMessagesStatistics')
+  }
+
+  async getAPIsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getAPIsStatistics')
+  }
+
+  async getConnectionsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getConnectionsStatistics')
+  }
+
+  async getCommunitiesStatistics(): StatisticGetterReturn {
+    return this.callMethod('getCommunitiesStatistics')
+  }
+
+  async getSettingsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getSettingsStatistics')
+  }
+
+  async getReactedStatistics(): StatisticGetterReturn {
+    return this.callMethod('getReactedStatistics')
+  }
+
+  async getMediasStatistics(): StatisticGetterReturn {
+    return this.callMethod('getMediasStatistics')
+  }
+
+  async getTransactionsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getTransactionsStatistics')
+  }
+
+  async getBrowserDataStatistics(): StatisticGetterReturn {
+    return this.callMethod('getBrowserDataStatistics')
+  }
+
+  async getTasksStatistics(): StatisticGetterReturn {
+    return this.callMethod('getTasksStatistics')
+  }
+
+  async getAuthorizedDevicesStatistics(): StatisticGetterReturn {
+    return this.callMethod('getAuthorizedDevicesStatistics')
+  }
+
+  async getMailsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getMailsStatistics')
+  }
+
+  async getNotesStatistics(): StatisticGetterReturn {
+    return this.callMethod('getNotesStatistics')
+  }
+
+  async getEventsStatistics(): StatisticGetterReturn {
+    return this.callMethod('getEventsStatistics')
+  }
+
+  // ------------------
 
   getAvailableGetters(): Promise<Array<Getters>> {
     return this.callMethod('getAvailableGetters')
