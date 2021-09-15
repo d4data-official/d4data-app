@@ -67,6 +67,8 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
   const browserOptions: BrowserWindowConstructorOptions = {
     ...options,
     ...state,
+    title: 'D4Data',
+    // fullscreen: true,
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true,

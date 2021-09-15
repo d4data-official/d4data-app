@@ -7,8 +7,9 @@ import {
   ListItemText,
   MenuItem,
   Typography,
+  Select, SelectChangeEvent,
 } from '@material-ui/core'
-import Select from '@material-ui/core/Select'
+
 import { CalendarToday, CheckCircle, RadioButtonUnchecked } from '@material-ui/icons'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
@@ -179,11 +180,11 @@ function TaskDisplay({ task }: { task: Task }) {
 
 function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskList>> }) {
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-  const [index, setIndex] = React.useState(0)
-  const [value, setValue] = React.useState<string>('')
+  const [open] = React.useState(true)
+  const [index] = React.useState(0)
+  const [, setValue] = React.useState<string>('')
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (event: SelectChangeEvent<string>) => {
     setValue(event.target.value as string)
   }
 

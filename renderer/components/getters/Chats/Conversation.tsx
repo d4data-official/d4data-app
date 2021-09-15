@@ -17,7 +17,8 @@ import {
   Button,
   Dialog,
   DialogActions,
-  DialogContent, DialogTitle, Select, Theme, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+  DialogContent, DialogTitle, Select, Theme,
+  MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@material-ui/core';
 import { useCallback, useMemo, useState } from 'react';
 import Searchbar from './Searchbar';
 
@@ -96,7 +97,7 @@ export default function Conversation({ chat, data: { data: messageList } }: Prop
     setDoalogOpen((prev) => !prev);
   }, [dialogOpen])
 
-  const handleChangeMe = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChangeMe = useCallback((event: SelectChangeEvent<string>) => {
     setMe(event.target.value as string);
   }, [])
 

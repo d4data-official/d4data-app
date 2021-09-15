@@ -36,6 +36,7 @@ export default createTheme({
     },
   },
   palette: {
+    mode: 'light',
     primary: {
       // main: '#556cd6', // Blue
       main: '#00c687', // Green

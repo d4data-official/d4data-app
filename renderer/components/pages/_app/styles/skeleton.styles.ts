@@ -31,6 +31,7 @@ export default makeStyles((theme: Theme) => ({
   },
   toolbar: {
     ...theme.mixins.toolbar,
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

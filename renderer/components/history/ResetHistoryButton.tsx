@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }))
 
-export default function ResetHistoryButton({ label, icon, className, style }: Props) {
+export default function ResetHistoryButton({ icon, className, style }: Props) {
   const classes = useStyles()
   const { history, resetHistory } = useArchiveHistory()
   const [loading, setLoading] = useState(false)

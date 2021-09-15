@@ -3,6 +3,7 @@ import serve from 'electron-serve'
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import LibManager from '@shared/d4data-archive-lib/main/LibManager'
 import { autoUpdater } from 'electron-updater'
+import { info, error } from 'electron-log'
 import createWindow from './helpers/create-window'
 import AppUpdate from './updater';
 
@@ -24,13 +25,16 @@ async function installDevToolExtensions() {
   if (isProd) {
     return
   }
-
-  await installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => console.info(`Added Extension:  ${ name }`))
-    .catch((err) => console.error('An error occurred: ', err))
+  try {
+    const name = await installExtension(REACT_DEVELOPER_TOOLS)
+    info(`Added Extension: ${ name }`)
+  } catch (err) {
+    error('An error occurred: ', err)
+  }
 }
 
 (async () => {
+  app.setName('D4Data')
   await app.whenReady()
   await installDevToolExtensions()
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider as CoreThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Skeleton from 'components/pages/_app/components/Skeleton'
 import Store, { GlobalContext } from 'renderer/context/Store'
@@ -15,11 +16,13 @@ function AppContent(props: AppProps) {
   const { Component, pageProps } = props
   return (
     <ThemeProvider theme={ currentTheme === 'light' ? themeLight : themeDark }>
-      <CssBaseline/>
-      <Toaster/>
-      <Skeleton>
-        <Component { ...pageProps }/>
-      </Skeleton>
+      <CoreThemeProvider theme={ currentTheme === 'light' ? themeLight : themeDark }>
+        <CssBaseline/>
+        <Toaster/>
+        <Skeleton>
+          <Component { ...pageProps }/>
+        </Skeleton>
+      </CoreThemeProvider>
     </ThemeProvider>
   )
 }
