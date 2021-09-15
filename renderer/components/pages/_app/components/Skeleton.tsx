@@ -101,7 +101,13 @@ export default function Skeleton({ children }: SkeletonProps) {
         }) }
       >
         <div className={ classes.drawerHeader }/>
-        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{ children }</Box>
+        <Box
+          padding={ router.pathname === '/home' ? 0 : 3 }
+          flexGrow={ 1 }
+          display="flex"
+          overflow="auto"
+        >{ children }
+        </Box>
       </main>
     </div>
   )

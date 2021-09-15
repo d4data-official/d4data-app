@@ -3,6 +3,7 @@ import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Unarchive } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
+import { darken } from '@material-ui/core'
 
 interface Props {
   onLoaded: Function
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     padding: '10px',
-    borderRadius: 20,
     borderColor: '#000',
     backgroundColor: theme.palette.primary.main,
     flexDirection: 'column',
@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     color: theme.palette.primary.contrastText,
     height: '30vh',
+    cursor: 'pointer',
+
+    '&:hover': {
+      backgroundColor: darken(theme.palette.primary.main, 0.1),
+    },
   },
 }))
 
