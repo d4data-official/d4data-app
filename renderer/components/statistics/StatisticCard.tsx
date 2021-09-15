@@ -37,7 +37,7 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
 
         return (
           <Stack spacing={ 1 }>
-            { rankingStat.map((website) => (
+            { rankingStat.slice(0, 5).map((website) => (
               <Stack direction="row" alignItems="center" key={ website.label }>
                 <Typography
                   px={ 1 }
