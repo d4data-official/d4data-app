@@ -6,11 +6,12 @@ import { grey } from '@material-ui/core/colors'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { BrowserData as BrowserDataType } from '@d4data/archive-lib/dist/src/types/schemas'
 import BrowserHistory from './BrowserData/BrowserHistory'
-import BrowserHistoryStats from './BrowserData/BrowserHistoryStats'
 import BrowserExtensions from './BrowserData/BrowserExtensions'
 import BrowserSettings from './BrowserData/BrowserSettings'
 import BrowserThemes from './BrowserData/BrowserThemes'
 import BrowserSavedForms from './BrowserData/BrowserSavedForms'
+import Getters from '../../../../d4data-archive-lib/dist/src/types/standardizer/Getters'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ export default function BrowserData({ data }: { data: NonNullable<GetterData<Bro
   const getTabContent = () => {
     switch (currentTab) {
       case 0:
-        return <BrowserHistoryStats/>
+        return <AutoStatisticPage getter={ Getters.BROWSER_DATA }/>
       case 1:
         return <BrowserHistory data={ data.data.history }/>
       case 2:
