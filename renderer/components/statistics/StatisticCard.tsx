@@ -6,6 +6,7 @@ import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import moment from 'moment'
 import numeral from 'numeral'
 import SharableContent from '../SharableContent'
+import { RankingStatisticItemValue } from '../../../../d4data-archive-lib/src/types/schemas/Statistic'
 
 export interface Props {
   statistic: Statistic
@@ -20,7 +21,18 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
   const size = statistic.type === StatisticType.RANKING ? 2 : 1
   const color = variant === 'outlined' ? theme.palette.primary.main : 'white'
 
-  const getHumanReadableNumber = (value: number) => numeral(value).format(value > 1000 ? '0.0a' : '0a')
+  const getHumanReadableNumber = (value: number) => numeral(value).format(value > 1000 ? '0.0a' : '0.[00]')
+
+  const getFormattedArrayValue = (value: RankingStatisticItemValue['value']) => {
+    switch (typeof value) {
+      case 'number':
+        return getHumanReadableNumber(value)
+      case 'boolean':
+        return (value ? 'Yes' : 'No')
+      default:
+        return value
+    }
+  }
 
   const getFormattedStatValue = (statistic: Statistic) => {
     switch (statistic.type) {
@@ -37,17 +49,17 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
 
         return (
           <Stack spacing={ 1 }>
-            { rankingStat.slice(0, 5).map((website) => (
-              <Stack direction="row" alignItems="center" key={ website.label }>
+            { rankingStat.slice(0, 5).map((item) => (
+              <Stack direction="row" alignItems="center" key={ item.label }>
                 <Typography
                   px={ 1 }
                   mr={ 1 }
                   variant="h6"
                   color="primary"
                   sx={ { background: 'white' } }
-                >{ website.value }
+                >{ getFormattedArrayValue(item.value) }
                 </Typography>
-                <Typography variant="h6" fontWeight={ 100 }>{ website.label }</Typography>
+                <Typography variant="h6" fontWeight={ 100 }>{ item.label }</Typography>
               </Stack>
             )) }
           </Stack>
