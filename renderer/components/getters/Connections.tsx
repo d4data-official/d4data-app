@@ -9,6 +9,9 @@ import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/Gett
 import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
 import ConnectionHistory from './LocationComponents/ConnectionHistory'
 import ConnectionsMap from './LocationComponents/ConnectionsMap'
+import Getters from '../../../../d4data-archive-lib/dist/src/types/standardizer/Getters'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
+import { Timeline } from '@material-ui/icons'
 
 const LIMIT = 14
 
@@ -36,8 +39,10 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
   const getTabContent = () => {
     switch (value) {
       case 0:
-        return <ConnectionsMap connections={ slicedData }/>
+        return <AutoStatisticPage getter={ Getters.CONNECTIONS }/>
       case 1:
+        return <ConnectionsMap connections={ slicedData }/>
+      case 2:
         return <ConnectionHistory whereabouts={ slicedData }/>
       default:
         return undefined
@@ -53,6 +58,7 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
         textColor="primary"
         centered
       >
+        <Tab icon={ <Timeline/> } label="History stat"/>
         <Tab label="World map" icon={ <MapIcon/> } { ...a11yProps(0) } />
         <Tab label="Connection history" icon={ <ListIcon/> } { ...a11yProps(1) } />
       </Tabs>
