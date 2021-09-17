@@ -70,19 +70,12 @@ export default function HomePage() {
   }, [])
 
   return (
-    <Grid
-      height={ 1 }
-      width={ 1 }
-      py={ 4 }
-      container
-      justifyContent="center"
-      spacing={ 2 }
-      style={ { textAlign: 'center', position: 'relative' } }
-    >
+    <Box height={ 1 } width={ 1 } style={ { position: 'relative' } }>
       <Particles
         id="home-page-particles"
-        style={ { filter: 'blur(2px)', zIndex: 0, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 } }
+        style={ { zIndex: 0, position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, filter: 'blur(2px)' } }
         options={ {
+          detectRetina: true,
           background: {
             color: {
               value: 'transparent',
@@ -129,66 +122,75 @@ export default function HomePage() {
               value: 5,
             },
           },
-          detectRetina: true,
         } }
       />
 
-      <Grid item xs={ 12 } sx={ { zIndex: 10 } }>
-        <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
-          <img
-            src="/images/logo_primary_color_1024p.png"
-            alt="logo"
-            width="200px"
-            style={ {
-              filter: 'drop-shadow(0 2px 4px rgb(0 0 0 / 20%)',
-            } }
-          />
-        </Box>
-      </Grid>
+      <Grid
+        height={ 1 }
+        width={ 1 }
+        py={ 4 }
+        container
+        justifyContent="center"
+        spacing={ 2 }
+        style={ { textAlign: 'center' } }
+      >
+        <Grid item xs={ 12 } sx={ { zIndex: 10 } }>
+          <Box width={ 1 } display="flex" alignItems="center" justifyContent="center">
+            <img
+              src="/images/logo_primary_color_1024p.png"
+              alt="logo"
+              width="200px"
+              style={ {
+                filter: 'drop-shadow(0 2px 4px rgb(0 0 0 / 20%)',
+              } }
+            />
+          </Box>
+        </Grid>
 
-      <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
-        <Typography
-          variant="h4"
-          component="span"
-          color="primary"
-          align="center"
-        >
-          Visualize your personal data in just one click !
-        </Typography>
-      </Grid>
+        <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
+          <Typography
+            variant="h4"
+            component="span"
+            color="primary"
+            align="center"
+          >
+            Visualize your personal data in just one click !
+          </Typography>
+        </Grid>
 
-      <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
-        <Paper sx={ { p: 4 } } elevation={ 4 }>
-          <Stack spacing={ 4 }>
+        <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
+          <Paper sx={ { p: 4 } } elevation={ 4 }>
+            <Stack spacing={ 4 }>
 
-            <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
-              <Dropzone onLoaded={ handleExtract }/>
-            </Paper>
+              <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
+                <Dropzone onLoaded={ handleExtract }/>
+              </Paper>
 
-            { lastHistoryEntry && (
-              <Stack spacing={ 2 }>
-                <Stack direction="row" alignItems="center" justifyContent="space-between">
-                  <Typography variant="h6" fontWeight={ 100 } color="secondary">Last archive processed</Typography>
+              { lastHistoryEntry && (
+                <Stack spacing={ 2 }>
+                  <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Typography variant="h6" fontWeight={ 100 } color="secondary">Last archive processed</Typography>
 
-                  <Button
-                    onClick={ () => router.push('/archive-history') }
-                    color="secondary"
-                    variant="contained"
-                    size="small"
-                  >
-                    Show complete history ({ history.length })
-                  </Button>
+                    <Button
+                      onClick={ () => router.push('/archive-history') }
+                      color="secondary"
+                      variant="contained"
+                      size="small"
+                    >
+                      Show complete history ({ history.length })
+                    </Button>
+                  </Stack>
+
+                  <LastHistoryEntry/>
                 </Stack>
+              ) }
 
-                <LastHistoryEntry/>
-              </Stack>
-            ) }
+            </Stack>
+          </Paper>
 
-          </Stack>
-        </Paper>
-
-        <ArchiveExtractProgress state={ progressBar }/>
+          <ArchiveExtractProgress state={ progressBar }/>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   )
 }
