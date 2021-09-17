@@ -4,7 +4,6 @@ import Tab from '@material-ui/core/Tab'
 import { Box } from '@material-ui/core'
 import MapIcon from '@material-ui/icons/Map'
 import ListIcon from '@material-ui/icons/List'
-import { createStyles, makeStyles } from '@material-ui/styles'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Timeline } from '@material-ui/icons'
 import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
@@ -15,20 +14,8 @@ import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
 const LIMIT = 14
 
-const useStyless = makeStyles(() => createStyles({
-  whole: {},
-}))
-
-function a11yProps(index: any) {
-  return {
-    id: `simple-tab-${ index }`,
-    'aria-controls': `simple-tabpanel-${ index }`,
-  }
-}
-
 export default function Connections({ data }: { data: NonNullable<GetterData<Array<Connection>>> }) {
   const [value, setValue] = React.useState(0)
-  const classes = useStyless()
 
   const handleChange = (event: any, newValue: any) => {
     setValue(newValue)
@@ -59,16 +46,11 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
         centered
       >
         <Tab icon={ <Timeline/> } label="History stat"/>
-        <Tab label="World map" icon={ <MapIcon/> } { ...a11yProps(0) } />
-        <Tab label="Connection history" icon={ <ListIcon/> } { ...a11yProps(1) } />
+        <Tab label="World map" icon={ <MapIcon/> }/>
+        <Tab label="Connection history" icon={ <ListIcon/> }/>
       </Tabs>
-      <Box
-        width={ 1 }
-        flexGrow={ 1 }
-        className={ classes.whole }
-        id={ `simple-tabpanel-${ value }` }
-        aria-labelledby={ `simple-tab-${ value }` }
-      >
+
+      <Box width={ 1 } flexGrow={ 1 }>
         { getTabContent() }
       </Box>
     </Box>
