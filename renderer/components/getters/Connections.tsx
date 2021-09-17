@@ -12,8 +12,6 @@ import ConnectionsMap from './LocationComponents/ConnectionsMap'
 import Getters from '../../../../d4data-archive-lib/dist/src/types/standardizer/Getters'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
-const LIMIT = 14
-
 export default function Connections({ data }: { data: NonNullable<GetterData<Array<Connection>>> }) {
   const [value, setValue] = React.useState(0)
 
@@ -21,16 +19,14 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
     setValue(newValue)
   }
 
-  const slicedData = data.data.slice(0, LIMIT)
-
   const getTabContent = () => {
     switch (value) {
       case 0:
         return <AutoStatisticPage getter={ Getters.CONNECTIONS }/>
       case 1:
-        return <ConnectionsMap connections={ slicedData }/>
+        return <ConnectionsMap connections={ data.data }/>
       case 2:
-        return <ConnectionHistory whereabouts={ slicedData }/>
+        return <ConnectionHistory whereabouts={ data.data }/>
       default:
         return undefined
     }
