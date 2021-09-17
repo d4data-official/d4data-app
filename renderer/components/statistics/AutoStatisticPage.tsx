@@ -19,9 +19,17 @@ export default function AutoStatisticPage({ getter }: Props) {
 
   useEffect(() => {
     // @ts-ignore
+    if (!archiveManager.currentStandardizer?.[`${ getter }Statistics`]) {
+      console.error('Invalid statistics getter name:', `${ getter }Statistics`)
+    }
+
+    console.info(`[${ getter }Statistics] Retrieving statistics...`)
+
+    // @ts-ignore
     // Dynamically call statistic getter with given getter name
     archiveManager.currentStandardizer?.[`${ getter }Statistics`]?.()
       .then((stat: StatisticGetterData) => setStatistics(stat?.statistics ?? null))
+      .then(() => console.info(`[${ getter }] Statistics retrieved`))
   }, [])
 
   if (statistics === undefined) {
