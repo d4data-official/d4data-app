@@ -6,12 +6,12 @@ import MapIcon from '@material-ui/icons/Map'
 import ListIcon from '@material-ui/icons/List'
 import { createStyles, makeStyles } from '@material-ui/styles'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { Timeline } from '@material-ui/icons'
 import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
 import ConnectionHistory from './LocationComponents/ConnectionHistory'
 import ConnectionsMap from './LocationComponents/ConnectionsMap'
 import Getters from '../../../../d4data-archive-lib/dist/src/types/standardizer/Getters'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
-import { Timeline } from '@material-ui/icons'
 
 const LIMIT = 14
 
