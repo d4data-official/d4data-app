@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import type Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { StatisticGetterData } from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
 import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import useArchiveManager from '../../hooks/useArchiveManager'
 import Loading from '../pages/dashboard/components/Loading'
 import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
@@ -12,6 +13,15 @@ export interface Props {
 }
 
 const LOADING_MESSAGE = 'Getting statistics...'
+
+const STATISTIC_PRIORITY: Array<StatisticType> = [
+  StatisticType.STRING,
+  StatisticType.BOOLEAN,
+  StatisticType.DURATION,
+  StatisticType.NUMBER,
+  StatisticType.PERCENTAGE,
+  StatisticType.RANKING,
+]
 
 export default function AutoStatisticPage({ getter }: Props) {
   const archiveManager = useArchiveManager()
@@ -28,7 +38,13 @@ export default function AutoStatisticPage({ getter }: Props) {
     // @ts-ignore
     // Dynamically call statistic getter with given getter name
     archiveManager.currentStandardizer?.[`${ getter }Statistics`]?.()
-      .then((stat: StatisticGetterData) => setStatistics(stat?.statistics ?? null))
+      .then((stat: StatisticGetterData) => {
+        const sortedStatistics = stat?.statistics?.sort(
+          (stat1, stat2) => STATISTIC_PRIORITY.indexOf(stat1.type) - STATISTIC_PRIORITY.indexOf(stat2.type),
+        )
+
+        setStatistics(sortedStatistics ?? null)
+      })
       .then(() => console.info(`[${ getter }] Statistics retrieved`))
   }, [])
 
