@@ -103,17 +103,30 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
             <Typography variant="h3">
               { getFormattedStatValue(statistic) }
             </Typography>
+
             <Typography
               mt={ size }
               variant="h6"
               fontSize={ 20 * Math.max(size * 0.75, 1) }
             >{ statistic.name }
             </Typography>
+
           </Grid>
+
           <Grid item container alignItems="center" justifyContent="flex-end" style={ { flexBasis: 0 } }>
             { getStatIcon(statistic) }
           </Grid>
         </Grid>
+
+        { statistic.description && (
+          <Typography
+            mt={ size }
+            variant="caption"
+            component="div"
+            sx={ { mt: -1 } }
+          >{ capitalize(statistic.description) }
+          </Typography>
+        ) }
       </Box>
     </SharableContent>
   )
