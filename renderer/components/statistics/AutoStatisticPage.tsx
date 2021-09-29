@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import type Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { StatisticGetterData } from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
 import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
-import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import useArchiveManager from '../../hooks/useArchiveManager'
 import Loading from '../pages/dashboard/components/Loading'
 import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
@@ -23,6 +23,10 @@ const STATISTIC_PRIORITY: Array<StatisticType> = [
   StatisticType.RANKING,
 ]
 
+/**
+ * Wrapper of StatisticPage component with automatic statistics retrieval from the Standardizer.
+ * Statistics are sorted by type.
+ */
 export default function AutoStatisticPage({ getter }: Props) {
   const archiveManager = useArchiveManager()
   const [statistics, setStatistics] = useState<Array<Statistic> | null>()
