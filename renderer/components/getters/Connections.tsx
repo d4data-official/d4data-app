@@ -13,7 +13,7 @@ export default function Connections({ data }: { data: NonNullable<GetterData<Arr
   return (
     <AutoTabs
       tabs={ [
-        { label: 'History stat', icon: <Timeline/> },
+        { label: 'Connection stat', icon: <Timeline/> },
         { label: 'World map', icon: <MapIcon/> },
         { label: 'Connection history', icon: <ListIcon/> },
       ] }
