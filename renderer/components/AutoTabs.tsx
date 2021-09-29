@@ -4,9 +4,10 @@ import React, { ReactNode } from 'react'
 export interface Props {
   tabs: Array<TabProps>
   tabsContent: Array<ReactNode>
+  contentWrapper?: (child: ReactNode) => JSX.Element
 }
 
-export default function AutoTabs({ tabs, tabsContent }: Props) {
+export default function AutoTabs({ tabs, tabsContent, contentWrapper }: Props) {
   const [currentTabIndex, setCurrentTabIndex] = React.useState(0)
 
   const handleTabChange = (event: any, newTabIndex: any) => {
@@ -27,7 +28,11 @@ export default function AutoTabs({ tabs, tabsContent }: Props) {
       </Tabs>
 
       <Box width={ 1 } flexGrow={ 1 } overflow="auto">
-        { tabsContent[currentTabIndex] }
+        { tabsContent.map((tabContent, index) => (
+          <Box display={ currentTabIndex === index ? 'initial' : 'none' }>
+            { contentWrapper?.(tabContent) ?? tabContent }
+          </Box>
+        )) }
       </Box>
     </Box>
   )
