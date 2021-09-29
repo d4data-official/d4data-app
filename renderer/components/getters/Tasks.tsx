@@ -9,13 +9,16 @@ import {
   Typography,
 } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
-import { CalendarToday, CheckCircle, RadioButtonUnchecked } from '@material-ui/icons'
+import { CalendarToday, CheckCircle, List as ListIcon, RadioButtonUnchecked, Timeline } from '@material-ui/icons'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { createStyles, makeStyles } from '@material-ui/styles'
 import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import AutoTabs from '../AutoTabs'
 
 const drawerWidth = 240
 
@@ -104,7 +107,6 @@ function TaskDisplay({ task }: { task: Task }) {
     setExpanded(isExpanded ? panel : false)
   }
   return (
-
     <Accordion style={ { width: '70%' } } expanded={ expanded === 'panel1' } onChange={ handleChange('panel1') }>
       <AccordionSummary
         expandIcon={ <ExpandMoreIcon/> }
@@ -220,9 +222,16 @@ function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskLi
 
 function Tasks({ data }: { data: NonNullable<GetterData<Array<TaskList>>> }) {
   return (
-    <>
-      <PersistentDrawerLeft taskList={ data.data ?? [] }/>
-    </>
+    <AutoTabs
+      tabs={ [
+        { label: 'Tasks stat', icon: <Timeline/> },
+        { label: 'Tasks list', icon: <ListIcon/> },
+      ] }
+      tabsContent={ [
+        <AutoStatisticPage getter={ Getters.TASKS }/>,
+        <PersistentDrawerLeft taskList={ data.data ?? [] }/>,
+      ] }
+    />
   )
 }
 

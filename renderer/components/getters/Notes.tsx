@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography'
 import { Divider, Grid } from '@material-ui/core'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
+import { List as ListIcon, Timeline } from '@material-ui/icons'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import AutoTabs from '../AutoTabs'
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +36,7 @@ export interface Props {
 export default function DisplayNotes({ data }: Props) {
   const classes = useStyles()
 
-  return (
+  const Notes = (
     <div>
       <h2>{ data.data.length } notes</h2>
       <Grid container xs={ 12 } spacing={ 2 }>
@@ -60,5 +64,18 @@ export default function DisplayNotes({ data }: Props) {
         }
       </Grid>
     </div>
+  )
+
+  return (
+    <AutoTabs
+      tabs={ [
+        { label: 'Notes stat', icon: <Timeline/> },
+        { label: 'Notes list', icon: <ListIcon/> },
+      ] }
+      tabsContent={ [
+        <AutoStatisticPage getter={ Getters.NOTES }/>,
+        Notes,
+      ] }
+    />
   )
 }

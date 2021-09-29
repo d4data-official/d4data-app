@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
-
 import { makeStyles } from '@material-ui/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { Box, Divider, Grid } from '@material-ui/core'
+import { List as ListIcon, Timeline } from '@material-ui/icons'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Mail as MailsType } from '@d4data/archive-lib/dist/src/types/schemas'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
+import AutoTabs from '../AutoTabs'
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +42,7 @@ export interface Props {
 export default function Mails({ data }: Props) {
   const classes = useStyles()
 
-  return (
+  const Mails = (
     <Box width={ 1 } height={ 1 }>
       <h2>{ data.data.length } mails</h2>
       <Grid container spacing={ 2 }>
@@ -72,5 +75,18 @@ export default function Mails({ data }: Props) {
         }
       </Grid>
     </Box>
+  )
+
+  return (
+    <AutoTabs
+      tabs={ [
+        { label: 'Mails stat', icon: <Timeline/> },
+        { label: 'Mails list', icon: <ListIcon/> },
+      ] }
+      tabsContent={ [
+        <AutoStatisticPage getter={ Getters.MAIL }/>,
+        Mails,
+      ] }
+    />
   )
 }

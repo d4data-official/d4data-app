@@ -3,6 +3,10 @@ import { ImageList, ImageListItem, ImageListItemBar, Modal } from '@material-ui/
 import { makeStyles } from '@material-ui/styles'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Media } from '@d4data/archive-lib/dist/src/types/schemas'
+import { List as ListIcon, Timeline } from '@material-ui/icons'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import AutoTabs from '../AutoTabs'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +52,8 @@ function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
   const handleClose = () => {
     setOpen(false)
   }
-  return (
+
+  const Medias = (
     <div>
       <Modal
         className={ classes.modal }
@@ -64,7 +69,7 @@ function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
       </h3>
       <div className={ classes.root }>
         <ImageList cols={ 6 } className={ classes.imageList }>
-          { data.data.slice(0, 194).map((tile: any) => (
+          { data.data.map((tile: any) => (
             <ImageListItem
               className={ classes.tile }
               onClick={ () => handleOpen(tile.url) }
@@ -84,6 +89,19 @@ function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
         </ImageList>
       </div>
     </div>
+  )
+
+  return (
+    <AutoTabs
+      tabs={ [
+        { label: 'Medias stat', icon: <Timeline/> },
+        { label: 'Medias', icon: <ListIcon/> },
+      ] }
+      tabsContent={ [
+        <AutoStatisticPage getter={ Getters.MEDIAS }/>,
+        Medias,
+      ] }
+    />
   )
 }
 
