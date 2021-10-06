@@ -5,8 +5,8 @@ import ShowChartIcon from '@material-ui/icons/ShowChart'
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
 import moment from 'moment'
 import numeral from 'numeral'
+import type { RankingStatisticItemValue } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import SharableContent from '../SharableContent'
-import { RankingStatisticItemValue } from '../../../../d4data-archive-lib/src/types/schemas/Statistic'
 
 export interface Props {
   statistic: Statistic

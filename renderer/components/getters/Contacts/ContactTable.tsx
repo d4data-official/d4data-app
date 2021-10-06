@@ -10,8 +10,8 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 import { Avatar } from '@material-ui/core'
+import { Contact } from '@d4data/archive-lib'
 import ContactComponent from './ContactComponent'
-import { Contact } from '../../../../../d4data-archive-lib'
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
 export interface Props {
