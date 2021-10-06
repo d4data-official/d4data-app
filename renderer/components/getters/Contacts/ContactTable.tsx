@@ -1,9 +1,7 @@
-import { Contact } from '../../../../../d4data-archive-lib'
 import React from 'react'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
-import ContactComponent from './ContactComponent'
 import TableContainer from '@material-ui/core/TableContainer'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
@@ -12,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 import { Avatar } from '@material-ui/core'
+import ContactComponent from './ContactComponent'
+import { Contact } from '../../../../../d4data-archive-lib'
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
 export interface Props {

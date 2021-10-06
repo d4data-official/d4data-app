@@ -14,10 +14,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { createStyles, makeStyles } from '@material-ui/styles'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
-import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import AutoTabs from '../AutoTabs'
 
 const drawerWidth = 240

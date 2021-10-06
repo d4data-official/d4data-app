@@ -5,11 +5,11 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { Divider, Grid } from '@material-ui/core'
+import { List as ListIcon, Timeline } from '@material-ui/icons'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
-import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import AutoTabs from '../AutoTabs'
 
 const useStyles = makeStyles({

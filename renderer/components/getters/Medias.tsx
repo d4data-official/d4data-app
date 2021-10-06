@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/styles'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Media } from '@d4data/archive-lib/dist/src/types/schemas'
 import { List as ListIcon, Timeline } from '@material-ui/icons'
-import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
 const useStyles = makeStyles((theme) => ({
