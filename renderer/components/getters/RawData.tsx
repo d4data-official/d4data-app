@@ -1,11 +1,11 @@
-import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn';
-import { Button, FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import ArchiveManager from '@modules/ArchiveManager';
-import DefaultDisplay from 'components/pages/dashboard/components/DefaultDisplay';
-import { shell } from 'electron';
-import { join, relative } from 'path';
-import { useCallback, useEffect, useState } from 'react';
+import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { Box, Button, FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import ArchiveManager from '@modules/ArchiveManager'
+import { shell } from 'electron'
+import { join, relative } from 'path'
+import React, { useCallback, useEffect, useState } from 'react'
+import ReactJson from 'react-json-view-ssr'
 
 interface Props {
   data: NonNullable<GetterData<any>>
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(3),
-    width: '100%',
   },
   formContainer: {
     width: '100%',
@@ -42,56 +41,57 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function RawData({ data: { parsedFiles } }: Props) {
-  const processPardedFile = useCallback(() => {
-    const standardizer = ArchiveManager.currentStandardizer;
+  const processParsedFile = useCallback(() => {
+    const standardizer = ArchiveManager.currentStandardizer
     if (!standardizer) {
-      return parsedFiles;
+      return parsedFiles
     }
     return parsedFiles.map((parsedFile) => relative(standardizer.path, parsedFile))
   }, [parsedFiles])
 
-  const [file, setFile] = useState<string>(processPardedFile()[0]);
-  const [data, setData] = useState<any>();
-  const classes = useStyles();
+  const [file, setFile] = useState<string>(processParsedFile()[0])
+  const [data, setData] = useState<any>()
+  const classes = useStyles()
 
   const handleChangeFile = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
-    setFile(event.target.value as string);
+    setFile(event.target.value as string)
   }, [])
 
   useEffect(() => {
     if (file) {
-      const standardizer = ArchiveManager.currentStandardizer;
+      const standardizer = ArchiveManager.currentStandardizer
       if (!standardizer) {
-        return;
+        return
       }
       standardizer.getRawData(file)
         .then((rawData) => {
-          setData({ data: rawData });
+          setData({ data: rawData })
         })
     }
   }, [file])
 
   const showInFolder = useCallback(() => {
-    const standardizer = ArchiveManager.currentStandardizer;
+    const standardizer = ArchiveManager.currentStandardizer
     if (!standardizer || !file) {
-      return;
+      return
     }
     shell.showItemInFolder(join(standardizer.path, file))
   }, [ArchiveManager])
 
   return (
-    <div className={ classes.root }>
+    <Box height={ 1 } width={ 1 } padding={ 2 } className={ classes.root }>
       <div className={ classes.topSection }>
         <div className={ classes.formContainer }>
-          <FormControl className={ classes.formControl }>
+          <FormControl size="small" className={ classes.formControl }>
             <FormLabel>Choose your file</FormLabel>
             <Select value={ file } onChange={ handleChangeFile }>
-              {processPardedFile().map((parsedFile) => (
-                <MenuItem className={ classes.menuItem } value={ parsedFile }>{parsedFile}</MenuItem>
-              ))}
+              { processParsedFile().map((parsedFile) => (
+                <MenuItem className={ classes.menuItem } value={ parsedFile }>{ parsedFile }</MenuItem>
+              )) }
             </Select>
           </FormControl>
         </div>
+
         <Button
           className={ classes.button }
           variant="outlined"
@@ -100,7 +100,13 @@ export default function RawData({ data: { parsedFiles } }: Props) {
           See in file explorer
         </Button>
       </div>
-      {data && <DefaultDisplay data={ data }/>}
-    </div>
+
+      { data && (
+        <ReactJson
+          name={ false }
+          src={ data }
+        />
+      ) }
+    </Box>
   )
 }
