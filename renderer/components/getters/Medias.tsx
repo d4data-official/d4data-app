@@ -8,7 +8,7 @@ import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexWrap: 'wrap',
     justifyContent: 'space-around',

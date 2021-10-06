@@ -20,7 +20,7 @@ export interface SkeletonProps {
 
 export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
-  const { currentTheme, rawData, componentName, dispatch } = useContext(GlobalContext)
+  const { componentName, dispatch } = useContext(GlobalContext)
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const [settingsDialogOpen, setSettingsDialogOpen] = React.useState<boolean>(false)
   const classes = useStyles()
