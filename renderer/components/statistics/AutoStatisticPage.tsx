@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import type Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { StatisticGetterData } from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
-import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import useArchiveManager from '../../hooks/useArchiveManager'
 import Loading from '../pages/dashboard/components/Loading'
 import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
 import StatisticPage from './StatisticPage'
+import Center from '../Center'
 
 export interface Props {
   getter: Getters
@@ -25,7 +26,7 @@ const STATISTIC_PRIORITY: Array<StatisticType> = [
 
 /**
  * Wrapper of StatisticPage component with automatic statistics retrieval from the Standardizer.
- * Statistics are sorted by type.
+ * Display loading and no data message. Statistics are sorted by type.
  */
 export default function AutoStatisticPage({ getter }: Props) {
   const archiveManager = useArchiveManager()
@@ -53,11 +54,19 @@ export default function AutoStatisticPage({ getter }: Props) {
   }, [])
 
   if (statistics === undefined) {
-    return <Loading title={ LOADING_MESSAGE }/>
+    return (
+      <Center>
+        <Loading title={ LOADING_MESSAGE }/>
+      </Center>
+    )
   }
 
   if (statistics === null) {
-    return <NoDataAvailable/>
+    return (
+      <Center>
+        <NoDataAvailable/>
+      </Center>
+    )
   }
 
   return (
