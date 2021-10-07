@@ -53,14 +53,14 @@ export default function ExtensionCard({
         { enabled !== undefined && (
           <FormControlLabel
             label="Enabled"
-            control={ <StyledCheckbox checked={ enabled } color="primary"/> }
+            control={ <StyledCheckbox checked={ enabled } color="primary" disabled/> }
             style={ { margin: 0 } }
           />
         ) }
         { incognitoEnabled !== undefined && (
           <FormControlLabel
             label="Enabled in incognito"
-            control={ <StyledCheckbox checked={ incognitoEnabled } color="primary"/> }
+            control={ <StyledCheckbox checked={ incognitoEnabled } color="primary" disabled/> }
             style={ { margin: 0 } }
           />
         ) }
