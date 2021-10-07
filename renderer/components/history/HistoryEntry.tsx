@@ -1,8 +1,6 @@
 import { Button, Grid, Typography } from '@material-ui/core'
 import React, { CSSProperties, useState } from 'react'
 import moment from 'moment'
-import { Theme } from '@material-ui/core/styles'
-import { createStyles, makeStyles } from '@material-ui/styles'
 import RestoreIcon from '@material-ui/icons/Restore'
 import DeleteIcon from '@material-ui/icons/Delete'
 import filesize from 'filesize'
@@ -21,23 +19,6 @@ export interface Props {
   style?: CSSProperties
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  deleteButton: {
-    color: 'white',
-    backgroundColor: theme.palette.error.main,
-    '&:hover': {
-      backgroundColor: theme.palette.error.dark,
-    },
-  },
-  restoreButton: {
-    color: 'white',
-    backgroundColor: theme.palette.success.main,
-    '&:hover': {
-      backgroundColor: theme.palette.success.dark,
-    },
-  },
-}))
-
 export default function HistoryEntry({
   entry,
   showSize = true,
@@ -49,7 +30,6 @@ export default function HistoryEntry({
 }: Props) {
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
-  const classes = useStyles()
 
   const getDeltaTimeHumanized = (date: Date) => moment.duration(date.valueOf() - new Date().valueOf())
 
@@ -128,7 +108,8 @@ export default function HistoryEntry({
                   onClick={ () => deleteEntryHandler() }
                   disabled={ loading }
                   startIcon={ <DeleteIcon/> }
-                  className={ classes.deleteButton }
+                  variant="outlined"
+                  color="error"
                   size="small"
                   sx={ { px: 1 } }
                 >Delete
@@ -141,7 +122,7 @@ export default function HistoryEntry({
                   onClick={ () => restoreEntryHandler() }
                   disabled={ loading }
                   startIcon={ <RestoreIcon/> }
-                  className={ classes.restoreButton }
+                  variant="contained"
                   size="small"
                   sx={ { px: 1 } }
                 >Restore
