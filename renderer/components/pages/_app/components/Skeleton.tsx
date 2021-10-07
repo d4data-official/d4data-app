@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import Home from '@material-ui/icons/Home'
 import Menu from '@material-ui/icons/Menu'
@@ -13,6 +13,7 @@ import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
 import getGetterLabel from '../../../../modules/getGetterLabel'
+import AppBarMoreMenu from './AppBarMoreMenu'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -81,13 +82,15 @@ export default function Skeleton({ children }: SkeletonProps) {
             </Typography>
           </div>
 
-          <div className={ classes.toolbarRight }>
+          <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={ 0 }>
             <IconButton onClick={ handleSettingsDialogOpen }>
               <Settings className={ classes.settingsButton }/>
             </IconButton>
 
+            <AppBarMoreMenu/>
+
             <AppSettingsDialog open={ settingsDialogOpen } onClose={ () => setSettingsDialogOpen(false) }/>
-          </div>
+          </Stack>
         </Toolbar>
       </AppBar>
       <Sidebar

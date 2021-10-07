@@ -38,11 +38,6 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  toolbarRight: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
   toolbarOpen: {
     width: 'calc(100vw - 240px)',
   },
