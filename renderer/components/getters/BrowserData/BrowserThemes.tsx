@@ -29,13 +29,15 @@ export default function BrowserThemes({ data }: Props) {
   return (
     <Container maxWidth="sm" className={ classes.root }>
       <Box height={ 1 } width={ 1 } display="flex" flexDirection="column" justifyContent="center">
-        <Card elevation={ 2 }>
+        <Card elevation={ 2 } sx={ { p: 1 } }>
           <CardHeader title="Current browser theme"/>
+
           <CardContent>
             <Box display="flex" alignItems="center" justifyContent="center">
               <Typography color="primary" variant="h6">{ data.name }</Typography>
             </Box>
           </CardContent>
+
           { data.websiteUrl && (
             <CardActions>
               <Tooltip title={ data.websiteUrl } placement="bottom">
