@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core'
-import grey from '@material-ui/core/colors/grey'
+import { makeStyles } from '@material-ui/styles'
+import { grey } from '@material-ui/core/colors'
 
 export default makeStyles((theme) => ({
   root: {
@@ -36,11 +36,6 @@ export default makeStyles((theme) => ({
   },
   toolbarLeft: {
     display: 'flex',
-    alignItems: 'center',
-  },
-  toolbarRight: {
-    display: 'flex',
-    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   toolbarOpen: {
@@ -92,13 +87,5 @@ export default makeStyles((theme) => ({
   },
   settingsButton: {
     color: theme.palette.primary.contrastText,
-  },
-  dialogTitle: {
-    textAlign: 'center',
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-  },
-  dialogContent: {
-    backgroundColor: theme.palette.background.paper,
   },
 }))

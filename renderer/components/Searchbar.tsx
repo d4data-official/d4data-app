@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { createStyles, makeStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
@@ -19,7 +19,7 @@ export interface Props {
   style?: CSSProperties
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme) => createStyles({
   root: {
     padding: '2px 4px',
     display: 'flex',

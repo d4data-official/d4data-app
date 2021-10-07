@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  Search,
-  // @ts-ignore
-} from '@chatscope/chat-ui-kit-react';
+import { createStyles, makeStyles } from '@material-ui/styles'
+// @ts-ignore
+import { Search } from '@chatscope/chat-ui-kit-react'
 
 export type Data = Array<Record<any, any>>
 
@@ -15,7 +13,7 @@ export interface Props {
   onSearch?: (filteredData: Data) => void
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles((theme) => createStyles({
   searchBar: {
     '& input': {
       '&::placeholder': {
@@ -64,7 +62,7 @@ export default function Searchbar({
 
   const handleChangeInput = useCallback((s: string) => {
     setSearch(s)
-  }, []);
+  }, [])
 
   return (
     <Search

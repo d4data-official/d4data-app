@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-tag-spacing': 'off',
+    '@typescript-eslint/no-shadow': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -14,7 +15,7 @@ module.exports = {
     '@typescript-eslint/semi': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'no-underscore-dangle': 'off',
-    'max-len': ['error', { 'code': 120 }],
+    'max-len': ['warn', { 'code': 120 }],
     'class-methods-use-this': 'off',
     'object-curly-newline': 'off',
     'template-curly-spacing': ['error', 'always'],

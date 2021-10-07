@@ -1,12 +1,13 @@
 import { FunctionComponent } from 'react'
 import Chats from 'components/getters/Chats'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import DefaultDisplay from './DefaultDisplay'
 import Contacts from '../../../getters/Contacts'
 import Followings from '../../../getters/Followings'
 import Profile from '../../../getters/Profile'
-import Connections from '../../../getters/Connections';
-import Whereabouts from '../../../getters/Whereabouts';
-import Tasks from '../../../getters/Tasks';
+import Connections from '../../../getters/Connections'
+import Whereabouts from '../../../getters/Whereabouts'
+import Tasks from '../../../getters/Tasks'
 import Mails from '../../../getters/Mails'
 import Notes from '../../../getters/Notes'
 import Communities from '../../../getters/Communities'
@@ -25,90 +26,94 @@ interface ComponentProps {
 
 type GetterComponent = FunctionComponent<ComponentProps> & { disableRawData?: boolean }
 
-export const ComponentList: Array<[string, GetterComponent]> = [
+export const ComponentList: Array<[Getters, GetterComponent]> = [
   [
-    'APIs',
+    Getters.APIS,
     APIs,
   ],
   [
-    'AuthorizedDevices',
+    Getters.AUTHORIZED_DEVICES,
     AuthorizedDevices,
   ],
   [
-    'BrowserData',
+    Getters.BROWSER_DATA,
     BrowserData,
   ],
   [
-    'Chats',
+    Getters.CHATS,
     Chats,
   ],
   [
-    'Comments',
+    Getters.COMMENTS,
     Posts,
   ],
   [
-    'Communities',
+    Getters.COMMUNITIES,
     Communities,
   ],
   [
-    'Connections',
+    Getters.CONNECTIONS,
     Connections,
   ],
   [
-    'Contacts',
+    Getters.CONTACTS,
     Contacts,
   ],
   [
-    'Followings',
+    Getters.FOLLOWINGS,
     Followings,
   ],
   [
-    'Mails',
+    Getters.MAIL,
     Mails,
   ],
   [
-    'Medias',
+    Getters.MEDIAS,
     Medias,
   ],
   [
-    'Messages',
+    Getters.MESSAGES,
     DefaultDisplay,
   ],
   [
-    'Notifications',
+    Getters.NOTIFICATIONS,
     DefaultDisplay,
   ],
   [
-    'Notes',
+    Getters.NOTES,
     Notes,
   ],
   [
-    'Posts',
+    Getters.POSTS,
     Posts,
   ],
   [
-    'Profile',
+    Getters.PROFILE,
     Profile,
   ],
   [
-    'Reacted',
+    Getters.REACTED,
     Reacteds,
   ],
   [
-    'Settings',
+    Getters.SETTINGS,
     Settings,
   ],
   [
-    'Tasks',
+    Getters.TASKS,
     Tasks,
   ],
   [
-    'Transactions',
+    Getters.TRANSACTIONS,
     Transactions,
   ],
   [
-    'Whereabouts',
+    Getters.WHEREABOUTS,
     Whereabouts,
+  ],
+  [
+    Getters.EVENTS,
+    DefaultDisplay,
   ],
 ]
 

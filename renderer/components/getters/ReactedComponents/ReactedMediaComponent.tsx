@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from '@material-ui/styles'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 import GenericReactionComponent from './GenericReactionComponent'
 
 const useStyles = makeStyles({
@@ -21,10 +21,10 @@ const useStyles = makeStyles({
   modalImage: {
     maxWidth: 250,
   },
-});
+})
 
 export default function ReactedMediaComponent({ data }: { data: NonNullable<Reacted> }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Card className={ classes.root } variant="outlined">
@@ -37,7 +37,7 @@ export default function ReactedMediaComponent({ data }: { data: NonNullable<Reac
         </Typography>
       </CardContent>
       <div className={ classes.reactions }>
-        <GenericReactionComponent reaction={ data.reaction } />
+        <GenericReactionComponent reaction={ data.reaction }/>
       </div>
     </Card>
   )

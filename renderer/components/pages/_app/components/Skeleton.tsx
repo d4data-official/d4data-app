@@ -1,24 +1,19 @@
 import React, { useCallback, useContext } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-import {
-  AppBar,
-  Box,
-  capitalize,
-  Dialog, DialogContent, DialogTitle, Grid, IconButton, Toolbar, Typography,
-} from '@material-ui/core'
+import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import { Home, Menu, Settings } from '@material-ui/icons'
+import Home from '@material-ui/icons/Home'
+import Menu from '@material-ui/icons/Menu'
+import Settings from '@material-ui/icons/Settings'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
-import Case from 'case'
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import CodeIcon from '@material-ui/icons/Code';
-import ListIcon from '@material-ui/icons/List';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
 import { GlobalContext } from 'renderer/context/Store'
+import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
+import AppSettingsDialog from '../../../AppSettingsDialog'
+import getGetterLabel from '../../../../modules/getGetterLabel'
+import AppBarMoreMenu from './AppBarMoreMenu'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -26,9 +21,9 @@ export interface SkeletonProps {
 
 export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
-  const { currentTheme, rawData, componentName, dispatch } = useContext(GlobalContext)
+  const { componentName, dispatch } = useContext(GlobalContext)
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
-  const [dialogOpen, setDialogOpen] = React.useState<boolean>(false)
+  const [settingsDialogOpen, setSettingsDialogOpen] = React.useState<boolean>(false)
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
@@ -36,13 +31,13 @@ export default function Skeleton({ children }: SkeletonProps) {
   }, [drawerOpen])
 
   const handleRouteChange = useCallback((route) => {
-    handleDrawerChange(/dashboard/.test(route));
+    handleDrawerChange(/dashboard/.test(route))
   }, [])
 
   React.useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [])
 
@@ -52,16 +47,8 @@ export default function Skeleton({ children }: SkeletonProps) {
     dispatch({ type: 'UPDATE_COMPONENT' })
   }, [])
 
-  const handleThemeChange = useCallback(() => {
-    dispatch({ type: 'TOGGLE_THEME' })
-  }, []);
-
-  const handleRawdataChange = useCallback(() => {
-    dispatch({ type: 'TOGGLE_RAWDATA' })
-  }, []);
-
-  const handleDialogOpen = useCallback(() => {
-    setDialogOpen((prev) => !prev);
+  const handleSettingsDialogOpen = useCallback(() => {
+    setSettingsDialogOpen((prev) => !prev)
   }, [])
 
   return (
@@ -91,65 +78,19 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              {componentName ? Case.capital(componentName) : 'D4Data'}
+              { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>
-          <div className={ classes.toolbarRight }>
-            <IconButton onClick={ handleDialogOpen }>
-              <Settings className={ classes.settingsButton } />
+
+          <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={ 0 }>
+            <IconButton onClick={ handleSettingsDialogOpen }>
+              <Settings className={ classes.settingsButton }/>
             </IconButton>
-            <Dialog
-              open={ dialogOpen }
-              onClose={ handleDialogOpen }
-              maxWidth="md"
-              fullWidth
-            >
-              <DialogTitle className={ classes.dialogTitle } >Settings</DialogTitle>
-              <DialogContent className={ classes.dialogContent } >
-                <Grid container spacing={ 1 } justify="space-between" alignItems="center">
-                  <Grid item >
-                    <Typography variant="h4">
-                      Theme: { capitalize(currentTheme) }
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <ToggleButtonGroup
-                      value={ currentTheme }
-                      exclusive
-                      onChange={ handleThemeChange }
-                    >
-                      <ToggleButton value="light" aria-label="light">
-                        <WbSunnyIcon/>
-                      </ToggleButton>
-                      <ToggleButton value="dark" aria-label="dark">
-                        <Brightness3Icon/>
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                  </Grid>
-                  <Grid item xs={ 12 }/>
-                  <Grid item>
-                    <Typography variant="h4">
-                      Display type: { rawData ? 'Raw Data' : 'Ergonomic Display' }
-                    </Typography>
-                  </Grid>
-                  <Grid item >
-                    <ToggleButtonGroup
-                      value={ rawData }
-                      exclusive
-                      onChange={ handleRawdataChange }
-                    >
-                      <ToggleButton value={ false } aria-label="light">
-                        <ListIcon/>
-                      </ToggleButton>
-                      <ToggleButton value aria-label="dark">
-                        <CodeIcon/>
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                  </Grid>
-                </Grid>
-              </DialogContent>
-            </Dialog>
-          </div>
+
+            <AppBarMoreMenu/>
+
+            <AppSettingsDialog open={ settingsDialogOpen } onClose={ () => setSettingsDialogOpen(false) }/>
+          </Stack>
         </Toolbar>
       </AppBar>
       <Sidebar
@@ -163,7 +104,12 @@ export default function Skeleton({ children }: SkeletonProps) {
         }) }
       >
         <div className={ classes.drawerHeader }/>
-        <Box padding={ 3 } flexGrow={ 1 } display="flex" overflow="auto">{children}</Box>
+        <Box
+          flexGrow={ 1 }
+          display="flex"
+          overflow="auto"
+        >{ children }
+        </Box>
       </main>
     </div>
   )

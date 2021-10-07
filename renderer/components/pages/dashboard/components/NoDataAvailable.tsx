@@ -1,10 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles';
-import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
-import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles'
+import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied'
+import { Box } from '@material-ui/core'
 
 interface Props {
-  componentName: string,
   title?: string,
   description?: string,
 }
@@ -36,26 +35,20 @@ const useStyles = makeStyles(() => ({
   icon: {
     fontSize: '32pt',
   },
-}));
+}))
 
-function GenerateDefaultDescription({ componentName }:any) {
-  const classes = useStyles();
+function GenerateDefaultDescription() {
+  const classes = useStyles()
 
   return (
     <div className={ classes.descr }>
-      <span>Awesome ! This service collected no</span>
-      <span>
-        {' '}
-        { componentName }
-        {' '}
-      </span>
-      <span>data about you !</span>
+      <span>Awesome ! This service collected no data for this category</span>
     </div>
-  );
+  )
 }
 
-export default function NoDataAvailable({ componentName, title, description }: Props) {
-  const classes = useStyles();
+export default function NoDataAvailable({ title, description }: Props) {
+  const classes = useStyles()
 
   return (
     <div className={ classes.root }>
@@ -63,7 +56,7 @@ export default function NoDataAvailable({ componentName, title, description }: P
         <div className={ classes.nda }>
           <SentimentVerySatisfiedIcon className={ classes.icon }/>
           <h2 className={ classes.ndaTitle }>{ title ?? 'No data available' }</h2>
-          {description ?? <GenerateDefaultDescription componentName={ componentName } />}
+          { description ?? <GenerateDefaultDescription/> }
         </div>
       </Box>
     </div>

@@ -1,9 +1,15 @@
-import React from 'react'
-import { DropzoneAreaBase } from 'material-ui-dropzone'
-import { makeStyles } from '@material-ui/core'
-import { Unarchive } from '@material-ui/icons'
+import React, { useCallback } from 'react'
 
-const useStyles = makeStyles({
+import { useDropzone } from 'react-dropzone'
+import { Unarchive } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/styles'
+import { darken } from '@material-ui/core'
+
+interface Props {
+  onLoaded: Function
+}
+
+const useStyles = makeStyles((theme) => ({
   dropzone: {
     color: '#fff',
     borderColor: '#000',
@@ -15,49 +21,43 @@ const useStyles = makeStyles({
   chip: {
     color: '#fff',
   },
+  icon: {
+    fontSize: '120px',
+  },
   root: {
     display: 'flex',
-    borderRadius: 20,
+    padding: '10px',
     borderColor: '#000',
-    backgroundColor: '#000',
+    backgroundColor: theme.palette.primary.main,
+    flexDirection: 'column',
     justifyContent: 'center',
     justifyItems: 'center',
     alignItems: 'center',
-  },
-})
+    color: theme.palette.primary.contrastText,
+    height: '30vh',
+    cursor: 'pointer',
 
-export default function Dropzone(props: { onLoaded: CallableFunction }) {
+    '&:hover': {
+      backgroundColor: darken(theme.palette.primary.main, 0.1),
+    },
+  },
+}))
+
+export default function Dropzone({ onLoaded }: Props) {
   const classes = useStyles()
 
-  const [list, setList] = React.useState<File[]>([])
-
-  const onChange = React.useCallback((fileList: File[]) => {
-    setList(fileList)
+  const onDrop = useCallback((fileList) => {
     if (fileList.length) {
-      props.onLoaded(fileList[0].path)
-      setList([])
+      onLoaded(fileList[0].path)
     }
-  }, [props])
+  }, [])
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: ['.zip'] })
 
   return (
-    <>
-      <DropzoneAreaBase
-        onDrop={ onChange }
-        fileObjects={ [] }
-        classes={ {
-          root: classes.root,
-          icon: list.length ? classes.none : classes.dropzone,
-          text: list.length ? classes.none : classes.dropzone,
-          textContainer: list.length ? classes.none : classes.dropzone,
-        } }
-        // @ts-ignore
-        Icon={ Unarchive }
-        dropzoneText="Click to select your GDPR archive or drop it here"
-        acceptedFiles={ ['.zip'] }
-        filesLimit={ 1 }
-        maxFileSize={ 50000000000 }
-        showAlerts={ false }
-      />
-    </>
+    <div { ...getRootProps() } className={ classes.root }>
+      <input { ...getInputProps() } className={ classes.dropzone }/>
+      <Unarchive className={ classes.icon } fontSize="large"/>
+      <h1>Click to select your GDPR archive or drop it here</h1>
+    </div>
   )
 }

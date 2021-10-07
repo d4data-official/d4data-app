@@ -1,26 +1,46 @@
-import MUIDataTable from 'mui-datatables';
-import React from 'react';
-import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas';
+import React, { useMemo } from 'react'
+import { Paper, Stack, Typography } from '@material-ui/core'
+import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
+import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
 
-export default function ConnectionHistory({ whereabouts }: { whereabouts: Array<Whereabout> }) {
-  const data = whereabouts.map((location: any) => [
-    location?.timestamp?.toString() ?? '',
-    location?.ipAddress ?? '',
-    location?.browser ?? '',
-    location?.location?.absolutePosition?.latitude ?? '',
-    location?.location?.absolutePosition?.longitude ?? ''])
+const columns: Array<ColumnData> = [
+  {
+    dataKey: 'date',
+    label: 'Date',
+  },
+  {
+    dataKey: 'ipAddress',
+    label: 'IP address',
+  },
+  {
+    dataKey: 'browser',
+    label: 'Browser',
+  },
+  {
+    dataKey: 'latitude',
+    label: 'Latitude',
+  },
+  {
+    dataKey: 'longitude',
+    label: 'Longitude',
+  },
+]
+
+export default function ConnectionHistory({ whereabouts }: { whereabouts: Array<Connection> }) {
+  const data = useMemo(() => whereabouts.map((location) => ({
+    ...location,
+    date: location.timestamp.toString(),
+    latitude: location?.location?.absolutePosition?.latitude,
+    longitude: location?.location?.absolutePosition?.longitude,
+  })), [])
+
   return (
-    <div>
-      <MUIDataTable
-        title={ `Connections (${ data.length })` }
-        data={ data }
-        columns={ ['date', 'ipAddress', 'browser', 'latitude', 'longitude'] }
-        options={ {
-          selectableRowsHeader: false,
-          selectableRowsOnClick: false,
-          selectableRowsHideCheckboxes: true,
-        } }
-      />
-    </div>
+    <Stack height={ 1 } spacing={ 2 }>
+      <Typography variant="h5" color="primary">Connections ({ data.length })</Typography>
+
+      <Paper variant="outlined" sx={ { flexGrow: 1, height: 1 } }>
+        <VirtualizedTable columns={ columns } data={ data }/>
+      </Paper>
+    </Stack>
   )
 }
