@@ -9,6 +9,7 @@ import LocationHistory from './LocationComponents/LocationHistory'
 import WhereaboutsMap from './LocationComponents/WhereaboutsMap'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
+import { Box } from '@material-ui/core'
 
 export default function Whereabouts({ data }: { data: NonNullable<GetterData<Array<Whereabout>>> }) {
   return (
@@ -21,7 +22,10 @@ export default function Whereabouts({ data }: { data: NonNullable<GetterData<Arr
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.WHEREABOUTS }/>,
         <WhereaboutsMap whereabouts={ data.data }/>,
-        <LocationHistory whereabouts={ data.data }/>,
+        // Wrap with no overflow container to fix buggy table scroll
+        <Box height={ 1 } overflow="hidden">
+          <LocationHistory whereabouts={ data.data }/>
+        </Box>,
       ] }
     />
   )
