@@ -161,8 +161,7 @@ export default function HomePage() {
 
         <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
           <Paper sx={ { p: 4 } } elevation={ 4 }>
-            <Stack spacing={ 4 }>
-
+            <Stack spacing={ 2 }>
               <Stack spacing={ 1 }>
                 <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
                   <Dropzone onLoaded={ handleExtract }/>
