@@ -1,6 +1,8 @@
-import { Box, Container, Grid, Stack, Typography } from '@material-ui/core'
+import { Box, Button, Container, Grid, Stack, Typography } from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
+import { shell } from 'electron'
+import { OUTPUT_DIR } from '@d4data/archive-lib/dist/src/classes/Archive/Archive'
 import useArchiveHistory from '../hooks/useArchiveHistory'
 import ResetHistoryButton from '../components/history/ResetHistoryButton'
 import HistoryEntry from '../components/history/HistoryEntry'
@@ -24,8 +26,15 @@ export default function ArchiveHistoryPage() {
         <Grid item>
           <Typography variant="h5">{ history.length } entries</Typography>
         </Grid>
+
         <Grid item>
-          <ResetHistoryButton/>
+          <Stack direction="row" spacing={ 2 }>
+            <Button variant="outlined" onClick={ () => shell.showItemInFolder(`${ OUTPUT_DIR }/archives`) }>
+              Open history folder
+            </Button>
+
+            <ResetHistoryButton/>
+          </Stack>
         </Grid>
       </Grid>
 
