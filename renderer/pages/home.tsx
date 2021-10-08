@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Paper, Stack, Typography, useTheme } from '@material-ui/core'
+import { Box, Button, Grid, Link, Paper, Stack, Typography, useTheme } from '@material-ui/core'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
@@ -11,6 +11,7 @@ import Particles from 'react-tsparticles'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
+import openInBrowser from '../modules/openInBrowser'
 
 export default function HomePage() {
   const theme = useTheme()
@@ -162,9 +163,25 @@ export default function HomePage() {
           <Paper sx={ { p: 4 } } elevation={ 4 }>
             <Stack spacing={ 4 }>
 
-              <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
-                <Dropzone onLoaded={ handleExtract }/>
-              </Paper>
+              <Stack spacing={ 1 }>
+                <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
+                  <Dropzone onLoaded={ handleExtract }/>
+                </Paper>
+
+                <div>
+                  <Typography variant="overline">You don&apos;t know how to recover your data archives ?</Typography>
+                  <Typography variant="overline">
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                    <Link
+                      href="#"
+                      onClick={ () => openInBrowser('https://docs.d4data.org/docs/user-docs/guides/index') }
+                      sx={ { ml: 0.5 } }
+                    >
+                      check out our documentation
+                    </Link>
+                  </Typography>
+                </div>
+              </Stack>
 
               { lastHistoryEntry && (
                 <Stack spacing={ 2 }>
