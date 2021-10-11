@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import { List as ListIcon, Timeline } from '@material-ui/icons'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import { Tooltip } from '@material-ui/core'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
@@ -34,20 +35,31 @@ export default function Settings({ data }: { data: NonNullable<GetterData<Array<
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>
+                <TableCell>Description</TableCell>
                 <TableCell>Value</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              { data.data.map((row) => {
-                const setting = row
+              { data.data.map((setting) => {
+                const name = setting.friendlyName ? (
+                  <Tooltip title={ `Key: ${ setting.key }` }><span>{ setting.friendlyName }</span></Tooltip>
+                ) : setting.key
+
                 return (
-                  <TableRow key={ row.name }>
+                  <TableRow key={ setting.key }>
                     <TableCell
                       component="th"
                       scope="row"
                     >
-                      { setting.name }
+                      { name }
                     </TableCell>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                    >
+                      { setting.description }
+                    </TableCell>
+
                     <TableCell
                       component="th"
                       scope="row"
