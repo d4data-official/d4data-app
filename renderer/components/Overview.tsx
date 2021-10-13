@@ -4,18 +4,19 @@ import { ArchiveMetaData } from '@d4data/archive-lib'
 import { Card, Container, Grid, Typography } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
 import UnarchiveIcon from '@material-ui/icons/Unarchive'
-import Facebook from '@material-ui/icons/Facebook'
-import Reddit from '@material-ui/icons/Reddit'
+import FacebookIcon from '@material-ui/icons/Facebook'
+import RedditIcon from '@material-ui/icons/Reddit'
+import GoogleIcon from '@material-ui/icons/Google'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import moment from 'moment'
 import MetadataCard from '@components/pages/dashboard/components/MetaDataCard'
-import useArchiveManager from '@hooks/useArchiveManager'
+import useArchiveManager from '../hooks/useArchiveManager'
 
 function computeLogoFromServiceName(serviceName: string) {
-  if (serviceName.toUpperCase() === 'FACEBOOK') return (<Facebook/>)
-  if (serviceName.toUpperCase() === 'REDDIT') return (<Reddit/>)
+  if (serviceName.toUpperCase() === 'FACEBOOK') return (<FacebookIcon/>)
+  if (serviceName.toUpperCase() === 'REDDIT') return (<RedditIcon/>)
   // if (serviceName.toUpperCase() === 'DISCORD') return (<Reddit/>)
-  // if (serviceName.toUpperCase() === 'GOOGLE') return (<Reddit/>)
+  if (serviceName.toUpperCase() === 'GOOGLE') return (<GoogleIcon/>)
   return (<UnarchiveIcon/>)
 }
 
@@ -43,12 +44,17 @@ function generateTeamNotes() {
 
 export default function Overview() {
   const [archiveMetadata, setArchiveMetadata] = useState<ArchiveMetaData | undefined>()
-  const { getArchiveMetadata } = useArchiveManager()
+  const { getArchiveMetadata, restoredArchive } = useArchiveManager()
+
+  const archiveCreationDate = restoredArchive?.date ?? archiveMetadata?.creationDate
+  const archiveCreationDateDuration = archiveCreationDate
+    && moment.duration(new Date().valueOf() - archiveCreationDate.valueOf(), 'millisecond')
 
   useEffect(() => {
     getArchiveMetadata()
       .then((metadata) => setArchiveMetadata(metadata))
   }, [])
+
   return (
     <Container>
       <h2>About your archive</h2>
@@ -64,7 +70,7 @@ export default function Overview() {
 
         </Grid>
 
-        {archiveMetadata?.size && (
+        { archiveMetadata?.size && (
           <Grid item xs={ 4 }>
             <MetadataCard
               icon={ <UnarchiveIcon/> }
@@ -72,21 +78,21 @@ export default function Overview() {
               subtitle="Archive size"
             />
           </Grid>
-        )}
+        ) }
 
-        {archiveMetadata?.creationDate && (
+        { archiveCreationDateDuration && (
           <Grid item xs={ 4 }>
             <MetadataCard
               icon={ <EventNoteIcon/> }
-              metadata={ moment.duration(archiveMetadata?.creationDate?.valueOf() / 1000).humanize() }
+              metadata={ archiveCreationDateDuration.humanize() }
               subtitle="Archive age"
             />
           </Grid>
-        )}
+        ) }
       </Grid>
       <br/>
       <div>
-        {archiveMetadata?.service && generateTeamNotes()}
+        { archiveMetadata?.service && generateTeamNotes() }
       </div>
     </Container>
   )
