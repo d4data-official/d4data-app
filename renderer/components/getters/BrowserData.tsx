@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
-import { ColorLens, Extension, History, ListAlt, Settings, Timeline } from '@material-ui/icons'
+import { Box } from '@mui/material'
+import { ColorLens, Extension, History, ListAlt, Settings, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { BrowserData as BrowserDataType } from '@d4data/archive-lib/dist/src/types/schemas'

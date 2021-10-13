@@ -1,9 +1,9 @@
 import { usePopupState } from 'material-ui-popup-state/hooks'
 import { bindMenu, bindTrigger } from 'material-ui-popup-state'
-import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@material-ui/core'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import GitHubIcon from '@material-ui/icons/GitHub'
-import WebIcon from '@material-ui/icons/Web'
+import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import WebIcon from '@mui/icons-material/Web'
 import { version } from '../../../../../package.json'
 import openInBrowser from '../../../../modules/openInBrowser'
 

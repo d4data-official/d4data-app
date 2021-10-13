@@ -1,5 +1,5 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Grid, TextField, Typography } from '@material-ui/core'
+import { Grid, TextField, Typography } from '@mui/material'
 import { CSSProperties, ReactNode } from 'react'
 
 export interface Props {

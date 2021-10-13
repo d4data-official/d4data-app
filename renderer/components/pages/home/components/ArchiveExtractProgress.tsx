@@ -1,5 +1,5 @@
-import { Dialog, DialogTitle, LinearProgress } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Dialog, DialogTitle, LinearProgress } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 
 export interface ProgressState {
   show: boolean

@@ -1,6 +1,6 @@
 import { History } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, Button, Paper, Tooltip } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Button, Paper, Tooltip } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import openInBrowser from '../../../modules/openInBrowser'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 

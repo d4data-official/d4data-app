@@ -1,8 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@mui/styles'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import Typography from '@mui/material/Typography'
 
 const useStyles = makeStyles({
   heading: {

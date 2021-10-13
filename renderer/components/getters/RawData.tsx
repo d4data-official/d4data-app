@@ -1,6 +1,6 @@
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { Box, Button, FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Button, FormControl, FormLabel, MenuItem, Select, SelectChangeEvent, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import ArchiveManager from '@modules/ArchiveManager'
 import { shell } from 'electron'
 import { join, relative } from 'path'
@@ -53,8 +53,8 @@ export default function RawData({ data: { parsedFiles } }: Props) {
   const [data, setData] = useState<any>()
   const classes = useStyles()
 
-  const handleChangeFile = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
-    setFile(event.target.value as string)
+  const handleChangeFile = useCallback((event: SelectChangeEvent<string>) => {
+    setFile(event.target.value)
   }, [])
 
   useEffect(() => {

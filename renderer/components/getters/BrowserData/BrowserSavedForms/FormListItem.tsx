@@ -1,5 +1,5 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { CSSProperties } from 'react'
 import moment from 'moment'
 

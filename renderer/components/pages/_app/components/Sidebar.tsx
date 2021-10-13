@@ -13,11 +13,11 @@ import {
   ListItemText,
   Stack,
   Typography,
-} from '@material-ui/core'
-import { ChevronLeft } from '@material-ui/icons'
+} from '@mui/material'
+import { ChevronLeft } from '@mui/icons-material'
 import { GlobalContext } from 'renderer/context/Store'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import getGetterLabel from '../../../../modules/getGetterLabel'
 import useArchiveManager from '../../../../hooks/useArchiveManager'
 import ConditionalTooltip from '../../../ConditionalTooltip'
