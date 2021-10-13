@@ -44,9 +44,9 @@ function generateTeamNotes() {
 
 export default function Overview() {
   const [archiveMetadata, setArchiveMetadata] = useState<ArchiveMetaData | undefined>()
-  const { getArchiveMetadata } = useArchiveManager()
+  const { getArchiveMetadata, restoredArchive } = useArchiveManager()
 
-  const archiveCreationDate = archiveMetadata?.creationDate
+  const archiveCreationDate = restoredArchive?.date ?? archiveMetadata?.creationDate
   const archiveCreationDateDuration = archiveCreationDate
     && moment.duration(new Date().valueOf() - archiveCreationDate.valueOf(), 'millisecond')
 
