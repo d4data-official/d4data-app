@@ -1,7 +1,7 @@
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import React from 'react'
 import ReactJson from 'react-json-view-ssr'
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography } from '@mui/material'
 
 export interface Props {
   data: NonNullable<GetterData<any>>

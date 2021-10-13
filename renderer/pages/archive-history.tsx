@@ -1,6 +1,6 @@
-import { Box, Button, Container, Grid, Stack, Typography } from '@material-ui/core'
+import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material'
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@mui/styles'
 import { shell } from 'electron'
 import { OUTPUT_DIR } from '@d4data/archive-lib/dist/src/classes/Archive/Archive'
 import useArchiveHistory from '../hooks/useArchiveHistory'

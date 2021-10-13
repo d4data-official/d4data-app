@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Paper, Stack, Typography } from '@material-ui/core'
+import { Paper, Stack, Typography } from '@mui/material'
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
-import { Unarchive } from '@material-ui/icons'
-import { makeStyles } from '@material-ui/styles'
-import { darken } from '@material-ui/core'
+import { Unarchive } from '@mui/icons-material'
+import { makeStyles } from '@mui/styles'
+import { darken } from '@mui/material'
 
 interface Props {
   onLoaded: Function

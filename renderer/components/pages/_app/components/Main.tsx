@@ -1,6 +1,6 @@
 import React from 'react'
 import useStyles from 'pages-components/_app/styles/main.styles'
-import { AppBar, Drawer, Toolbar } from '@material-ui/core'
+import { AppBar, Drawer, Toolbar } from '@mui/material'
 
 export interface MainProps {
   className: string

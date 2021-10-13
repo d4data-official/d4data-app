@@ -1,5 +1,5 @@
 import Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid } from '@mui/material'
 import React from 'react'
 import StatisticCard, { Props as StatisticCardProps } from './StatisticCard'
 

@@ -1,5 +1,5 @@
 import { Extension } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, Grid } from '@material-ui/core'
+import { Box, Grid } from '@mui/material'
 import ExtensionCard from './BrowserExtensions/ExtensionCard'
 
 export interface Props {

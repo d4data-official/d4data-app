@@ -1,6 +1,6 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core'
+import { Card, CardContent, Grid, Typography } from '@mui/material'
 import React, { ReactNode } from 'react'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import { createStyles, makeStyles } from '@mui/styles'
 
 interface MetaDataCardComponent {
   icon: ReactNode,

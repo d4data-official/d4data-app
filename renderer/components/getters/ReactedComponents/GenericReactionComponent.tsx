@@ -1,11 +1,11 @@
 import { Reaction } from '@d4data/archive-lib/dist/src/types/schemas'
-import ThumbUp from '@material-ui/icons/ThumbUp'
-import ThumbDown from '@material-ui/icons/ThumbDown'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import Mood from '@material-ui/icons/Mood'
-import MoodBad from '@material-ui/icons/MoodBad'
-import SentimentSatisfied from '@material-ui/icons/SentimentSatisfied'
-import { makeStyles } from '@material-ui/styles'
+import ThumbUp from '@mui/icons-material/ThumbUp'
+import ThumbDown from '@mui/icons-material/ThumbDown'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import Mood from '@mui/icons-material/Mood'
+import MoodBad from '@mui/icons-material/MoodBad'
+import SentimentSatisfied from '@mui/icons-material/SentimentSatisfied'
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
   reactionBox: {

@@ -1,5 +1,5 @@
 import { Preference } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, Paper } from '@material-ui/core'
+import { Box, Paper } from '@mui/material'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 
 export interface Props {

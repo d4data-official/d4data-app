@@ -1,9 +1,9 @@
 import React from 'react'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+import { makeStyles } from '@mui/styles'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
 import GenericReactionComponent from './GenericReactionComponent'
 
 const useStyles = makeStyles({

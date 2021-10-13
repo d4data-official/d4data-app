@@ -10,14 +10,15 @@ import {
   Message,
   // @ts-ignore
 } from '@chatscope/chat-ui-kit-react';
-import { AccountCircle, SupervisedUserCircle } from '@material-ui/icons';
+import { AccountCircle, SupervisedUserCircle } from '@mui/icons-material';
 
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import {
   Button,
   Dialog,
   DialogActions,
-  DialogContent, DialogTitle, Select, Theme, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+  DialogContent, DialogTitle, Select, Theme, MenuItem, FormControl, InputLabel, SelectChangeEvent,
+} from '@mui/material'
 import { useCallback, useMemo, useState } from 'react';
 import Searchbar from './Searchbar';
 
@@ -96,8 +97,8 @@ export default function Conversation({ chat, data: { data: messageList } }: Prop
     setDoalogOpen((prev) => !prev);
   }, [dialogOpen])
 
-  const handleChangeMe = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
-    setMe(event.target.value as string);
+  const handleChangeMe = useCallback((event: SelectChangeEvent<string>) => {
+    setMe(event.target.value);
   }, [])
 
   const handleSearch = useCallback((data) => {

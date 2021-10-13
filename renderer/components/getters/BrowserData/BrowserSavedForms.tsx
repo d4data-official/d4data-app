@@ -1,8 +1,8 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, List, ListItem, Paper } from '@material-ui/core'
+import { Box, List, ListItem, Paper } from '@mui/material'
 import { useMemo, useState } from 'react'
 import clsx from 'clsx'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import { createStyles, makeStyles } from '@mui/styles'
 import FormListItem from './BrowserSavedForms/FormListItem'
 import SavedFormDetails from './BrowserSavedForms/SavedFormDetails'
 

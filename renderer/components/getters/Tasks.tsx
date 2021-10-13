@@ -5,15 +5,15 @@ import {
   AccordionSummary,
   Divider,
   ListItemText,
-  MenuItem,
+  MenuItem, SelectChangeEvent,
   Typography,
-} from '@material-ui/core'
-import Select from '@material-ui/core/Select'
-import { CalendarToday, CheckCircle, List as ListIcon, RadioButtonUnchecked, Timeline } from '@material-ui/icons'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import Select from '@mui/material/Select'
+import { CalendarToday, CheckCircle, List as ListIcon, RadioButtonUnchecked, Timeline } from '@mui/icons-material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import clsx from 'clsx'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import { createStyles, makeStyles } from '@mui/styles'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
@@ -185,8 +185,8 @@ function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskLi
   const [index, setIndex] = React.useState(0)
   const [value, setValue] = React.useState<string>('')
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setValue(event.target.value as string)
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setValue(event.target.value)
   }
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Link, Paper, Stack, Typography, useTheme } from '@material-ui/core'
+import { Box, Button, Grid, Link, Paper, Stack, Typography, useTheme } from '@mui/material'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'

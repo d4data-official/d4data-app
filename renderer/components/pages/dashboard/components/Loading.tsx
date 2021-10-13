@@ -1,8 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles';
-import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
-import { Box } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
+import { makeStyles } from '@mui/styles';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import { Box } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 interface Props {
   title?: string,

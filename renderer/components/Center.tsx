@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { Box } from '@material-ui/core'
-import { SxProps } from '@material-ui/system'
+import { Box } from '@mui/material'
+import { SxProps } from '@mui/system'
 
 export interface Props {
   sx?: SxProps
