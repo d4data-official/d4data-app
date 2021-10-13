@@ -5,10 +5,18 @@ import NoDataAvailable from 'components/pages/dashboard/components/NoDataAvailab
 import Overview from 'components/Overview'
 import { GlobalContext } from 'renderer/context/Store'
 import RawData from 'components/getters/RawData'
+import { useRouter } from 'next/router'
+import useArchiveManager from '../../hooks/useArchiveManager'
 
 function Dashboard() {
   const { rawData } = useContext(GlobalContext)
-  const { componentName, Component, data } = useDashboardComponent();
+  const { componentName, Component, data } = useDashboardComponent()
+  const { currentStandardizer } = useArchiveManager()
+  const router = useRouter()
+
+  if (!currentStandardizer && typeof window !== 'undefined') {
+    router.push('/home')
+  }
 
   if (!componentName) {
     return (
@@ -18,7 +26,7 @@ function Dashboard() {
 
   if (data === undefined || data.componentName !== componentName) {
     return (
-      <Loading />
+      <Loading/>
     )
   }
 
@@ -28,9 +36,10 @@ function Dashboard() {
     )
   }
 
-  return ((rawData && !Component.disableRawData)
-    ? <RawData data={ data.data }/>
-    : <Component data={ data.data }/>
+  return (
+    (rawData && !Component.disableRawData)
+      ? <RawData data={ data.data }/>
+      : <Component data={ data.data }/>
   )
 }
 
