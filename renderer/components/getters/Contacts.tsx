@@ -12,7 +12,7 @@ export default function Contacts({ data }: { data: NonNullable<GetterData<Array<
     <AutoTabs
       tabs={ [
         { label: 'Contacts stat', icon: <Timeline/> },
-        { label: 'Contacts devices list', icon: <ListIcon/> },
+        { label: 'Contacts list', icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.CONTACTS }/>,
