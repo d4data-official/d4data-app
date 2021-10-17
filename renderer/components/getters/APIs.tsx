@@ -83,7 +83,7 @@ export default function APIs({ data }: { data: NonNullable<GetterData<Array<API>
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Connection stat', icon: <Timeline/> },
+        { label: 'APIs stat', icon: <Timeline/> },
         { label: 'APIs list', icon: <ListIcon/> },
       ] }
       tabsContent={ [
