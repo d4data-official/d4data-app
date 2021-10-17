@@ -23,7 +23,7 @@ export default function Profile({ data }: Props) {
         <Stack direction="row" alignItems="center" spacing={ 2 }>
           <Avatar
             alt={ profile.firstName }
-            src={ profile.profilePicture }
+            src={ profile.profilePicture?.current?.url }
             sx={ {
               boxShadow: (theme) => theme.shadows[3],
               width: (theme) => theme.spacing(16),
