@@ -43,7 +43,7 @@ export default function Mails({ data }: Props) {
   const classes = useStyles()
 
   const Mails = (
-    <Box width={ 1 } height={ 1 }>
+    <Box width={ 1 } height={ 1 } p={ 3 } pt={ 0 }>
       <h2>{ data.data.length } mails</h2>
       <Grid container spacing={ 2 }>
         {

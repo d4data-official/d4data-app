@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import { Divider, Grid } from '@mui/material'
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import { Box } from '@mui/system'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
@@ -37,7 +38,7 @@ export default function DisplayNotes({ data }: Props) {
   const classes = useStyles()
 
   const Notes = (
-    <div>
+    <Box p={ 3 } pt={ 0 }>
       <h2>{ data.data.length } notes</h2>
       <Grid container xs={ 12 } spacing={ 2 }>
         {
@@ -63,7 +64,7 @@ export default function DisplayNotes({ data }: Props) {
           ))
         }
       </Grid>
-    </div>
+    </Box>
   )
 
   return (
