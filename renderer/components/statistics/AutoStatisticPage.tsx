@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import { Box, Slide, Zoom } from '@mui/material'
 import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import type Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { StatisticGetterData } from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
@@ -56,7 +57,11 @@ export default function AutoStatisticPage({ getter }: Props) {
   if (statistics === undefined) {
     return (
       <Center>
-        <Loading title={ LOADING_MESSAGE }/>
+        <Zoom in timeout={ 500 }>
+          <Box>
+            <Loading title={ LOADING_MESSAGE }/>
+          </Box>
+        </Zoom>
       </Center>
     )
   }
@@ -64,7 +69,11 @@ export default function AutoStatisticPage({ getter }: Props) {
   if (statistics === null) {
     return (
       <Center>
-        <NoDataAvailable/>
+        <Slide in timeout={ 1000 }>
+          <Box>
+            <NoDataAvailable/>
+          </Box>
+        </Slide>
       </Center>
     )
   }
