@@ -19,6 +19,7 @@ import Medias from '../../../getters/Medias'
 import Posts from '../../../getters/Posts'
 import Reacteds from '../../../getters/Reacteds'
 import BrowserData from '../../../getters/BrowserData'
+import Friends from '../../../getters/Friends'
 
 interface ComponentProps {
   data: any
@@ -54,6 +55,10 @@ export const ComponentList: Array<[Getters, GetterComponent]> = [
   [
     Getters.CONNECTIONS,
     Connections,
+  ],
+  [
+    Getters.FRIENDS,
+    Friends,
   ],
   [
     Getters.CONTACTS,
