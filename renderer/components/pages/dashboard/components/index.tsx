@@ -20,6 +20,7 @@ import Posts from '../../../getters/Posts'
 import Reacteds from '../../../getters/Reacteds'
 import BrowserData from '../../../getters/BrowserData'
 import Friends from '../../../getters/Friends'
+import Notifications from '../../../getters/Notifications'
 
 interface ComponentProps {
   data: any
@@ -82,7 +83,7 @@ export const ComponentList: Array<[Getters, GetterComponent]> = [
   ],
   [
     Getters.NOTIFICATIONS,
-    DefaultDisplay,
+    Notifications,
   ],
   [
     Getters.NOTES,
