@@ -117,10 +117,6 @@ export const ComponentList: Array<[Getters, GetterComponent]> = [
     Getters.WHEREABOUTS,
     Whereabouts,
   ],
-  [
-    Getters.EVENTS,
-    DefaultDisplay,
-  ],
 ]
 
 export const fetchComponent = (componentName: string): GetterComponent | null => {

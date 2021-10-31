@@ -17,7 +17,7 @@ export default function Notifications({ data }: { data: NonNullable<GetterData<N
           { label: 'Notifications list', icon: <ListIcon/> },
         ] }
         tabsContent={ [
-          <AutoStatisticPage getter={ Getters.BROWSER_DATA }/>,
+          <AutoStatisticPage getter={ Getters.NOTIFICATIONS }/>,
           <NotificationsList data={ data }/>,
         ] }
       />

@@ -18,6 +18,7 @@ import { ChevronLeft } from '@mui/icons-material'
 import { GlobalContext } from 'renderer/context/Store'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { useRouter } from 'next/router'
 import getGetterLabel from '../../../../modules/getGetterLabel'
 import useArchiveManager from '../../../../hooks/useArchiveManager'
 import ConditionalTooltip from '../../../ConditionalTooltip'
@@ -37,8 +38,10 @@ const GETTERS = Object.values(Getters)
 const DRAWER_WIDTH = 240
 
 const IGNORED_GETTER: Array<Getters> = [Getters.CHAT_MESSAGES]
+const DEDICATED_GETTER_PAGES: Array<Getters> = [Getters.EVENTS]
 
 export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
+  const router = useRouter()
   const { dispatch } = useContext(GlobalContext)
   const [availableGetters, setAvailableGetters] = useState<Array<Getters>>()
   const { currentStandardizer } = useArchiveManager()
@@ -47,7 +50,12 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
     .filter((getter) => !availableGetters?.includes(getter)), [availableGetters])
 
   const handleLinkClick = React.useCallback((getterName: string) => () => {
-    // const componentName = getterName.slice(3) // Remove 'get' of getter name
+    if (DEDICATED_GETTER_PAGES.includes(getterName as Getters)) {
+      router.push(`/dashboard/${ getterName.toLowerCase().slice(3) }`)
+      return
+    }
+
+    router.push('/dashboard')
     dispatch({ type: 'UPDATE_COMPONENT', componentName: getterName })
   }, [])
 

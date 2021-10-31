@@ -14,7 +14,7 @@ export default function StatisticPage({ statistics, variantProvider }: Props) {
       <Grid container spacing={ 4 } justifyContent="center">
         {
           statistics.map((statistic, index) => (
-            <Grid item>
+            <Grid item key={ statistic.name }>
               <StatisticCard statistic={ statistic } variant={ variantProvider?.(statistic, index) }/>
             </Grid>
           ))
