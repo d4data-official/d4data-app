@@ -1,3 +1,4 @@
+import type { RankingStatisticItemValue } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import Statistic, { RankingStatisticValue, StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import { Box, capitalize, Grid, Stack, Typography, useTheme } from '@mui/material'
 import TimelineIcon from '@mui/icons-material/Timeline'
@@ -5,7 +6,6 @@ import ShowChartIcon from '@mui/icons-material/ShowChart'
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 import moment from 'moment'
 import numeral from 'numeral'
-import type { RankingStatisticItemValue } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import SharableContent from '../SharableContent'
 
 export interface Props {
@@ -108,7 +108,7 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
               mt={ size }
               variant="h6"
               fontSize={ 20 * Math.max(size * 0.75, 1) }
-            >{ statistic.name }
+            >{ capitalize(statistic.name) }
             </Typography>
 
           </Grid>
