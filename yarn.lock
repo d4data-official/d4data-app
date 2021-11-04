@@ -1106,10 +1106,10 @@
   dependencies:
     chalk "^4.0.0"
 
-"@d4data/archive-lib@0.1.0-alpha.7":
-  version "0.1.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/@d4data/archive-lib/-/archive-lib-0.1.0-alpha.7.tgz#9aff416366cadb6976da46197d4cb828b931bc80"
-  integrity sha512-FDQjWYVXiPps4+9RUYtcdJ+bqd1TGKdt1VdSweQfUqtq/OXClfqsOJvIB49rkn7dXqpq/9wBUgSwAUqxdmSVGQ==
+"@d4data/archive-lib@0.1.0-alpha.8":
+  version "0.1.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/@d4data/archive-lib/-/archive-lib-0.1.0-alpha.8.tgz#148c60124ca306f43d886c6fa985be707169a2be"
+  integrity sha512-sVLP4cby4Pq/wT7m+WXRM3PTtH0BNcptqGlqj9g5s3rrnKL7Ci/xphP1PlFE9rQGybFyTIMHXlxiAoStx+L0Nw==
   dependencies:
     cross-env "^7.0.3"
     dotenv "^8.2.0"
