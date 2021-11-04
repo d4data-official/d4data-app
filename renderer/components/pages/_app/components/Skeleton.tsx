@@ -14,6 +14,7 @@ import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
 import getGetterLabel from '../../../../modules/getGetterLabel'
 import AppBarMoreMenu from './AppBarMoreMenu'
+import useArchiveManager from '../../../../hooks/useArchiveManager'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -22,6 +23,7 @@ export interface SkeletonProps {
 export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
   const { componentName, dispatch } = useContext(GlobalContext)
+  const { currentStandardizer } = useArchiveManager()
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const [settingsDialogOpen, setSettingsDialogOpen] = React.useState<boolean>(false)
   const classes = useStyles()
@@ -78,7 +80,7 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
+              { currentStandardizer?.service } / { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>
 
