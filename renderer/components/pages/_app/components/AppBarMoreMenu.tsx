@@ -6,6 +6,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import WebIcon from '@mui/icons-material/Web'
 import { version } from '../../../../../package.json'
 import openInBrowser from '../../../../modules/openInBrowser'
+import Trans from 'components/Translate'
 
 export default function AppBarMoreMenu() {
   const popupState = usePopupState({ variant: 'popover', popupId: 'header-menu' })
@@ -27,18 +28,24 @@ export default function AppBarMoreMenu() {
           <ListItemIcon>
             <WebIcon fontSize="small"/>
           </ListItemIcon>
-          <ListItemText>Website</ListItemText>
+          <ListItemText>
+            <Trans page="utils" section="website" />
+          </ListItemText>
         </MenuItem>
 
         <MenuItem onClick={ goToGithub }>
           <ListItemIcon>
             <GitHubIcon fontSize="small"/>
           </ListItemIcon>
-          <ListItemText>Source code</ListItemText>
+          <ListItemText>
+            <Trans page="utils" section="sources" />
+          </ListItemText>
         </MenuItem>
 
         <MenuItem onClick={ goToGithubRelease }>
-          <ListItemText>Version { version }</ListItemText>
+          <ListItemText>
+            <Trans page="utils" section="version" templateContent={ version } />
+          </ListItemText>
         </MenuItem>
       </Menu>
     </>

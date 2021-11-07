@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { Unarchive } from '@mui/icons-material'
 import { makeStyles } from '@mui/styles'
 import { darken } from '@mui/material'
+import Trans from 'components/Translate'
 
 interface Props {
   onLoaded: Function
@@ -57,7 +58,9 @@ export default function Dropzone({ onLoaded }: Props) {
     <div { ...getRootProps() } className={ classes.root }>
       <input { ...getInputProps() } className={ classes.dropzone }/>
       <Unarchive className={ classes.icon } fontSize="large"/>
-      <h1>Click to select your GDPR archive or drop it here</h1>
+      <h1>
+        <Trans page="homepage" section="dropzone"/>
+      </h1>
     </div>
   )
 }

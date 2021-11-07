@@ -8,6 +8,7 @@ import Path from 'path'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
 import Particles from 'react-tsparticles'
+import Trans from 'components/Translate'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
@@ -155,7 +156,7 @@ export default function HomePage() {
             color="primary"
             align="center"
           >
-            Visualize your personal data in just one click !
+            <Trans page="homepage" section="header" />
           </Typography>
         </Grid>
 
@@ -168,7 +169,9 @@ export default function HomePage() {
                 </Paper>
 
                 <div>
-                  <Typography variant="overline">You don&apos;t know how to recover your data archives ?</Typography>
+                  <Typography variant="overline">
+                    <Trans page="homepage" section="documentation" />
+                  </Typography>
                   <Typography variant="overline">
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
                     <Link
@@ -176,7 +179,7 @@ export default function HomePage() {
                       onClick={ () => openInBrowser('https://docs.d4data.org/docs/user-docs/guides/index') }
                       sx={ { ml: 0.5 } }
                     >
-                      check out our documentation
+                      <Trans page="homepage" section="documentationLink" />
                     </Link>
                   </Typography>
                 </div>
@@ -185,7 +188,9 @@ export default function HomePage() {
               { lastHistoryEntry && (
                 <Stack spacing={ 2 }>
                   <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant="h6" fontWeight={ 100 } color="secondary">Last archive processed</Typography>
+                    <Typography variant="h6" fontWeight={ 100 } color="secondary">
+                      <Trans page="homepage" section="historyTitle" />
+                    </Typography>
 
                     <Button
                       onClick={ () => router.push('/archive-history') }
@@ -193,7 +198,11 @@ export default function HomePage() {
                       variant="contained"
                       size="small"
                     >
-                      Show complete history ({ history.length })
+                      <Trans
+                        page="homepage"
+                        section="historyButton"
+                        template={ `{{template}} (${ history.length })` }
+                      />
                     </Button>
                   </Stack>
 

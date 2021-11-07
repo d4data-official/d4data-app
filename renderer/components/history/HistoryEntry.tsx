@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from '@mui/material'
-import React, { CSSProperties, useState } from 'react'
+import React, { CSSProperties, useState, useContext } from 'react'
 import moment from 'moment'
 import RestoreIcon from '@mui/icons-material/Restore'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -7,7 +7,9 @@ import filesize from 'filesize'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
+import Trans from 'components/Translate'
 import EllipsisTooltip from '../EllipsisTooltip'
+import { GlobalContext } from 'renderer/context/Store'
 
 export interface Props {
   entry: ArchiveHistoryEntry
@@ -28,10 +30,15 @@ export default function HistoryEntry({
   className,
   style,
 }: Props) {
+  const { language } = useContext(GlobalContext)
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
 
-  const getDeltaTimeHumanized = (date: Date) => moment.duration(date.valueOf() - new Date().valueOf())
+  const getDeltaTimeHumanized = (date: Date) => {
+    const duration = moment.duration(date.valueOf() - new Date().valueOf())
+    duration.locale(language.key);
+    return duration;
+  }
 
   const deleteEntryHandler = () => {
     setLoading(true)
@@ -47,7 +54,9 @@ export default function HistoryEntry({
     restoreArchiveFromEntry(entry)
       .then(() => {
         toast.success(
-          <span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>,
+          <span>
+            <Trans page="history" section="restored" templateContent={ entry.archiveName ?? entry.service } />
+          </span>,
           { position: 'bottom-left' },
         )
       })
@@ -112,7 +121,8 @@ export default function HistoryEntry({
                   color="error"
                   size="small"
                   sx={ { px: 1 } }
-                >Delete
+                >
+                  <Trans page="history" section="delete" />
                 </Button>
               </Grid>
             ) }
@@ -125,7 +135,8 @@ export default function HistoryEntry({
                   variant="contained"
                   size="small"
                   sx={ { px: 1 } }
-                >Restore
+                >
+                  <Trans page="history" section="restore" />
                 </Button>
               </Grid>
             ) }
