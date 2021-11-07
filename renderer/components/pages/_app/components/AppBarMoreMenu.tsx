@@ -4,9 +4,9 @@ import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/mat
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import WebIcon from '@mui/icons-material/Web'
+import Trans from 'components/Translate'
 import { version } from '../../../../../package.json'
 import openInBrowser from '../../../../modules/openInBrowser'
-import Trans from 'components/Translate'
 
 export default function AppBarMoreMenu() {
   const popupState = usePopupState({ variant: 'popover', popupId: 'header-menu' })

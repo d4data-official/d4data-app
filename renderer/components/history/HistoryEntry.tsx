@@ -8,8 +8,8 @@ import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
 import Trans from 'components/Translate'
-import EllipsisTooltip from '../EllipsisTooltip'
 import { GlobalContext } from 'renderer/context/Store'
+import EllipsisTooltip from '../EllipsisTooltip'
 
 export interface Props {
   entry: ArchiveHistoryEntry
