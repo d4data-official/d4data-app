@@ -8,11 +8,13 @@ import { Toaster } from 'react-hot-toast'
 import type { AppProps } from 'next/app'
 import themeDark from '../themeDark'
 import themeLight from '../themeLight'
+import '../i18n'
 import '../style.css'
 
 function AppContent(props: AppProps) {
   const { currentTheme } = useContext(GlobalContext)
   const { Component, pageProps } = props
+
   return (
     <ThemeProvider theme={ currentTheme === 'light' ? themeLight : themeDark }>
       <CssBaseline/>

@@ -3,6 +3,7 @@ import React from 'react'
 import { makeStyles } from '@mui/styles'
 import { shell } from 'electron'
 import { OUTPUT_DIR } from '@d4data/archive-lib/dist/src/classes/Archive/Archive'
+import { useTranslation } from 'react-i18next'
 import useArchiveHistory from '../hooks/useArchiveHistory'
 import ResetHistoryButton from '../components/history/ResetHistoryButton'
 import HistoryEntry from '../components/history/HistoryEntry'
@@ -15,6 +16,8 @@ const useStyles = makeStyles({
 })
 
 export default function ArchiveHistoryPage() {
+  const { t } = useTranslation(['common', 'history'])
+
   const classes = useStyles()
   const { history } = useArchiveHistory()
 
@@ -24,13 +27,15 @@ export default function ArchiveHistoryPage() {
     <Container maxWidth="md" sx={ { py: 3 } }>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
-          <Typography variant="h5">{ history.length } entries</Typography>
+          <Typography variant="h5">
+            { t('common:entry' as any /* TS typing not working yet for plural */, { count: history.length }) }
+          </Typography>
         </Grid>
 
         <Grid item>
           <Stack direction="row" spacing={ 2 }>
             <Button variant="outlined" onClick={ () => shell.showItemInFolder(`${ OUTPUT_DIR }/archives`) }>
-              Open history folder
+              { t('history:openFolder') }
             </Button>
 
             <ResetHistoryButton/>
@@ -45,7 +50,7 @@ export default function ArchiveHistoryPage() {
 
         <Show condition={ history.length === 0 }>
           <Box marginTop={ 12 } display="flex" alignItems="center" justifyContent="center">
-            <Typography variant="h5" className={ classes.emptyMessage }>Empty history</Typography>
+            <Typography variant="h5" className={ classes.emptyMessage }>{ t('history:empty') }</Typography>
           </Box>
         </Show>
       </Box>

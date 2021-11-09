@@ -1,0 +1,112 @@
+{
+  "utils": {
+    "website": "Site web",
+    "sources": "Code source",
+    "version": "Version {{version}}"
+  },
+  "homepage": {
+    "header": "Visualisez vos données personnelles en un seul clic !",
+    "description": "D4Data est l'interface sécurisée qui permet de convertir des données non lisibles par l'homme en une interface utilisateur intuitive où chacun peut comprendre son empreinte numérique. peut comprendre son empreinte numérique.",
+    "dropzone": "Cliquez pour sélectionner votre archive GDPR ou déposez-la ici",
+    "historyTitle": "Dernière archive traitée",
+    "historyButton": "Afficher l'historique complet",
+    "documentation": "Vous ne savez pas comment récupérer vos archives ?",
+    "documentationLink": "Consultez notre documentation"
+  },
+  "history": {
+    "delete": "Supprimer",
+    "restore": "Restaurer",
+    "reset": "Supprimer l'historique",
+    "openFolder": "Ouvrir le dossier d'historique",
+    "empty": "Aucune archive n'a été traitée",
+    "restored": "Archive \"{{name}}\" restored",
+    "deleted": "Archive \"{{name}}\" deleted"
+  },
+  "settings": {
+    "title": "Réglages",
+    "theme": "Thème",
+    "display": "Type d'affichage",
+    "language": "Langue",
+    "ergonomic": "Ergonomique",
+    "raw": "Brut"
+  },
+  "overview": {
+    "about": "À propos de votre archive",
+    "service": "Service",
+    "size": "Taille de l'archive",
+    "note": "Note de l'équipe",
+    "score": "Score RGPD (bientôt disponible)",
+    "noteDescription": "Cette section vous aidera à en savoir plus sur les services que vous utilisez et leur politique en matière de données",
+    "scoreDescription": "D4Data va définir un score pour chaque service supporté. Plus d'informations à venir lors de la sortie de la version !",
+    "date": "Crée"
+  },
+  "navbar": {
+    "available": "Données disponibles",
+    "unavailable": "Données indisponibles",
+    "loading": "En cours de traitement..."
+  },
+  "getters": {
+    "profile": "Profile",
+    "friends": "Amis",
+    "followings": "Abonnements",
+    "followers": "Abonnés",
+    "contacts": "Contacts",
+    "whereabouts": "Positions",
+    "notifications": "Notifications",
+    "chats": "Discussions",
+    "chatmessages": "Messages",
+    "comments": "Commentaires",
+    "posts": "Publications",
+    "messages": "Messages",
+    "apis": "Applications Connectées",
+    "connections": "Connections",
+    "communities": "Communautés",
+    "settings": "Réglages",
+    "reacted": "Reactions",
+    "medias": "Medias",
+    "notes": "Notes",
+    "transactions": "Transactions",
+    "browserdata": "Données de Navigation",
+    "tasks": "Tâches",
+    "authorizeddevices": "Appareils autorisés",
+    "mails": "Mails",
+    "events": "Événements"
+  },
+  "common": {
+    "name": "Nom",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "displayName": "Nom d'affichage",
+    "date": "Date",
+    "address": "Addresse",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "username": "Nom d'utilisateur",
+    "ip": "Addresse IP",
+    "joinedDate": "Date d'adhésion",
+    "picture": "Image",
+    "email": "Courriel",
+    "value": "Valeur",
+    "item": "Article",
+    "price": "Prix (Monnaie)",
+    "paymentMethod": "Méthode de paiment",
+    "transactionStatus": "Status de la transaction",
+    "transactionDate": "Date de la transaction",
+    "gender": "Genre",
+    "nickname": "Surnom",
+    "birthday": "Date de naissance",
+    "creationDate": "Date de création",
+    "phone": "Téléphone",
+    "entry_one": "{{count}} entrée",
+    "entry_other": "{{count}} entrées"
+  },
+  "authorizeddevices": {
+    "found": "apparails autorisés trouvées"
+  },
+  "communities": {
+    "found": "communautés trouvées"
+  },
+  "apis": {
+    "found": "application connectées trouvées"
+  }
+}

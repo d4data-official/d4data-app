@@ -1,0 +1,112 @@
+{
+  "utils": {
+    "website": "Website",
+    "sources": "Source code",
+    "version": "Version {{version}}"
+  },
+  "homepage": {
+    "header": "Visualize your personal data in just one click !",
+    "description": "D4Data is the secure interface to convert non-human readable data to an intuitive user interface where anybody can understand its digital fingerprint.",
+    "dropzone": "Click to select your GDPR archive or drop it here",
+    "historyTitle": "Last archive processed",
+    "historyButton": "Show complete history",
+    "documentation": "You don't know how how to recover your data archives ?",
+    "documentationLink": "Check out our documentation"
+  },
+  "history": {
+    "delete": "Delete",
+    "restore": "Restore",
+    "reset": "Reset history",
+    "openFolder": "Open History Folder",
+    "empty": "No archive has been processed",
+    "restored": "Archive \"{{name}}\" restored",
+    "deleted": "Archive \"{{name}}\" deleted"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "display": "Display type",
+    "language": "Language",
+    "ergonomic": "Ergonomic",
+    "raw": "Raw"
+  },
+  "overview": {
+    "about": "About your archive",
+    "service": "Service",
+    "size": "Archive size",
+    "note": "Note from the team",
+    "score": "GDPR score (coming soon)",
+    "noteDescription": "This section will help you know more about the services you are using and their data policies.",
+    "scoreDescription": "D4Data will set a score for each supported services. More to come during the release!",
+    "date": "Created"
+  },
+  "navbar": {
+    "available": "Available Data",
+    "unavailable": "Unavailable Data",
+    "loading": "Processing..."
+  },
+  "getters": {
+    "profile": "Profile",
+    "friends": "Friends",
+    "followings": "Followings",
+    "followers": "Followers",
+    "contacts": "Contacts",
+    "whereabouts": "Whereabouts",
+    "notifications": "Notifications",
+    "chats": "Chats",
+    "chatmessages": "Chat Messages",
+    "comments": "Comments",
+    "posts": "Posts",
+    "messages": "Messages",
+    "apis": "Linked Applications",
+    "connections": "Connections",
+    "communities": "Communities",
+    "settings": "Settings",
+    "reacted": "Reacted",
+    "medias": "Medias",
+    "notes": "Notes",
+    "transactions": "Transactions",
+    "browserdata": "Browser Datas",
+    "tasks": "Tasks",
+    "authorizeddevices": "Authorized Devices",
+    "mails": "Mails",
+    "events": "Events"
+  },
+  "common": {
+    "name": "Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "displayName": "Display Name",
+    "date": "Date",
+    "address": "Address",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "username": "Username",
+    "ip": "IP Address",
+    "joinedDate": "Joined Date",
+    "picture": "Picture",
+    "email": "E-Mail",
+    "value": "Value",
+    "item": "Item",
+    "price": "Price (Currency)",
+    "paymentMethod": "Payment Method",
+    "transactionStatus": "Transaction Status",
+    "transactionDate": "Transaction Date",
+    "gender": "Gender",
+    "nickname": "Nickname",
+    "birthday": "Birthday",
+    "creationDate": "CreationDate",
+    "phone": "Phone",
+    "entry_one": "{{count}} entry",
+    "entry_other": "{{count}} entries"
+  },
+  "authorizeddevices": {
+    "found": "authorized devices found"
+  },
+  "communities": {
+    "found": "communities found"
+  },
+  "apis": {
+    "found": "linked applications found"
+  }
+}

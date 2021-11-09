@@ -1,5 +1,11 @@
 import { useReducer, createContext, Dispatch, Reducer } from 'react'
 
+type Language = { name: string, key: 'en' | 'fr' }
+
+export const availableLanguages: Array<Language> = [
+  { key: 'en', name: 'English' }, { key: 'fr', name: 'Français' },
+]
+
 type Action = {
   type: 'TOGGLE_THEME'
 } | {
@@ -7,12 +13,16 @@ type Action = {
   componentName?: string
 } | {
   type: 'TOGGLE_RAWDATA'
+} | {
+  type: 'UPDATE_LANGUAGE',
+  language: Language;
 }
 
 interface GlobalState {
   currentTheme: 'dark' | 'light',
   componentName?: string,
-  rawData: boolean
+  rawData: boolean,
+  language: Language
 }
 
 interface AppContextType extends GlobalState {
@@ -24,7 +34,10 @@ interface Props {
 }
 
 const initialStates: GlobalState = {
-  currentTheme: 'light', componentName: undefined, rawData: false,
+  currentTheme: 'light',
+  componentName: undefined,
+  rawData: false,
+  language: availableLanguages[0],
 }
 
 const GlobalContext = createContext<AppContextType>({
@@ -52,6 +65,12 @@ function Store({ children }: Props) {
         return {
           ...state,
           rawData: !state.rawData,
+        }
+      }
+      case 'UPDATE_LANGUAGE': {
+        return {
+          ...state,
+          language: action.language,
         }
       }
       default: {
