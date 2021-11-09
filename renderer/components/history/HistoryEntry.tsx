@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from '@mui/material'
-import React, { CSSProperties, useState, useContext } from 'react'
+import React, { CSSProperties, useState } from 'react'
 import moment from 'moment'
 import RestoreIcon from '@mui/icons-material/Restore'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -7,8 +7,7 @@ import filesize from 'filesize'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
-import Trans from 'components/Translate'
-import { GlobalContext } from 'renderer/context/Store'
+import { useTranslation } from 'react-i18next'
 import EllipsisTooltip from '../EllipsisTooltip'
 
 export interface Props {
@@ -30,21 +29,25 @@ export default function HistoryEntry({
   className,
   style,
 }: Props) {
-  const { language } = useContext(GlobalContext)
+  const { t, i18n } = useTranslation('history')
+
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
 
   const getDeltaTimeHumanized = (date: Date) => {
     const duration = moment.duration(date.valueOf() - new Date().valueOf())
-    duration.locale(language.key);
-    return duration;
+    duration.locale(i18n.language)
+    return duration
   }
 
   const deleteEntryHandler = () => {
     setLoading(true)
     deleteHistoryEntry(entry)
       .then(() => {
-        toast(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> deleted</span>, { position: 'bottom-left' })
+        toast(
+          <span>{ t('deleted', { name: entry.archiveName ?? entry.service }) }</span>,
+          { position: 'bottom-left' },
+        )
       })
       .finally(() => setLoading(false))
   }
@@ -54,9 +57,7 @@ export default function HistoryEntry({
     restoreArchiveFromEntry(entry)
       .then(() => {
         toast.success(
-          <span>
-            <Trans page="history" section="restored" templateContent={ entry.archiveName ?? entry.service } />
-          </span>,
+          <span>{ t('restored', { name: entry.archiveName ?? entry.service }) }</span>,
           { position: 'bottom-left' },
         )
       })
@@ -122,7 +123,7 @@ export default function HistoryEntry({
                   size="small"
                   sx={ { px: 1 } }
                 >
-                  <Trans page="history" section="delete" />
+                  { t('delete') }
                 </Button>
               </Grid>
             ) }
@@ -136,7 +137,7 @@ export default function HistoryEntry({
                   size="small"
                   sx={ { px: 1 } }
                 >
-                  <Trans page="history" section="restore" />
+                  { t('restore') }
                 </Button>
               </Grid>
             ) }

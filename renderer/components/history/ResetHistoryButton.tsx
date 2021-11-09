@@ -5,7 +5,7 @@ import { createStyles, makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
-import Trans from 'components/Translate'
+import { useTranslation } from 'react-i18next'
 
 export interface Props {
   label?: string
@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => createStyles({
 }))
 
 export default function ResetHistoryButton({ label, icon, className, style }: Props) {
+  const { t } = useTranslation('history')
+
   const classes = useStyles()
   const { history, resetHistory } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
@@ -47,7 +49,7 @@ export default function ResetHistoryButton({ label, icon, className, style }: Pr
       className={ clsx(classes.button, className) }
       style={ style }
     >
-      { label ?? <Trans page="history" section="reset" template={ `{{template}} (${ history.length })` } /> }
+      { label ?? `${ t('reset') } (${ history.length })` }
     </Button>
   )
 }

@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react'
-
 import { useDropzone } from 'react-dropzone'
 import { Unarchive } from '@mui/icons-material'
 import { makeStyles } from '@mui/styles'
 import { darken } from '@mui/material'
-import Trans from 'components/Translate'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   onLoaded: Function
@@ -45,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Dropzone({ onLoaded }: Props) {
+  const { t } = useTranslation('homepage')
+
   const classes = useStyles()
 
   const onDrop = useCallback((fileList) => {
@@ -58,9 +59,7 @@ export default function Dropzone({ onLoaded }: Props) {
     <div { ...getRootProps() } className={ classes.root }>
       <input { ...getInputProps() } className={ classes.dropzone }/>
       <Unarchive className={ classes.icon } fontSize="large"/>
-      <h1>
-        <Trans page="homepage" section="dropzone"/>
-      </h1>
+      <h1>{ t('dropzone') }</h1>
     </div>
   )
 }

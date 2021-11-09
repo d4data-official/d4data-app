@@ -8,13 +8,15 @@ import Path from 'path'
 import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
 import Particles from 'react-tsparticles'
-import Trans from 'components/Translate'
+import { useTranslation } from 'react-i18next'
 import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
 import openInBrowser from '../modules/openInBrowser'
 
 export default function HomePage() {
+  const { t } = useTranslation('homepage')
+
   const theme = useTheme()
   const router = useRouter()
   const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
@@ -156,7 +158,7 @@ export default function HomePage() {
             color="primary"
             align="center"
           >
-            <Trans page="homepage" section="header" />
+            { t('header') }
           </Typography>
         </Grid>
 
@@ -169,9 +171,7 @@ export default function HomePage() {
                 </Paper>
 
                 <div>
-                  <Typography variant="overline">
-                    <Trans page="homepage" section="documentation" />
-                  </Typography>
+                  <Typography variant="overline">{ t('documentation') }</Typography>
                   <Typography variant="overline">
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
                     <Link
@@ -179,7 +179,7 @@ export default function HomePage() {
                       onClick={ () => openInBrowser('https://docs.d4data.org/docs/user-docs/guides/index') }
                       sx={ { ml: 0.5 } }
                     >
-                      <Trans page="homepage" section="documentationLink" />
+                      { t('documentationLink') }
                     </Link>
                   </Typography>
                 </div>
@@ -189,7 +189,7 @@ export default function HomePage() {
                 <Stack spacing={ 2 }>
                   <Stack direction="row" alignItems="center" justifyContent="space-between">
                     <Typography variant="h6" fontWeight={ 100 } color="secondary">
-                      <Trans page="homepage" section="historyTitle" />
+                      { t('historyTitle') }
                     </Typography>
 
                     <Button
@@ -198,11 +198,7 @@ export default function HomePage() {
                       variant="contained"
                       size="small"
                     >
-                      <Trans
-                        page="homepage"
-                        section="historyButton"
-                        template={ `{{template}} (${ history.length })` }
-                      />
+                      { t('historyButton') } ({ history.length })
                     </Button>
                   </Stack>
 

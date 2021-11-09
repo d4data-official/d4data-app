@@ -1,14 +1,28 @@
 import {
-  capitalize, Dialog, DialogContent, DialogProps, DialogTitle, MenuItem, Select, Stack, Typography,
+  capitalize,
+  Dialog,
+  DialogContent,
+  DialogProps,
+  DialogTitle,
+  MenuItem,
+  Select,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
 } from '@mui/material'
-import { ToggleButton, ToggleButtonGroup } from '@mui/lab'
 import WbSunnyIcon from '@mui/icons-material/WbSunny'
 import Brightness3Icon from '@mui/icons-material/Brightness3'
 import ListIcon from '@mui/icons-material/List'
 import CodeIcon from '@mui/icons-material/Code'
 import React, { useCallback, useContext } from 'react'
-import Trans, { useTranslation } from './Translate';
-import { GlobalContext, availableLanguages } from '../context/Store'
+import { useTranslation } from 'react-i18next'
+import { GlobalContext } from '../context/Store'
+
+export const AVAILABLE_LANGUAGES: Array<{ key: string, name: string }> = [
+  { key: 'en', name: 'English' },
+  { key: 'fr', name: 'Français' },
+]
 
 export interface Props {
   open: boolean
@@ -16,20 +30,13 @@ export interface Props {
 }
 
 export default function AppSettingsDialog({ open, onClose }: Props) {
-  const { currentTheme, rawData, language, dispatch } = useContext(GlobalContext)
-  const translate = useTranslation();
+  const { t, i18n } = useTranslation('settings')
 
-  const handleThemeChange = useCallback(() => {
-    dispatch({ type: 'TOGGLE_THEME' })
-  }, [])
+  const { currentTheme, rawData, dispatch } = useContext(GlobalContext)
 
-  const handleDataDisplayModeChange = useCallback(() => {
-    dispatch({ type: 'TOGGLE_RAWDATA' })
-  }, [])
-
-  const handleLanguageChange = useCallback((newLanguage) => () => {
-    dispatch({ type: 'UPDATE_LANGUAGE', language: newLanguage })
-  }, [])
+  const handleThemeChange = useCallback(() => dispatch({ type: 'TOGGLE_THEME' }), [])
+  const handleDataDisplayModeChange = useCallback(() => dispatch({ type: 'TOGGLE_RAWDATA' }), [])
+  const handleLanguageChange = useCallback((langKey: string) => i18n.changeLanguage(langKey), [])
 
   return (
     <Dialog
@@ -45,15 +52,13 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
           color: (theme) => theme.palette.primary.contrastText,
         } }
       >
-        <Trans page="settings" section="title" />
+        { t('title') }
       </DialogTitle>
 
       <DialogContent sx={ { p: 0 } }>
         <Stack spacing={ 2 } sx={ { p: 2 } }>
           <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h5">
-              <Trans page="settings" section="theme" />: {capitalize(currentTheme)}
-            </Typography>
+            <Typography variant="h5">{ t('theme') }: { capitalize(currentTheme) }</Typography>
 
             <ToggleButtonGroup
               value={ currentTheme }
@@ -61,21 +66,17 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
               onChange={ handleThemeChange }
             >
               <ToggleButton value="light" aria-label="light">
-                <WbSunnyIcon />
+                <WbSunnyIcon/>
               </ToggleButton>
 
               <ToggleButton value="dark" aria-label="dark">
-                <Brightness3Icon />
+                <Brightness3Icon/>
               </ToggleButton>
             </ToggleButtonGroup>
           </Stack>
 
           <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h5">
-              <Trans page="settings" section="display" />: {
-                rawData ? translate('settings', 'raw') : translate('settings', 'ergonomic')
-              }
-            </Typography>
+            <Typography variant="h5">{ t('display') }: { rawData ? t('raw') : t('ergonomic') }</Typography>
 
             <ToggleButtonGroup
               value={ rawData }
@@ -83,26 +84,26 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
               onChange={ handleDataDisplayModeChange }
             >
               <ToggleButton value={ false } aria-label="light">
-                <ListIcon />
+                <ListIcon/>
               </ToggleButton>
 
               <ToggleButton value aria-label="dark">
-                <CodeIcon />
+                <CodeIcon/>
               </ToggleButton>
             </ToggleButtonGroup>
           </Stack>
 
-          <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h5">
-              <Trans page="settings" section="language" />: {language.name}
-            </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography variant="h5">{ t('language') } </Typography>
 
-            <Select defaultValue={ language.key } >
-              {availableLanguages.map((lang) => (
-                <MenuItem key={ lang.key } value={ lang.key } onClick={ handleLanguageChange(lang) }>
-                  {lang.name}
-                </MenuItem>
-              ))}
+            <Select
+              value={ i18n.language }
+              onChange={ (event) => handleLanguageChange(event.target.value) }
+              size="small"
+            >
+              { AVAILABLE_LANGUAGES.map((lang) => (
+                <MenuItem value={ lang.key } key={ lang.key }>{ lang.name }</MenuItem>
+              )) }
             </Select>
           </Stack>
         </Stack>
