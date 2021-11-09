@@ -10,19 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [ 15.x ]
-
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 15
 
-      - run: npm install
-        name: Install dependencies
+      - name: Install dependencies
+        run: yarn
 
-      - run: npm run lint
-        name: Run linter
+      - name: Run linter
+        run: npm run lint
