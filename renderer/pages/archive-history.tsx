@@ -28,7 +28,7 @@ export default function ArchiveHistoryPage() {
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">
-            { t('common:entry' as any /* TS typing not working yet for plural */, { count: history.length }) }
+            { t('common:entry', { count: history.length }) }
           </Typography>
         </Grid>
 
