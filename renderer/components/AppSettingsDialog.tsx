@@ -97,7 +97,7 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
             <Typography variant="h5">{ t('language') } </Typography>
 
             <Select
-              value={ i18n.language }
+              value={ i18n.language.slice(0, 2) }
               onChange={ (event) => handleLanguageChange(event.target.value) }
               size="small"
             >

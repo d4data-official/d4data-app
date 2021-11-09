@@ -15,9 +15,9 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    load: 'languageOnly',
     defaultNS: 'common',
     fallbackLng: 'en',
-    supportedLngs: ['en', 'fr'],
     nonExplicitSupportedLngs: true,
     debug: true,
     interpolation: {
