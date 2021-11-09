@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import { UrlObject } from 'url'
 
 type NextComposedProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & NextLinkProps;
 
@@ -37,7 +38,7 @@ function Link(props: LinkProps) {
   } = props
 
   const router = useRouter()
-  const pathname = typeof href === 'string' ? href : href.pathname
+  const pathname = typeof href === 'string' ? href : (href as UrlObject).pathname
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   })

@@ -1,8 +1,8 @@
 import { Box, Button, Paper, Tooltip } from '@mui/material'
 import type { Notification } from '@d4data/archive-lib/dist/src/types/schemas'
+import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 import openInBrowser from '../../../modules/openInBrowser'
-import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import Center from '../../Center'
 
 export interface Props {

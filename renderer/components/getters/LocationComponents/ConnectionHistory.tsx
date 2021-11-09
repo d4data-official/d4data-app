@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Paper, Stack, Typography } from '@mui/material'
-import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 import type { Connection } from '@d4data/archive-lib/dist/src/types/schemas'
+import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 
 const columns: Array<ColumnData> = [
   {
