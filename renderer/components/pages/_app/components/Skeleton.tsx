@@ -80,7 +80,8 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              { currentStandardizer?.service } / { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
+              { currentStandardizer?.service && `${ currentStandardizer?.service } /` }
+              { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>
 
