@@ -7,6 +7,7 @@ import {
   MenuItem,
   Select,
   Stack,
+  Switch,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
@@ -18,6 +19,7 @@ import CodeIcon from '@mui/icons-material/Code'
 import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GlobalContext } from '../context/Store'
+import useDataCollectUserContent from '../hooks/swr/useDataCollectUserContent'
 
 export const AVAILABLE_LANGUAGES: Array<{ key: string, name: string }> = [
   { key: 'en', name: 'English' },
@@ -33,6 +35,7 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
   const { t, i18n } = useTranslation('settings')
 
   const { currentTheme, rawData, dispatch } = useContext(GlobalContext)
+  const { dataCollectUserContent, setDataCollectUserContent } = useDataCollectUserContent()
 
   const handleThemeChange = useCallback(() => dispatch({ type: 'TOGGLE_THEME' }), [])
   const handleDataDisplayModeChange = useCallback(() => dispatch({ type: 'TOGGLE_RAWDATA' }), [])
@@ -105,6 +108,15 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
                 <MenuItem value={ lang.key } key={ lang.key }>{ lang.name }</MenuItem>
               )) }
             </Select>
+          </Stack>
+
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography variant="h5">{ t('dataCollectUserConsent') } </Typography>
+
+            <Switch
+              checked={ !!dataCollectUserContent }
+              onChange={ ((event, checked) => setDataCollectUserContent(checked)) }
+            />
           </Stack>
         </Stack>
       </DialogContent>

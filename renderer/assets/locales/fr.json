@@ -28,7 +28,8 @@
     "display": "Type d'affichage",
     "language": "Langue",
     "ergonomic": "Ergonomique",
-    "raw": "Brut"
+    "raw": "Brut",
+    "dataCollectUserConsent": "Partager les rapports de bug et d'utilisation de l'application"
   },
   "overview": {
     "about": "À propos de votre archive",
@@ -108,5 +109,11 @@
   },
   "apis": {
     "found": "application connectées trouvées"
+  },
+  "dataCollectUserConsentDialog": {
+    "title": "Participer à améliorer D4Data",
+    "text": "D4data ne cesse de s'améliorer, si vous souhaitez y participer, vous pouvez accepter de partager vos données d'utilisation de l'application.",
+    "denyButton": "Refuser",
+    "acceptButton": "Accepter"
   }
 }
