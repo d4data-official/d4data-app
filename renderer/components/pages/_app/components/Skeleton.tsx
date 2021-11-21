@@ -15,6 +15,7 @@ import AppSettingsDialog from '../../../AppSettingsDialog'
 import getGetterLabel from '../../../../modules/getGetterLabel'
 import AppBarMoreMenu from './AppBarMoreMenu'
 import useArchiveManager from '../../../../hooks/useArchiveManager'
+import DataCollectUserContentDialog from '../../../DataCollectUserContentDialog'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -55,6 +56,8 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   return (
     <div className={ classes.root }>
+      <DataCollectUserContentDialog/>
+
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {

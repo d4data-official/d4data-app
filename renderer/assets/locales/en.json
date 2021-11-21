@@ -28,7 +28,8 @@
     "display": "Display type",
     "language": "Language",
     "ergonomic": "Ergonomic",
-    "raw": "Raw"
+    "raw": "Raw",
+    "dataCollectUserConsent": "Share bug reports and app usage"
   },
   "overview": {
     "about": "About your archive",
@@ -108,5 +109,11 @@
   },
   "apis": {
     "found": "linked applications found"
+  },
+  "dataCollectUserConsentDialog": {
+    "title": "Take part in improving D4Data",
+    "text": "D4data never stops evolving, if you want to be part of it, you can choose to automatically share your bug reports and application usage statistics.",
+    "denyButton": "Deny",
+    "acceptButton": "Accept"
   }
 }
