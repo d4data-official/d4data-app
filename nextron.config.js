@@ -1,4 +1,7 @@
 const path = require('path')
+// eslint-disable-next-line import/no-extraneous-dependencies
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+const { name, version } = require('./package.json')
 
 module.exports = {
   // specify an alternate main src directory, defaults to 'main'
@@ -18,7 +21,21 @@ module.exports = {
           '@shared': path.resolve(__dirname, 'shared'),
         },
       },
+      plugins: [
+        ...defaultConfig.plugins,
+        new SentryWebpackPlugin({
+          // sentry-cli configuration
+          org: 'd4data',
+          project: 'd4data-app',
+          release: process.env.SENTRY_RELEASE || `${ name }@${ version }`,
+          dryRun: process.env.NODE_ENV !== 'production',
+          cleanArtifacts: true,
+
+          // webpack specific configuration
+          include: './app/',
+          ignore: ['node_modules', 'webpack.config.js'],
+        }),
+      ],
     }
-  )
-  ,
+  ),
 }

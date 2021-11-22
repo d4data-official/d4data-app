@@ -10,6 +10,7 @@ import themeDark from '../themeDark'
 import themeLight from '../themeLight'
 import '../i18n'
 import '../style.css'
+import useSentryElectron from '../hooks/useSentryElectron'
 
 function AppContent(props: AppProps) {
   const { currentTheme } = useContext(GlobalContext)
@@ -27,6 +28,8 @@ function AppContent(props: AppProps) {
 }
 
 export default function App(props: AppProps) {
+  useSentryElectron()
+
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
