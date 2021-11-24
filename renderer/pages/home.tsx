@@ -35,12 +35,14 @@ export default function HomePage() {
     console.info('[Archive] Identifying service')
 
     const service = await archiveFactory.identify()
+
     if (service === Services.UNKNOWN) {
       toast.error('Fail to identify archive service', { position: 'bottom-left' })
-
       console.info('[Archive] Unknown service, cancel import')
       archiveFactory.destroy()
         .catch((err) => console.error(err))
+      setProgress({ show: false })
+
       return
     }
 
