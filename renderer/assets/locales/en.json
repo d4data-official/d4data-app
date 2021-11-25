@@ -151,7 +151,10 @@
     "inProgress": "In progress..."
   },
   "sidebar": {
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "availableData": "Available data",
+    "unavailableData": "Unavailable data",
+    "processing": "Processing..."
   },
   "loadingComponent": {
     "title": "Loading",

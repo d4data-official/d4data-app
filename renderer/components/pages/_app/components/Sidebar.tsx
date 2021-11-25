@@ -20,20 +20,16 @@ import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import ConditionalTooltip from '../../../ConditionalTooltip'
 import useAvailableGetters from '../../../../hooks/getter/useAvailableGetters'
 import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
-import DashboardIcon from '@mui/icons-material/Dashboard'
 
 export interface SidebarProps {
   drawerHeaderClass: string
   drawerOpen: boolean
   handleDrawerChange: (open?: boolean | any) => void
 }
-
-const AVAILABLE_GETTERS_SECTION_TITLE = 'Available data'
-const UNAVAILABLE_GETTERS_ACCORDION_LABEL = 'Unavailable data'
-const LOADING_ACCORDION_LABEL = 'Processing...'
 
 const DRAWER_WIDTH = 240
 
@@ -95,7 +91,7 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
             ml={ 1 }
             variant="overline"
             color="primary"
-          >{ AVAILABLE_GETTERS_SECTION_TITLE }
+          >{ t('availableData') }
           </Typography>
         ) }
 
@@ -107,10 +103,10 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
 
         <Accordion disabled={ !filteredGetters } disableGutters sx={ { '&.Mui-disabled': { background: 'initial' } } }>
           <AccordionSummary expandIcon={ <ExpandMoreIcon/> }>
-            <ConditionalTooltip title={ LOADING_ACCORDION_LABEL } show={ !filteredGetters }>
+            <ConditionalTooltip title={ t('processing') } show={ !filteredGetters }>
               <Stack direction="row" alignItems="center" spacing={ 1 }>
                 { loading && <CircularProgress size={ 15 }/> }
-                <Typography variant="overline" color="gray">{ UNAVAILABLE_GETTERS_ACCORDION_LABEL }</Typography>
+                <Typography variant="overline" color="gray">{ t('unavailableData') }</Typography>
               </Stack>
             </ConditionalTooltip>
           </AccordionSummary>

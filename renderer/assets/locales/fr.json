@@ -151,7 +151,10 @@
     "inProgress": "En cours..."
   },
   "sidebar": {
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "availableData": "Données disponibles",
+    "unavailableData": "Données non disponibles",
+    "processing": "En cours..."
   },
   "loadingComponent": {
     "title": "Chargement",
