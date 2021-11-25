@@ -6,12 +6,15 @@ import moment from 'moment'
 import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import getInitialsFromContact from '../../modules/getInitialsFromContact'
+import { useTranslation } from 'react-i18next'
 
 export interface Props {
   data: NonNullable<GetterData<ProfileType>>
 }
 
 export default function Profile({ data }: Props) {
+  const { t } = useTranslation('common')
+
   const profile = data.data
   const formattedName = (profile.displayName ?? profile.firstName)
     && profile.lastName && profile.firstName && `${ profile.firstName } ${ profile.lastName }`
@@ -39,8 +42,7 @@ export default function Profile({ data }: Props) {
         <Grid container spacing={ 2 }>
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Gender"
+              label={ t('gender') }
               defaultValue={ profile.gender }
               fullWidth
               InputProps={ {
@@ -52,8 +54,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Display name"
+              label={ t('displayName') }
               defaultValue={ profile.displayName ?? formattedName }
               fullWidth
               InputProps={ {
@@ -65,8 +66,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="First name"
+              label={ t('firstName') }
               defaultValue={ profile.firstName }
               fullWidth
               InputProps={ {
@@ -78,8 +78,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Last name"
+              label={ t('lastName') }
               defaultValue={ profile.lastName }
               fullWidth
               InputProps={ {
@@ -91,8 +90,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="date"
-              label="Birthday"
+              label={ t('birthday') }
               type="date"
               fullWidth
               defaultValue={ moment(new Date(profile.birthday)).format('yyyy-MM-DD') }
@@ -108,8 +106,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Username"
+              label={ t('username') }
               defaultValue={ profile.username }
               InputProps={ {
                 readOnly: true,
@@ -121,8 +118,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Nickname"
+              label={ t('nickname') }
               defaultValue={ profile.nickname }
               InputProps={ {
                 readOnly: true,
@@ -134,8 +130,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="date"
-              label="Creation date"
+              label={ t('creationDate') }
               type="date"
               fullWidth
               defaultValue={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
@@ -151,8 +146,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Email"
+              label={ t('email') }
               defaultValue={ profile.email }
               fullWidth
               InputProps={ {
@@ -164,8 +158,7 @@ export default function Profile({ data }: Props) {
 
           <Grid item xs={ 12 } md={ 3 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Phone"
+              label={ t('phone') }
               defaultValue={ profile.phoneNumber }
               fullWidth
               InputProps={ {

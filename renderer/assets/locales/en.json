@@ -160,5 +160,7 @@
   "noDataComponent": {
     "title": "No data available",
     "description": "Awesome ! This service collected no data for this category"
+  },
+  "pages": {
   }
 }
