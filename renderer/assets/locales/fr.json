@@ -149,5 +149,8 @@
       "postProcessing": "Post-traitement"
     },
     "inProgress": "En cours..."
+  },
+  "sidebar": {
+    "dashboard": "Tableau de bord"
   }
 }

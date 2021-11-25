@@ -9,6 +9,7 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Stack,
   Typography,
@@ -18,9 +19,11 @@ import { GlobalContext } from 'renderer/context/Store'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 import ConditionalTooltip from '../../../ConditionalTooltip'
 import useAvailableGetters from '../../../../hooks/getter/useAvailableGetters'
 import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
+import DashboardIcon from '@mui/icons-material/Dashboard'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -40,10 +43,11 @@ const DEDICATED_GETTER_PAGES: Array<Getters> = [Getters.EVENTS]
 
 export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
   const router = useRouter()
-  const { dispatch } = useContext(GlobalContext)
+  const { componentName, dispatch } = useContext(GlobalContext)
   const { availableGetters, loading } = useAvailableGetters()
 
   const { getGetterLabel } = useGetGetterLabel()
+  const { t } = useTranslation('sidebar')
 
   const filteredGetters = useMemo(() => availableGetters
     ?.filter((getter) => !IGNORED_GETTER.includes(getter)), [availableGetters])
@@ -61,6 +65,10 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
     dispatch({ type: 'UPDATE_COMPONENT', componentName: getterName })
   }, [])
 
+  const goToDashboard = () => {
+    dispatch({ type: 'UPDATE_COMPONENT', componentName: undefined })
+  }
+
   return (
     <Drawer
       variant="persistent"
@@ -75,6 +83,13 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
       </div>
       <Divider/>
       <List>
+        <ListItem key="overviewBtn" onClick={ () => goToDashboard() } selected={ componentName === undefined } button>
+          <ListItemIcon>
+            <DashboardIcon/>
+          </ListItemIcon>
+          <ListItemText primary={ t('dashboard') }/>
+        </ListItem>
+
         { filteredGetters && (
           <Typography
             ml={ 1 }
@@ -85,7 +100,7 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
         ) }
 
         { (filteredGetters ?? GETTERS).map((getter) => (
-          <ListItem key={ getter } onClick={ handleLinkClick(getter) } button>
+          <ListItem key={ getter } onClick={ handleLinkClick(getter) } selected={ componentName === getter } button>
             <ListItemText primary={ getGetterLabel(getter) }/>
           </ListItem>
         )) }

@@ -149,5 +149,8 @@
       "postProcessing": "Post-processing"
     },
     "inProgress": "In progress..."
+  },
+  "sidebar": {
+    "dashboard": "Dashboard"
   }
 }
