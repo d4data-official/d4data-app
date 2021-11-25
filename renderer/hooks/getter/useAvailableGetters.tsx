@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import useArchiveManager from '../useArchiveManager'
 
-const KEY = 'availableGetters'
+export const KEY = 'availableGetters'
 
 export default function useAvailableGetters() {
   const archiveManager = useArchiveManager()

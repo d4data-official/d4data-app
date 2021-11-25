@@ -115,5 +115,14 @@
     "text": "D4data never stops evolving, if you want to be part of it, you can choose to automatically share your bug reports and application usage statistics.",
     "denyButton": "Deny",
     "acceptButton": "Accept"
+  },
+  "archiveProcessDialog": {
+    "title": {
+      "processing": "Processing",
+      "identifying": "Identifying",
+      "extracting": "{{service}} archive: extraction in progress...",
+      "postProcessing": "Post-processing"
+    },
+    "inProgress": "In progress..."
   }
 }

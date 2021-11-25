@@ -115,5 +115,14 @@
     "text": "D4data ne cesse de s'améliorer, si vous souhaitez y participer, vous pouvez accepter de partager vos données d'utilisation de l'application.",
     "denyButton": "Refuser",
     "acceptButton": "Accepter"
+  },
+  "archiveProcessDialog": {
+    "title": {
+      "processing": "Analyse",
+      "identifying": "Identification",
+      "extracting": "Archive {{service}} : extraction en cours...",
+      "postProcessing": "Post-traitement"
+    },
+    "inProgress": "En cours..."
   }
 }

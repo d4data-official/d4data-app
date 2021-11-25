@@ -9,17 +9,19 @@ import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
 import Particles from 'react-tsparticles'
 import { useTranslation } from 'react-i18next'
-import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
 import openInBrowser from '../modules/openInBrowser'
+import useArchiveProcessProgress, { ArchiveProcessStep } from '../hooks/useArchiveProcessProgress'
+import ArchiveProcessProgressDialog from '../components/ArchiveProcessProgressDialog'
+import getAvailableGetters from '../modules/getAvailableGetters'
 
 export default function HomePage() {
   const { t } = useTranslation('homepage')
 
   const theme = useTheme()
   const router = useRouter()
-  const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
+  const { state: progress, setState: setProgress } = useArchiveProcessProgress()
   const {
     lastHistoryEntry,
     history,
@@ -28,7 +30,7 @@ export default function HomePage() {
   const { setCurrentArchive, setCurrentStandardizer } = useArchiveManager()
 
   const handleExtract = React.useCallback(async (path: string) => {
-    setProgress({ show: true })
+    setProgress({ step: ArchiveProcessStep.IDENTIFYING })
 
     const archiveFactory = await ArchiveFactoryIPC.init(path)
 
@@ -41,27 +43,38 @@ export default function HomePage() {
       console.info('[Archive] Unknown service, cancel import')
       archiveFactory.destroy()
         .catch((err) => console.error(err))
-      setProgress({ show: false })
+      setProgress({ step: ArchiveProcessStep.NONE })
 
       return
     }
 
     console.info('[Archive] Service detected:', service)
-    setProgress({ show: true, service, extractedCount: 0, total: 100 })
+    setProgress({
+      step: ArchiveProcessStep.EXTRACTING,
+      service,
+      extractionInfo: { extractedCount: 0, total: 100 },
+    })
 
     const archivePlugin = await archiveFactory.getPlugin()
 
     console.info('[Archive] Start extraction')
     await archivePlugin.extract({
       onProgress: (fileName, extractedCount, total) => {
-        setProgress({ show: (extractedCount !== total), service, fileName, extractedCount, total })
+        setProgress((state) => ({
+          ...state,
+          extractionInfo: { fileName, extractedCount, total },
+        }))
       },
     })
     console.info('[Archive] Extraction ended')
 
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Getting standardizer...' } })
+
     const standardizer = await archivePlugin.getStandardizer()
     setCurrentArchive(archivePlugin)
     setCurrentStandardizer(standardizer)
+
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Saving to history...' } })
 
     addHistoryEntry({
       archiveName: Path.parse(path).base,
@@ -71,6 +84,10 @@ export default function HomePage() {
       size: await archivePlugin.getMetadata()
         .then((metadata) => metadata.size),
     })
+
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Checking data...' } })
+
+    await getAvailableGetters(standardizer)
 
     router.push('/dashboard')
   }, [])
@@ -211,7 +228,7 @@ export default function HomePage() {
             </Stack>
           </Paper>
 
-          <ArchiveExtractProgress state={ progressBar }/>
+          <ArchiveProcessProgressDialog state={ progress }/>
         </Grid>
       </Grid>
     </Box>
