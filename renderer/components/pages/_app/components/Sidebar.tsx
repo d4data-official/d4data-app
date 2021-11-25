@@ -1,4 +1,3 @@
-// import { useRouter } from 'next/router'
 import React, { useContext, useMemo } from 'react'
 import {
   Accordion,
@@ -19,9 +18,9 @@ import { GlobalContext } from 'renderer/context/Store'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useRouter } from 'next/router'
-import getGetterLabel from '../../../../modules/getGetterLabel'
 import ConditionalTooltip from '../../../ConditionalTooltip'
 import useAvailableGetters from '../../../../hooks/getter/useAvailableGetters'
+import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -43,6 +42,8 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
   const router = useRouter()
   const { dispatch } = useContext(GlobalContext)
   const { availableGetters, loading } = useAvailableGetters()
+
+  const { getGetterLabel } = useGetGetterLabel()
 
   const filteredGetters = useMemo(() => availableGetters
     ?.filter((getter) => !IGNORED_GETTER.includes(getter)), [availableGetters])

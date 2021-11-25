@@ -12,10 +12,10 @@ import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
-import getGetterLabel from '../../../../modules/getGetterLabel'
 import AppBarMoreMenu from './AppBarMoreMenu'
 import useArchiveManager from '../../../../hooks/useArchiveManager'
 import DataCollectUserContentDialog from '../../../DataCollectUserContentDialog'
+import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -27,6 +27,7 @@ export default function Skeleton({ children }: SkeletonProps) {
   const { currentStandardizer } = useArchiveManager()
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const [settingsDialogOpen, setSettingsDialogOpen] = React.useState<boolean>(false)
+  const { getGetterLabel } = useGetGetterLabel()
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
@@ -83,7 +84,7 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
-              { currentStandardizer?.service && `${ currentStandardizer?.service } /` }
+              { currentStandardizer?.service && `${ currentStandardizer?.service } / ` }
               { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>
