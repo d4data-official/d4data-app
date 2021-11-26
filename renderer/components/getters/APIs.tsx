@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography'
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
@@ -28,13 +29,15 @@ const useStyles = makeStyles({
 })
 
 export default function APIs({ data }: { data: NonNullable<GetterData<Array<API>>> }) {
+  const { t } = useTranslation(['common', 'pages'])
+
   const classes = useStyles()
 
   const DataTable = (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } authorized devices found` }
+          { t('pages:apis.title', { count: data.data.length }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -42,9 +45,9 @@ export default function APIs({ data }: { data: NonNullable<GetterData<Array<API>
           <Table className={ classes.table } size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Username</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell>{ t('common:name') }</TableCell>
+                <TableCell>{ t('common:username') }</TableCell>
+                <TableCell>{ t('common:date') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -83,8 +86,8 @@ export default function APIs({ data }: { data: NonNullable<GetterData<Array<API>
   return (
     <AutoTabs
       tabs={ [
-        { label: 'APIs stat', icon: <Timeline/> },
-        { label: 'APIs list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.APIS }/>,

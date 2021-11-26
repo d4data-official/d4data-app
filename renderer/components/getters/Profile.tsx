@@ -5,8 +5,8 @@ import React from 'react'
 import moment from 'moment'
 import type { Profile as ProfileType } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import getInitialsFromContact from '../../modules/getInitialsFromContact'
 import { useTranslation } from 'react-i18next'
+import getInitialsFromContact from '../../modules/getInitialsFromContact'
 
 export interface Props {
   data: NonNullable<GetterData<ProfileType>>

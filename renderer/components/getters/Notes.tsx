@@ -10,6 +10,7 @@ import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import { Box } from '@mui/system'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -35,6 +36,8 @@ export interface Props {
 }
 
 export default function DisplayNotes({ data }: Props) {
+  const { t } = useTranslation('common')
+
   const classes = useStyles()
 
   const Notes = (
@@ -70,8 +73,8 @@ export default function DisplayNotes({ data }: Props) {
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Notes stat', icon: <Timeline/> },
-        { label: 'Notes list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.NOTES }/>,

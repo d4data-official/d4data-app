@@ -1,21 +1,19 @@
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css'
-import {
-  Avatar,
-  Conversation as ConversationPreview,
-  ConversationList,
-  MainContainer,
-  Sidebar,
 // @ts-ignore
-} from '@chatscope/chat-ui-kit-react'
+// eslint-disable-next-line max-len
+import { Avatar, Conversation as ConversationPreview, ConversationList, MainContainer, Sidebar } from '@chatscope/chat-ui-kit-react'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import Chat from '@d4data/archive-lib/dist/src/types/schemas/Chat'
 import { makeStyles } from '@mui/styles'
 import { AccountCircle, SupervisedUserCircle } from '@mui/icons-material'
 import { useCallback, useEffect, useState } from 'react'
 import ArchiveManager from '@modules/ArchiveManager'
-import Loading from 'components/pages/dashboard/components/Loading'
+import { useTranslation } from 'react-i18next'
+import { Typography } from '@mui/material'
 import Conversation from './Chats/Conversation'
 import Searchbar from './Chats/Searchbar'
+import Loading from '../pages/dashboard/components/Loading'
+import Center from '../Center'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -48,13 +46,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: `${ theme.palette.background.paper } !important`,
     color: theme.palette.text.primary,
   },
-  empty: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: theme.palette.primary.main,
-  },
 }))
 
 export interface Props {
@@ -62,6 +53,8 @@ export interface Props {
 }
 
 export default function Chats({ data: { data: chatList } }: Props) {
+  const { t } = useTranslation('pages')
+
   const classes = useStyles()
   const [data, setData] = useState<any>()
   const [currentChat, setCurrentChat] = useState<Chat>()
@@ -100,10 +93,11 @@ export default function Chats({ data: { data: chatList } }: Props) {
       <Sidebar position="left" className={ classes.sidebar }>
         <Searchbar
           keys={ ['title'] }
-          placeholder="Search for a conversation..."
+          placeholder={ t('chats.searchbar.placeholder') }
           onSearch={ handleSearch }
           data={ chatList }
         />
+
         <ConversationList>
           { filtered.map((chat) => (
             <ConversationPreview
@@ -116,15 +110,22 @@ export default function Chats({ data: { data: chatList } }: Props) {
                   ? <SupervisedUserCircle fontSize="large" color="primary"/>
                   : <AccountCircle fontSize="large" color="primary"/> }
               </Avatar>
+
               <ConversationPreview.Content name={ chat.title } className={ classes.conversationPreview }/>
             </ConversationPreview>
           )) }
         </ConversationList>
       </Sidebar>
+
+      { !currentChat && (
+        <Center>
+          <Typography color="grey.400">{ t('chats.selectConversation') }</Typography>
+        </Center>
+      ) }
+
+      { currentChat && !data && <Loading/> }
+
       { data && <Conversation chat={ currentChat! } data={ data }/> }
-      { !data && (data === null
-        ? <Loading />
-        : <div className={ classes.empty }>Please select a conversation</div>) }
     </MainContainer>
   )
 }

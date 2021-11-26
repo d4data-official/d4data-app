@@ -20,7 +20,7 @@ export interface Props {
 }
 
 export default function ContactTable({ contacts }: Props) {
-  const { t } = useTranslation(['common', 'contactTable'])
+  const { t } = useTranslation(['common', 'ContactTable'])
 
   const [open, setOpen] = React.useState(false)
   const [clickedProfile, setProfile] = React.useState<Contact | undefined>()
@@ -49,10 +49,10 @@ export default function ContactTable({ contacts }: Props) {
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>{ t('contactTable:headers.picture') }</TableCell>
-                <TableCell>{ t('contactTable:headers.name') }</TableCell>
-                <TableCell>{ t('contactTable:headers.username') }</TableCell>
-                <TableCell>{ t('contactTable:headers.email') }</TableCell>
+                <TableCell>{ t('ContactTable:headers.picture') }</TableCell>
+                <TableCell>{ t('ContactTable:headers.name') }</TableCell>
+                <TableCell>{ t('ContactTable:headers.username') }</TableCell>
+                <TableCell>{ t('ContactTable:headers.email') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

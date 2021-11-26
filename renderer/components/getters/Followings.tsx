@@ -6,6 +6,7 @@ import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/Gett
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import { Contact } from '@d4data/archive-lib'
+import { useTranslation } from 'react-i18next'
 import NoData from '../pages/dashboard/components/NoData'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
@@ -53,12 +54,14 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
 }
 
 export default function Followings({ data }: { data: NonNullable<GetterData<Array<Following>>> }) {
+  const { t } = useTranslation(['common', 'pages'])
+
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Followings stat', icon: <Timeline/> },
-        { label: 'Communities list', icon: <ListIcon/> },
-        { label: 'Users list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('pages:followings.tabs.communityList'), icon: <ListIcon/> },
+        { label: t('pages:followings.tabs.userList'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.AUTHORIZED_DEVICES }/>,

@@ -64,7 +64,7 @@
     "communities": "Communautés",
     "settings": "Réglages",
     "reacted": "Reactions",
-    "medias": "Medias",
+    "medias": "Médias",
     "notes": "Notes",
     "transactions": "Transactions",
     "browserdata": "Données de Navigation",
@@ -103,37 +103,50 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "displayName": "Nom d'affichage",
+    "fullName": "FullName",
     "date": "Date",
-    "address": "Addresse",
+    "joinedDate": "Date d'adhésion",
+    "creationDate": "Date de création",
+    "noDateAvailable": "Pas de date disponible",
+    "address": "Adresse",
+    "zip": "ZIP",
+    "city": "Ville",
+    "country": "Pays",
+    "state": "État",
     "longitude": "Longitude",
     "latitude": "Latitude",
     "username": "Nom d'utilisateur",
-    "ip": "Addresse IP",
-    "joinedDate": "Date d'adhésion",
+    "ip": "Adresse IP",
     "picture": "Image",
     "email": "Courriel",
     "value": "Valeur",
     "item": "Article",
     "price": "Prix (Monnaie)",
-    "paymentMethod": "Méthode de paiment",
+    "paymentMethod": "Méthode de paiement",
     "transactionStatus": "Status de la transaction",
     "transactionDate": "Date de la transaction",
     "gender": "Genre",
     "nickname": "Surnom",
     "birthday": "Date de naissance",
-    "creationDate": "Date de création",
     "phone": "Téléphone",
+    "companyName": "Nom de la compagnie",
+    "languageCode": "Code language",
+    "line1": "Ligne 1",
+    "line2": "Ligne 2",
     "entry_one": "{{count}} entrée",
-    "entry_other": "{{count}} entrées"
-  },
-  "authorizeddevices": {
-    "found": "apparails autorisés trouvées"
-  },
-  "communities": {
-    "found": "communautés trouvées"
-  },
-  "apis": {
-    "found": "application connectées trouvées"
+    "entry_other": "{{count}} entrées",
+    "stat": "Statistiques",
+    "list": "Liste",
+    "enabled": "Activé",
+    "openWebsite": "Ouvrir le site",
+    "title": "Titre",
+    "url": "URL",
+    "icon": "Icône",
+    "open": "Ouvrir",
+    "close": "Fermer",
+    "browser": "Navigateur",
+    "from": "De",
+    "to": "À"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",
@@ -164,12 +177,80 @@
     "title": "Aucune donnée disponible",
     "description": "Ce service n'a collecté aucune donnée dans cette catégorie"
   },
-  "contactTable": {
+  "ContactTable": {
     "headers": {
       "picture": "Image",
       "name": "Nom",
       "username": "Nom d'utilisateur",
       "email": "E-mail"
     }
+  },
+  "pages": {
+    "followings": {
+      "tabs": {
+        "communityList": "Liste des communautés",
+        "userList": "Liste des utilisateurs"
+      }
+    },
+    "apis": {
+      "title_one": "{{count}} application connectée trouvée",
+      "title_other": "{{count}} applications connectées trouvées"
+    },
+    "authorizedDevices": {
+      "title_one": "{{count}} appareil autorisé trouvé",
+      "title_other": "{{count}} appareils autorisés trouvés"
+    },
+    "browserData": {
+      "tabs": {
+        "history": "Historique",
+        "extensions": "Extensions",
+        "settings": "Paramètres",
+        "themes": "Thèmes",
+        "forms": "Formulaires"
+      }
+    },
+    "chats": {
+      "selectConversation": "Veuillez sélectionner une conversation",
+      "searchbar": {
+        "placeholder": "Chercher une conversation..."
+      },
+      "conversation": {
+        "searchbar": {
+          "placeholder": "Chercher un message..."
+        },
+        "settings": {
+          "title": "Paramètres de la discussion",
+          "whoAreYou": "Qui êtes-vous ?"
+        }
+      }
+    },
+    "connections": {
+      "tabs": {
+        "map": "Carte du monde",
+        "history": "Historique de connexions"
+      }
+    },
+    "medias": {
+      "title_one": "{{count}} média trouvé",
+      "title_other": "{{count}} médias trouvés"
+    }
+  },
+  "BrowserHistory": {
+    "headers": {
+      "clientId": "ID client"
+    }
+  },
+  "ExtensionCard": {
+    "enabledIncognito": "Activé en mode Incognito"
+  },
+  "BrowserThemes": {
+    "cardHeader": "Thème courant du navigateur"
+  },
+  "BrowserSavedForms": {
+    "savedForm": "Formulaire sauvegardé {{name}}"
+  },
+  "CommunityTable": {
+    "title_one": "{{count}} communauté found",
+    "title_other": "{{count}} communautés found"
   }
 }

@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography'
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
@@ -21,11 +22,13 @@ export interface Props {
 }
 
 export default function AuthorizedDevices({ data }: { data: NonNullable<GetterData<Array<AuthorizedDevice>>> }) {
+  const { t } = useTranslation(['common', 'pages'])
+
   const AuthorizedDevicesList = (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } authorized devices found` }
+          { t('pages:authorizedDevices.title') }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -33,9 +36,9 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>IP</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell>{ t('common:name') }</TableCell>
+                <TableCell>{ t('common:ip') }</TableCell>
+                <TableCell>{ t('common:date') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -74,8 +77,8 @@ export default function AuthorizedDevices({ data }: { data: NonNullable<GetterDa
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Authorized devices stat', icon: <Timeline/> },
-        { label: 'Authorized devices list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.AUTHORIZED_DEVICES }/>,

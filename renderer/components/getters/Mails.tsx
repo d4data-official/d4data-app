@@ -9,6 +9,7 @@ import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Mail as MailsType } from '@d4data/archive-lib/dist/src/types/schemas'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -40,6 +41,8 @@ export interface Props {
 }
 
 export default function Mails({ data }: Props) {
+  const { t } = useTranslation('common')
+
   const classes = useStyles()
 
   const Mails = (
@@ -55,13 +58,13 @@ export default function Mails({ data }: Props) {
                     <b>{ mail.subject }</b>
                   </Typography>
                   <Typography variant="h5" className={ classes.subtitleFrom } gutterBottom>
-                    From : { mail.from }
+                    { t('from') } : { mail.from }
                   </Typography>
                   <Typography variant="h5" className={ classes.subtitle } gutterBottom>
-                    To : { mail.to.join(', ') }
+                    { t('to') } : { mail.to.join(', ') }
                   </Typography>
                   <Typography variant="h6" className={ classes.date } gutterBottom>
-                    Date : { mail.date.toLocaleString() }
+                    { t('date') } : { mail.date.toLocaleString() }
                   </Typography>
                   <Divider/>
                   <div className={ classes.mailContent }>
@@ -80,8 +83,8 @@ export default function Mails({ data }: Props) {
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Mails stat', icon: <Timeline/> },
-        { label: 'Mails list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.MAIL }/>,

@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography'
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import ReactedPostComponent from './ReactedComponents/ReactedPostComponent'
 import ReactedMediaComponent from './ReactedComponents/ReactedMediaComponent'
 import ReactedCommunityComponent from './ReactedComponents/ReactedCommunityComponent'
@@ -16,6 +17,8 @@ import AutoStatisticPage from '../statistics/AutoStatisticPage'
 const loadLimit = 114
 
 export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<Reacted>>> }) {
+  const { t } = useTranslation('common')
+
   const Reacted = (
     <Container maxWidth="md">
       <Box my={ 4 }>
@@ -40,8 +43,8 @@ export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Reacted stat', icon: <Timeline/> },
-        { label: 'Reacted list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.REACTED }/>,

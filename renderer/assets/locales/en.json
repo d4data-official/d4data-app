@@ -103,13 +103,20 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "displayName": "Display Name",
+    "fullName": "FullName",
     "date": "Date",
+    "joinedDate": "Joined Date",
+    "creationDate": "CreationDate",
+    "noDateAvailable": "No date available",
     "address": "Address",
+    "zip": "ZIP",
+    "city": "City",
+    "country": "Country",
+    "state": "State",
     "longitude": "Longitude",
     "latitude": "Latitude",
     "username": "Username",
     "ip": "IP Address",
-    "joinedDate": "Joined Date",
     "picture": "Picture",
     "email": "E-Mail",
     "value": "Value",
@@ -121,19 +128,25 @@
     "gender": "Gender",
     "nickname": "Nickname",
     "birthday": "Birthday",
-    "creationDate": "CreationDate",
     "phone": "Phone",
+    "companyName": "Company name",
+    "languageCode": "Language Code",
+    "line1": "Line 1",
+    "line2": "Line 2",
     "entry_one": "{{count}} entry",
-    "entry_other": "{{count}} entries"
-  },
-  "authorizeddevices": {
-    "found": "authorized devices found"
-  },
-  "communities": {
-    "found": "communities found"
-  },
-  "apis": {
-    "found": "linked applications found"
+    "entry_other": "{{count}} entries",
+    "stat": "Statistics",
+    "list": "List",
+    "enabled": "Enabled",
+    "openWebsite": "Open Website",
+    "title": "Title",
+    "url": "URL",
+    "icon": "Icon",
+    "open": "Open",
+    "close": "Close",
+    "browser": "Browser",
+    "from": "From",
+    "to": "To"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",
@@ -164,14 +177,80 @@
     "title": "No data available",
     "description": "Awesome ! This service collected no data for this category"
   },
-  "pages": {
-  },
-  "contactTable": {
+  "ContactTable": {
     "headers": {
       "picture": "Picture",
       "name": "Name",
       "username": "Username",
       "email": "E-mail"
     }
+  },
+  "pages": {
+    "followings": {
+      "tabs": {
+        "communityList": "Communities list",
+        "userList": "Users list"
+      }
+    },
+    "apis": {
+      "title_one": "{{count}} connected app found",
+      "title_other": "{{count}} connected apps found"
+    },
+    "authorizedDevices": {
+      "title_one": "{{count}} authorized device found",
+      "title_other": "{{count}} authorized devices found"
+    },
+    "browserData": {
+      "tabs": {
+        "history": "History",
+        "extensions": "Extensions",
+        "settings": "Settings",
+        "themes": "Themes",
+        "forms": "Forms"
+      }
+    },
+    "chats": {
+      "selectConversation": "Please select a conversation",
+      "searchbar": {
+        "placeholder": "Search for a conversation..."
+      },
+      "conversation": {
+        "searchbar": {
+          "placeholder": "Search for a message..."
+        },
+        "settings": {
+          "title": "Chat settings",
+          "whoAreYou": "Who are you ?"
+        }
+      }
+    },
+    "connections": {
+      "tabs": {
+        "map": "World map",
+        "history": "Connection history"
+      }
+    },
+    "medias": {
+      "title_one": "{{count}} media found",
+      "title_other": "{{count}} medias found"
+    }
+  },
+  "BrowserHistory": {
+    "headers": {
+      "clientId": "Client ID"
+    }
+  },
+  "ExtensionCard": {
+    "enabledIncognito": "Enabled in incognito mode"
+  },
+  "BrowserThemes": {
+    "cardHeader": "Current browser theme"
+  },
+  "BrowserSavedForms": {
+    "savedForm": "Saved form {{name}}"
+  },
+  "CommunityTable": {
+    "title_one": "{{count}} community found",
+    "title_other": "{{count}} communities found"
   }
 }

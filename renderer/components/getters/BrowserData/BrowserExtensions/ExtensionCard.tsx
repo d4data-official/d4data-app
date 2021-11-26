@@ -1,6 +1,7 @@
 import { Box, Button, Checkbox, FormControlLabel, Paper, Typography } from '@mui/material'
 import { makeStyles, styled } from '@mui/styles'
 import { Extension } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
+import { useTranslation } from 'react-i18next'
 import openInBrowser from '../../../../modules/openInBrowser'
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,8 @@ export default function ExtensionCard({
     incognitoEnabled,
   },
 }: { data: Extension }) {
+  const { t } = useTranslation(['common', 'ExtensionCard'])
+
   const classes = useStyles()
 
   return (
@@ -52,14 +55,14 @@ export default function ExtensionCard({
       <Box display="flex" flexDirection="column">
         { enabled !== undefined && (
           <FormControlLabel
-            label="Enabled"
+            label={ t('common:enabled') }
             control={ <StyledCheckbox checked={ enabled } color="primary" disabled/> }
             style={ { margin: 0 } }
           />
         ) }
         { incognitoEnabled !== undefined && (
           <FormControlLabel
-            label="Enabled in incognito"
+            label={ t('ExtensionCard:enabledIncognito') }
             control={ <StyledCheckbox checked={ incognitoEnabled } color="primary" disabled/> }
             style={ { margin: 0 } }
           />
@@ -68,8 +71,7 @@ export default function ExtensionCard({
 
       { websiteUrl && (
         <Button onClick={ () => openInBrowser(websiteUrl) } variant="outlined" color="primary">
-          Open
-          website
+          { t('common:openWebsite') }
         </Button>
       ) }
     </Paper>

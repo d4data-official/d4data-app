@@ -5,7 +5,8 @@ import {
   AccordionSummary,
   Divider,
   ListItemText,
-  MenuItem, SelectChangeEvent,
+  MenuItem,
+  SelectChangeEvent,
   Typography,
 } from '@mui/material'
 import Select from '@mui/material/Select'
@@ -17,6 +18,7 @@ import { createStyles, makeStyles } from '@mui/styles'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { TaskList } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { Task } from '@d4data/archive-lib/dist/src/types/schemas/TaskList'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -221,11 +223,13 @@ function PersistentDrawerLeft({ taskList }: { taskList: NonNullable<Array<TaskLi
 }
 
 function Tasks({ data }: { data: NonNullable<GetterData<Array<TaskList>>> }) {
+  const { t } = useTranslation('common')
+
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Tasks stat', icon: <Timeline/> },
-        { label: 'Tasks list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.TASKS }/>,

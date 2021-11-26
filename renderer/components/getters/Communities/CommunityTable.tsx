@@ -11,17 +11,20 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import moment from 'moment'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface Props {
   communities: Array<Community>
 }
 
 export default function CommunityTable({ communities }: Props) {
+  const { t } = useTranslation(['common', 'CommunityTable'])
+
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ communities.length } communities found` }
+          { t('CommunityTable:title', { count: communities.length }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -29,8 +32,8 @@ export default function CommunityTable({ communities }: Props) {
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Joined date</TableCell>
+                <TableCell>{ t('common:name') }</TableCell>
+                <TableCell>{ t('common:joinedDate') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -48,7 +51,7 @@ export default function CommunityTable({ communities }: Props) {
                   >
                     { community.joinedDate
                       ? moment(new Date(community.joinedDate)).format('yyyy-MM-DD')
-                      : 'No date provided' }
+                      : t('common:noDateAvailable') }
                   </TableCell>
                 </TableRow>
               )) }

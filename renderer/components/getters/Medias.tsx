@@ -5,6 +5,7 @@ import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/Gett
 import { Media } from '@d4data/archive-lib/dist/src/types/schemas'
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -40,6 +41,8 @@ const useStyles = makeStyles(() => ({
 }))
 
 function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
+  const { t } = useTranslation(['common', 'getters', 'pages'])
+
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const [image, setImage] = React.useState('')
@@ -65,7 +68,7 @@ function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
         </div>
       </Modal>
       <h3>
-        { `${ data.data.slice(0, 194).length } medias` }
+        { t('pages:medias.title', { count: data.data.length }) }
       </h3>
       <div className={ classes.root }>
         <ImageList cols={ 6 } className={ classes.imageList }>
@@ -94,8 +97,8 @@ function Medias({ data }: { data: NonNullable<GetterData<Array<Media>>> }) {
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Medias stat', icon: <Timeline/> },
-        { label: 'Medias', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('getters:medias'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.MEDIAS }/>,

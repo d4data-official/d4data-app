@@ -1,16 +1,7 @@
 import { Theme } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Container,
-  Tooltip,
-  Typography,
-} from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Container, Tooltip, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import { useTranslation } from 'react-i18next'
 import openInBrowser from '../../../modules/openInBrowser'
 
 export interface Props {
@@ -24,13 +15,15 @@ const useStyles = makeStyles({
 })
 
 export default function BrowserThemes({ data }: Props) {
+  const { t } = useTranslation(['common', 'BrowserThemes'])
+
   const classes = useStyles()
 
   return (
     <Container maxWidth="sm" className={ classes.root }>
       <Box height={ 1 } width={ 1 } display="flex" flexDirection="column" justifyContent="center">
         <Card elevation={ 2 } sx={ { p: 1 } }>
-          <CardHeader title="Current browser theme"/>
+          <CardHeader title={ t('BrowserThemes:cardHeader') }/>
 
           <CardContent>
             <Box display="flex" alignItems="center" justifyContent="center">
@@ -46,7 +39,7 @@ export default function BrowserThemes({ data }: Props) {
                   variant="outlined"
                   color="primary"
                   fullWidth
-                >Open website
+                >{ t('common:openWebsite') }
                 </Button>
               </Tooltip>
             </CardActions>
