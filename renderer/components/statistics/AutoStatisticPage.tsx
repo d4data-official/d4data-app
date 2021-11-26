@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
-import { Box, Slide, Zoom } from '@mui/material'
 import type Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import { Box, Zoom } from '@mui/material'
 import type Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { StatisticGetterData } from '@d4data/archive-lib/dist/src/types/standardizer/StatisticGetterReturn'
 import useArchiveManager from '../../hooks/useArchiveManager'
 import Loading from '../pages/dashboard/components/Loading'
-import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
+import NoData from '../pages/dashboard/components/NoData'
 import StatisticPage from './StatisticPage'
 import Center from '../Center'
 
@@ -69,11 +69,7 @@ export default function AutoStatisticPage({ getter }: Props) {
   if (statistics === null) {
     return (
       <Center>
-        <Slide in timeout={ 1000 }>
-          <Box>
-            <NoDataAvailable/>
-          </Box>
-        </Slide>
+        <NoData/>
       </Center>
     )
   }

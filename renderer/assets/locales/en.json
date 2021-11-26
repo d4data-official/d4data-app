@@ -156,5 +156,9 @@
   "loadingComponent": {
     "title": "Loading",
     "description": "It seems that this service collected some data about you in this category..."
+  },
+  "noDataComponent": {
+    "title": "No data available",
+    "description": "Awesome ! This service collected no data for this category"
   }
 }

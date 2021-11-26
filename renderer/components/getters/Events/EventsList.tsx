@@ -5,7 +5,7 @@ import type { Event } from '@d4data/archive-lib/dist/src/types/schemas'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import useGetter from '../../../hooks/getter/useGetter'
 import Loading from '../../pages/dashboard/components/Loading'
-import NoDataAvailable from '../../pages/dashboard/components/NoDataAvailable'
+import NoData from '../../pages/dashboard/components/NoData'
 import ErrorAlert from '../../ErrorAlert'
 
 const columns: Array<GridColDef> = [
@@ -50,7 +50,7 @@ export default function EventsList() {
 
   if (data === null || data?.data === null) {
     return (
-      <NoDataAvailable/>
+      <NoData/>
     )
   }
 

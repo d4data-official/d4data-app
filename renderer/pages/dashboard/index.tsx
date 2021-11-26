@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import useDashboardComponent from '@hooks/useDashboardComponent'
 import Loading from 'components/pages/dashboard/components/Loading'
-import NoDataAvailable from 'components/pages/dashboard/components/NoDataAvailable'
+import NoData from 'components/pages/dashboard/components/NoData'
 import Overview from 'components/Overview'
 import { GlobalContext } from 'renderer/context/Store'
 import RawData from 'components/getters/RawData'
@@ -32,7 +32,7 @@ function Dashboard() {
 
   if (data.data === null) {
     return (
-      <NoDataAvailable/>
+      <NoData/>
     )
   }
 

@@ -156,5 +156,9 @@
   "loadingComponent": {
     "title": "Chargement",
     "description": "Il semble que ce service a collecté des données sur vous dans cette catégorie..."
+  },
+  "noDataComponent": {
+    "title": "Aucune donnée disponible",
+    "description": "Ce service n'a collecté aucune donnée dans cette catégorie"
   }
 }

@@ -6,7 +6,7 @@ import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/Gett
 import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import { Contact } from '@d4data/archive-lib'
-import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
+import NoData from '../pages/dashboard/components/NoData'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import ContactTable from './Contacts/ContactTable'
@@ -21,7 +21,7 @@ function ShowCommunities({ data }: { data: NonNullable<GetterData<Array<Followin
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable/>
+          <NoData/>
         </Box>
       </Container>
     )
@@ -41,7 +41,7 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable/>
+          <NoData/>
         </Box>
       </Container>
     )
