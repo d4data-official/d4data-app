@@ -165,5 +165,13 @@
     "description": "Awesome ! This service collected no data for this category"
   },
   "pages": {
+  },
+  "contactTable": {
+    "headers": {
+      "picture": "Picture",
+      "name": "Name",
+      "username": "Username",
+      "email": "E-mail"
+    }
   }
 }

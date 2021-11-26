@@ -163,5 +163,13 @@
   "noDataComponent": {
     "title": "Aucune donnée disponible",
     "description": "Ce service n'a collecté aucune donnée dans cette catégorie"
+  },
+  "contactTable": {
+    "headers": {
+      "picture": "Image",
+      "name": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "E-mail"
+    }
   }
 }

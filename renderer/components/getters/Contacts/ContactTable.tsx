@@ -11,6 +11,7 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import { Avatar } from '@mui/material'
 import { Contact } from '@d4data/archive-lib'
+import { useTranslation } from 'react-i18next'
 import ContactComponent from './ContactComponent'
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
 
@@ -19,6 +20,8 @@ export interface Props {
 }
 
 export default function ContactTable({ contacts }: Props) {
+  const { t } = useTranslation(['common', 'contactTable'])
+
   const [open, setOpen] = React.useState(false)
   const [clickedProfile, setProfile] = React.useState<Contact | undefined>()
 
@@ -31,19 +34,25 @@ export default function ContactTable({ contacts }: Props) {
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ contacts.length } contacts found` }
+          { t('common:entry', { count: contacts.length }) }
         </Typography>
       </Box>
-      <ContactComponent show={ open } onClose={ () => setOpen(false) } profile={ clickedProfile }/>
+
+      <ContactComponent
+        show={ open }
+        onClose={ () => setOpen(false) }
+        profile={ clickedProfile }
+      />
+
       <Box my={ 2 }>
         <TableContainer component={ Paper }>
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Picture</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Username</TableCell>
-                <TableCell>E-mail</TableCell>
+                <TableCell>{ t('contactTable:headers.picture') }</TableCell>
+                <TableCell>{ t('contactTable:headers.name') }</TableCell>
+                <TableCell>{ t('contactTable:headers.username') }</TableCell>
+                <TableCell>{ t('contactTable:headers.email') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
