@@ -152,5 +152,9 @@
   },
   "sidebar": {
     "dashboard": "Dashboard"
+  },
+  "loadingComponent": {
+    "title": "Loading",
+    "description": "It seems that this service collected some data about you in this category..."
   }
 }

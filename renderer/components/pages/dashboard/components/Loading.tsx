@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Box, CircularProgress, Fade, Stack, Typography } from '@mui/material'
 import Center from '../../../Center'
 
@@ -8,11 +8,9 @@ interface Props {
 }
 
 export default function Loading({ title, description }: Props) {
-  const ref = useRef()
-
   return (
     <Center>
-      <Stack ref={ ref } alignItems="center" spacing={ 1 }>
+      <Stack alignItems="center" spacing={ 1 }>
         <Fade in timeout={ 1000 }>
           <Stack alignItems="center" spacing={ 1 }>
             <CircularProgress variant="indeterminate" size={ 50 }/>

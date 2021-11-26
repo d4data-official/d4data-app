@@ -152,5 +152,9 @@
   },
   "sidebar": {
     "dashboard": "Tableau de bord"
+  },
+  "loadingComponent": {
+    "title": "Chargement",
+    "description": "Il semble que ce service a collecté des données sur vous dans cette catégorie..."
   }
 }
