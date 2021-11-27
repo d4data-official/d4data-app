@@ -54,10 +54,12 @@
     "contacts": "Contacts",
     "whereabouts": "Whereabouts",
     "notifications": "Notifications",
+    "notifications_one": "Notification",
     "chats": "Chats",
     "chatmessages": "Chat Messages",
     "comments": "Comments",
     "posts": "Posts",
+    "posts_one": "Post",
     "messages": "Messages",
     "apis": "Linked Applications",
     "connections": "Connections",
@@ -146,7 +148,9 @@
     "close": "Close",
     "browser": "Browser",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "ago": "{{time}} ago",
+    "found": "{{count}} {{entity}} found"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",
@@ -233,6 +237,10 @@
     "medias": {
       "title_one": "{{count}} media found",
       "title_other": "{{count}} medias found"
+    },
+    "notes": {
+      "title_one": "{{count}} note found",
+      "title_other": "{{count}} notes found"
     }
   },
   "BrowserHistory": {

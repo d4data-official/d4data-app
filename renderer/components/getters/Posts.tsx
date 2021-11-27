@@ -11,20 +11,22 @@ import PostComponent from './PostComponents/PostComponent'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
-const loadLimit = 47
-
 export default function Posts({ data }: { data: NonNullable<GetterData<Array<Post>>> }) {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'getters'])
 
   const Posts = (
     <Container maxWidth="md">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.slice(0, loadLimit).length } posts found` }
+          { t('common:found', {
+            count: data.data.length,
+            entity: t('getters:posts', { count: data.data.length }).toLowerCase(),
+            context: 'female',
+          }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
-        { data.data.slice(0, loadLimit).map((row, idx) => (
+        { data.data.map((row, idx) => (
           <div>
             <PostComponent key={ idx.toString() } data={ row }/>
             <br/>
@@ -37,8 +39,8 @@ export default function Posts({ data }: { data: NonNullable<GetterData<Array<Pos
   return (
     <AutoTabs
       tabs={ [
-        { label: t('stat'), icon: <Timeline/> },
-        { label: t('list'), icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.POSTS }/>,

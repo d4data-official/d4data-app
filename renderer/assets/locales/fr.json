@@ -54,10 +54,12 @@
     "contacts": "Contacts",
     "whereabouts": "Positions",
     "notifications": "Notifications",
+    "notifications_one": "Notification",
     "chats": "Discussions",
     "chatmessages": "Messages",
     "comments": "Commentaires",
     "posts": "Publications",
+    "posts_one": "Publications",
     "messages": "Messages",
     "apis": "Applications Connectées",
     "connections": "Connections",
@@ -146,7 +148,12 @@
     "close": "Fermer",
     "browser": "Navigateur",
     "from": "De",
-    "to": "À"
+    "to": "À",
+    "ago": "Il y a {{time}}",
+    "found_one": "{{count}} {{entity}} trouvé",
+    "found_other": "{{count}} {{entity}} trouvés",
+    "found_female_one": "{{count}} {{entity}} trouvée",
+    "found_female_other": "{{count}} {{entity}} trouvées"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",
@@ -233,6 +240,10 @@
     "medias": {
       "title_one": "{{count}} média trouvé",
       "title_other": "{{count}} médias trouvés"
+    },
+    "notes": {
+      "title_one": "{{count}} note trouvée",
+      "title_other": "{{count}} notes trouvées"
     }
   },
   "BrowserHistory": {

@@ -1,6 +1,7 @@
 import { Box, Button, Paper, Tooltip } from '@mui/material'
 import type { Notification } from '@d4data/archive-lib/dist/src/types/schemas'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 import openInBrowser from '../../../modules/openInBrowser'
 import Center from '../../Center'
@@ -9,38 +10,40 @@ export interface Props {
   data: NonNullable<GetterData<Notification>>
 }
 
-const columns: Array<ColumnData> = [
-  {
-    dataKey: 'content',
-    label: 'Notification',
-  },
-  {
-    dataKey: 'href',
-    label: 'URL',
-    alignHeader: 'center',
-    width: 110,
-    cellRender: (href: Notification['href']) => href && (
-      <Center>
-        <Tooltip title={ href } placement="bottom">
-          <Button
-            onClick={ () => openInBrowser(href) }
-            variant="outlined"
-            color="primary"
-            size="small"
-          >Open
-          </Button>
-        </Tooltip>
-      </Center>
-    ),
-  },
-  {
-    dataKey: 'notificationDate',
-    label: 'Date',
-    cellRender: (date: Notification['notificationDate']) => date?.toLocaleString(),
-  },
-]
-
 export default function NotificationsList({ data }: Props) {
+  const { t } = useTranslation(['common', 'getters'])
+
+  const columns: Array<ColumnData> = [
+    {
+      dataKey: 'content',
+      label: t('getters:notifications', { count: 1 }),
+    },
+    {
+      dataKey: 'href',
+      label: t('common:url'),
+      alignHeader: 'center',
+      width: 110,
+      cellRender: (href: Notification['href']) => href && (
+        <Center>
+          <Tooltip title={ href } placement="bottom">
+            <Button
+              onClick={ () => openInBrowser(href) }
+              variant="outlined"
+              color="primary"
+              size="small"
+            >{ t('common:open') }
+            </Button>
+          </Tooltip>
+        </Center>
+      ),
+    },
+    {
+      dataKey: 'notificationDate',
+      label: t('common:date'),
+      cellRender: (date: Notification['notificationDate']) => date?.toLocaleString(),
+    },
+  ]
+
   return (
     <Box
       height={ 1 }
