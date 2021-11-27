@@ -20,6 +20,7 @@ import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { GlobalContext } from '../context/Store'
 import useDataCollectUserContent from '../hooks/swr/useDataCollectUserContent'
+import moment from 'moment'
 
 export const AVAILABLE_LANGUAGES: Array<{ key: string, name: string }> = [
   { key: 'en', name: 'English' },
@@ -39,7 +40,10 @@ export default function AppSettingsDialog({ open, onClose }: Props) {
 
   const handleThemeChange = useCallback(() => dispatch({ type: 'TOGGLE_THEME' }), [])
   const handleDataDisplayModeChange = useCallback(() => dispatch({ type: 'TOGGLE_RAWDATA' }), [])
-  const handleLanguageChange = useCallback((langKey: string) => i18n.changeLanguage(langKey), [])
+  const handleLanguageChange = useCallback((langKey: string) => {
+    i18n.changeLanguage(langKey)
+    moment.locale(langKey)
+  }, [])
 
   return (
     <Dialog
