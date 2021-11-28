@@ -150,7 +150,10 @@
     "from": "From",
     "to": "To",
     "ago": "{{time}} ago",
-    "found": "{{count}} {{entity}} found"
+    "found": "{{count}} {{entity}} found",
+    "reactions": "Reactions",
+    "reaction_one": "Reaction",
+    "sentBy": "Sent by {{sender}}"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",
@@ -241,6 +244,21 @@
     "notes": {
       "title_one": "{{count}} note found",
       "title_other": "{{count}} notes found"
+    },
+    "reacted": {
+      "ReactedPostComponent": {
+        "title": "Had reacted to a post"
+      },
+      "ReactedCommunityComponent": {
+        "title": "Had reacted to the community {{name}}"
+      },
+      "ReactedMediaComponent": {
+        "title": "Had reacted to a media"
+      },
+      "ReactedLinkComponent": {
+        "title": "Had reacted to an external link",
+        "openExternalLink": "Open external link"
+      }
     }
   },
   "BrowserHistory": {

@@ -14,8 +14,6 @@ import ReactedLinkComponent from './ReactedComponents/ReactedLinkComponent'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
-const loadLimit = 114
-
 export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<Reacted>>> }) {
   const { t } = useTranslation('common')
 
@@ -23,11 +21,16 @@ export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<
     <Container maxWidth="md">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.slice(0, loadLimit).length } reactions found` }
+          { t('found', {
+            count: data.data.length,
+            entity: t('reactions', { count: data.data.length }).toLowerCase(),
+            context: 'female',
+          }) }
+
         </Typography>
       </Box>
       <Box my={ 2 }>
-        { data.data.slice(0, loadLimit).map((row, idx) => (
+        { data.data.map((row, idx) => (
           <div>
             { row.entityType === 'post' && <ReactedPostComponent key={ idx.toString() } data={ row }/> }
             { row.entityType === 'community' && <ReactedCommunityComponent key={ idx.toString() } data={ row }/> }

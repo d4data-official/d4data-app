@@ -1,27 +1,22 @@
 import React from 'react'
-import moment from 'moment'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
 import { makeStyles } from '@mui/styles'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import { Button } from '@mui/material'
+import { Link } from '@mui/material'
+import { Post } from '@d4data/archive-lib'
+import { useTranslation } from 'react-i18next'
 import GenericReactionComponent from './GenericReactionComponent'
-import openInBrowser from '../../../modules/openInBrowser'
+import getDurationFromNow from '../../../modules/getDurationFromNow'
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
     padding: '10px 20px',
   },
-  title: {
-    marginBottom: 10,
-  },
   description: {
     marginBottom: 12,
-  },
-  pos: {
-    fontSize: 10,
   },
   reactions: {
     marginLeft: 15,
@@ -30,41 +25,34 @@ const useStyles = makeStyles({
 })
 
 export default function ReactedPostComponent({ data }: { data: NonNullable<Reacted> }) {
+  const { t } = useTranslation(['common'])
   const classes = useStyles()
+  const entity = data.entity as Post
 
   return (
     <Card className={ classes.root } variant="outlined">
       <CardContent>
-        <Typography className={ classes.title } variant="h5" component="h2">
-          { data.entity.title
-          ?? (data.entity.metaData?.links?.[0] && (
-            <span>
-              A réagi à un lien
-              <Button variant="text" onClick={ () => openInBrowser(data.entity.metaData?.links?.[0]) }>un lien</Button>
-            </span>
-          ))
-          ?? (data.entity.metaData?.medias?.[0] && (
-            <span>
-              A réagi à un média
-              <Button
-                variant="text"
-                onClick={ () => openInBrowser(data.entity.metaData?.medias?.[0]) }
-              >
-                un média
-              </Button>
-            </span>
-          ))
-          ?? 'No title provided' }
-        </Typography>
-        <Typography className={ classes.description } variant="body2" component="p">
-          { data.entity.content ?? 'No content provided' }
-        </Typography>
-        <Typography className={ classes.pos } color="textSecondary">
-          { data.entity.sender && `Sent by ${ data.entity.ender }` }
-          { data.entity.creationDate
-          // eslint-disable-next-line no-mixed-operators
-          && `${ moment.duration(data.entity.creationDate?.valueOf() / 10).humanize() } ago` || 'No date provided' }
-        </Typography>
+        { entity.title && <Typography variant="h5" component="h2">{ entity.title }</Typography> }
+
+        { entity.sender && <Typography>{ t('common:sentBy', { sender: entity.sender }) }</Typography> }
+
+        { entity.creationDate && (
+          <Typography variant="caption" color="textSecondary">
+            { t('common:ago', { time: getDurationFromNow(entity.creationDate).humanize() }) }
+          </Typography>
+        ) }
+
+        { entity.content && (
+          <Typography className={ classes.description } variant="body1" component="p">
+            { entity.content }
+          </Typography>
+        ) }
+
+        { entity.metaData?.links && (
+          <Typography className={ classes.description } variant="body2" component="p">
+            { entity.metaData.links.map((link: string) => <Link href={ link }>{ link }</Link>) }
+          </Typography>
+        ) }
       </CardContent>
       <div className={ classes.reactions }>
         <GenericReactionComponent reaction={ data.reaction }/>

@@ -153,7 +153,10 @@
     "found_one": "{{count}} {{entity}} trouvé",
     "found_other": "{{count}} {{entity}} trouvés",
     "found_female_one": "{{count}} {{entity}} trouvée",
-    "found_female_other": "{{count}} {{entity}} trouvées"
+    "found_female_other": "{{count}} {{entity}} trouvées",
+    "reactions": "Réactions",
+    "reaction_one": "Réaction",
+    "sentBy": "Envoyer par {{sender}}"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",
@@ -244,6 +247,21 @@
     "notes": {
       "title_one": "{{count}} note trouvée",
       "title_other": "{{count}} notes trouvées"
+    },
+    "reacted": {
+      "ReactedPostComponent": {
+        "title": "À réagi à un post"
+      },
+      "ReactedCommunityComponent": {
+        "title": "À réagi à la communauté {{name}}"
+      },
+      "ReactedMediaComponent": {
+        "title": "À réagi à un média"
+      },
+      "ReactedLinkComponent": {
+        "title": "À réagi à un lien externe",
+        "openExternalLink": "Ouvrir le lien externe"
+      }
     }
   },
   "BrowserHistory": {
