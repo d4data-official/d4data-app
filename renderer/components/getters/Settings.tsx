@@ -23,13 +23,17 @@ export interface Props {
 }
 
 export default function Settings({ data }: { data: NonNullable<GetterData<Array<Setting>>> }) {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'getters'])
 
   const Settings = (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } settings found` }
+          { t('common:found', {
+            count: data.data.length,
+            entity: t('getters:settings', { count: data.data.length }).toLowerCase(),
+          }) }
+
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -37,9 +41,9 @@ export default function Settings({ data }: { data: NonNullable<GetterData<Array<
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Value</TableCell>
+                <TableCell>{ t('common:name') }</TableCell>
+                <TableCell>{ t('common:description') }</TableCell>
+                <TableCell>{ t('common:value') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -82,8 +86,8 @@ export default function Settings({ data }: { data: NonNullable<GetterData<Array<
   return (
     <AutoTabs
       tabs={ [
-        { label: t('stat'), icon: <Timeline/> },
-        { label: t('list'), icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.SETTINGS }/>,

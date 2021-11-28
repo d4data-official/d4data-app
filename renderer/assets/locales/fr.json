@@ -65,6 +65,7 @@
     "connections": "Connections",
     "communities": "Communautés",
     "settings": "Réglages",
+    "settings_one": "Réglage",
     "reacted": "Reactions",
     "medias": "Médias",
     "notes": "Notes",
@@ -102,6 +103,7 @@
   },
   "common": {
     "name": "Nom",
+    "description": "Description",
     "firstName": "Prénom",
     "lastName": "Nom",
     "displayName": "Nom d'affichage",
