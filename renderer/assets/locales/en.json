@@ -260,5 +260,9 @@
   "CommunityTable": {
     "title_one": "{{count}} community found",
     "title_other": "{{count}} communities found"
+  },
+  "RawData": {
+    "chooseYourFile": "Choose your file",
+    "seeInFileExplorer": "See in file explore"
   }
 }

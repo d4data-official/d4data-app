@@ -263,5 +263,9 @@
   "CommunityTable": {
     "title_one": "{{count}} communauté found",
     "title_other": "{{count}} communautés found"
+  },
+  "RawData": {
+    "chooseYourFile": "Choisissez votre fichier",
+    "seeInFileExplorer": "Voir dans l'explorateur de fichiers"
   }
 }
