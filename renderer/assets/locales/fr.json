@@ -158,7 +158,9 @@
     "found_female_other": "{{count}} {{entity}} trouvées",
     "reactions": "Réactions",
     "reaction_one": "Réaction",
-    "sentBy": "Envoyer par {{sender}}"
+    "sentBy": "Envoyer par {{sender}}",
+    "lastUpdate": "Dernière mise à jour",
+    "endUpdate": "Date de fin"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",

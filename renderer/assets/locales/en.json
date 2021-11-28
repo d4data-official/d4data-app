@@ -110,7 +110,7 @@
     "fullName": "FullName",
     "date": "Date",
     "joinedDate": "Joined Date",
-    "creationDate": "CreationDate",
+    "creationDate": "Creation date",
     "noDateAvailable": "No date available",
     "address": "Address",
     "zip": "ZIP",
@@ -155,7 +155,9 @@
     "found": "{{count}} {{entity}} found",
     "reactions": "Reactions",
     "reaction_one": "Reaction",
-    "sentBy": "Sent by {{sender}}"
+    "sentBy": "Sent by {{sender}}",
+    "lastUpdate": "Last update",
+    "endUpdate": "End update"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",

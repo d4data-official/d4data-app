@@ -103,6 +103,7 @@ const useStyles = makeStyles((theme) => createStyles({
 }))
 
 function TaskDisplay({ task }: { task: Task }) {
+  const { t } = useTranslation('common')
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState<string | false>(false)
   const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
@@ -110,54 +111,59 @@ function TaskDisplay({ task }: { task: Task }) {
   }
   return (
     <Accordion style={ { width: '70%' } } expanded={ expanded === 'panel1' } onChange={ handleChange('panel1') }>
-      <AccordionSummary
-        expandIcon={ <ExpandMoreIcon/> }
-        aria-controls="panel1bh-content"
-        id="panel1bh-header"
-      >
+      <AccordionSummary expandIcon={ <ExpandMoreIcon/> }>
         <div className={ classes.status }>
           { task?.status === 'todo' && <RadioButtonUnchecked style={ { color: 'blue' } }/> }
           { task?.status === 'done' && <CheckCircle style={ { color: 'green' } }/> }
         </div>
-        <Typography className={ classes.heading }>
-          { task.name.length > 0 ? task.name : 'Unnamed Task' }
-        </Typography>
-        <Typography
-          className={ classes.secondaryHeading }
-          style={ { whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' } }
-        >
-          { task.description && task?.description?.length > 0 ? task.description : 'An empty description was provided' }
-        </Typography>
+
+        { task.name && <Typography className={ classes.heading }>{ task.name }</Typography> }
+
+        { task.description && (
+          <Typography
+            className={ classes.secondaryHeading }
+            style={ { whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' } }
+          >
+            { task.description }
+          </Typography>
+        ) }
       </AccordionSummary>
       <Divider/>
       <AccordionDetails>
 
         <div style={ { display: 'flex', flexDirection: 'column', flexGrow: 1 } }>
           <div>
-            <div style={ { display: 'flex', margin: '25px' } }>
-              { task.description && task?.description?.length > 0 ? task.description : 'No description provided' }
-            </div>
-            <div className={ classes.timeBox }>
-              <CalendarToday fontSize="small"/>
-              <div style={ { display: 'flex', marginLeft: '5px' } }>
-                Creation date: { task?.createdAt?.toLocaleString() ?? 'No date provided' }
+            { task.description && <div style={ { display: 'flex', margin: '25px' } }>{ task.description }</div> }
+
+            { task.createdAt && (
+              <div className={ classes.timeBox }>
+                <CalendarToday fontSize="small"/>
+                <div style={ { display: 'flex', marginLeft: '5px' } }>
+                  { t('creationDate') }: { task?.createdAt?.toLocaleString() }
+                </div>
               </div>
-            </div>
-            <div className={ classes.timeBox }>
-              <CalendarToday fontSize="small"/>
-              <div style={ { display: 'flex', marginLeft: '5px' } }>
-                Last update date: { task?.updateAt?.toLocaleString() ?? 'No date provided' }
+            ) }
+
+            { task.updateAt && (
+              <div className={ classes.timeBox }>
+                <CalendarToday fontSize="small"/>
+                <div style={ { display: 'flex', marginLeft: '5px' } }>
+                  { t('lastUpdate') }: { task.updateAt.toLocaleString() }
+                </div>
               </div>
-            </div>
-            <div className={ classes.timeBox }>
-              <CalendarToday fontSize="small"/>
-              <div style={ { display: 'flex', marginLeft: '5px' } }>
-                End date: { task?.dueDate?.toLocaleString() ?? 'No date provided' }
+            ) }
+
+            { task.dueDate && (
+              <div className={ classes.timeBox }>
+                <CalendarToday fontSize="small"/>
+                <div style={ { display: 'flex', marginLeft: '5px' } }>
+                  { t('endUpdate') }: { task.dueDate.toLocaleString() }
+                </div>
               </div>
-            </div>
+            ) }
           </div>
-          { (task?.children && task?.children.length !== 0)
-          && (
+
+          { (task?.children && task?.children.length !== 0) && (
             <>
               <Divider style={ { marginTop: '30px' } }/>
               <div
@@ -170,7 +176,6 @@ function TaskDisplay({ task }: { task: Task }) {
                 } }
               >
                 { task?.children?.map((subTask: Task) => <TaskDisplay task={ subTask }/>) }
-
               </div>
             </>
           ) }
