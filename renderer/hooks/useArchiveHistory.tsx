@@ -31,9 +31,10 @@ export default function useArchiveHistory() {
     deleteHistoryEntry: (indexOrEntry: number | ArchiveHistoryEntry) => archiveHistoryManager.deleteEntry(indexOrEntry),
     resetHistory: () => archiveHistoryManager.resetHistory(),
     restoreArchiveFromEntry: async (entry: ArchiveHistoryEntry): Promise<StandardizerIPC> => {
-      ArchiveManager.currentStandardizer = await StandardizerIPC.init(entry.service, entry.path)
+      const standardizer = await StandardizerIPC.init(entry.service, entry.path)
+      ArchiveManager.currentStandardizer = standardizer
       setRestoredArchive(entry)
-      return ArchiveManager.currentStandardizer
+      return standardizer
     },
   }
 }
