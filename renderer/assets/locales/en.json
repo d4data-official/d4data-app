@@ -301,5 +301,9 @@
   "RawData": {
     "chooseYourFile": "Choose your file",
     "seeInFileExplorer": "See in file explore"
+  },
+  "DefaultDisplay": {
+    "title": "Fallback display",
+    "subtitle": "Custom display for this data type coming soon"
   }
 }

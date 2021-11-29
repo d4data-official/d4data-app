@@ -305,5 +305,9 @@
   "RawData": {
     "chooseYourFile": "Choisissez votre fichier",
     "seeInFileExplorer": "Voir dans l'explorateur de fichiers"
+  },
+  "DefaultDisplay": {
+    "title": "Affichage basique",
+    "subtitle": "L'affichage ergonomique pour se type de donnée arrive bientot"
   }
 }
