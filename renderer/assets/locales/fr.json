@@ -299,8 +299,8 @@
     "savedForm": "Formulaire sauvegardé {{name}}"
   },
   "CommunityTable": {
-    "title_one": "{{count}} communauté found",
-    "title_other": "{{count}} communautés found"
+    "title_one": "{{count}} communauté trouvée",
+    "title_other": "{{count}} communautés trouvées"
   },
   "RawData": {
     "chooseYourFile": "Choisissez votre fichier",
