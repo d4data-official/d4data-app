@@ -39,7 +39,7 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
       case StatisticType.NUMBER:
         return getHumanReadableNumber(statistic.value as number)
       case StatisticType.PERCENTAGE:
-        return `${ statistic.value as number }%`
+        return `${ Math.round(statistic.value as number) }%`
       case StatisticType.BOOLEAN:
         return (statistic.value as boolean) ? 'Yes' : 'No'
       case StatisticType.DURATION:
