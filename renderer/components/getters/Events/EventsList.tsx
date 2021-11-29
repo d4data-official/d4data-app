@@ -3,11 +3,11 @@ import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid'
 import React, { useMemo } from 'react'
 import type { Event } from '@d4data/archive-lib/dist/src/types/schemas'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import { useTranslation } from 'react-i18next'
 import useGetter from '../../../hooks/getter/useGetter'
 import Loading from '../../pages/dashboard/components/Loading'
 import NoData from '../../pages/dashboard/components/NoData'
 import ErrorAlert from '../../ErrorAlert'
-import { useTranslation } from 'react-i18next'
 
 export default function EventsList() {
   const { t } = useTranslation('common')
