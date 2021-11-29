@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import StandardizerIPC from '@shared/d4data-archive-lib/renderer/StandardizerIPC'
-import { useRouter } from 'next/router'
 import { ArchiveHistoryCallback, ArchiveHistoryEntry } from '../modules/ArchiveHistoryManager'
 import ArchiveManager from '../modules/ArchiveManager'
 import useArchiveManager from './useArchiveManager'
@@ -12,7 +11,6 @@ const { archiveHistoryManager } = ArchiveManager
  * The state is shared between all hook instances and will trigger a rerender on any changes.
  */
 export default function useArchiveHistory() {
-  const router = useRouter()
   const { setRestoredArchive } = useArchiveManager()
   const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void
 
@@ -32,10 +30,10 @@ export default function useArchiveHistory() {
     deleteLastHistoryEntry: () => archiveHistoryManager.deleteLastEntry(),
     deleteHistoryEntry: (indexOrEntry: number | ArchiveHistoryEntry) => archiveHistoryManager.deleteEntry(indexOrEntry),
     resetHistory: () => archiveHistoryManager.resetHistory(),
-    restoreArchiveFromEntry: async (entry: ArchiveHistoryEntry) => {
+    restoreArchiveFromEntry: async (entry: ArchiveHistoryEntry): Promise<StandardizerIPC> => {
       ArchiveManager.currentStandardizer = await StandardizerIPC.init(entry.service, entry.path)
       setRestoredArchive(entry)
-      await router.push('/dashboard')
+      return ArchiveManager.currentStandardizer
     },
   }
 }

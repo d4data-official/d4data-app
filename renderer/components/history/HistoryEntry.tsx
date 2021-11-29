@@ -4,10 +4,11 @@ import moment from 'moment'
 import RestoreIcon from '@mui/icons-material/Restore'
 import DeleteIcon from '@mui/icons-material/Delete'
 import filesize from 'filesize'
-import useArchiveHistory from '@hooks/useArchiveHistory'
-import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
+import { ArchiveHistoryEntry } from '../../modules/ArchiveHistoryManager'
+import useArchiveHistory from '../../hooks/useArchiveHistory'
 import EllipsisTooltip from '../EllipsisTooltip'
 
 export interface Props {
@@ -16,6 +17,8 @@ export interface Props {
   showDeltaTime?: boolean
   showDeleteButton?: boolean
   showRestoreButton?: boolean
+  onDelete?: (entry: ArchiveHistoryEntry) => void
+  onRestore?: (entry: ArchiveHistoryEntry) => void
   className?: string
   style?: CSSProperties
 }
@@ -26,11 +29,13 @@ export default function HistoryEntry({
   showDeltaTime = true,
   showRestoreButton = true,
   showDeleteButton = true,
+  onDelete,
+  onRestore,
   className,
   style,
 }: Props) {
   const { t, i18n } = useTranslation('history')
-
+  const router = useRouter()
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
 
@@ -41,6 +46,11 @@ export default function HistoryEntry({
   }
 
   const deleteEntryHandler = () => {
+    if (onDelete) {
+      onDelete?.(entry)
+      return
+    }
+
     setLoading(true)
     deleteHistoryEntry(entry)
       .then(() => {
@@ -53,6 +63,11 @@ export default function HistoryEntry({
   }
 
   const restoreEntryHandler = () => {
+    if (onRestore) {
+      onRestore?.(entry)
+      return
+    }
+
     setLoading(true)
     restoreArchiveFromEntry(entry)
       .then(() => {
@@ -61,13 +76,7 @@ export default function HistoryEntry({
           { position: 'bottom-left' },
         )
       })
-      .finally(() => setLoading(false))
-  }
-
-  if (!entry) {
-    return (
-      <div>Empty history</div>
-    )
+      .then(() => router.push('/dashboard'))
   }
 
   return (

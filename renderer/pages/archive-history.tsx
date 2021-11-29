@@ -1,30 +1,39 @@
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material'
-import React from 'react'
-import { makeStyles } from '@mui/styles'
+import React, { useCallback, useMemo } from 'react'
 import { shell } from 'electron'
 import { OUTPUT_DIR } from '@d4data/archive-lib/dist/src/classes/Archive/Archive'
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
 import useArchiveHistory from '../hooks/useArchiveHistory'
 import ResetHistoryButton from '../components/history/ResetHistoryButton'
 import HistoryEntry from '../components/history/HistoryEntry'
 import Show from '../components/Show'
-
-const useStyles = makeStyles({
-  emptyMessage: {
-    color: 'grey',
-  },
-})
+import useArchiveProcessProgress, { ArchiveProcessStep } from '../hooks/useArchiveProcessProgress'
+import getAvailableGetters from '../modules/getAvailableGetters'
+import { ArchiveHistoryEntry } from '../modules/ArchiveHistoryManager'
+import ArchiveProcessProgressDialog from '../components/ArchiveProcessProgressDialog'
 
 export default function ArchiveHistoryPage() {
   const { t } = useTranslation(['common', 'history'])
+  const router = useRouter()
+  const { history, restoreArchiveFromEntry } = useArchiveHistory()
+  const { state: progress, setState: setProgress } = useArchiveProcessProgress()
 
-  const classes = useStyles()
-  const { history } = useArchiveHistory()
+  const orderedHistory = useMemo(() => [...history].reverse(), [history])
 
-  const orderedHistory = [...history].reverse()
+  const restoreArchiveHandler = useCallback(async (entry: ArchiveHistoryEntry) => {
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Getting standardizer...' } })
+    const standardizer = await restoreArchiveFromEntry(entry)
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Checking data...' } })
+    await getAvailableGetters(standardizer)
+
+    return router.push('/dashboard')
+  }, [])
 
   return (
     <Container maxWidth="md" sx={ { py: 3 } }>
+      <ArchiveProcessProgressDialog state={ progress }/>
+
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">
@@ -45,12 +54,18 @@ export default function ArchiveHistoryPage() {
 
       <Box marginY={ 4 }>
         <Stack spacing={ 1 }>
-          { orderedHistory.map((entry) => <HistoryEntry entry={ entry } key={ entry.path }/>) }
+          { orderedHistory.map((entry) => (
+            <HistoryEntry
+              entry={ entry }
+              key={ entry.path }
+              onRestore={ () => restoreArchiveHandler(entry) }
+            />
+          )) }
         </Stack>
 
         <Show condition={ history.length === 0 }>
           <Box marginTop={ 12 } display="flex" alignItems="center" justifyContent="center">
-            <Typography variant="h5" className={ classes.emptyMessage }>{ t('history:empty') }</Typography>
+            <Typography variant="h5" color="grey">{ t('history:empty') }</Typography>
           </Box>
         </Show>
       </Box>

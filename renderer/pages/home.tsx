@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Box, Button, Grid, Link, Paper, Stack, Typography, useTheme } from '@mui/material'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
@@ -15,6 +15,7 @@ import openInBrowser from '../modules/openInBrowser'
 import useArchiveProcessProgress, { ArchiveProcessStep } from '../hooks/useArchiveProcessProgress'
 import ArchiveProcessProgressDialog from '../components/ArchiveProcessProgressDialog'
 import getAvailableGetters from '../modules/getAvailableGetters'
+import { ArchiveHistoryEntry } from '../modules/ArchiveHistoryManager'
 
 export default function HomePage() {
   const { t } = useTranslation('homepage')
@@ -28,6 +29,7 @@ export default function HomePage() {
     addHistoryEntry,
   } = useArchiveHistory()
   const { setCurrentArchive, setCurrentStandardizer } = useArchiveManager()
+  const { restoreArchiveFromEntry } = useArchiveHistory()
 
   const handleExtract = React.useCallback(async (path: string) => {
     setProgress({ step: ArchiveProcessStep.IDENTIFYING })
@@ -90,6 +92,15 @@ export default function HomePage() {
     await getAvailableGetters(standardizer)
 
     router.push('/dashboard')
+  }, [])
+
+  const restoreArchiveHandler = useCallback(async (entry: ArchiveHistoryEntry) => {
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Getting standardizer...' } })
+    const standardizer = await restoreArchiveFromEntry(entry)
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Checking data...' } })
+    await getAvailableGetters(standardizer)
+
+    return router.push('/dashboard')
   }, [])
 
   return (
@@ -221,7 +232,7 @@ export default function HomePage() {
                     </Button>
                   </Stack>
 
-                  <LastHistoryEntry/>
+                  <LastHistoryEntry onRestore={ (entry) => restoreArchiveHandler(entry) }/>
                 </Stack>
               ) }
 

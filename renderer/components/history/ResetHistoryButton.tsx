@@ -3,9 +3,9 @@ import React, { CSSProperties, ReactNode, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { createStyles, makeStyles } from '@mui/styles'
 import clsx from 'clsx'
-import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import useArchiveHistory from '../../hooks/useArchiveHistory'
 
 export interface Props {
   label?: string
@@ -35,7 +35,7 @@ export default function ResetHistoryButton({ label, icon, className, style }: Pr
     setLoading(true)
     resetHistory()
       .then(() => {
-        toast('Archive reset', { position: 'bottom-left' })
+        toast(t('reset'), { position: 'bottom-left' })
       })
       .finally(() => setLoading(false))
   }
