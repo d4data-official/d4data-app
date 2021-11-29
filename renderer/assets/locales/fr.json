@@ -163,7 +163,9 @@
     "sentBy": "Envoyer par {{sender}}",
     "lastUpdate": "Dernière mise à jour",
     "endUpdate": "Date de fin",
-    "map": "Carte"
+    "map": "Carte",
+    "yes": "Oui",
+    "no": "Non"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",

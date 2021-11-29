@@ -159,7 +159,9 @@
     "sentBy": "Sent by {{sender}}",
     "lastUpdate": "Last update",
     "endUpdate": "End update",
-    "map": "Map"
+    "map": "Map",
+    "yes": "Yes",
+    "no": "No"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",

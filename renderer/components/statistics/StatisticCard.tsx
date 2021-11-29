@@ -6,6 +6,7 @@ import ShowChartIcon from '@mui/icons-material/ShowChart'
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 import moment from 'moment'
 import numeral from 'numeral'
+import { useTranslation } from 'react-i18next'
 import SharableContent from '../SharableContent'
 
 export interface Props {
@@ -16,6 +17,7 @@ export interface Props {
 const SIZE_UNIT = 175
 
 export default function StatisticCard({ statistic, variant = 'contained' }: Props) {
+  const { t } = useTranslation('common')
   const theme = useTheme()
 
   const size = statistic.type === StatisticType.RANKING ? 2 : 1
@@ -41,7 +43,7 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
       case StatisticType.PERCENTAGE:
         return `${ Math.round(statistic.value as number) }%`
       case StatisticType.BOOLEAN:
-        return (statistic.value as boolean) ? 'Yes' : 'No'
+        return (statistic.value as boolean) ? t('yes') : t('no')
       case StatisticType.DURATION:
         return capitalize(moment.duration(statistic.value as string).humanize(false, { s: 0, m: 0 }))
       case StatisticType.RANKING: {
