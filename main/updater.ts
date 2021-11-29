@@ -1,10 +1,10 @@
 import {
-  NsisUpdater, AppImageUpdater, MacUpdater, UpdateCheckResult,
+  AppImageUpdater, MacUpdater, NsisUpdater, UpdateCheckResult,
 } from 'electron-updater'
-import { AllPublishOptions } from 'builder-util-runtime'
+import { GithubOptions } from 'builder-util-runtime'
 import Log from 'electron-log'
 
-function getUpdater(options: AllPublishOptions) {
+function getUpdater(options: GithubOptions) {
   if (process.platform === 'win32') {
     return new NsisUpdater(options)
   }
@@ -15,7 +15,7 @@ function getUpdater(options: AllPublishOptions) {
 }
 
 export default async function appUpdate(): Promise<UpdateCheckResult | null> {
-  const options: AllPublishOptions = {
+  const options: GithubOptions = {
     provider: 'github',
     repo: 'd4data-app',
     owner: 'd4data-official',

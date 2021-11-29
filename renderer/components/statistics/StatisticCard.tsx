@@ -1,11 +1,12 @@
+import type { RankingStatisticItemValue } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import Statistic, { RankingStatisticValue, StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
-import { Box, capitalize, Grid, Stack, Typography, useTheme } from '@material-ui/core'
-import TimelineIcon from '@material-ui/icons/Timeline'
-import ShowChartIcon from '@material-ui/icons/ShowChart'
-import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered'
+import { Box, capitalize, Grid, Stack, Typography, useTheme } from '@mui/material'
+import TimelineIcon from '@mui/icons-material/Timeline'
+import ShowChartIcon from '@mui/icons-material/ShowChart'
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 import moment from 'moment'
 import numeral from 'numeral'
-import type { RankingStatisticItemValue } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import { useTranslation } from 'react-i18next'
 import SharableContent from '../SharableContent'
 
 export interface Props {
@@ -16,6 +17,7 @@ export interface Props {
 const SIZE_UNIT = 175
 
 export default function StatisticCard({ statistic, variant = 'contained' }: Props) {
+  const { t } = useTranslation('common')
   const theme = useTheme()
 
   const size = statistic.type === StatisticType.RANKING ? 2 : 1
@@ -39,9 +41,9 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
       case StatisticType.NUMBER:
         return getHumanReadableNumber(statistic.value as number)
       case StatisticType.PERCENTAGE:
-        return `${ statistic.value as number }%`
+        return `${ Math.round(statistic.value as number) }%`
       case StatisticType.BOOLEAN:
-        return (statistic.value as boolean) ? 'Yes' : 'No'
+        return (statistic.value as boolean) ? t('yes') : t('no')
       case StatisticType.DURATION:
         return capitalize(moment.duration(statistic.value as string).humanize(false, { s: 0, m: 0 }))
       case StatisticType.RANKING: {
@@ -108,7 +110,7 @@ export default function StatisticCard({ statistic, variant = 'contained' }: Prop
               mt={ size }
               variant="h6"
               fontSize={ 20 * Math.max(size * 0.75, 1) }
-            >{ statistic.name }
+            >{ capitalize(statistic.name) }
             </Typography>
 
           </Grid>

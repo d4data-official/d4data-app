@@ -1,12 +1,13 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import { Community, Following } from '@d4data/archive-lib/dist/src/types/schemas'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
+import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import { Contact } from '@d4data/archive-lib'
-import NoDataAvailable from '../pages/dashboard/components/NoDataAvailable'
+import { useTranslation } from 'react-i18next'
+import NoData from '../pages/dashboard/components/NoData'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import ContactTable from './Contacts/ContactTable'
@@ -21,7 +22,7 @@ function ShowCommunities({ data }: { data: NonNullable<GetterData<Array<Followin
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable/>
+          <NoData/>
         </Box>
       </Container>
     )
@@ -41,7 +42,7 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
     return (
       <Container maxWidth="lg">
         <Box my={ 18 }>
-          <NoDataAvailable/>
+          <NoData/>
         </Box>
       </Container>
     )
@@ -53,12 +54,14 @@ function ShowContacts({ data }: { data: NonNullable<GetterData<Array<Following>>
 }
 
 export default function Followings({ data }: { data: NonNullable<GetterData<Array<Following>>> }) {
+  const { t } = useTranslation(['common', 'pages'])
+
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Followings stat', icon: <Timeline/> },
-        { label: 'Communities list', icon: <ListIcon/> },
-        { label: 'Users list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('pages:followings.tabs.communityList'), icon: <ListIcon/> },
+        { label: t('pages:followings.tabs.userList'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.AUTHORIZED_DEVICES }/>,

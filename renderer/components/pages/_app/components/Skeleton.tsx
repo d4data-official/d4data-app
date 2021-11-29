@@ -1,10 +1,10 @@
 import React, { useCallback, useContext } from 'react'
 import useStyles from 'pages-components/_app/styles/skeleton.styles'
-import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@mui/material'
 import clsx from 'clsx'
-import Home from '@material-ui/icons/Home'
-import Menu from '@material-ui/icons/Menu'
-import Settings from '@material-ui/icons/Settings'
+import Home from '@mui/icons-material/Home'
+import Menu from '@mui/icons-material/Menu'
+import Settings from '@mui/icons-material/Settings'
 import Show from 'components/Show'
 import { useRouter } from 'next/router'
 import { GlobalContext } from 'renderer/context/Store'
@@ -12,8 +12,10 @@ import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import Sidebar from './Sidebar'
 import ArchiveManager from '../../../../modules/ArchiveManager'
 import AppSettingsDialog from '../../../AppSettingsDialog'
-import getGetterLabel from '../../../../modules/getGetterLabel'
 import AppBarMoreMenu from './AppBarMoreMenu'
+import useArchiveManager from '../../../../hooks/useArchiveManager'
+import DataCollectUserContentDialog from '../../../DataCollectUserContentDialog'
+import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
 
 export interface SkeletonProps {
   children: JSX.Element | JSX.Element[]
@@ -22,8 +24,10 @@ export interface SkeletonProps {
 export default function Skeleton({ children }: SkeletonProps) {
   const router = useRouter()
   const { componentName, dispatch } = useContext(GlobalContext)
+  const { currentStandardizer } = useArchiveManager()
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const [settingsDialogOpen, setSettingsDialogOpen] = React.useState<boolean>(false)
+  const { getGetterLabel } = useGetGetterLabel()
   const classes = useStyles()
 
   const handleDrawerChange = React.useCallback((open?: boolean | any) => {
@@ -53,6 +57,8 @@ export default function Skeleton({ children }: SkeletonProps) {
 
   return (
     <div className={ classes.root }>
+      <DataCollectUserContentDialog/>
+
       <AppBar
         position="fixed"
         className={ clsx(classes.appbar, {
@@ -78,6 +84,7 @@ export default function Skeleton({ children }: SkeletonProps) {
               </IconButton>
             </Show>
             <Typography variant="h6" noWrap>
+              { currentStandardizer?.service && `${ currentStandardizer?.service } / ` }
               { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
             </Typography>
           </div>

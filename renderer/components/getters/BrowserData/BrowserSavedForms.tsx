@@ -1,8 +1,9 @@
 import { SavedForm } from '@d4data/archive-lib/dist/src/types/schemas/BrowserData'
-import { Box, List, ListItem, Paper } from '@material-ui/core'
+import { Box, List, ListItem, Paper } from '@mui/material'
 import { useMemo, useState } from 'react'
 import clsx from 'clsx'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import { createStyles, makeStyles } from '@mui/styles'
+import { useTranslation } from 'react-i18next'
 import FormListItem from './BrowserSavedForms/FormListItem'
 import SavedFormDetails from './BrowserSavedForms/SavedFormDetails'
 
@@ -41,8 +42,12 @@ function computeKey(form: SavedForm): string {
 }
 
 export default function BrowserSavedForms({ data }: Props) {
+  const { t } = useTranslation('BrowserSavedForms')
+
   const [currentFormIdx, setCurrentFormIdx] = useState<number | undefined>(data.length ? 0 : undefined)
+
   const classes = useStyles()
+
   const sortedForms = useMemo(() => data.sort((form1, form2) => {
     if (form1.useCount && form2.useCount) {
       return form2.useCount - form1.useCount
@@ -57,7 +62,7 @@ export default function BrowserSavedForms({ data }: Props) {
     <Box height={ 1 } padding={ 4 }>
       <Paper className={ classes.paper } elevation={ 2 }>
         <div className={ classes.formList }>
-          <List component="nav" aria-label="mailbox folders">
+          <List component="nav">
             { sortedForms.map((form, idx) => (
               <ListItem
                 button
@@ -67,7 +72,7 @@ export default function BrowserSavedForms({ data }: Props) {
                 className={ clsx({ [classes.selectedFormListItem]: idx === currentFormIdx }) }
               >
                 <FormListItem
-                  name={ `Saved form ${ idx + 1 }` }
+                  name={ t('savedForm', { name: idx + 1 }) }
                   form={ form }
                   className={ classes.formListItem }
                 />
@@ -79,7 +84,7 @@ export default function BrowserSavedForms({ data }: Props) {
         {
           currentFormIdx !== undefined && (
             <SavedFormDetails
-              name={ `Saved form ${ currentFormIdx + 1 }` }
+              name={ t('savedForm', { name: currentFormIdx + 1 }) }
               form={ sortedForms[currentFormIdx] }
               className={ classes.formDetails }
             />

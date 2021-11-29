@@ -1,14 +1,14 @@
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Button, Grid, Typography } from '@mui/material'
 import React, { CSSProperties, useState } from 'react'
 import moment from 'moment'
-import { Theme } from '@material-ui/core/styles'
-import { createStyles, makeStyles } from '@material-ui/styles'
-import RestoreIcon from '@material-ui/icons/Restore'
-import DeleteIcon from '@material-ui/icons/Delete'
+import RestoreIcon from '@mui/icons-material/Restore'
+import DeleteIcon from '@mui/icons-material/Delete'
 import filesize from 'filesize'
-import useArchiveHistory from '@hooks/useArchiveHistory'
-import { ArchiveHistoryEntry } from '@modules/ArchiveHistoryManager'
 import { toast } from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/router'
+import { ArchiveHistoryEntry } from '../../modules/ArchiveHistoryManager'
+import useArchiveHistory from '../../hooks/useArchiveHistory'
 import EllipsisTooltip from '../EllipsisTooltip'
 
 export interface Props {
@@ -17,26 +17,11 @@ export interface Props {
   showDeltaTime?: boolean
   showDeleteButton?: boolean
   showRestoreButton?: boolean
+  onDelete?: (entry: ArchiveHistoryEntry) => void
+  onRestore?: (entry: ArchiveHistoryEntry) => void
   className?: string
   style?: CSSProperties
 }
-
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  deleteButton: {
-    color: 'white',
-    backgroundColor: theme.palette.error.main,
-    '&:hover': {
-      backgroundColor: theme.palette.error.dark,
-    },
-  },
-  restoreButton: {
-    color: 'white',
-    backgroundColor: theme.palette.success.main,
-    '&:hover': {
-      backgroundColor: theme.palette.success.dark,
-    },
-  },
-}))
 
 export default function HistoryEntry({
   entry,
@@ -44,40 +29,54 @@ export default function HistoryEntry({
   showDeltaTime = true,
   showRestoreButton = true,
   showDeleteButton = true,
+  onDelete,
+  onRestore,
   className,
   style,
 }: Props) {
+  const { t, i18n } = useTranslation('history')
+  const router = useRouter()
   const { restoreArchiveFromEntry, deleteHistoryEntry } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
-  const classes = useStyles()
 
-  const getDeltaTimeHumanized = (date: Date) => moment.duration(date.valueOf() - new Date().valueOf())
+  const getDeltaTimeHumanized = (date: Date) => {
+    const duration = moment.duration(date.valueOf() - new Date().valueOf())
+    duration.locale(i18n.language)
+    return duration
+  }
 
   const deleteEntryHandler = () => {
+    if (onDelete) {
+      onDelete?.(entry)
+      return
+    }
+
     setLoading(true)
     deleteHistoryEntry(entry)
       .then(() => {
-        toast(<span>Archive <b>{ entry.archiveName ?? entry.service }</b> deleted</span>, { position: 'bottom-left' })
-      })
-      .finally(() => setLoading(false))
-  }
-
-  const restoreEntryHandler = () => {
-    setLoading(true)
-    restoreArchiveFromEntry(entry)
-      .then(() => {
-        toast.success(
-          <span>Archive <b>{ entry.archiveName ?? entry.service }</b> restored</span>,
+        toast(
+          <span>{ t('deleted', { name: entry.archiveName ?? entry.service }) }</span>,
           { position: 'bottom-left' },
         )
       })
       .finally(() => setLoading(false))
   }
 
-  if (!entry) {
-    return (
-      <div>Empty history</div>
-    )
+  const restoreEntryHandler = () => {
+    if (onRestore) {
+      onRestore?.(entry)
+      return
+    }
+
+    setLoading(true)
+    restoreArchiveFromEntry(entry)
+      .then(() => {
+        toast.success(
+          <span>{ t('restored', { name: entry.archiveName ?? entry.service }) }</span>,
+          { position: 'bottom-left' },
+        )
+      })
+      .then(() => router.push('/dashboard'))
   }
 
   return (
@@ -128,10 +127,12 @@ export default function HistoryEntry({
                   onClick={ () => deleteEntryHandler() }
                   disabled={ loading }
                   startIcon={ <DeleteIcon/> }
-                  className={ classes.deleteButton }
+                  variant="outlined"
+                  color="error"
                   size="small"
                   sx={ { px: 1 } }
-                >Delete
+                >
+                  { t('delete') }
                 </Button>
               </Grid>
             ) }
@@ -141,10 +142,11 @@ export default function HistoryEntry({
                   onClick={ () => restoreEntryHandler() }
                   disabled={ loading }
                   startIcon={ <RestoreIcon/> }
-                  className={ classes.restoreButton }
+                  variant="contained"
                   size="small"
                   sx={ { px: 1 } }
-                >Restore
+                >
+                  { t('restore') }
                 </Button>
               </Grid>
             ) }

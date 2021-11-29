@@ -1,0 +1,314 @@
+{
+  "utils": {
+    "website": "Site web",
+    "sources": "Code source",
+    "version": "Version {{version}}"
+  },
+  "homepage": {
+    "header": "Visualisez vos données personnelles en un seul clic !",
+    "description": "D4Data est l'interface sécurisée qui permet de convertir des données non lisibles par l'homme en une interface utilisateur intuitive où chacun peut comprendre son empreinte numérique. peut comprendre son empreinte numérique.",
+    "dropzone": "Cliquez pour sélectionner votre archive GDPR ou déposez-la ici",
+    "historyTitle": "Dernière archive traitée",
+    "historyButton": "Afficher l'historique complet",
+    "documentation": "Vous ne savez pas comment récupérer vos archives ?",
+    "documentationLink": "Consultez notre documentation"
+  },
+  "history": {
+    "delete": "Supprimer",
+    "restore": "Restaurer",
+    "reset": "Supprimer l'historique",
+    "openFolder": "Ouvrir le dossier d'historique",
+    "empty": "Aucune archive n'a été traitée",
+    "restored": "Archive \"{{name}}\" restored",
+    "deleted": "Archive \"{{name}}\" deleted"
+  },
+  "settings": {
+    "title": "Réglages",
+    "theme": "Thème",
+    "display": "Type d'affichage",
+    "language": "Langue",
+    "ergonomic": "Ergonomique",
+    "raw": "Brut",
+    "dataCollectUserConsent": "Partager les rapports de bug et d'utilisation de l'application"
+  },
+  "overview": {
+    "about": "À propos de votre archive",
+    "service": "Service",
+    "size": "Taille de l'archive",
+    "age": "Archive age",
+    "note": "Note de l'équipe",
+    "score": "Score RGPD (bientôt disponible)",
+    "noteDescription": "Cette section vous aidera à en savoir plus sur les services que vous utilisez et leur politique en matière de données",
+    "scoreDescription": "D4Data va définir un score pour chaque service supporté. Plus d'informations à venir lors de la sortie de la version !",
+    "date": "Crée"
+  },
+  "navbar": {
+    "available": "Données disponibles",
+    "unavailable": "Données indisponibles",
+    "loading": "En cours de traitement..."
+  },
+  "getters": {
+    "profile": "Profile",
+    "friends": "Amis",
+    "followings": "Abonnements",
+    "followers": "Abonnés",
+    "contacts": "Contacts",
+    "whereabouts": "Positions",
+    "whereabouts_one": "Position",
+    "notifications": "Notifications",
+    "notifications_one": "Notification",
+    "chats": "Discussions",
+    "chatmessages": "Messages",
+    "comments": "Commentaires",
+    "posts": "Publications",
+    "posts_one": "Publications",
+    "messages": "Messages",
+    "apis": "Applications Connectées",
+    "connections": "Connections",
+    "communities": "Communautés",
+    "settings": "Réglages",
+    "settings_one": "Réglage",
+    "reacted": "Reactions",
+    "medias": "Médias",
+    "notes": "Notes",
+    "transactions": "Transactions",
+    "transactions_one": "Transaction",
+    "browserdata": "Données de Navigation",
+    "tasks": "Tâches",
+    "authorizeddevices": "Appareils autorisés",
+    "mails": "Mails",
+    "events": "Événements",
+    "getProfile": "Profile",
+    "getFriends": "Amis",
+    "getFollowings": "Abonnements",
+    "getFollowers": "Abonnés",
+    "getContacts": "Contacts",
+    "getWhereabouts": "Positions",
+    "getNotifications": "Notifications",
+    "getChats": "Discussions",
+    "getChatMessages": "Messages Discussion",
+    "getComments": "Commentaires",
+    "getPosts": "Publications",
+    "getMessages": "Messages",
+    "getAPIs": "Applications Connectées",
+    "getConnections": "Connections",
+    "getCommunities": "Communautés",
+    "getSettings": "Réglages",
+    "getReacted": "Reactions",
+    "getMedias": "Médias",
+    "getNotes": "Notes",
+    "getTransactions": "Transactions",
+    "getBrowserData": "Données de Navigation",
+    "getTasks": "Tâches",
+    "getAuthorizedDevices": "Appareils autorisés",
+    "getMails": "Mails",
+    "getEvents": "Événements"
+  },
+  "common": {
+    "name": "Nom",
+    "description": "Description",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "displayName": "Nom d'affichage",
+    "fullName": "FullName",
+    "date": "Date",
+    "joinedDate": "Date d'adhésion",
+    "creationDate": "Date de création",
+    "noDateAvailable": "Pas de date disponible",
+    "address": "Adresse",
+    "zip": "ZIP",
+    "city": "Ville",
+    "country": "Pays",
+    "state": "État",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "username": "Nom d'utilisateur",
+    "ip": "Adresse IP",
+    "picture": "Image",
+    "email": "Courriel",
+    "value": "Valeur",
+    "item": "Article",
+    "price": "Prix (Monnaie)",
+    "paymentMethod": "Méthode de paiement",
+    "transactionStatus": "Status de la transaction",
+    "transactionDate": "Date de la transaction",
+    "gender": "Genre",
+    "nickname": "Surnom",
+    "birthday": "Date de naissance",
+    "phone": "Téléphone",
+    "companyName": "Nom de la compagnie",
+    "languageCode": "Code language",
+    "line1": "Ligne 1",
+    "line2": "Ligne 2",
+    "entry_one": "{{count}} entrée",
+    "entry_other": "{{count}} entrées",
+    "stat": "Statistiques",
+    "list": "Liste",
+    "enabled": "Activé",
+    "openWebsite": "Ouvrir le site",
+    "title": "Titre",
+    "url": "URL",
+    "icon": "Icône",
+    "open": "Ouvrir",
+    "close": "Fermer",
+    "browser": "Navigateur",
+    "from": "De",
+    "to": "À",
+    "ago": "Il y a {{time}}",
+    "found_one": "{{count}} {{entity}} trouvé",
+    "found_other": "{{count}} {{entity}} trouvés",
+    "found_female_one": "{{count}} {{entity}} trouvée",
+    "found_female_other": "{{count}} {{entity}} trouvées",
+    "reactions": "Réactions",
+    "reaction_one": "Réaction",
+    "sentBy": "Envoyer par {{sender}}",
+    "lastUpdate": "Dernière mise à jour",
+    "endUpdate": "Date de fin",
+    "map": "Carte",
+    "yes": "Oui",
+    "no": "Non",
+    "service": "Service",
+    "type": "Type"
+  },
+  "dataCollectUserConsentDialog": {
+    "title": "Participer à améliorer D4Data",
+    "text": "D4data ne cesse de s'améliorer, si vous souhaitez y participer, vous pouvez accepter de partager vos données d'utilisation de l'application.",
+    "denyButton": "Refuser",
+    "acceptButton": "Accepter"
+  },
+  "archiveProcessDialog": {
+    "title": {
+      "processing": "Analyse",
+      "identifying": "Identification",
+      "extracting": "Archive {{service}} : extraction en cours...",
+      "postProcessing": "Post-traitement"
+    },
+    "inProgress": "En cours..."
+  },
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "availableData": "Données disponibles",
+    "unavailableData": "Données non disponibles",
+    "processing": "En cours..."
+  },
+  "loadingComponent": {
+    "title": "Chargement",
+    "description": "Il semble que ce service a collecté des données sur vous dans cette catégorie..."
+  },
+  "noDataComponent": {
+    "title": "Aucune donnée disponible",
+    "description": "Ce service n'a collecté aucune donnée dans cette catégorie"
+  },
+  "ContactTable": {
+    "headers": {
+      "picture": "Image",
+      "name": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "E-mail"
+    }
+  },
+  "pages": {
+    "followings": {
+      "tabs": {
+        "communityList": "Liste des communautés",
+        "userList": "Liste des utilisateurs"
+      }
+    },
+    "apis": {
+      "title_one": "{{count}} application connectée trouvée",
+      "title_other": "{{count}} applications connectées trouvées"
+    },
+    "authorizedDevices": {
+      "title_one": "{{count}} appareil autorisé trouvé",
+      "title_other": "{{count}} appareils autorisés trouvés"
+    },
+    "browserData": {
+      "tabs": {
+        "history": "Historique",
+        "extensions": "Extensions",
+        "settings": "Paramètres",
+        "themes": "Thèmes",
+        "forms": "Formulaires"
+      }
+    },
+    "chats": {
+      "selectConversation": "Veuillez sélectionner une conversation",
+      "searchbar": {
+        "placeholder": "Chercher une conversation..."
+      },
+      "conversation": {
+        "searchbar": {
+          "placeholder": "Chercher un message..."
+        },
+        "settings": {
+          "title": "Paramètres de la discussion",
+          "whoAreYou": "Qui êtes-vous ?"
+        }
+      }
+    },
+    "connections": {
+      "tabs": {
+        "map": "Carte du monde",
+        "history": "Historique de connexions"
+      }
+    },
+    "medias": {
+      "title_one": "{{count}} média trouvé",
+      "title_other": "{{count}} médias trouvés"
+    },
+    "notes": {
+      "title_one": "{{count}} note trouvée",
+      "title_other": "{{count}} notes trouvées"
+    },
+    "reacted": {
+      "ReactedPostComponent": {
+        "title": "À réagi à un post"
+      },
+      "ReactedCommunityComponent": {
+        "title": "À réagi à la communauté {{name}}"
+      },
+      "ReactedMediaComponent": {
+        "title": "À réagi à un média"
+      },
+      "ReactedLinkComponent": {
+        "title": "À réagi à un lien externe",
+        "openExternalLink": "Ouvrir le lien externe"
+      }
+    },
+    "transactions": {
+      "headers": {
+        "product": "Produit",
+        "price": "Prix (Monnaie)",
+        "paymentMethod": "Méthode de paiement",
+        "status": "Status",
+        "date": "Date"
+      }
+    }
+  },
+  "BrowserHistory": {
+    "headers": {
+      "clientId": "ID client"
+    }
+  },
+  "ExtensionCard": {
+    "enabledIncognito": "Activé en mode Incognito"
+  },
+  "BrowserThemes": {
+    "cardHeader": "Thème courant du navigateur"
+  },
+  "BrowserSavedForms": {
+    "savedForm": "Formulaire sauvegardé {{name}}"
+  },
+  "CommunityTable": {
+    "title_one": "{{count}} communauté trouvée",
+    "title_other": "{{count}} communautés trouvées"
+  },
+  "RawData": {
+    "chooseYourFile": "Choisissez votre fichier",
+    "seeInFileExplorer": "Voir dans l'explorateur de fichiers"
+  },
+  "DefaultDisplay": {
+    "title": "Affichage basique",
+    "subtitle": "L'affichage ergonomique pour se type de donnée arrive bientot"
+  }
+}

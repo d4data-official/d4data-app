@@ -1,0 +1,310 @@
+{
+  "utils": {
+    "website": "Website",
+    "sources": "Source code",
+    "version": "Version {{version}}"
+  },
+  "homepage": {
+    "header": "Visualize your personal data in just one click !",
+    "description": "D4Data is the secure interface to convert non-human readable data to an intuitive user interface where anybody can understand its digital fingerprint.",
+    "dropzone": "Click to select your GDPR archive or drop it here",
+    "historyTitle": "Last archive processed",
+    "historyButton": "Show complete history",
+    "documentation": "You don't know how how to recover your data archives ?",
+    "documentationLink": "Check out our documentation"
+  },
+  "history": {
+    "delete": "Delete",
+    "restore": "Restore",
+    "reset": "Reset history",
+    "openFolder": "Open History Folder",
+    "empty": "No archive has been processed",
+    "restored": "Archive \"{{name}}\" restored",
+    "deleted": "Archive \"{{name}}\" deleted"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "display": "Display type",
+    "language": "Language",
+    "ergonomic": "Ergonomic",
+    "raw": "Raw",
+    "dataCollectUserConsent": "Share bug reports and app usage"
+  },
+  "overview": {
+    "about": "About your archive",
+    "service": "Service",
+    "size": "Archive size",
+    "age": "Archive age",
+    "note": "Note from the team",
+    "score": "GDPR score (coming soon)",
+    "noteDescription": "This section will help you know more about the services you are using and their data policies.",
+    "scoreDescription": "D4Data will set a score for each supported services. More to come during the release!",
+    "date": "Created"
+  },
+  "navbar": {
+    "available": "Available Data",
+    "unavailable": "Unavailable Data",
+    "loading": "Processing..."
+  },
+  "getters": {
+    "profile": "Profile",
+    "friends": "Friends",
+    "followings": "Followings",
+    "followers": "Followers",
+    "contacts": "Contacts",
+    "whereabouts": "Whereabouts",
+    "notifications": "Notifications",
+    "notifications_one": "Notification",
+    "chats": "Chats",
+    "chatmessages": "Chat Messages",
+    "comments": "Comments",
+    "posts": "Posts",
+    "posts_one": "Post",
+    "messages": "Messages",
+    "apis": "Linked Applications",
+    "connections": "Connections",
+    "communities": "Communities",
+    "settings": "Settings",
+    "settings_one": "Setting",
+    "reacted": "Reacted",
+    "medias": "Medias",
+    "notes": "Notes",
+    "transactions": "Transactions",
+    "transactions_one": "Transaction",
+    "browserdata": "Browser Datas",
+    "tasks": "Tasks",
+    "authorizeddevices": "Authorized Devices",
+    "mails": "Mails",
+    "events": "Events",
+    "getProfile": "Profile",
+    "getFriends": "Friends",
+    "getFollowings": "Followings",
+    "getFollowers": "Followers",
+    "getContacts": "Contacts",
+    "getWhereabouts": "Whereabouts",
+    "getNotifications": "Notifications",
+    "getChats": "Chats",
+    "getChatMessages": "Chat Messages",
+    "getComments": "Comments",
+    "getPosts": "Posts",
+    "getMessages": "Messages",
+    "getAPIs": "Linked Applications",
+    "getConnections": "Connections",
+    "getCommunities": "Communities",
+    "getSettings": "Settings",
+    "getReacted": "Reacted",
+    "getMedias": "Medias",
+    "getNotes": "Notes",
+    "getTransactions": "Transactions",
+    "getBrowserData": "Browser Datas",
+    "getTasks": "Tasks",
+    "getAuthorizedDevices": "Authorized Devices",
+    "getMails": "Mails",
+    "getEvents": "Events"
+  },
+  "common": {
+    "name": "Name",
+    "description": "Description",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "displayName": "Display Name",
+    "fullName": "FullName",
+    "date": "Date",
+    "joinedDate": "Joined Date",
+    "creationDate": "Creation date",
+    "noDateAvailable": "No date available",
+    "address": "Address",
+    "zip": "ZIP",
+    "city": "City",
+    "country": "Country",
+    "state": "State",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "username": "Username",
+    "ip": "IP Address",
+    "picture": "Picture",
+    "email": "E-Mail",
+    "value": "Value",
+    "item": "Item",
+    "price": "Price (Currency)",
+    "paymentMethod": "Payment Method",
+    "transactionStatus": "Transaction Status",
+    "transactionDate": "Transaction Date",
+    "gender": "Gender",
+    "nickname": "Nickname",
+    "birthday": "Birthday",
+    "phone": "Phone",
+    "companyName": "Company name",
+    "languageCode": "Language Code",
+    "line1": "Line 1",
+    "line2": "Line 2",
+    "entry_one": "{{count}} entry",
+    "entry_other": "{{count}} entries",
+    "stat": "Statistics",
+    "list": "List",
+    "enabled": "Enabled",
+    "openWebsite": "Open Website",
+    "title": "Title",
+    "url": "URL",
+    "icon": "Icon",
+    "open": "Open",
+    "close": "Close",
+    "browser": "Browser",
+    "from": "From",
+    "to": "To",
+    "ago": "{{time}} ago",
+    "found": "{{count}} {{entity}} found",
+    "reactions": "Reactions",
+    "reaction_one": "Reaction",
+    "sentBy": "Sent by {{sender}}",
+    "lastUpdate": "Last update",
+    "endUpdate": "End update",
+    "map": "Map",
+    "yes": "Yes",
+    "no": "No",
+    "service": "Service",
+    "type": "Type"
+  },
+  "dataCollectUserConsentDialog": {
+    "title": "Take part in improving D4Data",
+    "text": "D4data never stops evolving, if you want to be part of it, you can choose to automatically share your bug reports and application usage statistics.",
+    "denyButton": "Deny",
+    "acceptButton": "Accept"
+  },
+  "archiveProcessDialog": {
+    "title": {
+      "processing": "Processing",
+      "identifying": "Identifying",
+      "extracting": "{{service}} archive: extraction in progress...",
+      "postProcessing": "Post-processing"
+    },
+    "inProgress": "In progress..."
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "availableData": "Available data",
+    "unavailableData": "Unavailable data",
+    "processing": "Processing..."
+  },
+  "loadingComponent": {
+    "title": "Loading",
+    "description": "It seems that this service collected some data about you in this category..."
+  },
+  "noDataComponent": {
+    "title": "No data available",
+    "description": "Awesome ! This service collected no data for this category"
+  },
+  "ContactTable": {
+    "headers": {
+      "picture": "Picture",
+      "name": "Name",
+      "username": "Username",
+      "email": "E-mail"
+    }
+  },
+  "pages": {
+    "followings": {
+      "tabs": {
+        "communityList": "Communities list",
+        "userList": "Users list"
+      }
+    },
+    "apis": {
+      "title_one": "{{count}} connected app found",
+      "title_other": "{{count}} connected apps found"
+    },
+    "authorizedDevices": {
+      "title_one": "{{count}} authorized device found",
+      "title_other": "{{count}} authorized devices found"
+    },
+    "browserData": {
+      "tabs": {
+        "history": "History",
+        "extensions": "Extensions",
+        "settings": "Settings",
+        "themes": "Themes",
+        "forms": "Forms"
+      }
+    },
+    "chats": {
+      "selectConversation": "Please select a conversation",
+      "searchbar": {
+        "placeholder": "Search for a conversation..."
+      },
+      "conversation": {
+        "searchbar": {
+          "placeholder": "Search for a message..."
+        },
+        "settings": {
+          "title": "Chat settings",
+          "whoAreYou": "Who are you ?"
+        }
+      }
+    },
+    "connections": {
+      "tabs": {
+        "map": "World map",
+        "history": "Connection history"
+      }
+    },
+    "medias": {
+      "title_one": "{{count}} media found",
+      "title_other": "{{count}} medias found"
+    },
+    "notes": {
+      "title_one": "{{count}} note found",
+      "title_other": "{{count}} notes found"
+    },
+    "reacted": {
+      "ReactedPostComponent": {
+        "title": "Had reacted to a post"
+      },
+      "ReactedCommunityComponent": {
+        "title": "Had reacted to the community {{name}}"
+      },
+      "ReactedMediaComponent": {
+        "title": "Had reacted to a media"
+      },
+      "ReactedLinkComponent": {
+        "title": "Had reacted to an external link",
+        "openExternalLink": "Open external link"
+      }
+    },
+    "transactions": {
+      "headers": {
+        "product": "Product",
+        "price": "Price (Currency)",
+        "paymentMethod": "Payment method",
+        "status": "Status",
+        "date": "Date"
+      }
+    }
+  },
+  "BrowserHistory": {
+    "headers": {
+      "clientId": "Client ID"
+    }
+  },
+  "ExtensionCard": {
+    "enabledIncognito": "Enabled in incognito mode"
+  },
+  "BrowserThemes": {
+    "cardHeader": "Current browser theme"
+  },
+  "BrowserSavedForms": {
+    "savedForm": "Saved form {{name}}"
+  },
+  "CommunityTable": {
+    "title_one": "{{count}} community found",
+    "title_other": "{{count}} communities found"
+  },
+  "RawData": {
+    "chooseYourFile": "Choose your file",
+    "seeInFileExplorer": "See in file explore"
+  },
+  "DefaultDisplay": {
+    "title": "Fallback display",
+    "subtitle": "Custom display for this data type coming soon"
+  }
+}

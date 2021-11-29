@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
-import { makeStyles } from '@material-ui/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import { Box, Divider, Grid } from '@material-ui/core'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
+import { makeStyles } from '@mui/styles'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { Box, Divider, Grid } from '@mui/material'
+import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Mail as MailsType } from '@d4data/archive-lib/dist/src/types/schemas'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -40,10 +41,12 @@ export interface Props {
 }
 
 export default function Mails({ data }: Props) {
+  const { t } = useTranslation('common')
+
   const classes = useStyles()
 
   const Mails = (
-    <Box width={ 1 } height={ 1 }>
+    <Box width={ 1 } height={ 1 } p={ 3 } pt={ 0 }>
       <h2>{ data.data.length } mails</h2>
       <Grid container spacing={ 2 }>
         {
@@ -55,13 +58,13 @@ export default function Mails({ data }: Props) {
                     <b>{ mail.subject }</b>
                   </Typography>
                   <Typography variant="h5" className={ classes.subtitleFrom } gutterBottom>
-                    From : { mail.from }
+                    { t('from') } : { mail.from }
                   </Typography>
                   <Typography variant="h5" className={ classes.subtitle } gutterBottom>
-                    To : { mail.to.join(', ') }
+                    { t('to') } : { mail.to.join(', ') }
                   </Typography>
                   <Typography variant="h6" className={ classes.date } gutterBottom>
-                    Date : { mail.date.toLocaleString() }
+                    { t('date') } : { mail.date.toLocaleString() }
                   </Typography>
                   <Divider/>
                   <div className={ classes.mailContent }>
@@ -80,8 +83,8 @@ export default function Mails({ data }: Props) {
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Mails stat', icon: <Timeline/> },
-        { label: 'Mails list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.MAIL }/>,

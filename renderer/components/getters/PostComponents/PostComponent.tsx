@@ -1,71 +1,83 @@
 import React from 'react'
 import moment from 'moment'
 import { Post } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import { Button } from '@material-ui/core'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import { Box, Button, capitalize, CardHeader, Tooltip } from '@mui/material'
 import openInBrowser from '../../../modules/openInBrowser'
 import ReactionsComponent from './ReactionsComponent'
 import DisabledReactionsComponent from './DisabledReactionsComponent'
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    padding: '10px 20px',
-  },
-  title: {
-    marginBottom: 10,
-  },
-  description: {
-    marginBottom: 12,
-  },
-  pos: {
-    fontSize: 10,
-  },
-  reactions: {
-    width: '100%',
-    marginBottom: 10,
-  },
-})
-
 export default function PostComponent({ data }: { data: NonNullable<Post> }) {
-  const classes = useStyles()
+  const getCardHeaderSubTitle = () => {
+    const title = []
+
+    if (data.sender) {
+      title.push(`Sent by ${ data.sender }`)
+    }
+    if (data.creationDate) {
+      title.push(`on ${ data.creationDate.toLocaleDateString() } (${
+        moment
+          .duration(new Date().valueOf() - data.creationDate.valueOf())
+          .humanize(false)
+      } ago)`)
+    }
+
+    return capitalize(title.join(' '))
+  }
+
+  const getCardHeader = () => {
+    if (data.title) {
+      return (<CardHeader title={ data.title } subheader={ getCardHeaderSubTitle() }/>)
+    }
+
+    if (data.metaData?.links?.[0]) {
+      return (
+        <CardHeader
+          title={ (
+            <Tooltip title={ data.metaData?.links?.[0] }>
+              <Typography variant="h5" component="span">Link</Typography>
+            </Tooltip>
+          ) }
+          subheader={ getCardHeaderSubTitle() }
+          action={
+            <Button variant="text" onClick={ () => openInBrowser(data.metaData?.links?.[0]) }>View in browser</Button>
+          }
+        />
+      )
+    }
+
+    if (data.metaData?.medias?.[0]) {
+      return (
+        <CardHeader
+          title="Media"
+          subheader={ getCardHeaderSubTitle() }
+          action={
+            <Button variant="text" onClick={ () => openInBrowser(data.metaData?.medias?.[0]) }>View in browser</Button>
+          }
+        />
+      )
+    }
+
+    return undefined
+  }
 
   return (
-    <Card className={ classes.root } variant="outlined">
+    <Card variant="outlined" sx={ { minWidth: 275, p: 2, pt: 1 } }>
+      { getCardHeader() }
+
       <CardContent>
-        <Typography className={ classes.title } variant="h5" component="h2">
-          { data.title
-          ?? (data.metaData?.links?.[0] && (
-            <span>
-              A publié
-              <Button variant="text" onClick={ () => openInBrowser(data.metaData?.links?.[0]) }>un lien</Button>
-            </span>
-          ))
-          ?? (data.metaData?.medias?.[0] && (
-            <span>
-              A publié
-              <Button variant="text" onClick={ () => openInBrowser(data.metaData?.medias?.[0]) }>un média</Button>
-            </span>
-          ))
-          ?? 'No title provided' }
-        </Typography>
-        <Typography className={ classes.description } variant="body2" component="p">
-          { data.content ?? 'No content provided' }
-        </Typography>
-        <Typography className={ classes.pos } color="textSecondary">
-          Sent by { data.sender ?? 'Unknown' }
-          { ' ' }
-          { data.creationDate && `${ moment.duration(data.creationDate.valueOf() / 10).humanize() } ago` }
-        </Typography>
+        { data.content && (
+          <Typography variant="body2" component="p">{ data.content }</Typography>
+        ) }
       </CardContent>
-      <div className={ classes.reactions }>
+
+      <Box width={ 1 }>
         { data.metaData?.reactions
           ? <ReactionsComponent data={ data.metaData?.reactions }/>
           : <DisabledReactionsComponent/> }
-      </div>
+      </Box>
     </Card>
   )
 }

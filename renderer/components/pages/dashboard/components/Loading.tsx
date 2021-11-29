@@ -1,66 +1,34 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles';
-import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
-import { Box } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
+import { Box, CircularProgress, Fade, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import Center from '../../../Center'
 
 interface Props {
   title?: string,
   description?: string,
 }
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  box: {
-    border: '2px solid',
-    borderColor: grey[500],
-    borderRadius: '10px',
-    padding: '30px',
-    paddingBottom: '10px',
-    color: grey[500],
-  },
-  nda: {
-    fontSize: '16pt',
-    textAlign: 'center',
-  },
-  ndaTitle: {
-    flex: 1,
-  },
-  descr: {
-    marginTop: '-2%',
-  },
-  icon: {
-    fontSize: '32pt',
-  },
-});
-
-function GenerateDefaultDescription() {
-  const classes = useStyles();
-
-  return (
-    <div className={ classes.descr }>
-      <span>It seems that this service collected some data about you in this category...</span>
-    </div>
-  );
-}
-
 export default function Loading({ title, description }: Props) {
-  const classes = useStyles();
+  const { t } = useTranslation('loadingComponent')
 
   return (
-    <div className={ classes.root }>
-      <Box className={ classes.box }>
-        <div className={ classes.nda }>
-          <SentimentVerySatisfiedIcon className={ classes.icon } />
-          <h2 className={ classes.ndaTitle }>{title ?? 'Loading'}</h2>
-          {description ?? <GenerateDefaultDescription />}
-        </div>
-      </Box>
-    </div>
+    <Center>
+      <Stack alignItems="center" spacing={ 1 }>
+        <Fade in timeout={ 1000 }>
+          <Stack alignItems="center" spacing={ 1 }>
+            <CircularProgress variant="indeterminate" size={ 50 }/>
+            <Typography variant="h4" fontWeight={ 100 }>{ title ?? t('title') }</Typography>
+          </Stack>
+        </Fade>
+
+        { description ?? (
+          <Box overflow="hidden">
+            <Fade in timeout={ 2000 }>
+              <Typography variant="body1" color="gray">{ t('description') }</Typography>
+            </Fade>
+          </Box>
+        ) }
+      </Stack>
+    </Center>
   )
 }

@@ -1,27 +1,30 @@
 import { Community } from '@d4data/archive-lib/dist/src/types/schemas'
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import TableContainer from '@material-ui/core/TableContainer'
-import Paper from '@material-ui/core/Paper'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import TableBody from '@material-ui/core/TableBody'
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TableContainer from '@mui/material/TableContainer'
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import TableBody from '@mui/material/TableBody'
 import moment from 'moment'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface Props {
   communities: Array<Community>
 }
 
 export default function CommunityTable({ communities }: Props) {
+  const { t } = useTranslation(['common', 'CommunityTable'])
+
   return (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ communities.length } communities found` }
+          { t('CommunityTable:title', { count: communities.length }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -29,8 +32,8 @@ export default function CommunityTable({ communities }: Props) {
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Joined date</TableCell>
+                <TableCell>{ t('common:name') }</TableCell>
+                <TableCell>{ t('common:joinedDate') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -48,7 +51,7 @@ export default function CommunityTable({ communities }: Props) {
                   >
                     { community.joinedDate
                       ? moment(new Date(community.joinedDate)).format('yyyy-MM-DD')
-                      : 'No date provided' }
+                      : t('common:noDateAvailable') }
                   </TableCell>
                 </TableRow>
               )) }

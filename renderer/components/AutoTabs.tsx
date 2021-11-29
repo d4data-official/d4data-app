@@ -1,4 +1,4 @@
-import { Box, Tab, TabProps, Tabs } from '@material-ui/core'
+import { Box, Tab, TabProps, Tabs } from '@mui/material'
 import React, { ReactNode } from 'react'
 
 export interface Props {

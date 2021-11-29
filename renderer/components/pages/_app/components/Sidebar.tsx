@@ -1,5 +1,4 @@
-// import { useRouter } from 'next/router'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -10,17 +9,21 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Stack,
   Typography,
-} from '@material-ui/core'
-import { ChevronLeft } from '@material-ui/icons'
+} from '@mui/material'
+import { ChevronLeft } from '@mui/icons-material'
 import { GlobalContext } from 'renderer/context/Store'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import getGetterLabel from '../../../../modules/getGetterLabel'
-import useArchiveManager from '../../../../hooks/useArchiveManager'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import ConditionalTooltip from '../../../ConditionalTooltip'
+import useAvailableGetters from '../../../../hooks/getter/useAvailableGetters'
+import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -28,42 +31,39 @@ export interface SidebarProps {
   handleDrawerChange: (open?: boolean | any) => void
 }
 
-const AVAILABLE_GETTERS_SECTION_TITLE = 'Available data'
-const UNAVAILABLE_GETTERS_ACCORDION_LABEL = 'Unavailable data'
-const LOADING_ACCORDION_LABEL = 'Processing...'
-
-const GETTERS = Object.values(Getters)
-
 const DRAWER_WIDTH = 240
 
+const GETTERS = Object.values(Getters)
 const IGNORED_GETTER: Array<Getters> = [Getters.CHAT_MESSAGES]
+const DEDICATED_GETTER_PAGES: Array<Getters> = [Getters.EVENTS]
 
 export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
-  const { dispatch } = useContext(GlobalContext)
-  const [availableGetters, setAvailableGetters] = useState<Array<Getters>>()
-  const { currentStandardizer } = useArchiveManager()
+  const router = useRouter()
+  const { componentName, dispatch } = useContext(GlobalContext)
+  const { availableGetters, loading } = useAvailableGetters()
+
+  const { getGetterLabel } = useGetGetterLabel()
+  const { t } = useTranslation('sidebar')
+
+  const filteredGetters = useMemo(() => availableGetters
+    ?.filter((getter) => !IGNORED_GETTER.includes(getter)), [availableGetters])
 
   const unavailableGetters = useMemo(() => GETTERS
-    .filter((getter) => !availableGetters?.includes(getter)), [availableGetters])
+    .filter((getter) => !filteredGetters?.includes(getter)), [filteredGetters])
 
   const handleLinkClick = React.useCallback((getterName: string) => () => {
-    // const componentName = getterName.slice(3) // Remove 'get' of getter name
-    dispatch({ type: 'UPDATE_COMPONENT', componentName: getterName })
-  }, [])
-
-  // Check available getters
-  useEffect(() => {
-    if (!currentStandardizer) {
-      setAvailableGetters(undefined)
+    if (DEDICATED_GETTER_PAGES.includes(getterName as Getters)) {
+      router.push(`/dashboard/${ getterName.toLowerCase().slice(3) }`)
       return
     }
 
-    currentStandardizer.getAvailableGetters()
-      .then((getters) => {
-        const filteredGetter = getters.filter((getter) => !IGNORED_GETTER.includes(getter))
-        setAvailableGetters(filteredGetter)
-      })
-  }, [currentStandardizer])
+    router.push('/dashboard')
+    dispatch({ type: 'UPDATE_COMPONENT', componentName: getterName })
+  }, [])
+
+  const goToDashboard = () => {
+    dispatch({ type: 'UPDATE_COMPONENT', componentName: undefined })
+  }
 
   return (
     <Drawer
@@ -79,27 +79,34 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
       </div>
       <Divider/>
       <List>
-        { availableGetters && (
+        <ListItem key="overviewBtn" onClick={ () => goToDashboard() } selected={ componentName === undefined } button>
+          <ListItemIcon>
+            <DashboardIcon/>
+          </ListItemIcon>
+          <ListItemText primary={ t('dashboard') }/>
+        </ListItem>
+
+        { filteredGetters && (
           <Typography
             ml={ 1 }
             variant="overline"
             color="primary"
-          >{ AVAILABLE_GETTERS_SECTION_TITLE }
+          >{ t('availableData') }
           </Typography>
         ) }
 
-        { (availableGetters ?? GETTERS).map((getter) => (
-          <ListItem key={ getter } onClick={ handleLinkClick(getter) } button>
+        { (filteredGetters ?? GETTERS).map((getter) => (
+          <ListItem key={ getter } onClick={ handleLinkClick(getter) } selected={ componentName === getter } button>
             <ListItemText primary={ getGetterLabel(getter) }/>
           </ListItem>
         )) }
 
-        <Accordion disabled={ !availableGetters } disableGutters sx={ { '&.Mui-disabled': { background: 'initial' } } }>
+        <Accordion disabled={ !filteredGetters } disableGutters sx={ { '&.Mui-disabled': { background: 'initial' } } }>
           <AccordionSummary expandIcon={ <ExpandMoreIcon/> }>
-            <ConditionalTooltip title={ LOADING_ACCORDION_LABEL } show={ !availableGetters }>
+            <ConditionalTooltip title={ t('processing') } show={ !filteredGetters }>
               <Stack direction="row" alignItems="center" spacing={ 1 }>
-                { !availableGetters && <CircularProgress size={ 15 }/> }
-                <Typography variant="overline" color="gray">{ UNAVAILABLE_GETTERS_ACCORDION_LABEL }</Typography>
+                { loading && <CircularProgress size={ 15 }/> }
+                <Typography variant="overline" color="gray">{ t('unavailableData') }</Typography>
               </Stack>
             </ConditionalTooltip>
           </AccordionSummary>

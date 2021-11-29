@@ -1,11 +1,12 @@
 import React from 'react'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import ReactedPostComponent from './ReactedComponents/ReactedPostComponent'
 import ReactedMediaComponent from './ReactedComponents/ReactedMediaComponent'
 import ReactedCommunityComponent from './ReactedComponents/ReactedCommunityComponent'
@@ -13,18 +14,23 @@ import ReactedLinkComponent from './ReactedComponents/ReactedLinkComponent'
 import AutoTabs from '../AutoTabs'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 
-const loadLimit = 114
-
 export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<Reacted>>> }) {
+  const { t } = useTranslation('common')
+
   const Reacted = (
     <Container maxWidth="md">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.slice(0, loadLimit).length } reactions found` }
+          { t('found', {
+            count: data.data.length,
+            entity: t('reactions', { count: data.data.length }).toLowerCase(),
+            context: 'female',
+          }) }
+
         </Typography>
       </Box>
       <Box my={ 2 }>
-        { data.data.slice(0, loadLimit).map((row, idx) => (
+        { data.data.map((row, idx) => (
           <div>
             { row.entityType === 'post' && <ReactedPostComponent key={ idx.toString() } data={ row }/> }
             { row.entityType === 'community' && <ReactedCommunityComponent key={ idx.toString() } data={ row }/> }
@@ -40,8 +46,8 @@ export default function Reacteds({ data }: { data: NonNullable<GetterData<Array<
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Reacted stat', icon: <Timeline/> },
-        { label: 'Reacted list', icon: <ListIcon/> },
+        { label: t('stat'), icon: <Timeline/> },
+        { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.REACTED }/>,

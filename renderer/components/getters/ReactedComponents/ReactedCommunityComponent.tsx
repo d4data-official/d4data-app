@@ -1,11 +1,13 @@
 import React from 'react'
-import moment from 'moment'
 import { Reacted } from '@d4data/archive-lib/dist/src/types/schemas'
-import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+import { makeStyles } from '@mui/styles'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import { useTranslation } from 'react-i18next'
+import { Community } from '@d4data/archive-lib'
 import GenericReactionComponent from './GenericReactionComponent'
+import getDurationFromNow from '../../../modules/getDurationFromNow'
 
 const useStyles = makeStyles({
   root: {
@@ -19,27 +21,25 @@ const useStyles = makeStyles({
     marginLeft: 15,
     marginBottom: 10,
   },
-  pos: {
-    fontSize: 10,
-  },
 })
 
 export default function ReactedCommunityComponent({ data }: { data: NonNullable<Reacted> }) {
+  const { t } = useTranslation(['common', 'pages'])
   const classes = useStyles()
+  const entity = data.entity as Community
 
   return (
     <Card className={ classes.root } variant="outlined">
       <CardContent>
         <Typography className={ classes.title } variant="h5" component="h2">
-          <span>
-            A réagi sur la communauté { data.entity.name }
-          </span>
+          { t('pages:reacted.ReactedCommunityComponent.title', { name: entity.name }) }
         </Typography>
-        <Typography className={ classes.pos } color="textSecondary">
-          { data.entity.joinedDate
-          // eslint-disable-next-line no-mixed-operators
-          && `${ moment.duration(data.entity.joinedDate?.valueOf() / 10).humanize() } ago` || 'No date provided' }
-        </Typography>
+
+        { entity.joinedDate && (
+          <Typography variant="caption" color="textSecondary">
+            { t('common:ago', { time: getDurationFromNow(entity.joinedDate).humanize() }) }
+          </Typography>
+        ) }
       </CardContent>
       <div className={ classes.reactions }>
         <GenericReactionComponent reaction={ data.reaction }/>

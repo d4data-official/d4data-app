@@ -1,14 +1,16 @@
 import React from 'react'
 import moment from 'moment'
-import { makeStyles } from '@material-ui/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import { Divider, Grid } from '@material-ui/core'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
+import { makeStyles } from '@mui/styles'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { CardHeader, Divider, Grid } from '@mui/material'
+import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
+import { Box } from '@mui/system'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import type { Note } from '@d4data/archive-lib/dist/src/types/schemas'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -34,28 +36,38 @@ export interface Props {
 }
 
 export default function DisplayNotes({ data }: Props) {
+  const { t } = useTranslation(['common', 'pages'])
+
   const classes = useStyles()
 
+  const getFormattedTime = (date: Note['creationDate']): string | undefined => {
+    if (!date) {
+      return undefined
+    }
+
+    return t('common:ago', {
+      time: moment.duration(new Date().valueOf() - date.valueOf()).humanize(),
+    })
+  }
+
   const Notes = (
-    <div>
-      <h2>{ data.data.length } notes</h2>
+    <Box p={ 3 } pt={ 0 }>
+      <h2>{ t('pages:notes.title', { count: data.data.length }) }</h2>
+
       <Grid container xs={ 12 } spacing={ 2 }>
         {
           data.data.map((note) => (
             <Grid item xs={ 4 }>
               <Card className={ classes.root }>
                 <CardContent>
-                  <Typography variant="h5" className={ classes.title } gutterBottom>
-                    { note.title ?? 'Unnamed task' }
-                  </Typography>
-                  <Typography variant="body2" component="h2">
-                    { note.creationDate
-                      ? `${ moment.duration(note.creationDate.valueOf() / 10).humanize() } ago`
-                      : 'No date provided' }
-                  </Typography>
-                  <Typography variant="body1" component="p">
-                    { note.content ?? 'Empty note' }
-                  </Typography>
+                  <CardHeader
+                    title={ note.title }
+                    subheader={ getFormattedTime(note.creationDate) }
+                  />
+
+                  <CardContent>
+                    { note.content && <Typography variant="body1" component="p">{ note.content }</Typography> }
+                  </CardContent>
                 </CardContent>
                 <Divider/>
               </Card>
@@ -63,14 +75,14 @@ export default function DisplayNotes({ data }: Props) {
           ))
         }
       </Grid>
-    </div>
+    </Box>
   )
 
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Notes stat', icon: <Timeline/> },
-        { label: 'Notes list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.NOTES }/>,

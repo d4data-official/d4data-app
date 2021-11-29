@@ -1,18 +1,19 @@
 import { Transaction } from '@d4data/archive-lib/dist/src/types/schemas'
 import React from 'react'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import { List as ListIcon, Timeline } from '@material-ui/icons'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import { List as ListIcon, Timeline } from '@mui/icons-material'
 import Getters from '@d4data/archive-lib/dist/src/types/standardizer/Getters'
 import type { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
+import { useTranslation } from 'react-i18next'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -21,11 +22,17 @@ export interface Props {
 }
 
 export default function Transactions({ data }: { data: NonNullable<GetterData<Array<Transaction>>> }) {
+  const { t } = useTranslation(['common', 'pages', 'getters'])
+
   const Transactions = (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } transactions found` }
+          { t('common:found', {
+            count: data.data.length,
+            entity: t('getters:transactions', { count: data.data.length }).toLowerCase(),
+            context: 'female',
+          }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -33,11 +40,11 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Item</TableCell>
-                <TableCell>Price (Currency)</TableCell>
-                <TableCell>Payment method</TableCell>
-                <TableCell>Transaction status</TableCell>
-                <TableCell>Transaction date</TableCell>
+                <TableCell>{ t('pages:transactions.headers.product') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.price') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.paymentMethod') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.status') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.date') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -88,8 +95,8 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
   return (
     <AutoTabs
       tabs={ [
-        { label: 'Transaction stat', icon: <Timeline/> },
-        { label: 'Transaction list', icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.TRANSACTIONS }/>,

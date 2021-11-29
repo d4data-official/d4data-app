@@ -1,13 +1,16 @@
 import { usePopupState } from 'material-ui-popup-state/hooks'
 import { bindMenu, bindTrigger } from 'material-ui-popup-state'
-import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@material-ui/core'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import GitHubIcon from '@material-ui/icons/GitHub'
-import WebIcon from '@material-ui/icons/Web'
+import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import WebIcon from '@mui/icons-material/Web'
+import { useTranslation } from 'react-i18next'
 import { version } from '../../../../../package.json'
 import openInBrowser from '../../../../modules/openInBrowser'
 
 export default function AppBarMoreMenu() {
+  const { t } = useTranslation('utils')
+
   const popupState = usePopupState({ variant: 'popover', popupId: 'header-menu' })
 
   const goToGithubRelease = () => openInBrowser(
@@ -27,18 +30,18 @@ export default function AppBarMoreMenu() {
           <ListItemIcon>
             <WebIcon fontSize="small"/>
           </ListItemIcon>
-          <ListItemText>Website</ListItemText>
+          <ListItemText>{ t('website') }</ListItemText>
         </MenuItem>
 
         <MenuItem onClick={ goToGithub }>
           <ListItemIcon>
             <GitHubIcon fontSize="small"/>
           </ListItemIcon>
-          <ListItemText>Source code</ListItemText>
+          <ListItemText>{ t('sources') }</ListItemText>
         </MenuItem>
 
         <MenuItem onClick={ goToGithubRelease }>
-          <ListItemText>Version { version }</ListItemText>
+          <ListItemText>{ t('version', { version }) }</ListItemText>
         </MenuItem>
       </Menu>
     </>

@@ -1,16 +1,15 @@
 import React from 'react'
-
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import { createStyles, makeStyles } from '@material-ui/styles'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import { Avatar, Grid } from '@material-ui/core'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
+import { Avatar, Grid } from '@mui/material'
 import { Contact } from '@d4data/archive-lib/dist/src/types/schemas'
 import moment from 'moment'
 import getInitialsFromContact from '../../../modules/getInitialsFromContact'
+import Center from '../../Center'
 
 export interface Props {
   onClose?: () => void
@@ -19,15 +18,6 @@ export interface Props {
 }
 
 export default function ContactComponent({ show, profile, onClose }: Props) {
-  const useStyles = makeStyles((theme) => createStyles({
-    avatar: {
-      boxShadow: theme.shadows[3],
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  }))
-  const classes = useStyles()
-
   const handleClose = () => {
     onClose?.()
   }
@@ -35,52 +25,28 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
   if (!profile) return <></>
 
   return (
-    <Dialog open={ show } onClose={ handleClose } maxWidth="md" fullWidth aria-labelledby="form-dialog-title">
+    <Dialog open={ show } onClose={ handleClose } maxWidth="md" fullWidth>
       <DialogTitle id="form-dialog-title">Contact</DialogTitle>
-      <DialogContent
-        style={
-          { overflow: 'hidden' }
-        }
-      >
-        <Grid container spacing={ 4 }>
-          <Grid item xs={ 5 }/>
-          <Grid item>
-            <Avatar alt={ profile.firstName } src={ profile.profilePicture } className={ classes.avatar }>
-              { getInitialsFromContact(profile) }
-            </Avatar>
-          </Grid>
-        </Grid>
-        <Grid container spacing={ 8 }>
-          <Grid item xs={ 1 }/>
-        </Grid>
-        <Grid container spacing={ 4 }>
-          <Grid item xs={ 3 }>
+
+      <DialogContent sx={ { py: 2 } }>
+        <Center sx={ { mb: 3 } }>
+          <Avatar
+            alt={ profile.firstName }
+            src={ profile.profilePicture }
+            sx={ {
+              boxShadow: (theme) => theme.shadows[3],
+              width: (theme) => theme.spacing(16),
+              height: (theme) => theme.spacing(16),
+            } }
+          >
+            { getInitialsFromContact(profile) }
+          </Avatar>
+        </Center>
+
+        <Grid container spacing={ 2 }>
+
+          <Grid item xs={ 4 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Gender"
-              value={ profile?.gender }
-              fullWidth
-              InputProps={ {
-                readOnly: true,
-              } }
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={ 3 }>
-            <TextField
-              id="outlined-read-only-input"
-              label="Display name"
-              value={ profile?.displayName }
-              fullWidth
-              InputProps={ {
-                readOnly: true,
-              } }
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={ 3 }>
-            <TextField
-              id="outlined-read-only-input"
               label="First name"
               value={ profile?.firstName }
               fullWidth
@@ -90,105 +56,105 @@ export default function ContactComponent({ show, profile, onClose }: Props) {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 3 }>
+
+          <Grid item xs={ 4 }>
             <TextField
-              id="outlined-read-only-input"
               label="Last name"
               value={ profile?.lastName }
-              fullWidth
-              InputProps={ {
-                readOnly: true,
-              } }
+              InputProps={ { readOnly: true } }
               variant="outlined"
+              fullWidth
             />
           </Grid>
-        </Grid>
-        <Grid container spacing={ 4 }>
-          <Grid item xs={ 3 }>
+
+          <Grid item xs={ 4 }>
+            <TextField
+              label="Gender"
+              value={ profile?.gender }
+              InputProps={ { readOnly: true } }
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+
+          <Grid item xs={ 4 }>
+            <TextField
+              label="Display name"
+              value={ profile?.displayName }
+              InputProps={ { readOnly: true } }
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+
+          <Grid item xs={ 4 }>
+            <TextField
+              label="Username"
+              value={ profile.username }
+              InputProps={ { readOnly: true } }
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+
+          <Grid item xs={ 4 }>
+            <TextField
+              label="Nickname"
+              value={ profile.nickname }
+              InputProps={ { readOnly: true } }
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+
+          <Grid item xs={ 4 }>
             <TextField
               id="date"
               label="Birthday"
               type="date"
-              fullWidth
               value={ moment(new Date(profile.birthday)).format('yyyy-MM-DD') }
-              InputLabelProps={ {
-                shrink: true,
-              } }
-              InputProps={ {
-                readOnly: true,
-              } }
+              InputLabelProps={ { shrink: true } }
+              InputProps={ { readOnly: true } }
               variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={ 3 }>
-            <TextField
-              id="outlined-read-only-input"
-              label="Username"
-              value={ profile.username }
-              InputProps={ {
-                readOnly: true,
-              } }
               fullWidth
-              variant="outlined"
             />
           </Grid>
-          <Grid item xs={ 3 }>
+
+          <Grid item xs={ 4 }>
             <TextField
-              id="outlined-read-only-input"
-              label="Nickname"
-              value={ profile.nickname }
-              InputProps={ {
-                readOnly: true,
-              } }
-              fullWidth
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={ 4 }>
-          <Grid item xs={ 3 }>
-            <TextField
-              id="date"
-              label="Creation date"
-              type="date"
-              fullWidth
-              value={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
-              InputLabelProps={ {
-                shrink: true,
-              } }
-              InputProps={ {
-                readOnly: true,
-              } }
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={ 3 }>
-            <TextField
-              id="outlined-read-only-input"
               label="Email"
               value={ profile.email }
-              fullWidth
-              InputProps={ {
-                readOnly: true,
-              } }
+              InputProps={ { readOnly: true } }
               variant="outlined"
+              fullWidth
             />
           </Grid>
-          <Grid item xs={ 3 }>
+
+          <Grid item xs={ 4 }>
             <TextField
-              id="outlined-read-only-input"
               label="Phone"
               value={ profile.phoneNumber }
-              fullWidth
-              InputProps={ {
-                readOnly: true,
-              } }
+              InputProps={ { readOnly: true } }
               variant="outlined"
+              fullWidth
+            />
+          </Grid>
+
+          <Grid item xs={ 4 }>
+            <TextField
+              label="Creation date"
+              type="date"
+              value={ moment(new Date(profile.creationDate)).format('yyyy-MM-DD') }
+              InputLabelProps={ { shrink: true } }
+              InputProps={ { readOnly: true } }
+              variant="outlined"
+              fullWidth
             />
           </Grid>
 
         </Grid>
       </DialogContent>
+
       <DialogActions>
         <Button onClick={ handleClose } color="primary">
           Close

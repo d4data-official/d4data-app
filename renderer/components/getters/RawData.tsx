@@ -1,11 +1,12 @@
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
-import { Box, Button, FormControl, FormLabel, MenuItem, Select, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Button, FormControl, FormLabel, MenuItem, Select, SelectChangeEvent, Stack, Theme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import ArchiveManager from '@modules/ArchiveManager'
 import { shell } from 'electron'
 import { join, relative } from 'path'
 import React, { useCallback, useEffect, useState } from 'react'
 import ReactJson from 'react-json-view-ssr'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   data: NonNullable<GetterData<any>>
@@ -17,9 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     gap: theme.spacing(3),
   },
-  formContainer: {
-    width: '100%',
-  },
   menuItem: {
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
@@ -29,18 +27,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   formControl: {
     minWidth: '25%',
   },
-  topSection: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  button: {
-    whiteSpace: 'nowrap',
-  },
 }))
 
 export default function RawData({ data: { parsedFiles } }: Props) {
+  const { t } = useTranslation('RawData')
+
   const processParsedFile = useCallback(() => {
     const standardizer = ArchiveManager.currentStandardizer
     if (!standardizer) {
@@ -53,8 +44,8 @@ export default function RawData({ data: { parsedFiles } }: Props) {
   const [data, setData] = useState<any>()
   const classes = useStyles()
 
-  const handleChangeFile = useCallback((event: React.ChangeEvent<{ value: unknown }>) => {
-    setFile(event.target.value as string)
+  const handleChangeFile = useCallback((event: SelectChangeEvent<string>) => {
+    setFile(event.target.value)
   }, [])
 
   useEffect(() => {
@@ -80,26 +71,24 @@ export default function RawData({ data: { parsedFiles } }: Props) {
 
   return (
     <Box height={ 1 } width={ 1 } padding={ 2 } className={ classes.root }>
-      <div className={ classes.topSection }>
-        <div className={ classes.formContainer }>
-          <FormControl size="small" className={ classes.formControl }>
-            <FormLabel>Choose your file</FormLabel>
-            <Select value={ file } onChange={ handleChangeFile }>
-              { processParsedFile().map((parsedFile) => (
-                <MenuItem className={ classes.menuItem } value={ parsedFile }>{ parsedFile }</MenuItem>
-              )) }
-            </Select>
-          </FormControl>
-        </div>
+      <Stack direction="row" alignItems="flex-end" justifyContent="space-between">
+        <FormControl size="small" className={ classes.formControl }>
+          <FormLabel>{ t('chooseYourFile') }</FormLabel>
+          <Select value={ file } onChange={ handleChangeFile }>
+            { processParsedFile().map((parsedFile) => (
+              <MenuItem className={ classes.menuItem } value={ parsedFile }>{ parsedFile }</MenuItem>
+            )) }
+          </Select>
+        </FormControl>
 
         <Button
-          className={ classes.button }
           variant="outlined"
           onClick={ showInFolder }
+          style={ { whiteSpace: 'nowrap' } }
         >
-          See in file explorer
+          { t('seeInFileExplorer') }
         </Button>
-      </div>
+      </Stack>
 
       { data && (
         <ReactJson

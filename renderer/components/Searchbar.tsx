@@ -1,11 +1,11 @@
 import React, { CSSProperties, useEffect, useMemo, useState } from 'react'
 import Fuse from 'fuse.js'
-import { createStyles, makeStyles } from '@material-ui/styles'
-import Paper from '@material-ui/core/Paper'
-import InputBase from '@material-ui/core/InputBase'
-import SearchIcon from '@material-ui/icons/Search'
-import ClearIcon from '@material-ui/icons/Clear'
-import { IconButton } from '@material-ui/core'
+import { createStyles, makeStyles } from '@mui/styles'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import SearchIcon from '@mui/icons-material/Search'
+import ClearIcon from '@mui/icons-material/Clear'
+import { IconButton } from '@mui/material'
 import clsx from 'clsx'
 
 export type Data = Array<Record<any, any>>

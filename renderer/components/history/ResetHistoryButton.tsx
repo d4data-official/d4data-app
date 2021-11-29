@@ -1,10 +1,11 @@
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import React, { CSSProperties, ReactNode, useState } from 'react'
-import DeleteIcon from '@material-ui/icons/Delete'
-import { createStyles, makeStyles } from '@material-ui/styles'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { createStyles, makeStyles } from '@mui/styles'
 import clsx from 'clsx'
-import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
+import useArchiveHistory from '../../hooks/useArchiveHistory'
 
 export interface Props {
   label?: string
@@ -24,6 +25,8 @@ const useStyles = makeStyles((theme) => createStyles({
 }))
 
 export default function ResetHistoryButton({ label, icon, className, style }: Props) {
+  const { t } = useTranslation('history')
+
   const classes = useStyles()
   const { history, resetHistory } = useArchiveHistory()
   const [loading, setLoading] = useState(false)
@@ -32,7 +35,7 @@ export default function ResetHistoryButton({ label, icon, className, style }: Pr
     setLoading(true)
     resetHistory()
       .then(() => {
-        toast('Archive reset', { position: 'bottom-left' })
+        toast(t('reset'), { position: 'bottom-left' })
       })
       .finally(() => setLoading(false))
   }
@@ -46,7 +49,7 @@ export default function ResetHistoryButton({ label, icon, className, style }: Pr
       className={ clsx(classes.button, className) }
       style={ style }
     >
-      { label ?? `Reset History (${ history.length })` }
+      { label ?? `${ t('reset') } (${ history.length })` }
     </Button>
   )
 }

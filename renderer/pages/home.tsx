@@ -1,61 +1,82 @@
-import React from 'react'
-import { Box, Button, Grid, Paper, Stack, Typography, useTheme } from '@material-ui/core'
+import React, { useCallback } from 'react'
+import { Box, Button, Grid, Link, Paper, Stack, Typography, useTheme } from '@mui/material'
 import Dropzone from 'pages-components/home/components/Dropzone'
 import Services from '@d4data/archive-lib/dist/src/types/Services'
 import ArchiveFactoryIPC from '@shared/d4data-archive-lib/renderer/ArchiveFactoryIPC'
 import { useRouter } from 'next/router'
 import Path from 'path'
-import useArchiveHistory from '@hooks/useArchiveHistory'
 import { toast } from 'react-hot-toast'
 import Particles from 'react-tsparticles'
-import ArchiveExtractProgress, { ProgressState } from '../components/pages/home/components/ArchiveExtractProgress'
+import { useTranslation } from 'react-i18next'
+import useArchiveHistory from '../hooks/useArchiveHistory'
 import LastHistoryEntry from '../components/history/LastHistoryEntry'
 import useArchiveManager from '../hooks/useArchiveManager'
+import openInBrowser from '../modules/openInBrowser'
+import useArchiveProcessProgress, { ArchiveProcessStep } from '../hooks/useArchiveProcessProgress'
+import ArchiveProcessProgressDialog from '../components/ArchiveProcessProgressDialog'
+import getAvailableGetters from '../modules/getAvailableGetters'
+import { ArchiveHistoryEntry } from '../modules/ArchiveHistoryManager'
 
 export default function HomePage() {
+  const { t } = useTranslation('homepage')
+
   const theme = useTheme()
   const router = useRouter()
-  const [progressBar, setProgress] = React.useState<ProgressState>({ show: false })
+  const { state: progress, setState: setProgress } = useArchiveProcessProgress()
   const {
     lastHistoryEntry,
     history,
     addHistoryEntry,
   } = useArchiveHistory()
   const { setCurrentArchive, setCurrentStandardizer } = useArchiveManager()
+  const { restoreArchiveFromEntry } = useArchiveHistory()
 
   const handleExtract = React.useCallback(async (path: string) => {
-    setProgress({ show: true })
+    setProgress({ step: ArchiveProcessStep.IDENTIFYING })
 
     const archiveFactory = await ArchiveFactoryIPC.init(path)
 
     console.info('[Archive] Identifying service')
 
     const service = await archiveFactory.identify()
+
     if (service === Services.UNKNOWN) {
       toast.error('Fail to identify archive service', { position: 'bottom-left' })
-
       console.info('[Archive] Unknown service, cancel import')
       archiveFactory.destroy()
         .catch((err) => console.error(err))
+      setProgress({ step: ArchiveProcessStep.NONE })
+
       return
     }
 
     console.info('[Archive] Service detected:', service)
-    setProgress({ show: true, service, extractedCount: 0, total: 100 })
+    setProgress({
+      step: ArchiveProcessStep.EXTRACTING,
+      service,
+      extractionInfo: { extractedCount: 0, total: 100 },
+    })
 
     const archivePlugin = await archiveFactory.getPlugin()
 
     console.info('[Archive] Start extraction')
     await archivePlugin.extract({
       onProgress: (fileName, extractedCount, total) => {
-        setProgress({ show: (extractedCount !== total), service, fileName, extractedCount, total })
+        setProgress((state) => ({
+          ...state,
+          extractionInfo: { fileName, extractedCount, total },
+        }))
       },
     })
     console.info('[Archive] Extraction ended')
 
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Getting standardizer...' } })
+
     const standardizer = await archivePlugin.getStandardizer()
     setCurrentArchive(archivePlugin)
     setCurrentStandardizer(standardizer)
+
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Saving to history...' } })
 
     addHistoryEntry({
       archiveName: Path.parse(path).base,
@@ -66,7 +87,20 @@ export default function HomePage() {
         .then((metadata) => metadata.size),
     })
 
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Checking data...' } })
+
+    await getAvailableGetters(standardizer)
+
     router.push('/dashboard')
+  }, [])
+
+  const restoreArchiveHandler = useCallback(async (entry: ArchiveHistoryEntry) => {
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Getting standardizer...' } })
+    const standardizer = await restoreArchiveFromEntry(entry)
+    setProgress({ step: ArchiveProcessStep.POST_PROCESS, postProcessInfo: { step: 'Checking data...' } })
+    await getAvailableGetters(standardizer)
+
+    return router.push('/dashboard')
   }, [])
 
   return (
@@ -154,22 +188,39 @@ export default function HomePage() {
             color="primary"
             align="center"
           >
-            Visualize your personal data in just one click !
+            { t('header') }
           </Typography>
         </Grid>
 
         <Grid item xs={ 8 } sx={ { zIndex: 10 } }>
           <Paper sx={ { p: 4 } } elevation={ 4 }>
-            <Stack spacing={ 4 }>
+            <Stack spacing={ 2 }>
+              <Stack spacing={ 1 }>
+                <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
+                  <Dropzone onLoaded={ handleExtract }/>
+                </Paper>
 
-              <Paper elevation={ 2 } sx={ { overflow: 'hidden' } }>
-                <Dropzone onLoaded={ handleExtract }/>
-              </Paper>
+                <div>
+                  <Typography variant="overline">{ t('documentation') }</Typography>
+                  <Typography variant="overline">
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                    <Link
+                      href="#"
+                      onClick={ () => openInBrowser('https://docs.d4data.org/docs/user-docs/guides/index') }
+                      sx={ { ml: 0.5 } }
+                    >
+                      { t('documentationLink') }
+                    </Link>
+                  </Typography>
+                </div>
+              </Stack>
 
               { lastHistoryEntry && (
                 <Stack spacing={ 2 }>
                   <Stack direction="row" alignItems="center" justifyContent="space-between">
-                    <Typography variant="h6" fontWeight={ 100 } color="secondary">Last archive processed</Typography>
+                    <Typography variant="h6" fontWeight={ 100 } color="secondary">
+                      { t('historyTitle') }
+                    </Typography>
 
                     <Button
                       onClick={ () => router.push('/archive-history') }
@@ -177,18 +228,18 @@ export default function HomePage() {
                       variant="contained"
                       size="small"
                     >
-                      Show complete history ({ history.length })
+                      { t('historyButton') } ({ history.length })
                     </Button>
                   </Stack>
 
-                  <LastHistoryEntry/>
+                  <LastHistoryEntry onRestore={ (entry) => restoreArchiveHandler(entry) }/>
                 </Stack>
               ) }
 
             </Stack>
           </Paper>
 
-          <ArchiveExtractProgress state={ progressBar }/>
+          <ArchiveProcessProgressDialog state={ progress }/>
         </Grid>
       </Grid>
     </Box>
