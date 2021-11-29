@@ -70,6 +70,7 @@
     "medias": "Medias",
     "notes": "Notes",
     "transactions": "Transactions",
+    "transactions_one": "Transaction",
     "browserdata": "Browser Datas",
     "tasks": "Tasks",
     "authorizeddevices": "Authorized Devices",
@@ -262,6 +263,15 @@
       "ReactedLinkComponent": {
         "title": "Had reacted to an external link",
         "openExternalLink": "Open external link"
+      }
+    },
+    "transactions": {
+      "headers": {
+        "product": "Product",
+        "price": "Price (Currency)",
+        "paymentMethod": "Payment method",
+        "status": "Status",
+        "date": "Date"
       }
     }
   },

@@ -22,13 +22,17 @@ export interface Props {
 }
 
 export default function Transactions({ data }: { data: NonNullable<GetterData<Array<Transaction>>> }) {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'pages', 'getters'])
 
   const Transactions = (
     <Container maxWidth="lg">
       <Box my={ 4 }>
         <Typography variant="h5" gutterBottom>
-          { `${ data.data.length } transactions found` }
+          { t('common:found', {
+            count: data.data.length,
+            entity: t('getters:transactions', { count: data.data.length }).toLowerCase(),
+            context: 'female',
+          }) }
         </Typography>
       </Box>
       <Box my={ 2 }>
@@ -36,11 +40,11 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
           <Table size="small" sx={ { minWidth: 700 } }>
             <TableHead>
               <TableRow>
-                <TableCell>Item</TableCell>
-                <TableCell>Price (Currency)</TableCell>
-                <TableCell>Payment method</TableCell>
-                <TableCell>Transaction status</TableCell>
-                <TableCell>Transaction date</TableCell>
+                <TableCell>{ t('pages:transactions.headers.product') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.price') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.paymentMethod') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.status') }</TableCell>
+                <TableCell>{ t('pages:transactions.headers.date') }</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -91,8 +95,8 @@ export default function Transactions({ data }: { data: NonNullable<GetterData<Ar
   return (
     <AutoTabs
       tabs={ [
-        { label: t('stat'), icon: <Timeline/> },
-        { label: t('list'), icon: <ListIcon/> },
+        { label: t('common:stat'), icon: <Timeline/> },
+        { label: t('common:list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.TRANSACTIONS }/>,
