@@ -1,30 +1,16 @@
 import React, { useMemo } from 'react'
 import { Paper, Stack, Typography } from '@mui/material'
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas'
+import { useTranslation } from 'react-i18next'
 import VirtualizedTable, { ColumnData } from '../../VirtualizedTable'
 
 const E7 = 10000000
 
-const columns: Array<ColumnData> = [
-  {
-    dataKey: 'recordDate',
-    label: 'Date',
-  },
-  {
-    dataKey: 'relativePosition',
-    label: 'Address',
-  },
-  {
-    dataKey: 'latitude',
-    label: 'Latitude',
-  },
-  {
-    dataKey: 'longitude',
-    label: 'Longitude',
-  },
-]
+export default function LocationHistory({ whereabouts }: {
+  whereabouts: Array<Whereabout>
+}) {
+  const { t } = useTranslation(['common', 'getters'])
 
-export default function LocationHistory({ whereabouts }: { whereabouts: Array<Whereabout> }) {
   const data = useMemo(() => whereabouts.map((location) => {
     const latitude = location?.location?.absolutePosition?.latitude
     const longitude = location?.location?.absolutePosition?.longitude
@@ -38,9 +24,34 @@ export default function LocationHistory({ whereabouts }: { whereabouts: Array<Wh
     }
   }), [])
 
+  const columns: Array<ColumnData> = [
+    {
+      dataKey: 'recordDate',
+      label: t('common:date'),
+    },
+    {
+      dataKey: 'relativePosition',
+      label: t('common:address'),
+    },
+    {
+      dataKey: 'latitude',
+      label: t('common:latitude'),
+    },
+    {
+      dataKey: 'longitude',
+      label: t('common:longitude'),
+    },
+  ]
+
   return (
     <Stack height={ 1 } spacing={ 2 }>
-      <Typography variant="h5" color="primary">Whereabouts ({ data.length })</Typography>
+      <Typography variant="h5" color="primary">
+        { t('common:found', {
+          count: data.length,
+          entity: t('getters:whereabouts', { count: data.length }).toLowerCase(),
+          context: 'female',
+        }) }
+      </Typography>
 
       <Paper variant="outlined" sx={ { flexGrow: 1, height: 1 } }>
         <VirtualizedTable columns={ columns } data={ data }/>

@@ -53,6 +53,7 @@
     "followers": "Abonnés",
     "contacts": "Contacts",
     "whereabouts": "Positions",
+    "whereabouts_one": "Position",
     "notifications": "Notifications",
     "notifications_one": "Notification",
     "chats": "Discussions",
@@ -161,7 +162,8 @@
     "reaction_one": "Réaction",
     "sentBy": "Envoyer par {{sender}}",
     "lastUpdate": "Dernière mise à jour",
-    "endUpdate": "Date de fin"
+    "endUpdate": "Date de fin",
+    "map": "Carte"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",

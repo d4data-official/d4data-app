@@ -158,7 +158,8 @@
     "reaction_one": "Reaction",
     "sentBy": "Sent by {{sender}}",
     "lastUpdate": "Last update",
-    "endUpdate": "End update"
+    "endUpdate": "End update",
+    "map": "Map"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",
