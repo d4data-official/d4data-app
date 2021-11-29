@@ -35,6 +35,7 @@
     "about": "About your archive",
     "service": "Service",
     "size": "Archive size",
+    "age": "Archive age",
     "note": "Note from the team",
     "score": "GDPR score (coming soon)",
     "noteDescription": "This section will help you know more about the services you are using and their data policies.",
@@ -161,7 +162,8 @@
     "endUpdate": "End update",
     "map": "Map",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "service": "Service"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",

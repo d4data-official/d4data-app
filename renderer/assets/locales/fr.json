@@ -35,6 +35,7 @@
     "about": "À propos de votre archive",
     "service": "Service",
     "size": "Taille de l'archive",
+    "age": "Archive age",
     "note": "Note de l'équipe",
     "score": "Score RGPD (bientôt disponible)",
     "noteDescription": "Cette section vous aidera à en savoir plus sur les services que vous utilisez et leur politique en matière de données",
@@ -165,7 +166,8 @@
     "endUpdate": "Date de fin",
     "map": "Carte",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "service": "Service"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",
