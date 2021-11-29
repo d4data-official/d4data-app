@@ -7,24 +7,10 @@ import useGetter from '../../../hooks/getter/useGetter'
 import Loading from '../../pages/dashboard/components/Loading'
 import NoData from '../../pages/dashboard/components/NoData'
 import ErrorAlert from '../../ErrorAlert'
-
-const columns: Array<GridColDef> = [
-  {
-    headerName: 'Type',
-    field: 'type',
-    type: 'string',
-    minWidth: 200,
-    flex: 1,
-  },
-  {
-    headerName: 'Date',
-    field: 'date',
-    minWidth: 200,
-    valueFormatter: (params) => (params.value as Event['date'])?.toLocaleString(),
-  },
-]
+import { useTranslation } from 'react-i18next'
 
 export default function EventsList() {
+  const { t } = useTranslation('common')
   const theme = useTheme()
   const { data, loading, error } = useGetter<Array<Event>>(Getters.EVENTS, {
     parsingOptions: {
@@ -34,6 +20,22 @@ export default function EventsList() {
       },
     },
   })
+
+  const columns: Array<GridColDef> = [
+    {
+      headerName: t('type'),
+      field: 'type',
+      type: 'string',
+      minWidth: 200,
+      flex: 1,
+    },
+    {
+      headerName: t('date'),
+      field: 'date',
+      minWidth: 200,
+      valueFormatter: (params) => (params.value as Event['date'])?.toLocaleString(),
+    },
+  ]
 
   const rows = useMemo(() => data?.data
     ?.map((event, index) => ({ id: index, ...event })), [data])

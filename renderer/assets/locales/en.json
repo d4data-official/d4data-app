@@ -163,7 +163,8 @@
     "map": "Map",
     "yes": "Yes",
     "no": "No",
-    "service": "Service"
+    "service": "Service",
+    "type": "Type"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",

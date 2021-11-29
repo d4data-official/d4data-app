@@ -167,7 +167,8 @@
     "map": "Carte",
     "yes": "Oui",
     "no": "Non",
-    "service": "Service"
+    "service": "Service",
+    "type": "Type"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",
