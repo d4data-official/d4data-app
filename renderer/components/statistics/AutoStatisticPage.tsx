@@ -75,6 +75,13 @@ export default function AutoStatisticPage({ getter }: Props) {
   }
 
   return (
-    <StatisticPage statistics={ statistics }/>
+    <StatisticPage
+      statistics={ statistics }
+      variantProvider={ (statistic, index, statistics) => (
+        index % 2 !== 0 && index !== (statistics.length - 1)
+          ? 'outlined'
+          : 'contained'
+      ) }
+    />
   )
 }
