@@ -18,7 +18,7 @@
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.7.2",
     "@chatscope/chat-ui-kit-styles": "^1.2.0",
-    "@d4data/archive-lib": "0.1.0-alpha.9",
+    "@d4data/archive-lib": "0.1.0-alpha.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.3",
