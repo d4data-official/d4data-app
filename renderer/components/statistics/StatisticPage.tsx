@@ -1,4 +1,4 @@
-import Statistic, { StatisticType } from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
+import Statistic from '@d4data/archive-lib/dist/src/types/schemas/Statistic'
 import { Grid, Stack } from '@mui/material'
 import React, { useMemo } from 'react'
 import StatisticCard, { BIG_CARD_TYPES, Props as StatisticCardProps } from './StatisticCard'
