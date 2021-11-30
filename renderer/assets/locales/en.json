@@ -72,9 +72,9 @@
     "notes": "Notes",
     "transactions": "Transactions",
     "transactions_one": "Transaction",
-    "browserdata": "Browser Datas",
+    "browserData": "Browser Data",
     "tasks": "Tasks",
-    "authorizeddevices": "Authorized Devices",
+    "authorizedDevices": "Authorized Devices",
     "mails": "Mails",
     "events": "Events",
     "getProfile": "Profile",
@@ -97,7 +97,7 @@
     "getMedias": "Medias",
     "getNotes": "Notes",
     "getTransactions": "Transactions",
-    "getBrowserData": "Browser Datas",
+    "getBrowserData": "Browser Data",
     "getTasks": "Tasks",
     "getAuthorizedDevices": "Authorized Devices",
     "getMails": "Mails",
@@ -258,16 +258,16 @@
     },
     "reacted": {
       "ReactedPostComponent": {
-        "title": "Had reacted to a post"
+        "title": "Reacted to a post"
       },
       "ReactedCommunityComponent": {
-        "title": "Had reacted to the community {{name}}"
+        "title": "Reacted to the community {{name}}"
       },
       "ReactedMediaComponent": {
-        "title": "Had reacted to a media"
+        "title": "Reacted to a media"
       },
       "ReactedLinkComponent": {
-        "title": "Had reacted to an external link",
+        "title": "Reacted to an external link",
         "openExternalLink": "Open external link"
       }
     },

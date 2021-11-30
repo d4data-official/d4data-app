@@ -14,13 +14,15 @@ export interface Props {
   variant?: 'contained' | 'outlined'
 }
 
-const SIZE_UNIT = 175
+export const SIZE_UNIT = 175
+
+export const BIG_CARD_TYPES: Array<StatisticType> = [StatisticType.RANKING]
 
 export default function StatisticCard({ statistic, variant = 'contained' }: Props) {
   const { t } = useTranslation('common')
   const theme = useTheme()
 
-  const size = statistic.type === StatisticType.RANKING ? 2 : 1
+  const size = BIG_CARD_TYPES.includes(statistic.type) ? 2 : 1
   const color = variant === 'outlined' ? theme.palette.primary.main : 'white'
 
   const getHumanReadableNumber = (value: number) => numeral(value).format(value > 1000 ? '0.0a' : '0.[00]')

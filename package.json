@@ -3,7 +3,7 @@
   "license": "MIT",
   "name": "d4data-app",
   "description": "D4Data app",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "repository": "https://github.com/d4data-official/d4data-app",
   "author": "D4Data Team",
   "main": "app/background.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.7.2",
     "@chatscope/chat-ui-kit-styles": "^1.2.0",
-    "@d4data/archive-lib": "0.1.0-alpha.9",
+    "@d4data/archive-lib": "0.1.0-alpha.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.3",

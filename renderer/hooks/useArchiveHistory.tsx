@@ -25,7 +25,7 @@ export default function useArchiveHistory() {
   return {
     lastHistoryEntry: archiveHistoryManager.lastEntry,
     lastHistoryEntryIndex: archiveHistoryManager.history.length - 1,
-    history: archiveHistoryManager.history,
+    history: [...archiveHistoryManager.history],
     addHistoryEntry: (entry: ArchiveHistoryEntry) => archiveHistoryManager.addHistoryEntry(entry),
     deleteLastHistoryEntry: () => archiveHistoryManager.deleteLastEntry(),
     deleteHistoryEntry: (indexOrEntry: number | ArchiveHistoryEntry) => archiveHistoryManager.deleteEntry(indexOrEntry),
@@ -36,5 +36,6 @@ export default function useArchiveHistory() {
       setRestoredArchive(entry)
       return standardizer
     },
+    refresh: forceUpdate,
   }
 }
