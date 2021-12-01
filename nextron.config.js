@@ -28,7 +28,7 @@ module.exports = {
           org: 'd4data',
           project: 'd4data-app',
           release: process.env.SENTRY_RELEASE || `${ name }@${ version }`,
-          dryRun: process.env.NODE_ENV !== 'production',
+          dryRun: process.env.NODE_ENV !== 'production' || process.env.SENTRY_DRY_RUN === 'true',
           cleanArtifacts: true,
 
           // webpack specific configuration
