@@ -11,7 +11,8 @@
     "historyTitle": "Last archive processed",
     "historyButton": "Show complete history",
     "documentation": "You don't know how how to recover your data archives ?",
-    "documentationLink": "Check out our documentation"
+    "documentationLink": "Check out our documentation",
+    "failToIdentifyArchive": "Fail to identify archive service"
   },
   "history": {
     "delete": "Delete",
@@ -164,7 +165,11 @@
     "yes": "Yes",
     "no": "No",
     "service": "Service",
-    "type": "Type"
+    "type": "Type",
+    "content": "Content",
+    "metaData": "Meta data",
+    "links": "Links",
+    "links_one": "Link"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",

@@ -59,8 +59,8 @@ export default class ArchiveHistoryManager {
       : this.history.findIndex((entry) => indexOrEntry.path === entry.path)
     const [deletedEntry] = this.history.splice(index, 1)
 
-    await fs.promises.unlink(deletedEntry.path)
-      .catch(() => console.info(`Can not remove archive history files, no such file: ${ deletedEntry }`))
+    await fs.promises.rmdir(deletedEntry.path, { recursive: true })
+      .catch((error) => console.error(error))
 
     this.saveHistory()
     this.notifySubscribers()

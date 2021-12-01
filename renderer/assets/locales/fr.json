@@ -11,7 +11,8 @@
     "historyTitle": "Dernière archive traitée",
     "historyButton": "Afficher l'historique complet",
     "documentation": "Vous ne savez pas comment récupérer vos archives ?",
-    "documentationLink": "Consultez notre documentation"
+    "documentationLink": "Consultez notre documentation",
+    "failToIdentifyArchive": "Échec de l'identification de l'archive"
   },
   "history": {
     "delete": "Supprimer",
@@ -61,7 +62,7 @@
     "chatmessages": "Messages",
     "comments": "Commentaires",
     "posts": "Publications",
-    "posts_one": "Publications",
+    "posts_one": "Publication",
     "messages": "Messages",
     "apis": "Applications Connectées",
     "connections": "Connections",
@@ -168,7 +169,11 @@
     "yes": "Oui",
     "no": "Non",
     "service": "Service",
-    "type": "Type"
+    "type": "Type",
+    "content": "Contenu",
+    "metaData": "Meta données",
+    "links": "Liens",
+    "links_one": "Lien"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",

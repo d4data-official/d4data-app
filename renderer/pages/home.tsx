@@ -41,7 +41,7 @@ export default function HomePage() {
     const service = await archiveFactory.identify()
 
     if (service === Services.UNKNOWN) {
-      toast.error('Fail to identify archive service', { position: 'bottom-left' })
+      toast.error(t('failToIdentifyArchive'), { position: 'bottom-left' })
       console.info('[Archive] Unknown service, cancel import')
       archiveFactory.destroy()
         .catch((err) => console.error(err))
