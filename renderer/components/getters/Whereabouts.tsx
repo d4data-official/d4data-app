@@ -8,7 +8,6 @@ import { Box, Container } from '@mui/material'
 import type { Whereabout } from '@d4data/archive-lib/dist/src/types/schemas'
 import { useTranslation } from 'react-i18next'
 import LocationHistory from './LocationComponents/LocationHistory'
-import WhereaboutsMap from './LocationComponents/WhereaboutsMap'
 import AutoStatisticPage from '../statistics/AutoStatisticPage'
 import AutoTabs from '../AutoTabs'
 
@@ -24,7 +23,6 @@ export default function Whereabouts({ data }: { data: NonNullable<GetterData<Arr
       ] }
       tabsContent={ [
         <AutoStatisticPage getter={ Getters.WHEREABOUTS }/>,
-        <WhereaboutsMap whereabouts={ data.data }/>,
         // Wrap with no overflow container to fix buggy table scroll
         <Box height={ 1 } p={ 3 } pt={ 0 } overflow="hidden">
           <Container maxWidth="lg" sx={ { height: 1 } }>
