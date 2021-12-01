@@ -1,5 +1,4 @@
 import React from 'react'
-import MapIcon from '@mui/icons-material/Map'
 import ListIcon from '@mui/icons-material/List'
 import { GetterData } from '@d4data/archive-lib/dist/src/types/standardizer/GetterReturn'
 import { Timeline } from '@mui/icons-material'
@@ -18,7 +17,6 @@ export default function Whereabouts({ data }: { data: NonNullable<GetterData<Arr
     <AutoTabs
       tabs={ [
         { label: t('stat'), icon: <Timeline/> },
-        { label: t('map'), icon: <MapIcon/> },
         { label: t('list'), icon: <ListIcon/> },
       ] }
       tabsContent={ [
