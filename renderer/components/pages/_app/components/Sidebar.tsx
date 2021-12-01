@@ -35,7 +35,7 @@ const DRAWER_WIDTH = 240
 
 const GETTERS = Object.values(Getters)
 const IGNORED_GETTER: Array<Getters> = [Getters.CHAT_MESSAGES]
-const DEDICATED_GETTER_PAGES: Array<Getters> = [Getters.EVENTS]
+const DEDICATED_GETTER_PAGES: Array<Getters> = [Getters.EVENTS, Getters.MESSAGES]
 
 export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerChange }: SidebarProps) {
   const router = useRouter()
