@@ -19,7 +19,7 @@ export enum Position {
 
 export interface Props {
   menuIconPosition?: Position
-  menuIconMargin?: number
+  menuIconMargin?: number | { x: number, y: number }
   menuIconColor?: string
   exportFileName?: string
 }
@@ -28,16 +28,19 @@ const MENU_ITEM_EXPORT_TO_CLIPBOARD = 'Export to clipboard'
 const MENU_ITEM_EXPORT_TO_FILE = 'Save as file (PNG)'
 const SAVE_TO_CLIPBOARD_SUCCESS_NOTIF = 'Successfully saved to clipboard'
 
-const getAbsPosition = (position: Position, padding: number) => {
+const getAbsPosition = (position: Position, margins: number | { x: number, y: number }) => {
+  const x = typeof margins === 'object' ? margins.x : margins
+  const y = typeof margins === 'object' ? margins.y : margins
+
   switch (position) {
     case Position.TOP_LEFT:
-      return { top: padding, left: padding }
+      return { top: y, left: x }
     case Position.TOP_RIGHT:
-      return { top: padding, right: padding }
+      return { top: y, right: x }
     case Position.BOTTOM_LEFT:
-      return { bottom: padding, left: padding }
+      return { bottom: y, left: x }
     case Position.BOTTOM_RIGHT:
-      return { bottom: padding, right: padding }
+      return { bottom: y, right: x }
     default:
       return {}
   }
