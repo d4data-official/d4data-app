@@ -11,7 +11,8 @@
     "historyTitle": "Dernière archive traitée",
     "historyButton": "Afficher l'historique complet",
     "documentation": "Vous ne savez pas comment récupérer vos archives ?",
-    "documentationLink": "Consultez notre documentation"
+    "documentationLink": "Consultez notre documentation",
+    "failToIdentifyArchive": "Échec de l'identification de l'archive"
   },
   "history": {
     "delete": "Supprimer",
