@@ -168,7 +168,11 @@
     "yes": "Oui",
     "no": "Non",
     "service": "Service",
-    "type": "Type"
+    "type": "Type",
+    "content": "Contenu",
+    "metaData": "Meta données",
+    "links": "Liens",
+    "links_one": "Lien"
   },
   "dataCollectUserConsentDialog": {
     "title": "Participer à améliorer D4Data",

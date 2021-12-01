@@ -164,7 +164,11 @@
     "yes": "Yes",
     "no": "No",
     "service": "Service",
-    "type": "Type"
+    "type": "Type",
+    "content": "Content",
+    "metaData": "Meta data",
+    "links": "Links",
+    "links_one": "Link"
   },
   "dataCollectUserConsentDialog": {
     "title": "Take part in improving D4Data",
