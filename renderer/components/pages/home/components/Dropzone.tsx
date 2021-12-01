@@ -9,6 +9,8 @@ interface Props {
   onLoaded: Function
 }
 
+const ACCEPTED_FILE_EXT: Array<string> = ['.zip', 'tar.gz', '.tgz']
+
 const useStyles = makeStyles((theme) => ({
   dropzone: {
     color: '#fff',
@@ -53,7 +55,7 @@ export default function Dropzone({ onLoaded }: Props) {
       onLoaded(fileList[0].path)
     }
   }, [])
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: ['.zip'] })
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: ACCEPTED_FILE_EXT })
 
   return (
     <div { ...getRootProps() } className={ classes.root }>
