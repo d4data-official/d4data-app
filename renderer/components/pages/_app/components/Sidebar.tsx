@@ -96,7 +96,13 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
         ) }
 
         { (filteredGetters ?? GETTERS).map((getter) => (
-          <ListItem key={ getter } onClick={ handleLinkClick(getter) } selected={ componentName === getter } button>
+          <ListItem
+            key={ getter }
+            onClick={ handleLinkClick(getter) }
+            selected={ (router.pathname === '/dashboard' && componentName === getter)
+              || router.pathname.split('/').pop() === getter.slice(3).toLowerCase() }
+            button
+          >
             <ListItemText primary={ getGetterLabel(getter) }/>
           </ListItem>
         )) }
