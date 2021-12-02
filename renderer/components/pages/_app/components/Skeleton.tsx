@@ -85,7 +85,14 @@ export default function Skeleton({ children }: SkeletonProps) {
             </Show>
             <Typography variant="h6" noWrap>
               { currentStandardizer?.service && `${ currentStandardizer?.service } / ` }
-              { componentName ? getGetterLabel(componentName as Getters) : 'D4Data' }
+              {
+                // eslint-disable-next-line no-nested-ternary
+                router.pathname.startsWith('/dashboard/')
+                  ? getGetterLabel(router.pathname.split('/').pop() as Getters)
+                  : componentName
+                    ? getGetterLabel(componentName as Getters)
+                    : 'D4Data'
+              }
             </Typography>
           </div>
 
