@@ -24,6 +24,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard'
 import ConditionalTooltip from '../../../ConditionalTooltip'
 import useAvailableGetters from '../../../../hooks/getter/useAvailableGetters'
 import useGetGetterLabel from '../../../../hooks/getter/useGetGetterLabel'
+import GetterIcon from './GetterIcon'
 
 export interface SidebarProps {
   drawerHeaderClass: string
@@ -103,6 +104,9 @@ export default function Sidebar({ drawerHeaderClass, drawerOpen, handleDrawerCha
               || router.pathname.split('/').pop() === getter.slice(3).toLowerCase() }
             button
           >
+            <ListItemIcon>
+              <GetterIcon getter={ getter }/>
+            </ListItemIcon>
             <ListItemText primary={ getGetterLabel(getter) }/>
           </ListItem>
         )) }
