@@ -13,6 +13,7 @@ Supported services :
 - Google
 - Discord
 - Reddit
+- Gravatar
 
 *Supported service data may not be fully extracted.*
 
