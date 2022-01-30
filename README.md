@@ -33,13 +33,24 @@
 * [Download](https://github.com/d4data-official/d4data-app/releases) (or build) the application.
 * Open the application and import your data package.
 
+## Features
+
+* 🚀 Modular adapters system for data package providers
+* 🔎 Data package provider detection
+* 📈 Statistics
+* 🖥️ In-depth data visualization
+* 📁 Data packages history 
+* 🌍 Localization
+* 🌗 Dark theme
+* 📄 Raw data display
+
 ## Supported providers
 
-- Facebook
-- Google
-- Discord
-- Reddit
-- Gravatar
+- [Facebook](https://facebook.com)
+- [Google](https://google.com)
+- [Discord](https://discord.com)
+- [Reddit](https://reddit.com)
+- [Gravatar](https://gravatar.com)
 
 ## Notes
 
