@@ -8,6 +8,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/LICENSE-GPL_v3_(Commons_Clause)-2ea44f?style=for-the-badge" alt="license" />
+  <img src="https://img.shields.io/discord/831916914082185236?color=5865F2&label=Discord&style=for-the-badge" alt="discord"/>
 </p>
 
 <p align="center">
