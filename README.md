@@ -6,9 +6,23 @@
 <p align="center">Take control over your privacy. Download your GDPR data packages from supported providers and start exploring the data they collected.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/workflow/status/d4data-official/d4data-app/Test%20Build?style=for-the-badge" alt="build"/>
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/LICENSE-GPL_v3_(Commons_Clause)-2ea44f?style=for-the-badge" alt="license" />
+</p>
+
+<p align="center">
+  <a href="#">
+    <img src="https://img.shields.io/github/workflow/status/d4data-official/d4data-app/Test%20Build?style=for-the-badge" alt="build"/>
+  </a>
+  <a href="https://github.com/d4data-official/d4data-app/releases">
+    <img src="https://img.shields.io/github/v/release/d4data-official/d4data-app?style=for-the-badge&sort=semver" alt="tag"/>
+  </a>
+  <a href="https://github.com/d4data-official/d4data-app/issues">
+    <img src="https://img.shields.io/github/issues-raw/d4data-official/d4data-app?style=for-the-badge" alt="issues"/>
+  </a>
+  <a href="https://github.com/d4data-official/archive-lib/pulls">
+    <img src="https://img.shields.io/github/issues-pr-raw/d4data-official/archive-lib?style=for-the-badge" alt="pull-requests"/>
+  </a>
 </p>
 
 ⚠ This project is still under development.
