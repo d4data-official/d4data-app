@@ -37,4 +37,4 @@ This project uses the [d4data-official/archive-lib](https://github.com/d4data-of
 
 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) under the [Commons Clause](https://commonsclause.com/)
 
-[LICENSE](https://github.com/d4data-official/d4data-app/LICENSE.md)
+[LICENSE](LICENSE.md)
