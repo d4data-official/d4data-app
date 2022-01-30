@@ -19,7 +19,7 @@
 * [Download](https://github.com/d4data-official/d4data-app/releases) (or build) the application.
 * Open the application and import your data package.
 
-## Supported services
+## Supported providers
 
 - Facebook
 - Google
