@@ -16,7 +16,7 @@
 ## How to use
 
 * Download your GDPR data package (check out [this page](https://docs.d4data.org/docs/user-docs/guides/index) to know how to request and download it).
-* [Download](https://github.com/d4data-official/d4data-app/releases) (or build, see below) the application.
+* [Download](https://github.com/d4data-official/d4data-app/releases) (or build) the application.
 * Open the application and import your data package.
 
 ## Supported services
